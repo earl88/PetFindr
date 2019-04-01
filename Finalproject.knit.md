@@ -7,9 +7,21 @@ output: html_document
 
 We are a dream team!
 
-```{r}
+
+```r
 library(tidyr)
 library(rvest)
+```
+
+```
+## Loading required package: xml2
+```
+
+```
+## Warning: package 'xml2' was built under R version 3.5.3
+```
+
+```r
 library(tibble)
 
 key <- "key=7fdd14996c2133c74184f71e087ddf19"
@@ -36,6 +48,5 @@ dog_to_df <- function(x) {
 }
 
 ames_dog_df <- ames_dogs %>% purrr::map_df(dog_to_df)
-
 ```
 
