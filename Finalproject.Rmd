@@ -16,10 +16,8 @@ key <- "key=7fdd14996c2133c74184f71e087ddf19"
 base_url <- "http://api.petfinder.com/"
 method <- "pet.find"
 query <- "animal=dog&location=50010"
-url <- sprintf("%s%s?%s&%s", base_url, method, key, query)
-ames_dogs <- read_xml(url) %>% xml_nodes("pet")
 
-url <- "https://bit.ly/2Hw6lkn"
+url <- sprintf("%s%s?%s&%s", base_url, method, key, query)
 ames_dogs <- read_xml(url) %>% xml_nodes("pet")
 
 dog_to_df <- function(x) {
@@ -30,8 +28,8 @@ dog_to_df <- function(x) {
     sex = xml_node(x, "sex") %>% xml_text(),
     id = xml_node(x, "id") %>% xml_text(),
     shelterID = xml_node(x, "shelterId") %>% xml_text(),
-    pics = list(xml_nodes(x, "photo") %>% xml_text())
-    
+    location = xml_node(x, "location") %>% xml_text(),
+    pics = list(xml_nodes(x, "photo") %>% xml_text()),
   )
 }
 
