@@ -1,0 +1,44 @@
+---
+title: "Stat 585 - Final Project"
+author: "Earl Hur, Jessica Kueon, Hana Lee, Amin Shirazi and Miranda Tilton"
+date: "March 31, 2019"
+output: html_document
+---
+
+We are a dream team!
+
+```{r}
+library(tidyr)
+library(rvest)
+library(tibble)
+
+key <- "key=7fdd14996c2133c74184f71e087ddf19"
+base_url <- "http://api.petfinder.com/"
+method <- "pet.find"
+query <- "animal=dog&location=50010"
+url <- sprintf("%s%s?%s&%s", base_url, method, key, query)
+ames_dogs <- read_xml(url) %>% xml_nodes("pet")
+ames_dogs
+
+url <- "https://bit.ly/2Hw6lkn"
+ames_dogs <- read_xml(url) %>% xml_nodes("pet")
+
+dog_to_df <- function(x) {
+  data.frame(
+    name = xml_node(x, "name") %>% xml_text(),
+    breed = xml_nodes(x, "breed") %>% xml_text() %>% paste(collapse = ", "),
+    age = xml_node(x, "age") %>% xml_text(),
+    sex = xml_node(x, "sex") %>% xml_text(),
+    id = xml_node(x, "id") %>% xml_text(),
+    shelterID = xml_node(x, "shelterId") %>% xml_text(),
+    pics = list(xml_nodes(x, "photo") %>% xml_text())
+    
+  )
+}
+ames_dog_df <- ames_dogs %>% purrr::map_df(dog_to_df)
+
+xml_node(ames_dogs, "")
+
+ames_dog_df$pics[1]
+```
+
