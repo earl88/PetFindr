@@ -12,41 +12,50 @@ petfindr_setup <- function() {
 
 # Once they have a key and secret from the website,
 # # our functions can save them to their RProfile
-############################# in progress. Mostly functional?
 petfindr_save_credentials <- function(key = NULL, secret = NULL,
                                       scope = c("user", "project")) {
 
-  #Select scope for .Rprofile and make sure file exists
+  # Select scope for .Rprofile and make sure file exists
   scope <- match.arg(scope)
   rprof_path <- file.path(usethis:::scoped_path_r(scope), ".Rprofile")
   assertthat::assert_that(file.exists(rprof_path))
+  rprof_contents <- readLines(rprof_path)
 
-  # Check that the string inputs are what you expect
+  # Need user to provide at least one of key or secret
   assertthat::assert_that(!is.null(key) | !is.null(secret))
 
+  # If a key is provided, check validity and whether already in Rprofile
   if(!is.null(key)) {
+
+    # Check input type and length
     assertthat::is.string(key)
     assertthat::are_equal(nchar(key), 50)
+
+    # If there is not already a key, add the user-provided key to Rprofile
+    key_exists <- any(grepl("petfindr_key", rprof_contents))
+    if(!key_exists) {
+      str <- paste0("\npetfindr_key = \"", key, "\"\n")
+      cat(str, file = rprof_path, append = TRUE)
+    }
   }
+  # If a key is provided, check validity and whether already in Rprofile
   if(!is.null(secret)) {
+
+    # Check input type and length
     assertthat::is.string(secret)
     assertthat::are_equal(nchar(secret), 40)
-  }
 
-
-  # Check whether a key is already in .Rprofile
-  rprof_contents <- readLines(rprof_path)
-  key_exists <- grepl("petfindr_key", rprof_contents)
-
-
-  if(!key_exists) {
-    str <- paste0("\npetfindr_key = \"", key, "\"\n")
-    cat(str, file = ".Rprofile", append = TRUE)
+    # If there is not already a key, add the user-provided key to Rprofile
+    secret_exists <- any(grepl("petfindr_secret", rprof_contents))
+    if(!secret_exists) {
+      str <- paste0("\npetfindr_secret = \"", secret, "\"\n")
+      cat(str, file = rprof_path, append = TRUE)
+    }
   }
 }
 
 
-petfindr_savekey(petfindr_key)
+petfindr_save_credentials(petfindr_key, "mQqTknoCYJYAmdvMJYwLiOneNim9eaBGLEMzN6MI")
 
 # When the user has a key and secret, this will generate an authorization token
 petfindr_accesstoken <- function(key, secret) {
