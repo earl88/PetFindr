@@ -10,10 +10,20 @@ petfindr_setup <- function() {
   }
 }
 
+# test
+# petfindr_setup()
+
+
+
+
+
+
+
+
 # Once they have a key and secret from the website,
 # # our functions can save them to their RProfile
 petfindr_save_credentials <- function(key = NULL, secret = NULL,
-                                      scope = c("user", "project")) {
+                                      scope = c("project", "user")) {
 
   # Select scope for .Rprofile and make sure file exists
   scope <- match.arg(scope)
@@ -55,17 +65,25 @@ petfindr_save_credentials <- function(key = NULL, secret = NULL,
 }
 
 
-petfindr_save_credentials(petfindr_key, "mQqTknoCYJYAmdvMJYwLiOneNim9eaBGLEMzN6MI")
 
-# When the user has a key and secret, this will generate an authorization token
+
+
+
+
+
+
+
+# When the user has a key and secret, this will generate an access token
 petfindr_accesstoken <- function(key, secret) {
   auth <- httr::POST(url = "https://api.petfinder.com/v2/oauth2/token",
                body = list(grant_type = "client_credentials",
                            client_id = key,
                            client_secret = secret),
                encode = "json")
-  cat("Your access token will last for one hour. After that time, you will need to generate a new one.\n")
+  cat("Your access token will last for one hour. After that time, you will need to generate a new token.\n")
   accesstoken <- httr::content(auth)$access_token
+  return(accesstoken)
 }
 
-petfindr_accesstoken(key, secret)
+# test
+# petfindr_accesstoken(petfindr_key, petfindr_secret)
