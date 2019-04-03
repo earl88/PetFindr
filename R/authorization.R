@@ -1,8 +1,8 @@
 # Running this function will open the website for Petfinder's API.
 petfindr_setup <- function() {
-  request <- "Welcome to Petfindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API. Would you like to do this now?"
+  request <- "Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API. Would you like to do this now?"
   if(!interactive()) {
-    stop("Welcome to Petfindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API. Once you have your user credentials, you can generate your access token using petfindr_accesstoken(key, secret)")
+    stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API. Once you have your user credentials, you can generate your access token using petfindr_accesstoken(key, secret)")
   }
   if(usethis:::yep(request)) {
     browseURL("https://www.petfinder.com/developers/")
@@ -62,10 +62,12 @@ petfindr_save_credentials <- function(key = NULL, secret = NULL,
       cat(str, file = rprof_path, append = TRUE)
     }
   }
+
+  usethis:::restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
 }
 
 
-
+# petfindr_save_credentials(petfindr_key, petfindr_secret)
 
 
 
@@ -86,4 +88,4 @@ petfindr_accesstoken <- function(key, secret) {
 }
 
 # test
-# petfindr_accesstoken(petfindr_key, petfindr_secret)
+# token <- petfindr_accesstoken(petfindr_key, petfindr_secret)
