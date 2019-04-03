@@ -1,12 +1,28 @@
 Package: PetFindr
-Title: What the Package Does (One Line, Title Case)
+Title: An R client for the PetFinder API
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Earl",
+           family = "Hur",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
+           email = "netid@iastate.edu")
+    person(given = "Jessica",
+           family = "Kueon",
+           role = c("aut", "cre"),
+           email = "netid@iastate.edu")
+    person(given = "Hana",
+           family = "Lee",
+           role = c("aut", "cre"),
+           email = "netid@iastate.edu")
+    person(given = "Amin",
+           family = "Shirazi",
+           role = c("aut", "cre"),
+           email = "netid@iastate.edu")
+    person(given = "Miranda",
+           family = "Tilton",
+           role = c("aut", "cre"),
+           email = "tiltonm@iastate.edu")
+Description: This package allows users to interact with information from PetFinder.com from R.
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
