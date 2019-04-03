@@ -43,7 +43,7 @@ server <- function(input, output) {
         selectedzip <- input$location
         selectedpet <- input$animal
         
-        key <- "key=7fdd14996c2133c74184f71e087ddf19"
+        key <- "key="
         base_url <- "http://api.petfinder.com/"
         method <- "pet.find"
         
