@@ -14,7 +14,7 @@ pet_fun <- function(x) {
   )
 }
 
-ui <- navbarPage("Petfinder",
+ui <- navbarPage("PetFinder",
                  tabPanel("List of pets in your location",
                           fluidRow(
                             sidebarPanel(

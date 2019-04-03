@@ -6,7 +6,7 @@ petfindr_setup <- function() {
   }
   if(usethis:::yep(request)) {
     browseURL("https://www.petfinder.com/developers/")
-    cat("After registering, you will be assigned a 'key' and a 'secret'. You can use\n these to generate your access token using petfindr_accesstoken(key, secret).\n You can also choose to save them to your .Rprofile for later use.")
+    cat("After registering, you will be assigned a 'key' and a 'secret'. You can use \n these to generate your access token using petfindr_accesstoken(key, secret).\n You can also choose to save them to your .Rprofile for later use.")
   }
 }
 
