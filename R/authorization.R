@@ -1,8 +1,8 @@
 # Running this function will open the website for Petfinder's API.
 petfindr_setup <- function() {
-  request <- "Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API. Would you like to do this now?"
+  request <- "Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API at https://www.petfinder.com/developers/. Would you like to do this now? (Selecting 'Yes' will open browser.)"
   if(!interactive()) {
-    stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API. Once you have your user credentials, you can generate your access token using petfindr_accesstoken(key, secret)")
+    stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API at https://www.petfinder.com/developers/. Once you have your user credentials, you can generate your access token using petfindr_accesstoken(key, secret)")
   }
   if(usethis:::yep(request)) {
     browseURL("https://www.petfinder.com/developers/")
