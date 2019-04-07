@@ -9,7 +9,7 @@ Authors@R:
     person(given = "Jessica",
            family = "Kueon",
            role = c("aut", "cre"),
-           email = "netid@iastate.edu")
+           email = "jesslk@iastate.edu")
     person(given = "Hana",
            family = "Lee",
            role = c("aut", "cre"),
