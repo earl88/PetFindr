@@ -28,7 +28,6 @@ dog_to_df <- function(x) {
     sex = xml_node(x, "sex") %>% xml_text(),
     id = xml_node(x, "id") %>% xml_text(),
     shelterID = xml_node(x, "shelterId") %>% xml_text(),
-    location = xml_node(x, "location") %>% xml_text(),
     pics = list(xml_nodes(x, "photo") %>% xml_text()),
   )
 }

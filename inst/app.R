@@ -14,26 +14,25 @@ pet_fun <- function(x) {
   )
 }
 
-ui <- fluidPage(
-  
-  titlePanel("Let's find your pet!"),
-  
-  sidebarLayout(
-    sidebarPanel(
-      numericInput(inputId = "location", 50014,
-                   label = "Your ZIP code"),
-      radioButtons(inputId = "animal",
-                  label = "Cat or Dog?:",
-                  choices = c("cat", "dog"))
-    ),
-    
-    # Show a plot of the generated distribution
-    mainPanel(
-      h1("Pets in your location"),
-      DT::dataTableOutput("table")
-    )
-  )
-)
+ui <- navbarPage("PetFinder",
+                 tabPanel("List of pets in your location",
+                          fluidRow(
+                            sidebarPanel(
+                              numericInput(inputId = "location", 50014,
+                                         label = "Your ZIP code"),
+                              selectInput(inputId = "animal",
+                                        label = "What kind of pet are you looking for:",
+                                        choices = c("cat", "dog", "smallfurry", "barnyard", "bird", "horse", "reptile"))
+                              ),
+                            mainPanel(
+                              h1("Pets in your location"),
+                              DT::dataTableOutput("table")
+                              )
+                            )
+                          ),
+                 tabPanel("Location of shelters")
+                 )
+
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
@@ -44,7 +43,7 @@ server <- function(input, output) {
         selectedzip <- input$location
         selectedpet <- input$animal
         
-        key <- "key=7fdd14996c2133c74184f71e087ddf19"
+        key <- "key="
         base_url <- "http://api.petfinder.com/"
         method <- "pet.find"
         
