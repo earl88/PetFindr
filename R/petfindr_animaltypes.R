@@ -10,6 +10,7 @@ petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
   assertthat::is.string(type)
   type <- tolower(type)
   type <- match.arg(type)
+  
   if(type == "all") {
     query = ""
   } else {
