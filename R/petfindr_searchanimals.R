@@ -3,8 +3,7 @@ check_null <- function(x) {
   ifelse(!is.null(x), x, NA)
 }
 
-petfindr_search <- function(token, interest = c("animals", "organizations"),
-                                   type = NULL, breed = NULL,
+petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
                                    size = NULL, 
                                    gender=c("all", "male", "female", "unknown"),
                                    age = NULL, color = NULL,
@@ -29,26 +28,26 @@ petfindr_search <- function(token, interest = c("animals", "organizations"),
   
   gender <- match.arg(gender, several.ok = T)
   
-  query <- match.arg(interest, several.ok = F)
+  query <- ""
   ####################################
   
   url <- paste0(base, query)
   search_results <- GET(url = url, 
                         add_headers(Authorization = paste("Bearer", token)))
-  interest_info <- content(search_results)[[1]]
+  animal_info <- content(search_results)$animals
   
   # Now We can automatically extract the information instead of defining them all.
   # I would try to find an alternative to the part of the function "tibble.f" below later.
   
-  new.names <- interest_info %>% 
+  new.names <- animal_info %>% 
     purrr::map(.x, 
                .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
   
-  unlisted <- interest_info %>% 
+  unlisted <- animal_info %>% 
     purrr::map(.f = ~unlist(.x, recursive=T, use.names=T))
   
   
-  unlisted.interest.info <- purrr::map2(unlisted, 
+  unlisted.animal.info <- purrr::map2(unlisted, 
                                       new.names,
                                       .f= ~purrr::set_names(.x, .y))
   
@@ -63,10 +62,10 @@ petfindr_search <- function(token, interest = c("animals", "organizations"),
     return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))
   }
   
-  interest_df <- unlisted.interest.info %>% 
+  animal_df <- unlisted.interest.info %>% 
     purrr::map_df(tibble.f)
   
-  return(interest_df)
+  return(animal_df)
 } 
 
 # petfindr_search(token, "organizations")
