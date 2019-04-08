@@ -1,4 +1,4 @@
-library(httr)
+library(httr) #these will need to be @import in Roxygen
 library(magrittr)
 library(tidyverse)
 
