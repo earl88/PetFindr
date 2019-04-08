@@ -11,7 +11,7 @@ petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
   if(type == "all") {
     query = ""
   } else {
-    query = paste0("/", stringr::str_to_title(type))
+    query = paste0("/", type)
   }
   url <- paste0(base, query)
   
