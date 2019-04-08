@@ -6,13 +6,17 @@ petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
                                                "small & furry", "horse", 
                                                "bird", "scales, fins, & other", 
                                                "barnyard")) {
-  base <- "https://api.petfinder.com/v2/types"
+  
+  assertthat::is.string(type)
+  type <- tolower(type)
   type <- match.arg(type)
   if(type == "all") {
     query = ""
   } else {
     query = paste0("/", type)
   }
+  
+  base <- "https://api.petfinder.com/v2/types"
   url <- paste0(base, query)
   
   search_results <- GET(url = url, 
@@ -35,5 +39,4 @@ petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
 
 # petfindr_animaltypes(token, "all")
 # petfindr_animaltypes(token, "dog")
-
 
