@@ -6,7 +6,7 @@ petfindr_setup <- function() {
   }
   if(usethis:::yep(request)) {
     browseURL("https://www.petfinder.com/developers/")
-    cat("If a browser did not open automatically, please open a browser and register at https://www.petfinder.com/developers/.\n")
+    cat("If a browser did not open automatically, please open a browser and register at https://www.petfinder.com/developers/.\n\n")
     cat("After registering, you will be assigned a 'key' and a 'secret'. You can use \n these to generate your access token using petfindr_accesstoken(key, secret).\n You can also choose to save them to your .Rprofile for later use with petfindr_save_credentials(key, secret).")
   }
 }
