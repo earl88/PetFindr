@@ -15,7 +15,7 @@ petfindr_search <- function(token, interest = c("animals", "organizations"),
   library(httr)
   library(magrittr)
   library(tidyverse)
-  base <- "https://api.petfinder.com/v2/animals"
+  base <- "https://api.petfinder.com/v2/"
   
   ####################################
   # NEEDS TO BE CODED:
