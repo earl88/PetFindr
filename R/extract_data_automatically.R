@@ -63,13 +63,13 @@ petfindr_search <- function(token, interest = c("animals", "organizations"),
     return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))
   }
   
-  interest_df <- unlisted.animal.info %>% 
+  interest_df <- unlisted.interest.info %>% 
     purrr::map_df(tibble.f)
   
   return(interest_df)
 } 
 
-# petfindr_search(token, "animals")
+# petfindr_search(token, "organizations")
 
 
 
