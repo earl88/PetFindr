@@ -3,7 +3,8 @@ check_null <- function(x) {
   ifelse(!is.null(x), x, NA)
 }
 
-petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
+petfindr_search <- function(token, interest = c("animals", "organizations"),
+                                   type = NULL, breed = NULL,
                                    size = NULL, 
                                    gender=c("all", "male", "female", "unknown"),
                                    age = NULL, color = NULL,
@@ -25,27 +26,29 @@ petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
   # 3. Writing a match.arg() below with several.ok = T when appropropriate
   # When this is done for all fields, write an appropriate paste command
   # to create the full query.
+  
   gender <- match.arg(gender, several.ok = T)
-  query <- ""
+  
+  query <- match.arg(interest, several.ok = F)
   ####################################
   
   url <- paste0(base, query)
   search_results <- GET(url = url, 
                         add_headers(Authorization = paste("Bearer", token)))
-  animal_info <- content(search_results)$animals
+  interest_info <- content(search_results)[[1]]
   
   # Now We can automatically extract the information instead of defining them all.
   # I would try to find an alternative to the part of the function "tibble.f" below later.
   
-  new.names <- animal_info %>% 
+  new.names <- interest_info %>% 
     purrr::map(.x, 
                .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
   
-  unlisted <- animal_info %>% 
+  unlisted <- interest_info %>% 
     purrr::map(.f = ~unlist(.x, recursive=T, use.names=T))
   
   
-  unlisted.animal.info <- purrr::map2(unlisted, 
+  unlisted.interest.info <- purrr::map2(unlisted, 
                                       new.names,
                                       .f= ~purrr::set_names(.x, .y))
   
@@ -60,13 +63,13 @@ petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
     return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))
   }
   
-  animal_df <- unlisted.animal.info %>% 
+  interest_df <- unlisted.animal.info %>% 
     purrr::map_df(tibble.f)
   
-  return(animal_df)
+  return(interest_df)
 } 
 
-# petfindr_search(token)
+# petfindr_search(token, "animals")
 
 
 
