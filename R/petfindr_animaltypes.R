@@ -10,6 +10,7 @@
 #' @examples
 #' petfindr_animaltypes(token, "all")
 #' petfindr_animaltypes(token, "dog")
+#' petfindr_animaltypes(token, "all")$name
 #'
 #' @importFrom httr GET content
 #' @importFrom magrittr %>%
