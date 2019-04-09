@@ -1,6 +1,20 @@
-library(httr) #these will need to be @import in Roxygen
-library(magrittr)
-library(tidyverse)
+#' List all animal types found on Petfinder
+#'
+#' Longer description of what the function does
+#'
+#' @export
+#' @param token An access token
+#' @param type One of the eight available types. If no type is specified, all types are returned
+#' @return A tibble listing all animal types with their available coats, colors, and genders
+#'
+#' @examples
+#' petfindr_animaltypes(token, "all")
+#' petfindr_animaltypes(token, "dog")
+#'
+#' @importFrom httr GET content
+#' @importFrom magrittr %>%
+#' @importFrom tibble tibble
+#' @importFrom purrr map_df
 
 petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
                                                "small & furry", "horse", 
@@ -37,7 +51,4 @@ petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
     })
   return(types_df)
 }
-
-# petfindr_animaltypes(token, "all")
-# petfindr_animaltypes(token, "dog")
 
