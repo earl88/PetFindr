@@ -37,8 +37,8 @@ petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
   } else {
     if(breed = T) {
       query = paste0("/", type)
-      # FIX THIS PART (see next line)
-      #query = paste0("/", type, "/breeds") #Make sure output structure matches!
+      # Make sure output structure is going to match before making next line live
+      # query = paste0("/", type, "/breeds")
     } else {
       query = paste0("/", type)
     }
