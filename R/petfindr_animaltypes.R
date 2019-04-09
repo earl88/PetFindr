@@ -20,16 +20,28 @@
 petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
                                                "small & furry", "horse", 
                                                "bird", "scales, fins, & other", 
-                                               "barnyard")) {
+                                               "barnyard"),
+                                 breed = F) {
   
   assertthat::is.string(type)
   type <- tolower(type)
   type <- match.arg(type)
   
+  assertthat::assert_that(is.logical(breed))
+  
   if(type == "all") {
     query = ""
+    if(breed = F) {
+      # Yell at the user. Breed can only be requested with one type
+    }
   } else {
-    query = paste0("/", type)
+    if(breed = T) {
+      query = paste0("/", type)
+      # FIX THIS PART (see next line)
+      #query = paste0("/", type, "/breeds") #Make sure output structure matches!
+    } else {
+      query = paste0("/", type)
+    }
   }
   
   base <- "https://api.petfinder.com/v2/types"
