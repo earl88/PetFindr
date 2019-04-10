@@ -51,7 +51,7 @@ petfindr_shelter <- function(token, zip, dist) {
 
 #I want a list of shelters around 50 miles from zip code 50010
 #petfindr_shelter(token, 50010, 50)
-=======
+
 
 library(httr)
 library(magrittr)
