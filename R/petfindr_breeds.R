@@ -1,9 +1,9 @@
 #' List available breeds for a specific animal type on Petfinder
 #'
-#' Longer description of what the function does
+#' This function takes in one of the eight animal types found on Petfinder.com and returns a vector containing all available breeds for that animal type
 #'
 #' @export
-#' @param token An access token
+#' @param token An access token for the Petfinder API
 #' @param type One of the eight available types. If no type is specified, dog breeds are returned.
 #' @return A character vector containing the breed names for the given animal type
 #'
@@ -17,7 +17,7 @@
 #' @importFrom purrr map_chr
 #' @import assertthat
 
-petfindr_breeds <- function(token, type=c("dog", "cat", "rabbit",
+petfindr_breeds <- function(token, type = c("dog", "cat", "rabbit",
                                           "small & furry","horse", "bird", 
                                           "scales, fins, & other", "barnyard")) {
   
