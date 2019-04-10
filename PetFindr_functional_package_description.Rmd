@@ -7,9 +7,11 @@ output: html_document
 
 
 ## Introduction
-The purpose of this short report is to give the readers a short view of what they are going to see and use in the package called PetFindr.\
 
-The idea comes from the well-known website [Petfinder](https://www.petfinder.com/) where people can adopt pets. This package provides a tool to enable R users to search for their favorite pets through their own R session, and also to view photos of the searched pets. The key that makes this possible is using API (Application Programming Interface) which is a set of instructions and standards for accessing structured information on the web. Luckily, the Petfinder website provides us with an API that allows us to access the Petfinder database of hundreds of thousands of pets ready for adoption and over ten thousand animal welfare organizations. \
+
+The goal of 'PetFindr' is to provide a fast and friendly way to extract data from https://www.petfinder.com/, which is the largest online pet adoption website, and to facilitate data analysis and other tasks from the extracted data.\
+
+The package provides a useful tool to enable R users to search for their favorite pets in their own R session, and also to view photos of the searched pets. The key that makes this possible is using API (Application Programming Interface) which is a set of instructions and standards for accessing structured information on the web. Luckily, the Petfinder website provides us with an API that allows us to access the Petfinder database of hundreds of thousands of pets ready for adoption and over ten thousand animal welfare organizations. \
 
 The Petfinder API allows users to search for and view pet listings based on pet characteristics, location, and status. In addition, they can search for and display animal welfare organizations based on organization name, ID, and location. Furthermore, this API uses predictable URLs to access resources and, in case of an error, returns meaningful HTTP response codes.The API also supports cross-origin resource sharing, which allows you to use it securely from a client-side web application. You use the API by sending requests with a specific structure to Petfinder servers. In order to maintain security, it uses access tokens for API requests.\
 
