@@ -1,11 +1,5 @@
-# Helper function for blank fields
-check_null <- function(x) {
-  ifelse(!is.null(x), x, NA)
-}
+# Please don't touch this function, Miranda is going to play with it :)
 
-<<<<<<< HEAD:R/extract_data_automatically.R
-petfindr_search <- function(token, query) {
-=======
 petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
                                    size = NULL, 
                                    gender=c("all", "male", "female", "unknown"),
@@ -14,19 +8,9 @@ petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
                                    name = NULL, organization = NULL,
                                    location = NULL, distance = NULL,
                                    sort = NULL, page = NULL, limit = 20) {
->>>>>>> 7243e95c6313dd0875dee0e9588e15a5d69dce41:R/petfindr_searchanimals.R
   library(httr)
   library(magrittr)
   library(tidyverse)
-  base <- "https://api.petfinder.com/v2/"
-<<<<<<< HEAD:R/extract_data_automatically.R
-  query <- "animals"
-  url <- paste0(base, query)
-  search_results <- GET(url = url, 
-                        add_headers(Authorization = paste("Bearer", token)))
-  
-  
-=======
   
   ####################################
   # NEEDS TO BE CODED:
@@ -42,11 +26,10 @@ petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
   
   query <- ""
   ####################################
-  
+  base <- "https://api.petfinder.com/v2/animals"
   url <- paste0(base, query)
   search_results <- GET(url = url, 
                         add_headers(Authorization = paste("Bearer", token)))
->>>>>>> 7243e95c6313dd0875dee0e9588e15a5d69dce41:R/petfindr_searchanimals.R
   animal_info <- content(search_results)$animals
   
   # Now We can automatically extract the information instead of defining them all.
@@ -75,20 +58,11 @@ petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
     return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))
   }
   
-<<<<<<< HEAD:R/extract_data_automatically.R
   animal_df <- unlisted.animal.info %>% 
     purrr::map_df(tibble.f)
   
   return(animal_df)
-  
 }
-=======
-  animal_df <- unlisted.interest.info %>% 
-    purrr::map_df(tibble.f)
-  
-  return(animal_df)
-} 
->>>>>>> 7243e95c6313dd0875dee0e9588e15a5d69dce41:R/petfindr_searchanimals.R
 
 # petfindr_search(token)
 
