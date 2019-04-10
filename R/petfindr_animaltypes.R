@@ -18,7 +18,7 @@
 #' @importFrom purrr map_df
 #' @import assertthat
 
-pf_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
+petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
                                                "small & furry", "horse", 
                                                "bird", "scales, fins, & other", 
                                                "barnyard")) {
@@ -26,8 +26,8 @@ pf_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
   assertthat::is.string(type)
   type <- tolower(type)
   type <- match.arg(type)
-  
-  assertthat::assert_that(is.logical(breed))
+  if(type == "small & furry") {type <- "small-furry"}
+  if(type == "scales, fins, & other") {type <- "scales-fins-other"}
   
   if(type == "all") {
     query = ""
