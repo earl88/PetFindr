@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 library(httr)
 library(magrittr)
@@ -106,4 +105,4 @@ petfindr_shelter <- function(token, zip, dist) {
 
 #I want a list of shelters around 50 miles from zip code 50010
 #petfindr_shelter(token, 50010, 50)
->>>>>>> 7243e95c6313dd0875dee0e9588e15a5d69dce41
+
