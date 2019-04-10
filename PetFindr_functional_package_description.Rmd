@@ -13,7 +13,7 @@ The idea comes from the well-known website [Petfinder](https://www.petfinder.com
 
 The Petfinder API allows users to search for and view pet listings based on pet characteristics, location, and status. In addition, they can search for and display animal welfare organizations based on organization name, ID, and location. Furthermore, this API uses predictable URLs to access resources and, in case of an error, returns meaningful HTTP response codes.The API also supports cross-origin resource sharing, which allows you to use it securely from a client-side web application. You use the API by sending requests with a specific structure to Petfinder servers. In order to maintain security, it uses access tokens for API requests.\
 
-With this structured API, what is required to be taken into consideration in PetFindr package is first the structure of how getting access to users' account on the website to get their `key` and `secret` which allow any user to use the API and start a query. This key and secret are unique for any valid account on the website.
+With this structured API, what is required to be taken into consideration in PetFindr package is first the structure of how getting access to users' account on the website to get their `key` and `secret` which allow any user to use the API and start a query. This key and secret are unique for any valid account on the website. Currently, the package consist of five major functions `authorization`, `extract automatically`, `petfindr animal types`, `petfindr search animal` and `petfindr shelter`. Any new user first need to use the following three functions first in order to get the authorization to be able to use get the authorization to access the information through PetFinder API. 
 
 
 #### petfindr_setup()
@@ -27,11 +27,16 @@ Once users create an account on [Petfinder](https://www.petfinder.com/) and rece
 #### petfindr_accesstoken(key, secret)
 Once credidentials are set up, users can use them to request an access token. This token will enable users to receive information from Petfinder servers to their R session. Once users use their key and secret as the inputs of `petfindr_accesstoken()`, they gain access to to the Petfinder servers and can start their query about their favorite pets. An important point is that their access token lasts for one hour. After that time, users will need to request a new access token.\
 
+The next set of functions help users search for their favorite pets through PetFinder API and with their access token. Users can use `petfindr animal search` and `petfindr organization search ` to serarch for their favorite pets based on different catergories.
+
+
+#### petfindr_animal_search
+This function returns a data frame based on animal information. There are different categories of pets available in PetFinder API which allows users to filter their search domain to the most related pet their are looking for. The available options in `petfindr_animal_search` are type, breed , size , gender , age, color , coat , status , name , organization , location and distance. The output data frame can also be sorted based on users' preferences. If a variabale is missed, then a default given by the petfinder API will be returned. Breed and color are not yet specified with a list. In addition, there are very few pets containing coat information. `petfinr animal search` has a default limit of the records in each page which  is  100 and the default number of pages to be returned is one; however, it is adjustable and can be set by the user. If the argument `page` is set to  "all",  all pets requested in the search will be shown in one data frame. 
 
 
 
-
-
+#### petfindr_organziation_search
+PetFinder API also provides information regarding search through organizations so that users can modify their search to get results associated with specific organizations. This query can be done with putting city, state, latitude, longtitude or postal code as the inputs. `petfindr organization search` gets information about the organization as the input and returns a data frame. If a variabale is missed, then a default given by the petfinder API will be returned. Default limit of a page is now 100. If page = "all" then all the pets will be shown in one data frame. Like `petfindr animal search`, this function also has a  default number of page equals to 1, which can be adjusted by users.The output data frame contains all informaiton about  organizations they user made a query about such as name, contact informaion, address, website, adoption policy, photos of pets ( if there is any available ) that have been searched for and etc. 
 
 
 

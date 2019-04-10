@@ -17,7 +17,7 @@ Authors@R:
     person(given = "Amin",
            family = "Shirazi",
            role = c("aut", "cre"),
-           email = "netid@iastate.edu")
+           email = "ashirazi@iastate.edu")
     person(given = "Miranda",
            family = "Tilton",
            role = c("aut", "cre"),
