@@ -1,38 +1,44 @@
 ---
-title: "Stat 585 - Final Project"
-author: "Earl Hur, Jessica Kueon, Hana Lee, Amin Shirazi and Miranda Tilton"
-date: "March 31, 2019"
-output: html_document
+title: "README"
+author: "PetFindr"
+date: "3/24/2019"
+output:
+  html_document:
+    keep_md: True
 ---
 
-We are a dream team!
+Find the repository [here](https://github.com/earl88/PetFindr)
 
-```{r}
-library(tidyr)
-library(rvest)
-library(tibble)
+## Description
 
-key <- "key=7fdd14996c2133c74184f71e087ddf19"
-base_url <- "http://api.petfinder.com/"
-method <- "pet.find"
-query <- "animal=dog&location=50010"
+This package provides an R client for the Petfinder API V2.
 
-url <- sprintf("%s%s?%s&%s", base_url, method, key, query)
-ames_dogs <- read_xml(url) %>% xml_nodes("pet")
+## Installation
 
-dog_to_df <- function(x) {
-  tibble(
-    name = xml_node(x, "name") %>% xml_text(),
-    breed = xml_nodes(x, "breed") %>% xml_text() %>% paste(collapse = ", "),
-    age = xml_node(x, "age") %>% xml_text(),
-    sex = xml_node(x, "sex") %>% xml_text(),
-    id = xml_node(x, "id") %>% xml_text(),
-    shelterID = xml_node(x, "shelterId") %>% xml_text(),
-    pics = list(xml_nodes(x, "photo") %>% xml_text()),
-  )
-}
+The package can be installed with
 
-ames_dog_df <- ames_dogs %>% purrr::map_df(dog_to_df)
+`devtools::install_github('earl88/PetFindr')`
 
-```
+## Contents
 
+Setup functions
+
+* `petfindr_setup()`
+
+* `petfindr_save_credentials()`
+
+* `petfindr_accesstoken()`
+
+Search functions
+
+* `petfindr_animal_search()`
+
+* `petfindr_organization_search()`
+
+* `petfindr_animaltypes()`
+
+* `petfindr_breeds()`
+
+Photo-viewing functions
+
+* `petfindr_viewphotos()`
