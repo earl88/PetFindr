@@ -16,12 +16,12 @@
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 #' @importFrom purrr map_df
+#' @import assertthat
 
-petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
+pf_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
                                                "small & furry", "horse", 
                                                "bird", "scales, fins, & other", 
-                                               "barnyard"),
-                                 breed = F) {
+                                               "barnyard")) {
   
   assertthat::is.string(type)
   type <- tolower(type)
@@ -31,17 +31,8 @@ petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
   
   if(type == "all") {
     query = ""
-    if(breed = F) {
-      # Yell at the user. Breed can only be requested with one type
-    }
   } else {
-    if(breed = T) {
       query = paste0("/", type)
-      # Make sure output structure is going to match before making next line live
-      # query = paste0("/", type, "/breeds")
-    } else {
-      query = paste0("/", type)
-    }
   }
   
   base <- "https://api.petfinder.com/v2/types"
