@@ -1,11 +1,11 @@
-# Helper function for blank fields
-check_null <- function(x) {
-  ifelse(!is.null(x), x, NA)
-}
+# Please don't touch this function, Miranda is going to play with it :)
 
+<<<<<<< HEAD
 
 petfindr_search <- function(token, query) {
 
+=======
+>>>>>>> 9339d4058f72aab1293f792b42c0220b4f7852f3
 petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
                                    size = NULL, 
                                    gender=c("all", "male", "female", "unknown"),
@@ -17,6 +17,7 @@ petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
   library(httr)
   library(magrittr)
   library(tidyverse)
+<<<<<<< HEAD
   base <- "https://api.petfinder.com/v2/"
   query <- "animals"
   url <- paste0(base, query)
@@ -25,6 +26,8 @@ petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
   
   
 
+=======
+>>>>>>> 9339d4058f72aab1293f792b42c0220b4f7852f3
   
   ####################################
   # NEEDS TO BE CODED:
@@ -40,7 +43,7 @@ petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
   
   query <- ""
   ####################################
-  
+  base <- "https://api.petfinder.com/v2/animals"
   url <- paste0(base, query)
   search_results <- GET(url = url, 
                         add_headers(Authorization = paste("Bearer", token)))
@@ -76,13 +79,15 @@ petfindr_searchanimals <- function(token, type = NULL, breed = NULL,
     purrr::map_df(tibble.f)
   
   return(animal_df)
-  
 }
+<<<<<<< HEAD
   animal_df <- unlisted.interest.info %>% 
     purrr::map_df(tibble.f)
   
   return(animal_df)
 } 
+=======
+>>>>>>> 9339d4058f72aab1293f792b42c0220b4f7852f3
 
 # petfindr_search(token)
 
