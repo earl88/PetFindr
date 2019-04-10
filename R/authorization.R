@@ -1,5 +1,14 @@
-# Running this function will open the website for Petfinder's API.
+#' Get started with PetFindr
+#'
+#' Running this function will open the website for Petfinder's API.
+#'
+#' @return None
+#' @export
+#'
+#' @examples
+#' petfindr_setup()
 petfindr_setup <- function() {
+  
   request <- "Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API at https://www.petfinder.com/developers/. Would you like to do this now? (Selecting 'Yes' will open browser.)"
   if(!interactive()) {
     stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API at https://www.petfinder.com/developers/. Once you have your user credentials, you can generate your access token using petfindr_accesstoken(key, secret)")
@@ -11,8 +20,6 @@ petfindr_setup <- function() {
   }
 }
 
-# test
-# petfindr_setup()
 
 
 
@@ -21,8 +28,22 @@ petfindr_setup <- function() {
 
 
 
-# Once they have a key and secret from the website,
-# # our functions can save them to their RProfile
+#' Save PetFindr key and secret to .Rprofile
+#'
+#' This function allows the user to save their Petfinder API key and/or secret to their user or project .Rprofile
+#'
+#' @param key A key provided to the user by the Petfinder API
+#' @param secret A secret provided to the user by the Petfinder API
+#' @param scope The scope of the .Rprofile to which the key and secret should be saved; one of "project" or "user".
+#'
+#' @return None
+#' @export
+#' 
+#' @importFrom assertthat assert_that is.string are_equal
+#' @importFrom usethis scoped_path_r restart_rstudio
+#' 
+#' @examples
+#' petfindr_save_credentials(petfindr_key, petfindr_secret)
 petfindr_save_credentials <- function(key = NULL, secret = NULL,
                                       scope = c("project", "user")) {
 
@@ -68,16 +89,26 @@ petfindr_save_credentials <- function(key = NULL, secret = NULL,
 }
 
 
-# petfindr_save_credentials(petfindr_key, petfindr_secret)
 
 
 
 
 
 
-
-# When the user has a key and secret, this will generate an access token
+#' Generate an access token for the Petfinder API
+#'
+#' @param key A key provided to the user by the Petfinder API
+#' @param secret A secret provided to the user by the Petfinder API
+#'
+#' @return
+#' @export
+#' 
+#' @importFrom httr POST content
+#'
+#' @examples
+#' token <- petfindr_accesstoken(petfindr_key, petfindr_secret)
 petfindr_accesstoken <- function(key, secret) {
+  
   auth <- httr::POST(url = "https://api.petfinder.com/v2/oauth2/token",
                body = list(grant_type = "client_credentials",
                            client_id = key,
@@ -87,6 +118,3 @@ petfindr_accesstoken <- function(key, secret) {
   accesstoken <- httr::content(auth)$access_token
   return(accesstoken)
 }
-
-# test
-# token <- petfindr_accesstoken(petfindr_key, petfindr_secret)
