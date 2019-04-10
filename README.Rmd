@@ -1,10 +1,8 @@
 ---
-title: "README"
-author: "PetFindr"
-output:
-  html_document:
-    keep_md: True
+output: github_document
 ---
+
+# PetFindr
 
 Find the repository [here](https://github.com/earl88/PetFindr)
 
