@@ -1,20 +1,47 @@
-library(httr) #these will need to be @import in Roxygen
-library(magrittr)
-library(tidyverse)
+#' List all animal types found on Petfinder
+#'
+#' Longer description of what the function does
+#'
+#' @export
+#' @param token An access token
+#' @param type One of the eight available types. If no type is specified, all types are returned
+#' @return A tibble listing all animal types with their available coats, colors, and genders
+#'
+#' @examples
+#' petfindr_animaltypes(token, "all")
+#' petfindr_animaltypes(token, "dog")
+#' petfindr_animaltypes(token, "all")$name
+#'
+#' @importFrom httr GET content
+#' @importFrom magrittr %>%
+#' @importFrom tibble tibble
+#' @importFrom purrr map_df
 
 petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
                                                "small & furry", "horse", 
                                                "bird", "scales, fins, & other", 
-                                               "barnyard")) {
+                                               "barnyard"),
+                                 breed = F) {
   
   assertthat::is.string(type)
   type <- tolower(type)
   type <- match.arg(type)
   
+  assertthat::assert_that(is.logical(breed))
+  
   if(type == "all") {
     query = ""
+    if(breed = F) {
+      # Yell at the user. Breed can only be requested with one type
+    }
   } else {
-    query = paste0("/", type)
+    if(breed = T) {
+      query = paste0("/", type)
+      # Make sure output structure is going to match before making next line live
+      # query = paste0("/", type, "/breeds")
+    } else {
+      query = paste0("/", type)
+    }
   }
   
   base <- "https://api.petfinder.com/v2/types"
@@ -37,7 +64,4 @@ petfindr_animaltypes <- function(token, type=c("all", "dog", "cat", "rabbit",
     })
   return(types_df)
 }
-
-# petfindr_animaltypes(token, "all")
-# petfindr_animaltypes(token, "dog")
 
