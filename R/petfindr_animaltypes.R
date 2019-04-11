@@ -26,9 +26,8 @@ petfindr_animaltypes <- function(token, type = NULL) {
     type <- tolower(type)
     type <- match.arg(type, choices = c("dog", "cat", "rabbit",
                                         "small & furry", "horse","bird",
-                                        "scales, fins, & other", "barnyard"))
-    if(type == "small & furry") {type <- "small-furry"}
-    if(type == "scales, fins, & other") {type <- "scales-fins-other"}
+                                        "scales, fins, & other", "barnyard")) %>%
+      gsub(pattern = "([, ][& ][& ]?[ ]?)", replacement = "-")
   }
   
   base <- "https://api.petfinder.com/v2/types/"
