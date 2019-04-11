@@ -33,4 +33,6 @@ Imports:
     magrittr,
     httr,
     assertthat,
-    purrr
+    purrr,
+    plyr,
+    nlme

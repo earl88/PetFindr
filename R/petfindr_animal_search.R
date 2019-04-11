@@ -6,6 +6,29 @@
 ### If page = "all" then all the pets will be shown in one data frame.
 ### Default page is 1.
 
+#' Title
+#'
+#' @param token 
+#' @param type 
+#' @param breed 
+#' @param size 
+#' @param gender 
+#' @param age 
+#' @param color 
+#' @param coat 
+#' @param status 
+#' @param name 
+#' @param organization 
+#' @param location 
+#' @param distance 
+#' @param sort 
+#' @param limit 
+#' @param page 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 petfindr_animal_search <- function(token, 
                                    type = c("cat", "dog", "smallfurry", "barnyard", "bird", "horse", "reptile"), 
                                    breed = NULL,
@@ -21,10 +44,6 @@ petfindr_animal_search <- function(token,
                                    sort = c("distance", "-distance", "name", "-name", "country", "-country", "state", "-state"),
                                    limit = 100, page=1) {
   
-  library(httr)
-  library(magrittr)
-  library(tidyverse)
-  library(plyr) # need this package to use rbind.fill function.
   
   base <- "https://api.petfinder.com/v2/"
   
