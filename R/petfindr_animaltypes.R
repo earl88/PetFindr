@@ -17,7 +17,6 @@
 #' @importFrom tibble tibble
 #' @importFrom purrr map_df
 #' @importFrom assertthat is.string
-
 petfindr_animaltypes <- function(token, type = NULL) {
   
   if(is.null(type)) {
