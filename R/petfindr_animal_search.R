@@ -171,6 +171,13 @@ petfindr_animal_search <- function(token,
       url <- paste0(base, query)
       search_results <- GET(url = url, 
                             add_headers(Authorization = paste("Bearer", token)))
+      
+      
+      # search_status <- search_results$status_code
+      # if(search_status != 200) {
+      #   stop(pf_error(search_status))
+      # }
+      
       animal_info <- content(search_results)[[1]]
       
       new.names <- animal_info %>% 
