@@ -28,3 +28,9 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+Imports: 
+    tibble,
+    magrittr,
+    httr,
+    assertthat,
+    purrr
