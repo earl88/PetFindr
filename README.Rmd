@@ -6,6 +6,9 @@ output: github_document
 
 Find the repository [here](https://github.com/earl88/PetFindr)
 
+
+<img src='inst/logo.png' align="right" height="139" /></a>
+
 ## Description
 
 This package provides an R client for the Petfinder API V2.
