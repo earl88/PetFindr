@@ -2,5 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+<<<<<<< HEAD
+.Rprofile
+=======
 .httr-oauth
 .Rprofile
+>>>>>>> 3b8a624bca450f014876cdaf490d193b2ab02a42
