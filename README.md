@@ -4,8 +4,8 @@ PetFindr
 
 Find the repository [here](https://github.com/earl88/PetFindr)
 
-<img src='inst/logo v3.png' align="right" height="281" /></a>
-=============================================================
+<img src='inst/logov3.png' align="right" height="281" /></a>
+============================================================
 
 Description
 -----------
