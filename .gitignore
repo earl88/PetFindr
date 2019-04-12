@@ -2,5 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-.httr-oauth
 .Rprofile
+.httr-oauth

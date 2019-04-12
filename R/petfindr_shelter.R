@@ -1,9 +1,15 @@
-
-library(httr)
-library(magrittr)
-library(tidyverse)
-
+#' Title
+#'
+#' @param token 
+#' @param zip 
+#' @param dist 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 petfindr_shelter <- function(token, zip, dist) {
+  
   base <- "https://api.petfinder.com/v2/"
   query <- "organizations"
   location <- paste0("location", "=", zip)

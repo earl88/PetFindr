@@ -7,17 +7,16 @@
 #' @param type One of the eight available types: "dog", "cat", "rabbit", "small & furry", "horse", "bird", "scales, fins, & other", or "barnyard". If no type is provided, all types are returned.
 #' @return A tibble listing the desired animal types with their available coats, colors, and genders
 #'
-#' @examples
-#' petfindr_animaltypes(token)
-#' petfindr_animaltypes(token, "dog")
-#' petfindr_animaltypes(token)$name
-#'
 #' @importFrom httr GET content
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 #' @importFrom purrr map_df
 #' @importFrom assertthat is.string
-
+#'
+#' @examples
+#' petfindr_animaltypes(token)
+#' petfindr_animaltypes(token, "dog")
+#' petfindr_animaltypes(token)$name
 petfindr_animaltypes <- function(token, type = NULL) {
   
   if(is.null(type)) {
@@ -27,9 +26,8 @@ petfindr_animaltypes <- function(token, type = NULL) {
     type <- tolower(type)
     type <- match.arg(type, choices = c("dog", "cat", "rabbit",
                                         "small & furry", "horse","bird",
-                                        "scales, fins, & other", "barnyard"))
-    if(type == "small & furry") {type <- "small-furry"}
-    if(type == "scales, fins, & other") {type <- "scales-fins-other"}
+                                        "scales, fins, & other", "barnyard")) %>%
+      gsub(pattern = "([, ][& ][& ]?[ ]?)", replacement = "-")
   }
   
   base <- "https://api.petfinder.com/v2/types/"

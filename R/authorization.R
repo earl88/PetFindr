@@ -39,9 +39,6 @@ petfindr_setup <- function() {
 #' @return None
 #' @export
 #' 
-#' @importFrom assertthat assert_that is.string are_equal
-#' @importFrom usethis scoped_path_r restart_rstudio
-#' 
 #' @examples
 #' petfindr_save_credentials(petfindr_key, petfindr_secret)
 petfindr_save_credentials <- function(key = NULL, secret = NULL,
