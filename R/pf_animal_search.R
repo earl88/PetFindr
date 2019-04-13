@@ -139,32 +139,18 @@ pf_animal_search <- function(token,
     
     # Now We can automatically extract the information instead of defining them all.
     # I would try to find an alternative to the part of the function "tibble.f" below later.
-    
-    new.names <- animal_info %>% 
+    new.distinct.names <- animal_info %>% 
       purrr::map(.x, 
                  .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
     
     unlisted <- animal_info %>% 
-      purrr::map(.f = ~unlist(.x, recursive=T, use.names=T))
+      purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
     
+    unlisted.info <- purrr::map2(unlisted,
+                                 new.distinct.names,
+                                 .f= ~purrr::set_names(.x, .y))
     
-    unlisted.animal.info <- purrr::map2(unlisted, 
-                                        new.names,
-                                        .f= ~purrr::set_names(.x, .y))
-    
-    unique.names <- unique(unlist(new.names))
-    
-    tibble.f <- function(x){
-      xx <- c()
-      for(i in 1:length(unique.names)){
-        assign(unique.names[i], checkmate::check_null(x[unique.names[i]]))
-        xx <- paste(xx, unique.names[i], sep=",")
-      }
-      return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))
-    }
-    
-    animal_df <- unlisted.animal.info %>% 
-      purrr::map_df(tibble.f)
+    animal_df <- do.call(plyr::rbind.fill, unlisted.info)
     
     animal_df <- animal_df[which(duplicated(animal_df$id)==FALSE),]
     return(animal_df)
@@ -201,31 +187,20 @@ pf_animal_search <- function(token,
       
       animal_info <- httr:: content(search_results)[[1]]
       
-      new.names <- animal_info %>% 
+      # Now We can automatically extract the information instead of defining them all.
+      # I would try to find an alternative to the part of the function "tibble.f" below later.
+      new.distinct.names <- animal_info %>% 
         purrr::map(.x, 
                    .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
       
       unlisted <- animal_info %>% 
-        purrr::map(.f = ~unlist(.x, recursive=T, use.names=T))
+        purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
       
+      unlisted.info <- purrr::map2(unlisted,
+                                   new.distinct.names,
+                                   .f= ~purrr::set_names(.x, .y))
       
-      unlisted.animal.info <- purrr::map2(unlisted, 
-                                          new.names,
-                                          .f= ~purrr::set_names(.x, .y))
-      
-      unique.names <- unique(unlist(new.names))
-      
-      tibble.f <- function(x){
-        xx <- c()
-        for(i in 1:length(unique.names)){
-          assign(unique.names[i], checkmate::check_null(x[unique.names[i]]))
-          xx <- paste(xx, unique.names[i], sep=",")
-        }
-        return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))
-      }
-      
-      animal_df <- unlisted.animal.info %>% 
-        purrr::map_df(tibble.f)
+      animal_df <- do.call(plyr::rbind.fill, unlisted.info)
       
       animal_df <- animal_df[which(duplicated(animal_df$id)==FALSE),] # delete duplicated observation
       animal_df_list[[pg]] <- animal_df # assign the above data frame to the list with level=pg
