@@ -63,26 +63,27 @@ petfindr_save_credentials <- function(key = NULL, secret = NULL,
     # If there is not already a key, add the user-provided key to Rprofile
     key_exists <- any(grepl("petfindr_key", rprof_contents))
     if(!key_exists) {
-      str <- paste0("\npetfindr_key = \"", key, "\"\n")
+      str <- sprintf('\npetfindr_key = \"%s\"\n', key)
       cat(str, file = rprof_path, append = TRUE)
     }
   }
-  # If a key is provided, check validity and whether already in Rprofile
+  # If a secret is provided, check validity and whether already in Rprofile
   if(!is.null(secret)) {
 
     # Check input type and length
     assertthat::is.string(secret)
     assertthat::are_equal(nchar(secret), 40)
 
-    # If there is not already a key, add the user-provided key to Rprofile
+    # If there is not already a secret, add the user-provided secret to Rprofile
     secret_exists <- any(grepl("petfindr_secret", rprof_contents))
     if(!secret_exists) {
-      str <- paste0("\npetfindr_secret = \"", secret, "\"\n")
+      str <- sprintf('\npetfindr_key = \"%s\"\n', secret)
       cat(str, file = rprof_path, append = TRUE)
     }
   }
 
   restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+  return(NULL)
 }
 
 
