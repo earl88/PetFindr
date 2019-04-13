@@ -77,33 +77,19 @@ pf_organization_search <- function(token, name = NULL, organization = NULL,
     
     # Now We can automatically extract the information instead of defining them all.
     # I would try to find an alternative to the part of the function "tibble.f" below later.
-    
-    new.names <- organization_info %>% 
+    new.distinct.names <- organization_info %>% 
       purrr::map(.x, 
                  .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
     
     unlisted <- organization_info %>% 
-      purrr::map(.f = ~unlist(.x, recursive=T, use.names=T))
+      purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
     
+    unlisted.info <- purrr::map2(unlisted,
+                                 new.distinct.names,
+                                 .f= ~purrr::set_names(.x, .y))
     
-    unlisted.organization.info <- purrr::map2(unlisted, 
-                                              new.names,
-                                              .f= ~purrr::set_names(.x, .y))
-    
-    unique.names <- unique(unlist(new.names))
-    
-    tibble.f <- function(x){
-      xx <- c()
-      for(i in 1:length(unique.names)){
-        assign(unique.names[i], check_null(x[unique.names[i]]))
-        xx <- paste(xx, unique.names[i], sep=",")
-      }
-      return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))
-    }
-    
-    organization_df <- unlisted.organization.info %>% 
-      purrr::map_df(tibble.f)
-    
+    organization_df <- do.call(plyr::rbind.fill, unlisted.info)
+
     organization_df <- organization_df[which(duplicated(organization_df$id)==FALSE),]
     return(organization_df)
     
@@ -131,31 +117,20 @@ pf_organization_search <- function(token, name = NULL, organization = NULL,
                             add_headers(Authorization = paste("Bearer", token)))
       organization_info <- content(search_results)[[1]]
       
-      new.names <- organization_info %>% 
+      # Now We can automatically extract the information instead of defining them all.
+      # I would try to find an alternative to the part of the function "tibble.f" below later.
+      new.distinct.names <- organization_info %>% 
         purrr::map(.x, 
                    .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
       
       unlisted <- organization_info %>% 
-        purrr::map(.f = ~unlist(.x, recursive=T, use.names=T))
+        purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
       
+      unlisted.info <- purrr::map2(unlisted,
+                                   new.distinct.names,
+                                   .f= ~purrr::set_names(.x, .y))
       
-      unlisted.organization.info <- purrr::map2(unlisted, 
-                                                new.names,
-                                                .f= ~purrr::set_names(.x, .y))
-      
-      unique.names <- unique(unlist(new.names))
-      
-      tibble.f <- function(x){
-        xx <- c()
-        for(i in 1:length(unique.names)){
-          assign(unique.names[i], check_null(x[unique.names[i]]))
-          xx <- paste(xx, unique.names[i], sep=",")
-        }
-        return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))
-      }
-      
-      organization_df <- unlisted.organization.info %>% 
-        purrr::map_df(tibble.f)
+      organization_df <- do.call(plyr::rbind.fill, unlisted.info)
       
       organization_df <- organization_df[which(duplicated(organization_df$id)==FALSE),]
       organization_df_list[[pg]] <- organization_df
