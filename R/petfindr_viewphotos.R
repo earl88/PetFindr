@@ -8,6 +8,9 @@
 # or full size images (if they are available). This is just an example of getting
 # the images on R. 
 
+library(tibble)
+library(stringr)
+
 
 # library(tibble)
 # library(stringr)
@@ -18,6 +21,7 @@
 #                          magrittr::extract2, 1)) %>% 
 #   str_remove("&width=60&-pnt.jpg") %>%
 #   knitr::include_graphics() %>% magick::image_read()
+
 
 
 pf_photo_view<- function(search_result, size=c("small", "medium", 
@@ -63,3 +67,5 @@ pf_photo_view<- function(search_result, size=c("small", "medium",
     knitr::include_graphics()
     return(photo.out %>% magick::image_read())
 }
+
+

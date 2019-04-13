@@ -32,7 +32,7 @@ petfindr_breeds <- function(token, type = c("dog", "cat", "rabbit",
   url <- paste0(base, query)
   
   search_results <- httr::GET(url = url, 
-                              add_headers(Authorization = paste("Bearer", 
+                              httr::add_headers(Authorization = paste("Bearer", 
                                                                 token)))
   if(search_results$status_code != 200) {
     stop(pf_error(search_results$status_code))

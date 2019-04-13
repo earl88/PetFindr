@@ -98,7 +98,7 @@ petfindr_save_credentials <- function(key = NULL, secret = NULL,
 #' @param key A key provided to the user by the Petfinder API
 #' @param secret A secret provided to the user by the Petfinder API
 #'
-#' @return
+#' @return An access token for the PetFindr API
 #' @export
 #' 
 #' @importFrom httr POST content
