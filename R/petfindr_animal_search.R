@@ -131,9 +131,9 @@ petfindr_animal_search <- function(token,
            query <- query.sub) # Otherwise, just assign query.sub
     
     url <- paste0(base, query) # url is assigned
-    search_results <- GET(url = url, 
-                          add_headers(Authorization = paste("Bearer", token)))
-    animal_info <- content(search_results)[[1]]
+    search_results <-httr:: GET(url = url, 
+                          httr::add_headers(Authorization = paste("Bearer", token)))
+    animal_info <- httr::content(search_results)[[1]]
     
     # Now We can automatically extract the information instead of defining them all.
     # I would try to find an alternative to the part of the function "tibble.f" below later.
@@ -155,7 +155,7 @@ petfindr_animal_search <- function(token,
     tibble.f <- function(x){
       xx <- c()
       for(i in 1:length(unique.names)){
-        assign(unique.names[i], check_null(x[unique.names[i]]))
+        assign(unique.names[i], checkmate::check_null(x[unique.names[i]]))
         xx <- paste(xx, unique.names[i], sep=",")
       }
       return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))
@@ -188,8 +188,8 @@ petfindr_animal_search <- function(token,
              query <- query.sub)
       
       url <- paste0(base, query)
-      search_results <- GET(url = url, 
-                            add_headers(Authorization = paste("Bearer", token)))
+      search_results <- httr::GET(url = url, 
+                            httr::add_headers(Authorization = paste("Bearer", token)))
       
       
       # search_status <- search_results$status_code
@@ -197,7 +197,7 @@ petfindr_animal_search <- function(token,
       #   stop(pf_error(search_status))
       # }
       
-      animal_info <- content(search_results)[[1]]
+      animal_info <- httr:: content(search_results)[[1]]
       
       new.names <- animal_info %>% 
         purrr::map(.x, 
@@ -216,7 +216,7 @@ petfindr_animal_search <- function(token,
       tibble.f <- function(x){
         xx <- c()
         for(i in 1:length(unique.names)){
-          assign(unique.names[i], check_null(x[unique.names[i]]))
+          assign(unique.names[i], checkmate::check_null(x[unique.names[i]]))
           xx <- paste(xx, unique.names[i], sep=",")
         }
         return(eval(parse(text=(paste("tibble(", substring(xx,2), ")", sep="")))))

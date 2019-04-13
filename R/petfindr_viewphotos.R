@@ -11,13 +11,7 @@
 
 library(tibble)
 library(stringr)
-# 
-nimals_of_interest <- petfindr_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
-                                             age = "baby", coat = "long", limit=100, page="all", sort = "distance")
-na.omit (purrr:: map_chr(animals_of_interest[,]$photos.medium, 
-                         magrittr::extract2, 1)) %>% 
-  str_remove("&width=60&-pnt.jpg") %>%
-  knitr::include_graphics() %>% magick::image_read()
+
 
 
 pf_photo_view<- function(search_result, size=c("small", "medium", 
@@ -63,3 +57,21 @@ pf_photo_view<- function(search_result, size=c("small", "medium",
     knitr::include_graphics()
     return(photo.out %>% magick::image_read())
 }
+
+
+
+
+
+# 
+# nimals_of_interest <- petfindr_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
+#                                              age = "baby", coat = "long", limit=100, page="all", sort = "distance")
+# na.omit (purrr:: map_chr(animals_of_interest[,]$photos.medium, 
+#                          magrittr::extract2, 1)) %>% 
+#   str_remove("&width=60&-pnt.jpg") %>%
+#   knitr::include_graphics() %>% magick::image_read()
+# 
+# 
+# 
+# animals_of_interest <- petfindr_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
+#                                               age = "baby", coat = "long", limit=100, page="all", sort = "distance")
+# 
