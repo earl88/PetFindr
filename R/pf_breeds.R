@@ -8,8 +8,8 @@
 #' @return A character vector containing the breed names for the given animal type
 #'
 #' @examples
-#' petfindr_breeds(token, type = "dog")
-#' petfindr_breeds(token, type = "cat")
+#' pf_breeds(token, type = "dog")
+#' pf_breeds(token, type = "cat")
 #'
 #' @importFrom httr GET content
 #' @importFrom magrittr %>%
@@ -17,7 +17,7 @@
 #' @importFrom purrr map_chr
 #' @import assertthat
 
-petfindr_breeds <- function(token, type = c("dog", "cat", "rabbit",
+pf_breeds <- function(token, type = c("dog", "cat", "rabbit",
                                           "small & furry","horse", "bird", 
                                           "scales, fins, & other", "barnyard")) {
   

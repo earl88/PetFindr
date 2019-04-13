@@ -15,7 +15,7 @@ library(stringr)
 # library(tibble)
 # library(stringr)
 # # 
-# nimals_of_interest <- petfindr_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
+# nimals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
 #                                              age = "baby", coat = "long", limit=100, page="all", sort = "distance")
 # na.omit (purrr:: map_chr(animals_of_interest[,]$photos.medium, 
 #                          magrittr::extract2, 1)) %>% 

@@ -1,11 +1,11 @@
-### petfindr_organziation_search is a function to return data frame based on organization information.
+### pf_organziation_search is a function to return data frame based on organization information.
 ### If a variabale is missed, then a default given by the petfinder API will be returned.
 ### Default limit of a page is now 100.
 ### If page = "all" then all the pets will be shown in one data frame.
 ### Default page is 1.
 ### Procedures of building up this function is the same as the above function.
 
-petfindr_organization_search <- function(token, name = NULL, organization = NULL,
+pf_organization_search <- function(token, name = NULL, organization = NULL,
                                          location = NULL, 
                                          distance = NULL,
                                          state = NULL, 
@@ -172,4 +172,4 @@ petfindr_organization_search <- function(token, name = NULL, organization = NULL
 } 
 
 # test
-# organizations_of_interest <- petfindr_organization_search(token, country = "US", limit = 100, page = 1, sort = "state")
+# organizations_of_interest <- pf_organization_search(token, country = "US", limit = 100, page = 1, sort = "state")

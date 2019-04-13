@@ -14,10 +14,10 @@
 #' @importFrom assertthat is.string
 #'
 #' @examples
-#' petfindr_animaltypes(token)
-#' petfindr_animaltypes(token, "dog")
-#' petfindr_animaltypes(token)$name
-petfindr_animaltypes <- function(token, type = NULL) {
+#' pf_animaltypes(token)
+#' pf_animaltypes(token, "dog")
+#' pf_animaltypes(token)$name
+pf_animaltypes <- function(token, type = NULL) {
   
   if(is.null(type)) {
     type <- ""

@@ -1,4 +1,4 @@
-### petfindr_animal_search is a function to return data frame based on animal information.
+### pf_animal_search is a function to return data frame based on animal information.
 ### If a variabale is missed, then a default given by the petfinder API will be returned.
 ### breed, color are not yet specified with a list.
 ### There are very few pets containing coat information.
@@ -31,7 +31,7 @@
 #' @export
 #'
 #' @examples
-petfindr_animal_search <- function(token, 
+pf_animal_search <- function(token, 
                                    type = c("cat", "dog", "smallfurry", "barnyard", "bird", "horse", "reptile"), 
                                    breed = NULL,
                                    size = c("small", "medium", "large", "xlarge"), 
@@ -243,5 +243,5 @@ petfindr_animal_search <- function(token,
 
 # test
 #
-#animals_of_interest <- petfindr_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
+#animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
 #                          age = "baby", coat = "long", limit=100, page="all", sort = "distance")
