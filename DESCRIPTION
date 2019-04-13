@@ -36,4 +36,5 @@ Imports:
     purrr,
     plyr,
     nlme,
-    usethis
+    usethis,
+    dplyr
