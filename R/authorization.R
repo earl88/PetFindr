@@ -13,7 +13,7 @@ petfindr_setup <- function() {
   if(!interactive()) {
     stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API at https://www.petfinder.com/developers/. Once you have your user credentials, you can generate your access token using petfindr_accesstoken(key, secret)")
   }
-  if(usethis:::yep(request)) {
+  if(usethis::ui_yeah(request)) {
     browseURL("https://www.petfinder.com/developers/")
     cat("If a browser did not open automatically, please open a browser and register at https://www.petfinder.com/developers/.\n\n")
     cat("After registering, you will be assigned a 'key' and a 'secret'. You can use \n these to generate your access token using petfindr_accesstoken(key, secret).\n You can also choose to save them to your .Rprofile for later use with petfindr_save_credentials(key, secret).")
@@ -63,26 +63,27 @@ petfindr_save_credentials <- function(key = NULL, secret = NULL,
     # If there is not already a key, add the user-provided key to Rprofile
     key_exists <- any(grepl("petfindr_key", rprof_contents))
     if(!key_exists) {
-      str <- paste0("\npetfindr_key = \"", key, "\"\n")
+      str <- sprintf('\npetfindr_key = \"%s\"\n', key)
       cat(str, file = rprof_path, append = TRUE)
     }
   }
-  # If a key is provided, check validity and whether already in Rprofile
+  # If a secret is provided, check validity and whether already in Rprofile
   if(!is.null(secret)) {
 
     # Check input type and length
     assertthat::is.string(secret)
     assertthat::are_equal(nchar(secret), 40)
 
-    # If there is not already a key, add the user-provided key to Rprofile
+    # If there is not already a secret, add the user-provided secret to Rprofile
     secret_exists <- any(grepl("petfindr_secret", rprof_contents))
     if(!secret_exists) {
-      str <- paste0("\npetfindr_secret = \"", secret, "\"\n")
+      str <- sprintf('\npetfindr_key = \"%s\"\n', secret)
       cat(str, file = rprof_path, append = TRUE)
     }
   }
 
-  usethis:::restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+  restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+  return(NULL)
 }
 
 

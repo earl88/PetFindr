@@ -32,13 +32,13 @@ petfindr_animaltypes <- function(token, type = NULL) {
   
   base <- "https://api.petfinder.com/v2/types/"
   
-  search_results <- GET(url = paste0(base, type), 
+  search_results <- httr:: GET(url = paste0(base, type), 
                         add_headers(Authorization = paste("Bearer", token)))
   
   if(type == "") {
-    type_info <- content(search_results)$types
+    type_info <- httr::content(search_results)$types
   } else {
-    type_info <- content(search_results)
+    type_info <- httr::content(search_results)
   }
   
   types_df <- purrr::map_df(type_info, function(x) {

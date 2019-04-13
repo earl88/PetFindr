@@ -23,19 +23,23 @@ petfindr_breeds <- function(token, type = c("dog", "cat", "rabbit",
   
   assertthat::is.string(type)
   type <- tolower(type)
-  type <- match.arg(type)
-  if(type == "small & furry") {type <- "small-furry"}
-  if(type == "scales, fins, & other") {type <- "scales-fins-other"}
+  type <- match.arg(type) %>%
+    gsub(pattern = "([, ][& ][& ]?[ ]?)", replacement = "-")
   
   query = paste0("/", type, "/breeds")
 
   base <- "https://api.petfinder.com/v2/types"
   url <- paste0(base, query)
   
-  search_results <- GET(url = url, 
-                        add_headers(Authorization = paste("Bearer", token)))
+  search_results <- httr::GET(url = url, 
+                              add_headers(Authorization = paste("Bearer", 
+                                                                token)))
+  if(search_results$status_code != 200) {
+    stop(pf_error(search_results$status_code))
+  }
   
-  breeds <- purrr::map_chr(content(search_results)$breeds, function(x) {x$name})
+  breeds <- purrr::map_chr(httr::content(search_results)$breeds, 
+                           function(x) {x$name})
   return(breeds)
 }
 
