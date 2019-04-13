@@ -6,6 +6,7 @@ check_null <- function(x) {
 # Function to restart Rstudio.
 # This function originates from the package 'usethis'
 # which can be found here : https://github.com/r-lib/usethis
+#' @import usethis
 restart_rstudio <- function(message = NULL) {
   if (!in_rstudio(proj_get())) {
     return(FALSE)
@@ -28,4 +29,22 @@ restart_rstudio <- function(message = NULL) {
   }
   
   rstudioapi::openProject(proj_get())
+}
+
+in_rstudio <- function(base_path = proj_get()) {
+  if (!rstudioapi::isAvailable()) {
+    return(FALSE)
+  }
+  
+  if (!rstudioapi::hasFun("getActiveProject")) {
+    return(FALSE)
+  }
+  
+  proj <- rstudioapi::getActiveProject()
+  
+  if (is.null(proj)) {
+    return(FALSE)
+  }
+  
+  fs::path_real(proj) == fs::path_real(base_path)
 }
