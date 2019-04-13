@@ -6,17 +6,17 @@
 #' @export
 #'
 #' @examples
-#' petfindr_setup()
-petfindr_setup <- function() {
+#' pf_setup()
+pf_setup <- function() {
   
   request <- "Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API at https://www.petfinder.com/developers/. Would you like to do this now? (Selecting 'Yes' will open browser.)"
   if(!interactive()) {
-    stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API at https://www.petfinder.com/developers/. Once you have your user credentials, you can generate your access token using petfindr_accesstoken(key, secret)")
+    stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API at https://www.petfinder.com/developers/. Once you have your user credentials, you can generate your access token using pf_accesstoken(key, secret)")
   }
   if(usethis::ui_yeah(request)) {
     browseURL("https://www.petfinder.com/developers/")
     cat("If a browser did not open automatically, please open a browser and register at https://www.petfinder.com/developers/.\n\n")
-    cat("After registering, you will be assigned a 'key' and a 'secret'. You can use \n these to generate your access token using petfindr_accesstoken(key, secret).\n You can also choose to save them to your .Rprofile for later use with petfindr_save_credentials(key, secret).")
+    cat("After registering, you will be assigned a 'key' and a 'secret'. You can use \n these to generate your access token using pf_accesstoken(key, secret).\n You can also choose to save them to your .Rprofile for later use with pf_save_credentials(key, secret).")
   }
 }
 
@@ -40,8 +40,8 @@ petfindr_setup <- function() {
 #' @export
 #' 
 #' @examples
-#' petfindr_save_credentials(petfindr_key, petfindr_secret)
-petfindr_save_credentials <- function(key = NULL, secret = NULL,
+#' pf_save_credentials(petfindr_key, petfindr_secret)
+pf_save_credentials <- function(key = NULL, secret = NULL,
                                       scope = c("project", "user")) {
 
   # Select scope for .Rprofile and make sure file exists
@@ -104,8 +104,8 @@ petfindr_save_credentials <- function(key = NULL, secret = NULL,
 #' @importFrom httr POST content
 #'
 #' @examples
-#' token <- petfindr_accesstoken(petfindr_key, petfindr_secret)
-petfindr_accesstoken <- function(key, secret) {
+#' token <- pf_accesstoken(petfindr_key, petfindr_secret)
+pf_accesstoken <- function(key, secret) {
   
   auth <- httr::POST(url = "https://api.petfinder.com/v2/oauth2/token",
                body = list(grant_type = "client_credentials",
