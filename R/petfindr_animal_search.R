@@ -25,6 +25,8 @@
 #' @param limit 
 #' @param page 
 #'
+#' @import plyr
+#' 
 #' @return
 #' @export
 #'
@@ -241,5 +243,5 @@ petfindr_animal_search <- function(token,
 
 # test
 #
-# animals_of_interest <- petfindr_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
-#                            age = "baby", coat = "long", limit=100, page="all", sort = "distance")
+#animals_of_interest <- petfindr_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
+#                          age = "baby", coat = "long", limit=100, page="all", sort = "distance")
