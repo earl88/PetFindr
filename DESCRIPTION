@@ -9,7 +9,7 @@ Authors@R:
     person(given = "Jessica",
            family = "Kueon",
            role = c("aut", "cre"),
-           email = "netid@iastate.edu")
+           email = "jesslk@iastate.edu")
     person(given = "Hana",
            family = "Lee",
            role = c("aut", "cre"),
@@ -17,7 +17,7 @@ Authors@R:
     person(given = "Amin",
            family = "Shirazi",
            role = c("aut", "cre"),
-           email = "netid@iastate.edu")
+           email = "ashirazi@iastate.edu")
     person(given = "Miranda",
            family = "Tilton",
            role = c("aut", "cre"),
@@ -26,3 +26,14 @@ Description: This package allows users to interact with information from PetFind
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Imports: 
+    tibble,
+    magrittr,
+    httr,
+    assertthat,
+    purrr,
+    plyr,
+    nlme,
+    usethis
