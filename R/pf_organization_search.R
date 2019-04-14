@@ -26,13 +26,14 @@
 ### Default page is 1.
 ### Procedures of building up this function is the same as the above function.
 
-pf_organization_search <- function(token, name = NULL, organization = NULL,
-                                         location = NULL, 
-                                         distance = NULL,
-                                         state = NULL, 
-                                         country = NULL,
-                                         sort = NULL,
-                                         limit = 100, page=1) {
+
+pf_organization_search <- function(token, name = NULL,
+                                   location = NULL, 
+                                   distance = NULL,
+                                   state = NULL, 
+                                   country = NULL,
+                                   sort = NULL,
+                                   limit = 100, page=1) {
 
   base <- "https://api.petfinder.com/v2/"
   
@@ -106,7 +107,7 @@ pf_organization_search <- function(token, name = NULL, organization = NULL,
                                  .f= ~purrr::set_names(.x, .y))
     
     organization_df <- do.call(plyr::rbind.fill, unlisted.info)
-
+    
     organization_df <- organization_df[which(duplicated(organization_df$id)==FALSE),]
     return(organization_df)
     
