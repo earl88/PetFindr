@@ -25,7 +25,7 @@
 #' @param limit 
 #' @param page 
 #'
-#' @import plyr
+#' @import plyr magrittr
 #' 
 #' @return
 #' @export
@@ -133,7 +133,7 @@ pf_animal_search <- function(token,
            query <- query.sub) # Otherwise, just assign query.sub
     
     url <- paste0(base, query) # url is assigned
-    search_results <-httr:: GET(url = url, 
+    search_results <-httr::GET(url = url, 
                           httr::add_headers(Authorization = paste("Bearer", token)))
     animal_info <- httr::content(search_results)[[1]]
     
@@ -218,5 +218,5 @@ pf_animal_search <- function(token,
 
 # test
 #
-#animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
-#                          age = "baby", coat = "long", limit=100, page="all", sort = "distance")
+animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
+                          age = "baby", coat = "long", limit=100, page="all", sort = "distance")
