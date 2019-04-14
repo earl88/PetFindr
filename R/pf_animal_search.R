@@ -25,8 +25,14 @@
 #' @param limit 
 #' @param page 
 #'
-#' @import plyr magrittr
 #' 
+#' @importFrom httr GET content add_headers
+#' @importFrom magrittr %>%
+#' @importFrom tibble tibble
+#' @importFrom purrr map map_df set_names
+#' @importFrom assertthat is.string
+#' @importFrom rlist list.flatten
+#' @importFrom plyr rbind.fill
 #' @return
 #' @export
 #'
@@ -185,7 +191,7 @@ pf_animal_search <- function(token,
       #   stop(pf_error(search_status))
       # }
       
-      animal_info <- httr:: content(search_results)[[1]]
+      animal_info <- httr::content(search_results)[[1]]
       
       # Now We can automatically extract the information instead of defining them all.
       # I would try to find an alternative to the part of the function "tibble.f" below later.
@@ -209,7 +215,7 @@ pf_animal_search <- function(token,
       # keep assign the data frame to the list
     }
     
-    animal_df_all <- do.call(rbind.fill, animal_df_list) # rbind.fill is used to combine data frames in the list
+    animal_df_all <- do.call(plyr::rbind.fill, animal_df_list) # rbind.fill is used to combine data frames in the list
     
     animal_df_all <- animal_df_all[which(duplicated(animal_df_all$id)==FALSE),] # remove duplicated observations
     return(animal_df_all) # return the data frame with all the pets 
