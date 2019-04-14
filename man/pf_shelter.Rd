@@ -13,6 +13,12 @@ pf_shelter(token, zip, dist)
 
 \item{dist}{}
 }
+\value{
+(Fill this in)
+}
 \description{
 Title
+}
+\examples{
+pf_shelter(token, 50014, 100)
 }

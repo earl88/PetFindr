@@ -33,10 +33,11 @@
 #' @importFrom assertthat is.string
 #' @importFrom rlist list.flatten
 #' @importFrom plyr rbind.fill
-#' @return
+#' @return (Fill this in)
 #' @export
 #'
 #' @examples
+#' pf_animal_search(token, type = "dog")
 pf_animal_search <- function(token, 
                                    type = c("cat", "dog", "smallfurry", "barnyard", "bird", "horse", "reptile"), 
                                    breed = NULL,
@@ -220,4 +221,6 @@ pf_animal_search <- function(token,
 # test
 #
 # animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
-#                          age = "baby", coat = "long", limit=100, page="all", sort = "distance")
+
+#                           age = "baby", coat = "long", limit=100, page="all", sort = "distance")
+

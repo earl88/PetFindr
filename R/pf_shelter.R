@@ -4,10 +4,11 @@
 #' @param zip 
 #' @param dist 
 #'
-#' @return
+#' @return (Fill this in)
 #' @export
 #'
 #' @examples
+#' pf_shelter(token, 50014, 100)
 pf_shelter <- function(token, zip, dist) {
   
   base <- "https://api.petfinder.com/v2/"

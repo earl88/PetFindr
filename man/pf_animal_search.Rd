@@ -47,6 +47,12 @@ pf_animal_search(token, type = c("cat", "dog", "smallfurry", "barnyard",
 
 \item{page}{}
 }
+\value{
+(Fill this in)
+}
 \description{
 Title
+}
+\examples{
+pf_animal_search(token, type = "dog")
 }

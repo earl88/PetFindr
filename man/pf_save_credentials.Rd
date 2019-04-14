@@ -2,23 +2,23 @@
 % Please edit documentation in R/authorization.R
 \name{pf_save_credentials}
 \alias{pf_save_credentials}
-\title{Save PetFindr key and secret to .Rprofile}
+\title{Save Petfinder API (V2) key and secret to .Rprofile}
 \usage{
 pf_save_credentials(key = NULL, secret = NULL, scope = c("project",
   "user"))
 }
 \arguments{
-\item{key}{A key provided to the user by the Petfinder API}
+\item{key}{A key provided to the user by the Petfinder API (V2)}
 
-\item{secret}{A secret provided to the user by the Petfinder API}
+\item{secret}{A secret provided to the user by the Petfinder API (V2)}
 
-\item{scope}{The scope of the .Rprofile to which the key and secret should be saved; one of "project" or "user".}
+\item{scope}{The scope of the .Rprofile to which the key and secret should be saved, either "project" or "user".}
 }
 \value{
 None
 }
 \description{
-This function allows the user to save their Petfinder API key and/or secret to their user or project .Rprofile
+This function allows the user to save their Petfinder API (V2) key and/or secret to their user or project .Rprofile
 }
 \examples{
 pf_save_credentials(petfindr_key, petfindr_secret)
