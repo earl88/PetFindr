@@ -6,8 +6,7 @@
 #' @param token An access token
 #' @param name Names of organizations
 #' @return A dataframe listing information of the desired organizations
-#'
-#' @importFrom httr GET content add_headers
+#' 
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_df set_names
@@ -44,7 +43,7 @@ pf_organization_search <- function(token, name = NULL,
   if(missing(distance)) {
     organization_distance <- NULL
   } else if (missing(location)) {
-    stop("You should specify location before using distance")
+    stop("You must specify location in order to filter by distance")
   } else {
     organization_distance <- paste0("distance", "=", distance)
   } # define distance from the location

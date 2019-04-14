@@ -30,7 +30,6 @@
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_df set_names
-#' @importFrom assertthat is.string
 #' @importFrom rlist list.flatten
 #' @importFrom plyr rbind.fill
 #' @return (Fill this in)
