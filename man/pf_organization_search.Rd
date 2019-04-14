@@ -4,9 +4,9 @@
 \alias{pf_organization_search}
 \title{organization_search}
 \usage{
-pf_organization_search(token, name = NULL, organization = NULL,
-  location = NULL, distance = NULL, state = NULL, country = NULL,
-  sort = NULL, limit = 100, page = 1)
+pf_organization_search(token, name = NULL, location = NULL,
+  distance = NULL, state = NULL, country = NULL, sort = NULL,
+  limit = 100, page = 1)
 }
 \arguments{
 \item{token}{An access token}

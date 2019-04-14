@@ -11,7 +11,7 @@
 #' pf_breeds(token, type = "dog")
 #' pf_breeds(token, type = "cat")
 #'
-#' @importFrom httr GET content
+#' @importFrom httr GET content add_headers
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 #' @importFrom purrr map_chr
