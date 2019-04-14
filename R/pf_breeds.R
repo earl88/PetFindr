@@ -11,11 +11,8 @@
 #' pf_breeds(token, type = "dog")
 #' pf_breeds(token, type = "cat")
 #'
-#' @importFrom httr GET content add_headers
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
-#' @importFrom purrr map_chr
-#' @import assertthat
 
 pf_breeds <- function(token, type = c("dog", "cat", "rabbit",
                                           "small & furry","horse", "bird", 
@@ -32,8 +29,7 @@ pf_breeds <- function(token, type = c("dog", "cat", "rabbit",
   url <- paste0(base, query)
   
   search_results <- httr::GET(url = url, 
-                              httr::add_headers(Authorization = paste("Bearer", 
-                                                                token)))
+                       httr::add_headers(Authorization = paste("Bearer", token)))
   if(search_results$status_code != 200) {
     stop(pf_error(search_results$status_code))
   }

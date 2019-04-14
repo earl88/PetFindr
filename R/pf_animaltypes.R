@@ -7,11 +7,8 @@
 #' @param type One of the eight available types: "dog", "cat", "rabbit", "small & furry", "horse", "bird", "scales, fins, & other", or "barnyard". If no type is provided, all types are returned.
 #' @return A tibble listing the desired animal types with their available coats, colors, and genders
 #'
-#' @importFrom httr GET content add_headers
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
-#' @importFrom purrr map_df
-#' @importFrom assertthat is.string
 #'
 #' @examples
 #' pf_animaltypes(token)
@@ -33,7 +30,7 @@ pf_animaltypes <- function(token, type = NULL) {
   base <- "https://api.petfinder.com/v2/types/"
   
   search_results <- httr::GET(url = paste0(base, type), 
-                        httr::add_headers(Authorization = paste("Bearer", token)))
+                       httr::add_headers(Authorization = paste("Bearer", token)))
   
   if(type == "") {
     type_info <- httr::content(search_results)$types
