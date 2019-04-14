@@ -60,7 +60,6 @@ pf_animal_search <- function(token,
   age.arg <- match.arg(age, several.ok = T) # allow multiple arguements for age variable
   coat.arg <- match.arg(coat, several.ok = T) # allow multiple arguements for coat variable
   
-  
   if(!missing(type)) {
     animal_type <- paste0("type", "=", paste(type, collapse=",")) # argument to paste query
   } else {animal_type <- NULL} # if type is missing, define NULL to type of pets
@@ -157,8 +156,7 @@ pf_animal_search <- function(token,
                                  .f= ~purrr::set_names(.x, .y))
     
     animal_df <- do.call(plyr::rbind.fill, unlisted.info)
-    
-    animal_df <- animal_df[which(duplicated(animal_df$id)==FALSE),]
+
     return(animal_df)
     # until this if statement, page number is specified.
     # Below is the procedure to attach all the pages so that users can see all the pets from a data frame by page="all" arguement.
@@ -167,6 +165,7 @@ pf_animal_search <- function(token,
     animal_df_list <- list() # list need to be defined so that a data frame can assigned in a level of list
     pg <- 1 # Iteration index
     keep <- FALSE # keep is assigned to be FALSE
+    animal_info <- c()
     
     while(!keep) { # Iteration starts and repeat until keep=TRUE
       
@@ -190,39 +189,35 @@ pf_animal_search <- function(token,
       # if(search_status != 200) {
       #   stop(pf_error(search_status))
       # }
-      
-      animal_info <- httr::content(search_results)[[1]]
-      
-      # Now We can automatically extract the information instead of defining them all.
-      # I would try to find an alternative to the part of the function "tibble.f" below later.
-      new.distinct.names <- animal_info %>% 
-        purrr::map(.x, 
-                   .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
-      
-      unlisted <- animal_info %>% 
-        purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
-      
-      unlisted.info <- purrr::map2(unlisted,
-                                   new.distinct.names,
-                                   .f= ~purrr::set_names(.x, .y))
-      
-      animal_df <- do.call(plyr::rbind.fill, unlisted.info)
-      
-      animal_df <- animal_df[which(duplicated(animal_df$id)==FALSE),] # delete duplicated observation
-      animal_df_list[[pg]] <- animal_df # assign the above data frame to the list with level=pg
+      tmp_info <- httr::content(search_results)[[1]]
+      animal_info <- append(animal_info, tmp_info)
+ 
       pg <- pg+1 # go to the next page iteration
-      keep <- nrow(animal_df) < limit # keep repeat this until the number of rows in the data frame is less than assigned limit
+      keep <- length(tmp_info) < limit # keep repeat this until the number of rows in the data frame is less than assigned limit
       # keep assign the data frame to the list
     }
     
-    animal_df_all <- do.call(plyr::rbind.fill, animal_df_list) # rbind.fill is used to combine data frames in the list
+    # Now We can automatically extract the information instead of defining them all.
+    # I would try to find an alternative to the part of the function "tibble.f" below later.
     
-    animal_df_all <- animal_df_all[which(duplicated(animal_df_all$id)==FALSE),] # remove duplicated observations
-    return(animal_df_all) # return the data frame with all the pets 
+    new.distinct.names <- animal_info %>% 
+      purrr::map(.x, 
+                 .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
+    
+    unlisted <- animal_info %>% 
+      purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
+    
+    unlisted.info <- purrr::map2(unlisted,
+                                 new.distinct.names,
+                                 .f= ~purrr::set_names(.x, .y))
+    
+    animal_df <- do.call(plyr::rbind.fill, unlisted.info)
+    
+    return(animal_df) # return the data frame with all the pets 
   }
 } 
 
 # test
 #
-animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
-                          age = "baby", coat = "long", limit=100, page="all", sort = "distance")
+# animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
+#                          age = "baby", coat = "long", limit=100, page="all", sort = "distance")
