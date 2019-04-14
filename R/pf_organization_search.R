@@ -115,9 +115,9 @@ pf_organization_search <- function(token, name = NULL,
     organization_df_list <- list()
     pg <- 1
     keep <- FALSE
+    organization_info <- c()
     
-    while(!keep) {
-      
+    while(!keep) { # Iteration starts and repeat until keep=TRUE
       organization_page <- paste0("page", "=", pg) # start iteration with page=1
       
       query.sub <- gsub("([[:punct:]])\\1+", "\\1", paste0("organizations?", paste(organization_location, organization_distance, 
@@ -125,6 +125,7 @@ pf_organization_search <- function(token, name = NULL,
                                                                                    organization_imit, organization_page, 
                                                                                    organization_sort,
                                                                                    sep = "&")))
+   
       
       ifelse(tail(strsplit(query.sub, "")[[1]], 1) == "&",
              query <- substr(query.sub, 1,nchar(query.sub)-1),
@@ -133,33 +134,31 @@ pf_organization_search <- function(token, name = NULL,
       url <- paste0(base, query)
       search_results <- httr::GET(url = url, 
                                   httr::add_headers(Authorization = paste("Bearer", token)))
-      organization_info <- httr::content(search_results)[[1]]
+      tmp_info <- httr::content(search_results)[[1]]
+
+      organization_info <- append(organization_info, tmp_info)
       
-      # Now We can automatically extract the information instead of defining them all.
-      # I would try to find an alternative to the part of the function "tibble.f" below later.
-      new.distinct.names <- organization_info %>% 
-        purrr::map(.x, 
-                   .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
-      
-      unlisted <- organization_info %>% 
-        purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
-      
-      unlisted.info <- purrr::map2(unlisted,
-                                   new.distinct.names,
-                                   .f= ~purrr::set_names(.x, .y))
-      
-      organization_df <- do.call(plyr::rbind.fill, unlisted.info)
-      
-      organization_df <- organization_df[which(duplicated(organization_df$id)==FALSE),]
-      organization_df_list[[pg]] <- organization_df
-      pg <- pg+1
-      keep <- nrow(organization_df) < limit
+      pg <- pg+1 # go to the next page iteration
+      keep <- length(tmp_info) < limit # keep repeat this until the number of rows in the data frame is less than assigned limit
+      # keep assign the data frame to the list
     }
+    # Now We can automatically extract the information instead of defining them all.
+    # I would try to find an alternative to the part of the function "tibble.f" below later.
     
-    organization_df_all <- do.call(plyr::rbind.fill, organization_df_list) # rbind.fill is used to combine data in the list
+    new.distinct.names <- organization_info %>% 
+      purrr::map(.x, 
+                 .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
     
-    organization_df_all <- organization_df_all[which(duplicated(organization_df_all$id)==FALSE),] # remove duplicated observations
-    return(organization_df_all)
+    unlisted <- organization_info %>% 
+      purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
+    
+    unlisted.info <- purrr::map2(unlisted,
+                                 new.distinct.names,
+                                 .f= ~purrr::set_names(.x, .y))
+    
+    organization_df <- do.call(plyr::rbind.fill, unlisted.info)
+    
+    return(organization_df) # return the data frame with all the pets 
   }
   
 } 
