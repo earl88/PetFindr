@@ -2,20 +2,20 @@
 % Please edit documentation in R/authorization.R
 \name{pf_accesstoken}
 \alias{pf_accesstoken}
-\title{Generate an access token for the Petfinder API}
+\title{Generate an access token for the Petfinder API (V2)}
 \usage{
 pf_accesstoken(key, secret)
 }
 \arguments{
-\item{key}{A key provided to the user by the Petfinder API}
+\item{key}{A key provided to the user by the Petfinder API (V2)}
 
-\item{secret}{A secret provided to the user by the Petfinder API}
+\item{secret}{A secret provided to the user by the Petfinder API (V2)}
 }
 \value{
-An access token for the PetFindr API
+An access token for the PetFindr API (V2)
 }
 \description{
-Generate an access token for the Petfinder API
+Generate an access token for the Petfinder API (V2)
 }
 \examples{
 token <- pf_accesstoken(petfindr_key, petfindr_secret)

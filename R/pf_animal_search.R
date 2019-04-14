@@ -33,10 +33,11 @@
 #' @importFrom assertthat is.string
 #' @importFrom rlist list.flatten
 #' @importFrom plyr rbind.fill
-#' @return
+#' @return (Fill this in)
 #' @export
 #'
 #' @examples
+#' pf_animal_search(token, type = "dog")
 pf_animal_search <- function(token, 
                                    type = c("cat", "dog", "smallfurry", "barnyard", "bird", "horse", "reptile"), 
                                    breed = NULL,
