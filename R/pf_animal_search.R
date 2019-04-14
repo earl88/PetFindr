@@ -25,7 +25,7 @@
 #' @param limit 
 #' @param page 
 #'
-#' @import plyr
+#' @import plyr magrittr
 #' 
 #' @return
 #' @export
