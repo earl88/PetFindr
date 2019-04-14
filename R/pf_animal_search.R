@@ -221,8 +221,6 @@ pf_animal_search <- function(token,
 # test
 #
 # animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
-<<<<<<< HEAD
+
 #                           age = "baby", coat = "long", limit=100, page="all", sort = "distance")
-=======
-#                          age = "baby", coat = "long", limit=100, page="all", sort = "distance")
->>>>>>> dac2162d3a5713a432f9c32c7d6803781baaf21c
+
