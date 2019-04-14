@@ -107,8 +107,7 @@ pf_organization_search <- function(token, name = NULL,
                                  .f= ~purrr::set_names(.x, .y))
     
     organization_df <- do.call(plyr::rbind.fill, unlisted.info)
-    
-    organization_df <- organization_df[which(duplicated(organization_df$id)==FALSE),]
+
     return(organization_df)
     
   } else if (page=="all") {
