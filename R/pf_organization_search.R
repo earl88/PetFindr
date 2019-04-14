@@ -1,3 +1,24 @@
+#' organization_search
+#'
+#' Longer description of what the function does
+#'
+#' @export
+#' @param token An access token
+#' @param name Names of organizations
+#' @return A dataframe listing information of the desired organizations
+#'
+#' @importFrom httr GET content add_headers
+#' @importFrom magrittr %>%
+#' @importFrom tibble tibble
+#' @importFrom purrr map map_df set_names
+#' @importFrom assertthat is.string
+#' @importFrom rlist list.flatten
+#' @importFrom plyr rbind.fill
+#'
+#' @examples
+#' organizations_of_interest <- pf_organization_search(token, country = "US", limit = 100, page = 1, sort = "state")
+
+
 ### pf_organziation_search is a function to return data frame based on organization information.
 ### If a variabale is missed, then a default given by the petfinder API will be returned.
 ### Default limit of a page is now 100.
@@ -12,11 +33,7 @@ pf_organization_search <- function(token, name = NULL, organization = NULL,
                                          country = NULL,
                                          sort = NULL,
                                          limit = 100, page=1) {
-  
-  library(httr)
-  library(magrittr)
-  library(tidyverse)
-  library(plyr)
+
   base <- "https://api.petfinder.com/v2/"
   
   if(!missing(location)) {
@@ -71,9 +88,9 @@ pf_organization_search <- function(token, name = NULL, organization = NULL,
            query <- query.sub)
     
     url <- paste0(base, query)
-    search_results <- GET(url = url, 
-                          add_headers(Authorization = paste("Bearer", token)))
-    organization_info <- content(search_results)[[1]]
+    search_results <- httr::GET(url = url, 
+                                httr::add_headers(Authorization = paste("Bearer", token)))
+    organization_info <- httr::content(search_results)[[1]]
     
     # Now We can automatically extract the information instead of defining them all.
     # I would try to find an alternative to the part of the function "tibble.f" below later.
@@ -113,9 +130,9 @@ pf_organization_search <- function(token, name = NULL, organization = NULL,
              query <- query.sub)
       
       url <- paste0(base, query)
-      search_results <- GET(url = url, 
-                            add_headers(Authorization = paste("Bearer", token)))
-      organization_info <- content(search_results)[[1]]
+      search_results <- httr::GET(url = url, 
+                                  httr::add_headers(Authorization = paste("Bearer", token)))
+      organization_info <- httr::content(search_results)[[1]]
       
       # Now We can automatically extract the information instead of defining them all.
       # I would try to find an alternative to the part of the function "tibble.f" below later.
@@ -138,7 +155,7 @@ pf_organization_search <- function(token, name = NULL, organization = NULL,
       keep <- nrow(organization_df) < limit
     }
     
-    organization_df_all <- do.call(rbind.fill, organization_df_list) # rbind.fill is used to combine data in the list
+    organization_df_all <- do.call(plyr::rbind.fill, organization_df_list) # rbind.fill is used to combine data in the list
     
     organization_df_all <- organization_df_all[which(duplicated(organization_df_all$id)==FALSE),] # remove duplicated observations
     return(organization_df_all)
