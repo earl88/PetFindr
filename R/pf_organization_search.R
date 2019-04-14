@@ -5,7 +5,7 @@
 ### Default page is 1.
 ### Procedures of building up this function is the same as the above function.
 
-pf_organization_search <- function(token, name = NULL, organization = NULL,
+pf_organization_search <- function(token, name = NULL,
                                    location = NULL, 
                                    distance = NULL,
                                    state = NULL, 
