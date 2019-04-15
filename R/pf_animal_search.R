@@ -30,6 +30,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_df set_names
+#' @importFrom assertthat is.string
 #' @importFrom rlist list.flatten
 #' @importFrom plyr rbind.fill
 #' @return (Fill this in)
@@ -109,7 +110,7 @@ pf_animal_search <- function(token,
   } # define distance from the location
   
   if(missing(limit)) {
-    animal_imit <- 100
+    animal_imit <- paste0("limit", "=", limit)
   } else if (limit > 100 & limit <= 0) {
     stop("The page limit should be between 0 and 100")
   } else {
@@ -166,6 +167,7 @@ pf_animal_search <- function(token,
     pg <- 1 # Iteration index
     keep <- FALSE # keep is assigned to be FALSE
     animal_info <- c()
+    animal_limit = 100
     
     while(!keep) { # Iteration starts and repeat until keep=TRUE
       
@@ -222,4 +224,5 @@ pf_animal_search <- function(token,
 # animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "corgi", gender = c("male", "female"),
 # 
 #                            age = "baby", limit=100, page="all", sort = "distance")
+
 
