@@ -64,6 +64,8 @@ pf_save_credentials <- function(key = NULL, secret = NULL,
     if(!key_exists) {
       str <- sprintf('\npetfindr_key = \"%s\"\n', key)
       cat(str, file = rprof_path, append = TRUE)
+    } else{
+      cat(".Rprofile already contains a key; no file change was made.\n")
     }
   }
   # If a secret is provided, check validity and whether already in Rprofile
@@ -78,6 +80,8 @@ pf_save_credentials <- function(key = NULL, secret = NULL,
     if(!secret_exists) {
       str <- sprintf('\npetfindr_key = \"%s\"\n', secret)
       cat(str, file = rprof_path, append = TRUE)
+    } else {
+      cat(".Rprofile already contains a secret; no file change was made.\n")
     }
   }
   
