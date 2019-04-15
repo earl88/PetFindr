@@ -10,17 +10,14 @@
 
 library(tibble)
 library(stringr)
-
+library(magrittr)
 
 # library(tibble)
 # library(stringr)
 # # 
 # nimals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "pug", gender = c("male", "female"), 
 #                                              age = "baby", coat = "long", limit=100, page="all", sort = "distance")
-# na.omit (purrr:: map_chr(animals_of_interest[,]$photos.medium, 
-#                          magrittr::extract2, 1)) %>% 
-#   str_remove("&width=60&-pnt.jpg") %>%
-#   knitr::include_graphics() %>% magick::image_read()
+
 
 
 
@@ -61,11 +58,37 @@ pf_photo_view<- function(search_result, size=c("small", "medium",
   photo.size<-na.omit(photo.size)
   if (length(photo.size)== 0){cat("There is no photo available at this size. You may try another size")}
   
-  photo.out<-purrr:: map_chr(animals_of_interest[,]$photo.size, 
-                           magrittr::extract2, 1) %>% 
-    str_remove("&width=60&-pnt.jpg") %>%
-    knitr::include_graphics()
-    return(photo.out %>% magick::image_read())
+  # photo.out<-purrr:: map_chr(search_result$photo.size, 
+  #                          magrittr::extract2, 1) %>% 
+  #   stringr::str_remove("&width=60&-pnt.jpg") %>%
+  #   knitr::include_graphics()
+  #   return(photo.out %>% magick::image_read())
+  
+  photo.out<- na.omit( animals_of_interest$photos.large[1:5] %>%
+             stringr:: str_remove("&width=600") )
+  return(photo.out%>% 
+    knitr::include_graphics() %>% magick::image_read())
 }
 
+# 
+# na.omit( animals_of_interest$photos.large[1:5] %>%
+#            stringr:: str_remove("&width=600") )%>% 
+#   knitr::include_graphics() %>% magick::image_read()
 
+# 
+# pf_photo_view(search_result = animals_of_interest, size = "medium")
+# 
+# 
+# animals_of_interest %>%  na.omit (purrr:: map_chr(animals_of_interest[,]$photos.medium, 
+#                          magrittr::extract2, 1)) %>% 
+#   stringr:: str_remove("&width=60&-pnt.jpg") %>%
+#   knitr::include_graphics() %>% magick::image_read()
+# 
+# 
+# 
+#   
+# 
+#   purrr:: map_chr(animals_of_interest[,]$photos.small, magrittr::extract2, 1)%>% 
+#   stringr::str_remove("&width=60&-pnt.jpg") %>%
+#   knitr::include_graphics() %>% 
+#   magick::image_read()
