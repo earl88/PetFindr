@@ -68,6 +68,7 @@ pf_save_credentials <- function(key = NULL, secret = NULL,
       cat(".Rprofile already contains a key; no file change was made.\n")
     }
   }
+  
   # If a secret is provided, check validity and whether already in Rprofile
   if(!is.null(secret)) {
     
