@@ -30,6 +30,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 #' @importFrom purrr map map_df set_names
+#' @importFrom assertthat is.string
 #' @importFrom rlist list.flatten
 #' @importFrom plyr rbind.fill
 #' @return (Fill this in)
@@ -60,55 +61,55 @@ pf_animal_search <- function(token,
   age.arg <- match.arg(age, several.ok = T) # allow multiple arguements for age variable
   coat.arg <- match.arg(coat, several.ok = T) # allow multiple arguements for coat variable
   
-  if(!missing(type)) {
+  if(!is.null(type)) {
     animal_type <- paste0("type", "=", paste(type, collapse=",")) # argument to paste query
   } else {animal_type <- NULL} # if type is missing, define NULL to type of pets
   
-  if(!missing(gender)) {
+  if(!is.null(gender)) {
     animal_gender <- paste0("gender", "=", paste(gender.arg, collapse=","))
   } else {animal_gender <- NULL} # if gender is missing, define NULL to gender of pets
   
-  if(!missing(age)) {
+  if(!is.null(age)) {
     animal_age <- paste0("age", "=", paste(age.arg, collapse=","))
   } else {animal_age <- NULL}
   
-  if(!missing(size)) {
+  if(!is.null(size)) {
     animal_size <- paste0("size", "=", paste(size.arg, collapse=","))
   } else {animal_size <- NULL} 
   
-  if(!missing(color)) {
+  if(!is.null(color)) {
     animal_color <- paste0("color", "=", color)
   } else {animal_color <- NULL}
   
-  if(!missing(breed)) {
+  if(!is.null(breed)) {
     animal_breed <- paste0("breed", "=", breed)
   } else {animal_breed <- NULL}
   
-  if(!missing(coat)) {
+  if(!is.null(coat)) {
     animal_coat <- paste0("coat", "=", paste(coat.arg, collapse=","))
   } else {animal_coat <- NULL}
   
-  if(!missing(status)) {
+  if(!is.null(status)) {
     animal_status <- paste0("status", "=", status)
   } else {animal_status <- NULL} 
   
-  if(!missing(sort)) {
+  if(!is.null(sort)) {
     animal_sort <- paste0("sort", "=", sort)
   } else {animal_sort <- NULL} # define sort information. Null will show the newly updated ones first
   
-  if(!missing(location)) {
+  if(!is.null(location)) {
     animal_location <- paste0("location", "=", location)
   } else {animal_location <- NULL} # define location
   
-  if(missing(distance)) {
+  if(is.null(distance)) {
     animal_distance <- NULL # if distance is missing, defind NULL to distance variable
-  } else if (missing(location)) {
+  } else if (is.null(location)) {
     stop("You should specify location before using distance") # If location is missing and distance is assigned, stop with error message
   } else {
     animal_distance <- paste0("distance", "=", distance)
   } # define distance from the location
   
-  if(missing(limit)) {
+  if(is.null(limit)) {
     animal_imit <- 100
   } else if (limit > 100 & limit <= 0) {
     stop("The page limit should be between 0 and 100")
@@ -123,7 +124,7 @@ pf_animal_search <- function(token,
   
   if (page != "all") {
     
-    if(!missing(page)) {
+    if(!is.null(page)) {
       animal_page <- paste0("page", "=", page)
     } else {animal_page <- 1} # define page number
     
