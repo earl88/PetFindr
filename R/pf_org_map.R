@@ -16,9 +16,8 @@
 #'
 #' @examples
 #' pf_animal_search(token, type = "dog")
+#' 
 data(zipcode)
-
-
 
 animal_dat <- pf_animal_search(token, location=50014, distance=10, type="dog", page="all")
 
