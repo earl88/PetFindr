@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Earl",
            family = "Hur",
            role = c("aut", "cre"),
-           email = "netid@iastate.edu")
+           email = "earl88@iastate.edu")
     person(given = "Jessica",
            family = "Kueon",
            role = c("aut", "cre"),
@@ -13,7 +13,7 @@ Authors@R:
     person(given = "Hana",
            family = "Lee",
            role = c("aut", "cre"),
-           email = "netid@iastate.edu")
+           email = "hnlee@iastate.edu")
     person(given = "Amin",
            family = "Shirazi",
            role = c("aut", "cre"),
