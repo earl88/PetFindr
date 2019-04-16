@@ -37,4 +37,7 @@ Imports:
     plyr,
     nlme,
     usethis,
-    dplyr
+    dplyr,
+    shiny,
+    leaflet,
+    zipcode
