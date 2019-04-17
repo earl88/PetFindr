@@ -21,7 +21,7 @@
 #' @export
 #'
 #' @examples
-#' puppies <- pf_find_pets(token, type = "dog", age = "baby", gender = "blat")
+#' puppies <- pf_find_pets(token, type = "dog", age = "baby")
 pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL, 
                        gender = NULL, age = NULL, color = NULL, coat = NULL,
                        status = NULL, name  = NULL, organization = NULL,
@@ -33,7 +33,8 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   defaults <- defaults[!purrr::map_lgl(defaults, is.null)]
   args <- as.list(match.call(expand.dots = T))[-1]
   args <- args[!purrr::map_lgl(args, is.null)]
-  full_args <- purrr::map(c(args, defaults[!names(defaults) %in% names(args)]), eval)[-1]
+  full_args <- purrr::map(c(args, defaults[!names(defaults) %in% names(args)]),
+                          eval)[-1]
   
   query <- paste0(paste0(names(full_args), "=", full_args), collapse = "&")
   
