@@ -86,7 +86,12 @@ pf_save_credentials <- function(key = NULL, secret = NULL,
     }
   }
   
-  restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+  if(!requireNamespace(rstudioapi, quietly = T) || 
+     !requireNamespace(fs, quietly = T)) {
+    message("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+  } else {
+    restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+  }
   return(NULL)
 }
 

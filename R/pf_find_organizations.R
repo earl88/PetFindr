@@ -9,9 +9,6 @@
 #' 
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
-#' @importFrom purrr map map_df set_names
-#' @importFrom rlist list.flatten
-#' @importFrom plyr rbind.fill
 #'
 #' @examples
 #' organizations_of_interest <- pf_find_organizations(token, country = "US", limit = 100, page = 1, sort = "state")

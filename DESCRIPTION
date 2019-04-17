@@ -44,5 +44,8 @@ Imports:
     tidyselect,
     shiny,
     leaflet,
-    zipcode
-
+    zipcode,
+    rlist
+Suggests: 
+    rstudioapi,
+    fs

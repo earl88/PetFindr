@@ -1,8 +1,3 @@
-# Returns NA when input is null
-check_null <- function(x) {
-  ifelse(!is.null(x), x, NA)
-}
-
 # Function to restart Rstudio.
 # This function originates from the package 'usethis'
 # which can be found here : https://github.com/r-lib/usethis

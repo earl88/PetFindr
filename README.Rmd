@@ -22,22 +22,26 @@ The package can be installed with
 
 Setup functions
 
-* `petfindr_setup()`
+* `pf_setup()`
 
-* `petfindr_save_credentials()`
+* `pf_save_credentials()`
 
-* `petfindr_accesstoken()`
+* `pf_accesstoken()`
 
 Search functions
 
-* `petfindr_animal_search()`
+* `pf_find_pets()`
 
-* `petfindr_organization_search()`
+* `pf_find_organizations()`
 
-* `petfindr_animaltypes()`
+List functions
 
-* `petfindr_breeds()`
+* `pf_list_types()`
 
-Photo-viewing functions
+* `pf_list_breeds()`
 
-* `petfindr_viewphotos()`
+viewing functions
+
+* `pf_view_photos()`
+
+* `pf_map_organizations()`
