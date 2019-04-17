@@ -5,7 +5,6 @@
 #' @param dist 
 #'
 #' @return (Fill this in)
-#' @export
 #'
 #' @examples
 #' pf_shelter(token, 50014, 100)
