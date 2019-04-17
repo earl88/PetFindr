@@ -11,10 +11,10 @@
 #' @importFrom tibble tibble
 #'
 #' @examples
-#' pf_animaltypes(token)
-#' pf_animaltypes(token, "dog")
-#' pf_animaltypes(token)$name
-pf_animaltypes <- function(token, type = NULL) {
+#' pf_list_types(token)
+#' pf_list_types(token, "dog")
+#' pf_list_types(token)$name
+pf_list_types <- function(token, type = NULL) {
   
   if(is.null(type)) {
     type <- ""
