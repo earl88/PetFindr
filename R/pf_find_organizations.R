@@ -1,4 +1,4 @@
-#' organization_search
+#' find_organizations
 #'
 #' Longer description of what the function does
 #'
@@ -14,7 +14,7 @@
 #' @importFrom plyr rbind.fill
 #'
 #' @examples
-#' organizations_of_interest <- pf_organization_search(token, country = "US", limit = 100, page = 1, sort = "state")
+#' organizations_of_interest <- pf_find_organizations(token, country = "US", limit = 100, page = 1, sort = "state")
 
 
 ### pf_organziation_search is a function to return data frame based on organization information.
@@ -25,7 +25,7 @@
 ### Procedures of building up this function is the same as the above function.
 
 
-pf_organization_search <- function(token, name = NULL,
+pf_find_organizations <- function(token, name = NULL,
                                    location = NULL, 
                                    distance = NULL,
                                    state = NULL, 
@@ -161,4 +161,4 @@ pf_organization_search <- function(token, name = NULL,
 } 
 
 # test
-# organizations_of_interest <- pf_organization_search(token, country = "US", limit = 100, page = 1, sort = "state")
+# organizations_of_interest <- pf_find_organizations(token, country = "US", limit = 100, page = 1, sort = "state")
