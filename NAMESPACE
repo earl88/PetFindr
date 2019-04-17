@@ -2,8 +2,8 @@
 
 export(organization_map)
 export(pf_accesstoken)
-export(pf_animal_search)
 export(pf_find_organizations)
+export(pf_find_pets)
 export(pf_list_breeds)
 export(pf_list_types)
 export(pf_photo_view)
