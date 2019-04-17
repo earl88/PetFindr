@@ -8,12 +8,11 @@
 #' @param search_result 
 #' @param size 
 #'
-#' @return 
+#' @return SOMETHING MUST GO HERE
 #' @export
 #'
 #' @examples 
-#' animals_of_interest<-pf_animal_search(token, location = 50014, distance = 100, type = "dog",breed = "corgi", gender = c("male", "female"),
-#' limit=100, page="all", sort = "distance")
+#' animals_of_interest<-pf_animal_search(token, location = 50014, distance = 100, type = "dog", breed = "corgi", gender = c("male", "female"), limit=100, page="all", sort = "distance")
 #' pf_photo_view(search_result= animals_of_interest, size= "medium")
 
 

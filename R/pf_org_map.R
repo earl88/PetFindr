@@ -1,3 +1,5 @@
+#' NAME/TITLE OF FUNCTION
+#'
 #' @param id 
 #'
 #' 
@@ -8,20 +10,23 @@
 #' @importFrom assertthat is.string
 #' @importFrom rlist list.flatten
 #' @importFrom plyr rbind.fill
-#' @importFrom zipcode
 #' @importFrom leaflet leaflet addTiles addCircleMarkers
+#' @import zipcode
 #' 
 #' @return (Fill this in)
 #' @export
 #'
 #' @examples
 #' pf_animal_search(token, type = "dog")
-#' 
-data(zipcode)
 
-animal_dat <- pf_animal_search(token, location=50014, distance=10, type="dog", page="all")
 
-id_ex <- unique(animal_dat$organization_id)
+
+
+# data(zipcode)
+# 
+# animal_dat <- pf_animal_search(token, location=50014, distance=10, type="dog", page="all")
+# 
+# id_ex <- unique(animal_dat$organization_id)
 
 organization_map <- function(id) {
   base <- "https://api.petfinder.com/v2/organizations/"
@@ -52,4 +57,4 @@ organization_map <- function(id) {
   return(zipmap)
 }
 
-organization_map(id=id_ex)
+# organization_map(id=id_ex)

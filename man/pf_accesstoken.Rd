@@ -4,7 +4,7 @@
 \alias{pf_accesstoken}
 \title{Generate an access token for the Petfinder API (V2)}
 \usage{
-pf_accesstoken(key, secret)
+pf_accesstoken(key = NULL, secret = NULL)
 }
 \arguments{
 \item{key}{A key provided to the user by the Petfinder API (V2)}
