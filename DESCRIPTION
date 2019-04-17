@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Earl",
            family = "Hur",
            role = c("aut", "cre"),
-           email = "netid@iastate.edu")
+           email = "earl88@iastate.edu")
     person(given = "Jessica",
            family = "Kueon",
            role = c("aut", "cre"),
@@ -13,7 +13,7 @@ Authors@R:
     person(given = "Hana",
            family = "Lee",
            role = c("aut", "cre"),
-           email = "netid@iastate.edu")
+           email = "hnlee@iastate.edu")
     person(given = "Amin",
            family = "Shirazi",
            role = c("aut", "cre"),
@@ -23,7 +23,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "tiltonm@iastate.edu")
 Description: This package allows users to interact with information from PetFinder.com from R.
-License: What license it uses
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -41,4 +41,8 @@ Imports:
     magick,
     knitr,
     stringr,
-    tidyselect
+    tidyselect,
+    shiny,
+    leaflet,
+    zipcode
+
