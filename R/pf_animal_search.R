@@ -34,7 +34,6 @@
 #' @importFrom rlist list.flatten
 #' @importFrom plyr rbind.fill
 #' @return (Fill this in)
-#' @export
 #'
 #' @examples
 #' pf_find_pets(token, type = "dog")
