@@ -37,4 +37,8 @@ Imports:
     plyr,
     nlme,
     usethis,
-    dplyr
+    dplyr,
+    magick,
+    knitr,
+    stringr,
+    tidyselect

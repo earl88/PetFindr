@@ -221,8 +221,7 @@ pf_animal_search <- function(token,
 
 # test
 #
-# animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "corgi", gender = c("male", "female"),
-# 
-#                            age = "baby", limit=100, page="all", sort = "distance")
+ # animals_of_interest <- pf_animal_search(token, location = 50014, distance = 150, type = "dog", breed = "corgi", gender = c("male", "female"),
+ #                           age = "baby", limit=100, page="all", sort = "distance")
 
 
