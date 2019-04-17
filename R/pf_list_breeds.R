@@ -8,13 +8,13 @@
 #' @return A character vector containing the breed names for the given animal type
 #'
 #' @examples
-#' pf_breeds(token, type = "dog")
-#' pf_breeds(token, type = "cat")
+#' pf_list_breeds(token, type = "dog")
+#' pf_list_breeds(token, type = "cat")
 #'
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 
-pf_breeds <- function(token, type = c("dog", "cat", "rabbit",
+pf_list_breeds <- function(token, type = c("dog", "cat", "rabbit",
                                           "small & furry","horse", "bird", 
                                           "scales, fins, & other", "barnyard")) {
   
