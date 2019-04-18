@@ -18,7 +18,3 @@ SOMETHING MUST GO HERE
 \description{
 Title slideshow all available photos of the animals of interest in R
 }
-\examples{
-animals_of_interest<-pf_animal_search(token, location = 50014, distance = 100, type = "dog", breed = "corgi", gender = c("male", "female"), limit=100, page="all", sort = "distance")
-pf_photo_view(search_result= animals_of_interest, size= "medium")
-}
