@@ -8,7 +8,7 @@ PetFindr
 ============================================================
 
 <!-- badges: end -->
-The goal of PetFindr is to ...
+PetFindr provides an R interface for the Petfinder.com API (V2). Once a user obtains an API key and secret from [Petfinder](https://www.petfinder.com/developers/), this package allows the user to retrieve information about animals by type, breed, location, and other useful characteristics.
 
 Installation
 ------------
