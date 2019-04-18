@@ -4,11 +4,10 @@
 \alias{pf_view_photos}
 \title{Slideshow all available photos of the animals of interest in R}
 \usage{
-pf_view_photos(search_result, size = c("small", "medium", "large",
-  "full"))
+pf_view_photos(animal_df, size = c("small", "medium", "large", "full"))
 }
 \arguments{
-\item{search_result}{YOU NEED TO DESCRIBE THIS}
+\item{animal_df}{YOU NEED TO DESCRIBE THIS}
 
 \item{size}{YOU NEED TO DESCRIBE THIS}
 }
@@ -23,6 +22,6 @@ Slideshow all available photos of the animals of interest in R
 corgis <- pf_find_pets(token, location = 50014, distance = 100, type = "dog",
     breed = "corgi", gender = c("male", "female"), limit = 100, page = "all", 
     sort = "distance")
-pf_view_photos(search_result = corgis, size = "medium")
+pf_view_photos(animal_df = corgis, size = "medium")
 }
 }
