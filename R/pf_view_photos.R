@@ -3,9 +3,10 @@
 #' @param search_result 
 #' @param size 
 #'
-#' @return SOMETHING MUST GO HERE
+#' @return Slideshow of the searched pets
 #' @export
 #'
+#' @import dplyr
 #' @examples 
 #' \dontrun{
 #' corgis <- pf_find_pets(token, location = 50014, distance = 100, type = "dog",
@@ -23,8 +24,8 @@ pf_photo_view<- function(search_result, size=c("small", "medium",
   # Amin: I think these lines do what your next four "if" statements do.
   animal_photos <- search_result %>%
     select(tidyselect::vars_select(names(search_result),
-                                   starts_with(paste0("photos.", size)),
-                                   ignore.case = T))
+                                   starts_with(paste0("photos.", size),
+                                   ignore.case = TRUE)))
   
   # if (size== "small"){animal_photos<- search_result %>%
   #   select( tidyselect::vars_select(names(search_result),
@@ -47,14 +48,14 @@ pf_photo_view<- function(search_result, size=c("small", "medium",
   #                                              ignore.case = TRUE)))} 
   
   assertthat::not_empty(animal_photos)
-  animal_photos<- animal_photos %>% lapply(FUN = as.character) %>% flatten()
+  animal_photos<- animal_photos %>% lapply(FUN = as.character) %>% purrr::flatten()
   
   # Amin: I think these lines do what your next four "if" statements do.
   npix <- (as.character(c(100, 300, 600, 600)) %>% 
              setNames(c("small", "medium", "large", "full")))[size]
   photos <- purrr::map_chr(animal_photos, magrittr::extract2, 1) %>% 
-    na.omit %>%
-    str_remove(paste0("&width=", npix))
+    na.omit() %>%
+    stringr::str_remove(paste0("&width=", npix))
   
   # if (size== "small"){
   #   

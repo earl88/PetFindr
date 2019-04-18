@@ -18,14 +18,11 @@ SOMETHING MUST GO HERE
 \description{
 Slideshow all available photos of the animals of interest in R
 }
-<<<<<<< HEAD
-=======
 \examples{
 \dontrun{
-animals_of_interest<-pf_find_pets(token, location = 50014, distance = 100,
-    type = "dog", breed = "corgi", gender = c("male", "female"), 
-    limit=100, page="all", sort = "distance")
-pf_photo_view(search_result= animals_of_interest, size= "medium")
+corgis <- pf_find_pets(token, location = 50014, distance = 100, type = "dog",
+    breed = "corgi", gender = c("male", "female"), limit = 100, page = "all", 
+    sort = "distance")
+pf_photo_view(search_result = corgis, size = "medium")
 }
 }
->>>>>>> c480ae9bb9026fdb0546fa6822319e27583a13b9
