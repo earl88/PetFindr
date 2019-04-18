@@ -19,7 +19,9 @@ A character vector containing the breed names for the given animal type
 This function takes in one of the eight animal types found on Petfinder.com and returns a vector containing all available breeds for that animal type
 }
 \examples{
+\dontrun{
 pf_list_breeds(token, type = "dog")
 pf_list_breeds(token, type = "cat")
+}
 
 }

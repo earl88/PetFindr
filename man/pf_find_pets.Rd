@@ -49,5 +49,7 @@ A data frame of results matching the search parameters
 Search for pets from Petfinder.com
 }
 \examples{
+\dontrun{
 puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
+}
 }

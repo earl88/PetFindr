@@ -21,5 +21,7 @@ None
 This function allows the user to save their Petfinder API (V2) key and/or secret to their user or project .Rprofile
 }
 \examples{
+\dontrun{
 pf_save_credentials(petfindr_key, petfindr_secret)
+}
 }

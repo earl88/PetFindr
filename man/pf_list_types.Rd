@@ -18,7 +18,9 @@ A tibble listing the desired animal types with their available coats, colors, an
 Longer description of what the function does
 }
 \examples{
+\dontrun{
 pf_list_types(token)
 pf_list_types(token, "dog")
 pf_list_types(token)$name
+}
 }

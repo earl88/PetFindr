@@ -20,5 +20,8 @@ A dataframe listing information of the desired organizations
 Longer description of what the function does
 }
 \examples{
-organizations_of_interest <- pf_find_organizations(token, country = "US", limit = 100, page = 1, sort = "state")
+\dontrun{
+organizations_of_interest <- pf_find_organizations(token, country = "US",
+    limit = 100, page = 1, sort = "state")
+}
 }
