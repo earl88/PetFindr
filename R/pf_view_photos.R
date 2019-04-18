@@ -11,10 +11,10 @@
 #' corgis <- pf_find_pets(token, location = 50014, distance = 100, type = "dog",
 #'     breed = "corgi", gender = c("male", "female"), limit = 100, page = "all", 
 #'     sort = "distance")
-#' pf_photo_view(search_result = corgis, size = "medium")
+#' pf_view_photos(search_result = corgis, size = "medium")
 #' }
 
-pf_photo_view<- function(search_result, size=c("small", "medium", 
+pf_view_photos<- function(search_result, size=c("small", "medium", 
                                                "large", "full")){
   assertthat::assert_that(is.data.frame(search_result))
   assertthat::not_empty(search_result)
