@@ -11,7 +11,8 @@
 #' @importFrom tibble tibble
 #'
 #' @examples
-#' organizations_of_interest <- pf_find_organizations(token, country = "US", limit = 100, page = 1, sort = "state")
+#' organizations_of_interest <- pf_find_organizations(token, country = "US",
+#'     limit = 100, page = 1, sort = "state")
 
 
 ### pf_organziation_search is a function to return data frame based on organization information.
