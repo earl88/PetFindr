@@ -11,18 +11,10 @@
 #' @importFrom tibble tibble
 #'
 #' @examples
+#' \dontrun{
 #' organizations_of_interest <- pf_find_organizations(token, country = "US",
 #'     limit = 100, page = 1, sort = "state")
-
-
-### pf_organziation_search is a function to return data frame based on organization information.
-### If a variabale is missed, then a default given by the petfinder API will be returned.
-### Default limit of a page is now 100.
-### If page = "all" then all the pets will be shown in one data frame.
-### Default page is 1.
-### Procedures of building up this function is the same as the above function.
-
-
+#' }
 pf_find_organizations <- function(token, name = NULL,
                                    location = NULL, 
                                    distance = NULL,
@@ -155,8 +147,4 @@ pf_find_organizations <- function(token, name = NULL,
     
     return(organization_df) # return the data frame with all the pets 
   }
-  
-} 
-
-# test
-# organizations_of_interest <- pf_find_organizations(token, country = "US", limit = 100, page = 1, sort = "state")
+}

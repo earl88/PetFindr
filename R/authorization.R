@@ -39,7 +39,9 @@ pf_setup <- function() {
 #' @export
 #' 
 #' @examples
+#' \dontrun{
 #' pf_save_credentials(petfindr_key, petfindr_secret)
+#' }
 pf_save_credentials <- function(key = NULL, secret = NULL,
                                 scope = c("project", "user")) {
   
@@ -111,7 +113,9 @@ pf_save_credentials <- function(key = NULL, secret = NULL,
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' token <- pf_accesstoken(petfindr_key, petfindr_secret)
+#' }
 pf_accesstoken <- function(key = NULL, secret = NULL) {
   
   if(is.null(key) || is.null(secret)) {
