@@ -23,7 +23,9 @@
 #' @import httr
 #'
 #' @examples
+#' \dontrun{
 #' puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
+#' }
 pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL, 
                          gender = NULL, age = NULL, color = NULL, coat = NULL,
                          status = NULL, name  = NULL, organization = NULL,
