@@ -8,12 +8,12 @@ pf_photo_view(search_result, size = c("small", "medium", "large",
   "full"))
 }
 \arguments{
-\item{search_result}{}
+\item{search_result}{YOU NEED TO DESCRIBE THIS}
 
-\item{size}{}
+\item{size}{YOU NEED TO DESCRIBE THIS}
 }
 \value{
-SOMETHING MUST GO HERE
+A slideshow of the searched pets
 }
 \description{
 Slideshow all available photos of the animals of interest in R
