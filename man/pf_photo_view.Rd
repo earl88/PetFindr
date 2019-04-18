@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_view_photos.R
 \name{pf_photo_view}
 \alias{pf_photo_view}
-\title{Title slideshow all available photos of the animals of interest in R}
+\title{Slideshow all available photos of the animals of interest in R}
 \usage{
 pf_photo_view(search_result, size = c("small", "medium", "large",
   "full"))
@@ -16,5 +16,16 @@ pf_photo_view(search_result, size = c("small", "medium", "large",
 SOMETHING MUST GO HERE
 }
 \description{
-Title slideshow all available photos of the animals of interest in R
+Slideshow all available photos of the animals of interest in R
 }
+<<<<<<< HEAD
+=======
+\examples{
+\dontrun{
+animals_of_interest<-pf_find_pets(token, location = 50014, distance = 100,
+    type = "dog", breed = "corgi", gender = c("male", "female"), 
+    limit=100, page="all", sort = "distance")
+pf_photo_view(search_result= animals_of_interest, size= "medium")
+}
+}
+>>>>>>> c480ae9bb9026fdb0546fa6822319e27583a13b9

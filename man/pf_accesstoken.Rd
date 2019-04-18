@@ -18,5 +18,7 @@ An access token for the PetFindr API (V2)
 Generate an access token for the Petfinder API (V2)
 }
 \examples{
+\dontrun{
 token <- pf_accesstoken(petfindr_key, petfindr_secret)
+}
 }

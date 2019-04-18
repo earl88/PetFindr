@@ -1,9 +1,4 @@
-### pf_photo_view is a function to slideshow the photos of the animals of interest
-### which were already searched for by `pf_animal_search` function.
-### 
-
-
-#' Title slideshow all available photos of the animals of interest in R
+#' Slideshow all available photos of the animals of interest in R
 #'
 #' @param search_result 
 #' @param size 
@@ -12,9 +7,9 @@
 #' @export
 #'
 #' @examples 
-# animals_of_interest<-pf_find_pets(token, location = 50014, distance = 100, type = "dog", breed = "corgi", gender = c("male", "female"), limit=100, page="all", sort = "distance")
-# pf_photo_view(search_result= animals_of_interest, size= "medium")
-
+#` animals_of_interest<-pf_find_pets(token, location = 50014, distance = 100, type = "dog", 
+#` breed = "corgi", gender = c("male", "female"), limit=100, page="all", sort = "distance")
+#` pf_photo_view(search_result= animals_of_interest, size= "medium")
 
 
 

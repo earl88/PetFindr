@@ -2,21 +2,32 @@
 output: github_document
 ---
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 # PetFindr
- 
-Find the repository [here](https://github.com/earl88/PetFindr)
 
+<!-- badges: start -->
 # <img src='inst/logov3.png' align="right" height="281" /></a>
+<!-- badges: end -->
 
-## Description
-
-This package provides an R client for the Petfinder API V2.
+PetFindr provides an R interface for the Petfinder.com API (V2). Once a user obtains an API key and secret from [Petfinder](https://www.petfinder.com/developers/), this package allows the user to retrieve information about animals by type, breed, location, and other useful characteristics.
 
 ## Installation
 
-The package can be installed with
+You can install the  the development version from [GitHub](https://github.com/) with:
 
-`devtools::install_github('earl88/PetFindr')`
+``` r
+# install.packages("devtools")
+devtools::install_github("earl88/PetFindr")
+```
 
 ## Contents
 

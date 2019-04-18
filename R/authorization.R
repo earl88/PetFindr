@@ -13,7 +13,7 @@ pf_setup <- function() {
     stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API at https://www.petfinder.com/developers/. Once you have your user credentials, you can generate your access token using pf_accesstoken(key, secret)")
   }
   if(usethis::ui_yeah(request)) {
-    browseURL("https://www.petfinder.com/developers/")
+    utils::browseURL("https://www.petfinder.com/developers/")
     cat("If a browser did not open automatically, please open a browser and register at https://www.petfinder.com/developers/.\n\n")
     cat("After registering, you will be assigned a 'key' and a 'secret'. You can use \n these to generate your access token using pf_accesstoken(key, secret).\n You can also choose to save them to your .Rprofile for later use with pf_save_credentials(key, secret).")
   }
@@ -39,7 +39,9 @@ pf_setup <- function() {
 #' @export
 #' 
 #' @examples
+#' \dontrun{
 #' pf_save_credentials(petfindr_key, petfindr_secret)
+#' }
 pf_save_credentials <- function(key = NULL, secret = NULL,
                                 scope = c("project", "user")) {
   
@@ -111,7 +113,9 @@ pf_save_credentials <- function(key = NULL, secret = NULL,
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' token <- pf_accesstoken(petfindr_key, petfindr_secret)
+#' }
 pf_accesstoken <- function(key = NULL, secret = NULL) {
   
   if(is.null(key) || is.null(secret)) {

@@ -8,8 +8,10 @@
 #' @return A character vector containing the breed names for the given animal type
 #'
 #' @examples
+#' \dontrun{
 #' pf_list_breeds(token, type = "dog")
 #' pf_list_breeds(token, type = "cat")
+#' }
 #'
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble

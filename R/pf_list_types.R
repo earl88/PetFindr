@@ -11,9 +11,11 @@
 #' @importFrom tibble tibble
 #'
 #' @examples
+#' \dontrun{
 #' pf_list_types(token)
 #' pf_list_types(token, "dog")
 #' pf_list_types(token)$name
+#' }
 pf_list_types <- function(token, type = NULL) {
   
   if(is.null(type)) {
