@@ -1,23 +1,24 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 PetFindr
 ========
 
-Find the repository [here](https://github.com/earl88/PetFindr)
-
+<!-- badges: start -->
 <img src='inst/logov3.png' align="right" height="281" /></a>
 ============================================================
 
-Description
------------
-
-This package provides an R client for the Petfinder API V2.
+<!-- badges: end -->
+The goal of PetFindr is to ...
 
 Installation
 ------------
 
-The package can be installed with
+You can install the the development version from [GitHub](https://github.com/) with:
 
-`devtools::install_github('earl88/PetFindr')`
+``` r
+# install.packages("devtools")
+devtools::install_github("earl88/PetFindr")
+```
 
 Contents
 --------
