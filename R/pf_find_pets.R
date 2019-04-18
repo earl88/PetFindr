@@ -14,52 +14,59 @@
 #' @param location The location of animals to be found. Values can be specified as "[City], [State]", "[latitude], [longitude]", or "[postal code]".
 #' @param distance The distance, in miles, from the provided location to find animals. Note that location is required to use distance.
 #' @param sort The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
-#' @param page The page of results to return. Default is 1.
-#' @param limit The maximum number of results to return per page. Default is 20, maximum is 100.
+#' @param page The page of results to return; default is 1.
+#' @param limit The maximum number of results to return per page (max of 100).
 #'
 #' @return A data frame of results matching the search parameters
 #' @export
+#' 
+#' @import httr
 #'
 #' @examples
-#' puppies <- pf_find_pets(token, type = "dog", age = "baby")
+#' puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
 pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL, 
-                       gender = NULL, age = NULL, color = NULL, coat = NULL,
-                       status = NULL, name  = NULL, organization = NULL,
-                       location = NULL, distance = NULL, 
-                       sort = "recent", page = 1, limit = 20) {
+                         gender = NULL, age = NULL, color = NULL, coat = NULL,
+                         status = NULL, name  = NULL, organization = NULL,
+                         location = NULL, distance = NULL, 
+                         sort = "recent", page = 1, limit = 20) {
   
-  
-  defaults <- formals()
-  defaults <- defaults[!purrr::map_lgl(defaults, is.null)]
   args <- as.list(match.call(expand.dots = T))[-1]
-  args <- args[!purrr::map_lgl(args, is.null)]
-  full_args <- purrr::map(c(args, defaults[!names(defaults) %in% names(args)]),
-                          eval)[-1]
+  args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
   
-  query <- paste0(paste0(names(full_args), "=", full_args), collapse = "&")
-  
+  query_args <- args[!names(args) %in% c("token", "page")]
+  query <- paste0(paste0(names(query_args), "=", query_args), collapse = "&")
   base <- "https://api.petfinder.com/v2/animals?"
-  url <- paste0(base, query)
-  search_results <- httr::GET(url = url,
-                      httr::add_headers(Authorization = paste("Bearer", token)))
+  probe <- GET(url = paste0(base, query),
+               add_headers(Authorization = paste("Bearer", token)))
   
-  if(search_results$status_code != 200) {
-    stop(pf_error(search_results$status_code))
+  if(probe$status_code != 200) {stop(pf_error(probe$status_code))}
+  
+  if(length(page) == 1 && page == 1) {
+    animal_info <- content(probe)$animals
+  } else {
+    max_page <- content(probe)$pagination$total_pages
+    if("all" %in% page) {
+      page <- 1:max_page
+    } else {
+      if(max(page) > max_page) {
+        warning("You have specified a page number that does not exist. Try using 'page = \"all\"'.")
+        page <- page[page <= max_page]
+      }
+    }
+    
+    animal_info <- lapply(paste0(base, query, "&page=", page), function(x) {
+      results <- GET(url = x,
+                     add_headers(Authorization = paste("Bearer", token)))
+      if(results$status_code != 200) {stop(pf_error(results$status_code))}
+      content(results)$animals}
+    ) %>% purrr::flatten()
   }
   
-  animal_info <- httr::content(search_results)$animals
+  animal_df <- purrr::map_dfr(animal_info, .f = function(x) {
+    rlist::list.flatten(x) %>%
+      rbind.data.frame(., deparse.level = 0, stringsAsFactors = F)
+  })
   
-  new.distinct.names <- animal_info %>% 
-    purrr::map(.x, .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
-  
-  unlisted <- animal_info %>% 
-    purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
-  
-  unlisted.info <- purrr::map2(unlisted, new.distinct.names,
-                               .f= ~purrr::set_names(.x, .y))
-  
-  animal_df <- do.call(plyr::rbind.fill, unlisted.info)
-
   return(animal_df)
 }
 

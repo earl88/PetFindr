@@ -38,9 +38,9 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
 
 \item{sort}{The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".}
 
-\item{page}{The page of results to return. Default is 1.}
+\item{page}{The page of results to return; default is 1.}
 
-\item{limit}{The maximum number of results to return per page. Default is 20, maximum is 100.}
+\item{limit}{The maximum number of results to return per page (max of 100).}
 }
 \value{
 A data frame of results matching the search parameters
@@ -49,5 +49,5 @@ A data frame of results matching the search parameters
 Search for pets from Petfinder.com
 }
 \examples{
-puppies <- pf_find_pets(token, type = "dog", age = "baby")
+puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
 }
