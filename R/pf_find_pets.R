@@ -44,16 +44,16 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   probe <- GET(url = paste0(base, query),
                add_headers(Authorization = paste("Bearer", token)))
   
-  if(probe$status_code != 200) {stop(pf_error(probe$status_code))}
+  if (probe$status_code != 200) {stop(pf_error(probe$status_code))}
   
   assertthat::assert_that(is.numeric(page))
-  if(length(page) == 1 && page == 1) {
+  if (length(page) == 1 && page == 1) {
     animal_info <- content(probe)$animals
   } else {
     max_page <- content(probe)$pagination$total_pages
-    if(max(page) > max_page) {
+    if (max(page) > max_page) {
       warning("You have specified one or more page numbers that do not exist.")
-      if(any(page <= max_page)) {
+      if (any(page <= max_page)) {
         page <- page[page <= max_page]
       } else {
         warning("No valid pages were specified. Defaulting to page 1.")
@@ -65,8 +65,9 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   animal_info <- lapply(paste0(base, query, "&page=", page), function(x) {
     results <- GET(url = x,
                    add_headers(Authorization = paste("Bearer", token)))
-    if(results$status_code != 200) {stop(pf_error(results$status_code))}
-    content(results)$animals}) %>% 
+    if (results$status_code != 200) {stop(pf_error(results$status_code))}
+    content(results)$animals
+    }) %>% 
     purrr::flatten()
   
   animal_df <- purrr::map_dfr(animal_info, .f = function(x) {
