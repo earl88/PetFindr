@@ -39,10 +39,10 @@ pf_view_photos <-
       purrr::flatten()
     
     npix <- (as.character(c(100, 300, 600, 600)) %>%
-               setNames(c("small", "medium", "large", "full")))[size]
+               stats::setNames(c("small", "medium", "large", "full")))[size]
     photos <-
       purrr::map_chr(animal_photos, magrittr::extract2, 1) %>%
-      na.omit() %>%
+      stats::na.omit() %>%
       stringr::str_remove(paste0("&width=", npix))
     
     return(
