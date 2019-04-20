@@ -17,8 +17,7 @@ Drawing a map and get data frame with organization id.
 }
 \examples{
 \dontrun{
-pf_find_pets(token, type = "dog")
-data(zipcode, package = "zipcode")
+
 animal_dat <- pf_find_pets(token, location=50014, distance=10, type="dog")
 id_ex <- unique(animal_dat$organization_id)
 pf_map_organizations(id=id_ex)
