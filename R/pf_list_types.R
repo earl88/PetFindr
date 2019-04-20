@@ -7,9 +7,6 @@
 #' @param type One of the eight available types: "dog", "cat", "rabbit", "small & furry", "horse", "bird", "scales, fins, & other", or "barnyard". If no type is provided, all types are returned.
 #' @return A tibble listing the desired animal types with their available coats, colors, and genders
 #'
-#' @importFrom magrittr %>%
-#' @importFrom tibble tibble
-#'
 #' @examples
 #' \dontrun{
 #' pf_list_types(token)
@@ -41,10 +38,10 @@ pf_list_types <- function(token, type = NULL) {
   }
   
   types_df <- purrr::map_df(type_info, function(x) {
-    tibble(name = x$name,
-           coats = unlist(x$coats) %>% paste(sep = "", collapse = ", "),
-           colors = unlist(x$colors) %>% paste(sep = "", collapse = ", "),
-           genders = unlist(x$genders) %>% paste(sep = "", collapse = ", "))
+    tibble::tibble(name = x$name,
+                   coats = unlist(x$coats) %>% paste0(collapse = ", "),
+                   colors = unlist(x$colors) %>% paste0(collapse = ", "),
+                   genders = unlist(x$genders) %>% paste0(collapse = ", "))
   })
   return(types_df)
 }
