@@ -6,6 +6,9 @@
 \usage{
 in_rstudio(base_path = proj_get())
 }
+\arguments{
+\item{base_path}{The path to investigate}
+}
 \description{
 This function is reproduced from the package 'usethis'.
 For more details, see https://github.com/r-lib/usethis

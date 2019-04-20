@@ -15,6 +15,8 @@ NULL
 #' This function is reproduced from the package 'usethis'. 
 #' For more details, see https://github.com/r-lib/usethis
 #' 
+#' @param message The message to display when requesting to restart RStudio
+#' 
 #' @import usethis
 restart_rstudio <- function(message = NULL) {
   if (!in_rstudio(proj_get())) {
@@ -44,6 +46,8 @@ restart_rstudio <- function(message = NULL) {
 #' 
 #' This function is reproduced from the package 'usethis'. 
 #' For more details, see https://github.com/r-lib/usethis
+#' 
+#' @param base_path The path to investigate
 #' 
 #' @import usethis
 in_rstudio <- function(base_path = proj_get()) {

@@ -6,6 +6,9 @@
 \usage{
 restart_rstudio(message = NULL)
 }
+\arguments{
+\item{message}{The message to display when requesting to restart RStudio}
+}
 \description{
 This function is reproduced from the package 'usethis'.
 For more details, see https://github.com/r-lib/usethis
