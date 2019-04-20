@@ -1,13 +1,13 @@
-#' NAME/TITLE OF FUNCTION
+#' Drawing a map and get data frame with organization id.
 #'
-#' @param id 
+#' @param id Organization id
 #'
 #' @importFrom purrr map map_df set_names
 #' @importFrom leaflet leaflet addTiles addCircleMarkers
 #' @import zipcode
 #' @import httr
 #' 
-#' @return (Fill this in)
+#' @return A data frame using organzation and print a leaflet map
 #' @export
 #'
 #' @examples
