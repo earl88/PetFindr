@@ -1,6 +1,8 @@
 #' Search for pets from Petfinder.com via the Petfinder.com API (V2)
 #' 
-#' (Longer description)
+#' Retrieve a data frame of information about pets that are listed on
+#' Petfinder.com. Filter searches based on characteristics such as animal 
+#' type, breed, size, age, or location.
 #'
 #' @param token An access token, provided by pf_accesstoken(key, secret).
 #' @param type The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).

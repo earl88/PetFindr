@@ -2,7 +2,6 @@
 #'
 #' @param id 
 #'
-#' @importFrom magrittr %>%
 #' @importFrom purrr map map_df set_names
 #' @importFrom leaflet leaflet addTiles addCircleMarkers
 #' @import zipcode

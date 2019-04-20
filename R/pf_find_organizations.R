@@ -6,14 +6,11 @@
 #' @param token An access token
 #' @param name Names of organizations
 #' @return A dataframe listing information of the desired organizations
-#' 
-#' @importFrom magrittr %>%
-#' @importFrom tibble tibble
 #'
 #' @examples
 #' \dontrun{
 #' organizations_of_interest <- pf_find_organizations(token, country = "US",
-#'     limit = 100, page = 1, sort = "state")
+#'     limit = 100, sort = "state")
 #' }
 pf_find_organizations <- function(token = NULL, name = NULL, 
                                   location = NULL, distance = NULL,
