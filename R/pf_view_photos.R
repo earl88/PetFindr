@@ -8,9 +8,13 @@
 #'
 #' @examples 
 #' \dontrun{
-#'   puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:2)
+#'   puppies <- pf_find_pets(token, type = "dog", age = "baby", breed= "corgi" )
 #'   pf_view_photos(animal_df = puppies, size = "small")
+#'   
+#'   bunnies <- pf_find_pets(token = token, type = "rabbit", age = "baby", page= 1:2)
+#'   pf_view_photos(animal_df = bunnies, size = "full")
 #' }
+
 
 
 pf_view_photos <-
@@ -45,6 +49,5 @@ pf_view_photos <-
       photos %>%
         knitr::include_graphics() %>% magick::image_read() %>%
         magick::image_scale("x400")
-        #magick::image_scale("x400")
     )
   }
