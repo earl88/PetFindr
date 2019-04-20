@@ -35,7 +35,7 @@ pf_map_organizations <- function(token = NULL, name = NULL,
   # We should change this to take in raw search results so the user doesn't
   # need to find the ID themselves
   zipcode <- read.table("inst/extdata/uszip.txt", sep=",", header = TRUE)
-  
+
   args <- as.list(match.call(expand.dots = T))[-1]
   args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
   
