@@ -38,7 +38,8 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
   
   query_args <- args[!names(args) %in% c("token", "page")]
-  query <- paste0(paste0(names(query_args), "=", query_args), collapse = "&")
+  query <- paste(names(query_args), query_args, sep = "=", collapse = "&")
+  #query <- paste0(paste0(names(query_args), "=", query_args), collapse = "&")
   base <- "https://api.petfinder.com/v2/animals?"
   probe <- GET(url = paste0(base, query),
                add_headers(Authorization = paste("Bearer", token)))
