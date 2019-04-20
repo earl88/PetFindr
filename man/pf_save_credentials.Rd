@@ -4,8 +4,7 @@
 \alias{pf_save_credentials}
 \title{Save Petfinder API (V2) key and secret to .Rprofile}
 \usage{
-pf_save_credentials(key = NULL, secret = NULL, scope = c("project",
-  "user"))
+pf_save_credentials(key = NULL, secret = NULL)
 }
 \arguments{
 \item{key}{A key provided to the user by the Petfinder API (V2)}
