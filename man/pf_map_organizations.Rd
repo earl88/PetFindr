@@ -2,18 +2,18 @@
 % Please edit documentation in R/pf_map_organizations.R
 \name{pf_map_organizations}
 \alias{pf_map_organizations}
-\title{NAME/TITLE OF FUNCTION}
+\title{Drawing a map and get data frame with organization id.}
 \usage{
 pf_map_organizations(id)
 }
 \arguments{
-\item{id}{}
+\item{id}{Organization id}
 }
 \value{
-(Fill this in)
+A data frame using organzation and print a leaflet map
 }
 \description{
-NAME/TITLE OF FUNCTION
+Drawing a map and get data frame with organization id.
 }
 \examples{
 \dontrun{
