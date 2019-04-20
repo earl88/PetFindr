@@ -1,4 +1,6 @@
 #' Pipe operator
+#' 
+#' See \code{\link[magrittr]{\%>\%}} for more details.
 #'
 #' @name %>%
 #' @rdname pipe
@@ -8,9 +10,11 @@
 #' @usage lhs \%>\% rhs
 NULL
 
-# Function to restart Rstudio.
-# This function originates from the package 'usethis'
-# which can be found here : https://github.com/r-lib/usethis
+#' Restart RStudio.
+#' 
+#' This function is reproduced from the package 'usethis'. 
+#' For more details, see https://github.com/r-lib/usethis
+#' 
 #' @import usethis
 restart_rstudio <- function(message = NULL) {
   if (!in_rstudio(proj_get())) {
@@ -36,6 +40,12 @@ restart_rstudio <- function(message = NULL) {
   rstudioapi::openProject(proj_get())
 }
 
+#' Determine whether base_path is open in RStudio
+#' 
+#' This function is reproduced from the package 'usethis'. 
+#' For more details, see https://github.com/r-lib/usethis
+#' 
+#' @import usethis
 in_rstudio <- function(base_path = proj_get()) {
   if (!rstudioapi::isAvailable()) {
     return(FALSE)
