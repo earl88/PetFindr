@@ -48,4 +48,5 @@ Imports:
     rlist
 Suggests: 
     rstudioapi,
-    fs
+    fs,
+    testthat
