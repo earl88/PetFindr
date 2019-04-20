@@ -4,12 +4,32 @@
 \alias{pf_map_organizations}
 \title{Drawing a map and get data frame with organization id.}
 \usage{
-pf_map_organizations(id)
+pf_map_organizations(token = NULL, name = NULL, location = NULL,
+  distance = NULL, state = NULL, country = NULL, sort = "recent",
+  page = 1, limit = 20)
 }
 \arguments{
-\item{id}{Organization id}
+\item{token}{An access token, provided by pf_accesstoken(key, secret).}
+
+\item{name}{The name of organizations to be found (includes partial matches).}
+
+\item{location}{The location of organizations to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".}
+
+\item{distance}{The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.}
+
+\item{state}{The state from which to return organizations. Accepts two-letter abbreviations, e.g. AL, WY.}
+
+\item{country}{The country from which to return organizations. Accepts two-letter abbreviations, e.g. US, CA.}
+
+\item{sort}{The attribute on which to sort results. Possible attributes are "distance", "-distance", "name", "-name", "country", "-country", "state", or "-state".}
+
+\item{page}{The page(s) of results to return (default = 1).}
+
+\item{limit}{The maximum number of results to return per page (maximum = 100).}
 }
 \value{
+A data frame of results matching the search parameters.
+
 A data frame using organzation and print a leaflet map
 }
 \description{
@@ -17,8 +37,7 @@ Drawing a map and get data frame with organization id.
 }
 \examples{
 \dontrun{
-pf_find_pets(token, type = "dog")
-data(zipcode, package = "zipcode")
+
 animal_dat <- pf_find_pets(token, location=50014, distance=10, type="dog")
 id_ex <- unique(animal_dat$organization_id)
 pf_map_organizations(id=id_ex)
