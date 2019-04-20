@@ -12,7 +12,7 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
 \arguments{
 \item{token}{An access token, provided by pf_accesstoken(key, secret).}
 
-\item{type}{The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).}
+\item{type}{The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).}
 
 \item{breed}{The breed(s) of animals to be found. A full list of breeds for a given animal type can be found by running pf_breeds(token, type).}
 
@@ -22,9 +22,9 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
 
 \item{age}{The age(s) of animals to be found. Possible values are "baby", "young", "adult", and "senior".}
 
-\item{color}{The color(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).}
+\item{color}{The color(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).}
 
-\item{coat}{The coat(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).}
+\item{coat}{The coat(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).}
 
 \item{status}{The status of animals to be found. Possible values are "adoptable", "adopted", or "found".}
 

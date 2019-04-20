@@ -1,13 +1,13 @@
 #' Search for pets from Petfinder.com
 #'
 #' @param token An access token, provided by pf_accesstoken(key, secret).
-#' @param type The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).
+#' @param type The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
 #' @param breed The breed(s) of animals to be found. A full list of breeds for a given animal type can be found by running pf_breeds(token, type).
 #' @param size The size(s) of animals to be found. Possible values are "small", "medium", "large", and "xlarge".
 #' @param gender The gender(s) of animals to be found. Possible values are "male", "female", and "unknown".
 #' @param age The age(s) of animals to be found. Possible values are "baby", "young", "adult", and "senior".
-#' @param color The color(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).
-#' @param coat The coat(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).
+#' @param color The color(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
+#' @param coat The coat(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
 #' @param status The status of animals to be found. Possible values are "adoptable", "adopted", or "found".
 #' @param name The name of animals to be found (includes partial matches; e.g. "Fred" will return "Alfredo" and "Frederick").
 #' @param organization The organization(s) associated with animals to be found. Values should be provided as identification numbers.
