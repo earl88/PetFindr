@@ -1,6 +1,8 @@
-#' Search for pets from Petfinder.com via the Petfinder.com API (V2)
+#' Find Pets
 #' 
-#' (Longer description)
+#' Retrieve a data frame of information about pets that are listed on
+#' Petfinder.com via the Petfinder API (V2). Filter searches based on 
+#' characteristics such as animal type, breed, size, age, or location.
 #'
 #' @param token An access token, provided by pf_accesstoken(key, secret).
 #' @param type The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
@@ -16,8 +18,8 @@
 #' @param location The location of animals to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".
 #' @param distance The distance, in miles, from the provided location to find animals. Note that location is required to use distance.
 #' @param sort The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
-#' @param page The page(s) of results to return; default is 1. 
-#' @param limit The maximum number of results to return per page (max of 100).
+#' @param page The page(s) of results to return (default = 1). 
+#' @param limit The maximum number of results to return per page (maximum = 100).
 #'
 #' @return A data frame of results matching the search parameters
 #' @export

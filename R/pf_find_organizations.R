@@ -1,27 +1,29 @@
-#' find_organizations
+#' Find Organizations
 #'
-#' Longer description of what the function does
+#' Retrieve a data frame of information about organizations that are listed on
+#' Petfinder.com via the Petfinder API (V2). Filter searches based on location
+#' by specifying a postal code, city and state, country, or latitude and
+#' longitude.
 #'
-#' @export
-#' @param token An access token
-#' @param name Names of organizations
-#' 
 #' @param token An access token, provided by pf_accesstoken(key, secret).
 #' @param name The name of organizations to be found (includes partial matches).
 #' @param location The location of organizations to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".
 #' @param distance The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.
-#' @param sort The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
-#' @param page The page(s) of results to return; default is 1. 
-#' @param limit The maximum number of results to return per page (max of 100).
+#' @param state The state from which to return organizations. Accepts two-letter abbreviations, e.g. AL, WY.
+#' @param country The country from which to return organizations. Accepts two-letter abbreviations, e.g. US, CA.
+#' @param sort The attribute on which to sort results. Possible attributes are "distance", "-distance", "name", "-name", "country", "-country", "state", or "-state".
+#' @param page The page(s) of results to return (default = 1).
+#' @param limit The maximum number of results to return per page (maximum = 100).
 #'
-#' @return A data frame of results matching the search organizations
+#' @return A data frame of results matching the search parameters.
+#' @export
 #' 
 #' @import httr
 #'
 #' @examples
 #' \dontrun{
 #' organizations_of_interest <- pf_find_organizations(token, country = "US",
-#'     limit = 100, page = 1, sort = "state")
+#'     limit = 100, sort = "state")
 #' }
 pf_find_organizations <- function(token = NULL, name = NULL, 
                                   location = NULL, distance = NULL,
