@@ -7,9 +7,9 @@
 pf_view_photos(animal_df, size = c("small", "medium", "large", "full"))
 }
 \arguments{
-\item{animal_df}{YOU NEED TO DESCRIBE THIS}
+\item{animal_df}{A data frame of the animals of interest that have been searched for (using pf_find_pet)}
 
-\item{size}{YOU NEED TO DESCRIBE THIS}
+\item{size}{The favorite size of the animal photos to be shown}
 }
 \value{
 A slideshow of the searched pets
@@ -20,8 +20,8 @@ Slideshow all available photos of the animals of interest in R
 \examples{
 \dontrun{
 corgis <- pf_find_pets(token, location = 50014, distance = 100, type = "dog",
-    breed = "corgi", gender = c("male", "female"), limit = 100, page = "all", 
+    breed = "corgi", gender = c("male", "female"), limit = 100, page = "all",
     sort = "distance")
-pf_view_photos(animal_df = corgis, size = "medium")
+  pf_view_photos(animal_df = corgis, size = "medium")
 }
 }

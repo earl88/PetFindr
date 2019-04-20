@@ -12,13 +12,13 @@ pf_accesstoken(key = NULL, secret = NULL)
 \item{secret}{A secret provided to the user by the Petfinder API (V2)}
 }
 \value{
-An access token for the Petfinder API (V2)
+Create a object called "token" which has the value of access token for the Petfinder API (V2)
 }
 \description{
 Generate an access token for the Petfinder API (V2)
 }
 \examples{
 \dontrun{
-token <- pf_accesstoken(petfindr_key, petfindr_secret)
+pf_accesstoken(petfindr_key, petfindr_secret)
 }
 }

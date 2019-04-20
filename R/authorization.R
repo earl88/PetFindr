@@ -84,12 +84,12 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
 #' @param key A key provided to the user by the Petfinder API (V2)
 #' @param secret A secret provided to the user by the Petfinder API (V2)
 #'
-#' @return An access token for the Petfinder API (V2)
+#' @return Create a object called "token" which has the value of access token for the Petfinder API (V2)
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' token <- pf_accesstoken(petfindr_key, petfindr_secret)
+#' pf_accesstoken(petfindr_key, petfindr_secret)
 #' }
 pf_accesstoken <- function(key = NULL, secret = NULL) {
   if (is.null(key) || is.null(secret)) {
@@ -101,6 +101,6 @@ pf_accesstoken <- function(key = NULL, secret = NULL) {
                      encode = "json")
   if (auth$status_code != 200) {stop(pf_error(auth$status_code))}
   accesstoken <- httr::content(auth)$access_token
+  assign("token", accesstoken, envir = .GlobalEnv)
   cat("Your access token will last for one hour. After that time, you will need to generate a new token.\n")
-  return(accesstoken)
 }
