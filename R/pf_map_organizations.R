@@ -15,7 +15,6 @@
 #' 
 #' @importFrom purrr map map_df set_names
 #' @importFrom leaflet leaflet addTiles addCircleMarkers
-#' @import zipcode
 #' @import httr
 #' 
 #' @return A data frame using organzation and print a leaflet map
