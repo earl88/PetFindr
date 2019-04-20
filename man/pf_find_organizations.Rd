@@ -4,9 +4,9 @@
 \alias{pf_find_organizations}
 \title{find_organizations}
 \usage{
-pf_find_organizations(token, name = NULL, location = NULL,
-  distance = NULL, state = NULL, country = NULL, sort = NULL,
-  limit = 100, page = 1)
+pf_find_organizations(token = NULL, name = NULL, location = NULL,
+  distance = NULL, state = NULL, country = NULL, sort = "recent",
+  page = 1, limit = 20)
 }
 \arguments{
 \item{token}{An access token}

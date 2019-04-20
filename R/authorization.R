@@ -101,6 +101,6 @@ pf_accesstoken <- function(key = NULL, secret = NULL) {
                      encode = "json")
   if (auth$status_code != 200) {stop(pf_error(auth$status_code))}
   accesstoken <- httr::content(auth)$access_token
+  assign("token", accesstoken, envir = .GlobalEnv)
   cat("Your access token will last for one hour. After that time, you will need to generate a new token.\n")
-  return(accesstoken)
 }
