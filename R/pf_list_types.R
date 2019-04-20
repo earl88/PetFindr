@@ -23,7 +23,7 @@ pf_list_types <- function(token, type = NULL) {
     type <- match.arg(type, choices = c("dog", "cat", "rabbit",
                                         "small & furry", "horse","bird",
                                         "scales, fins, & other", "barnyard")) %>%
-      gsub(pattern = "([, ][& ][& ]?[ ]?)", replacement = "-")
+      gsub(pattern = "([, &]{1,4})", replacement = "-")
   }
   
   base <- "https://api.petfinder.com/v2/types/"
