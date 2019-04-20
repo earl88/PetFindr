@@ -19,9 +19,7 @@ Slideshow all available photos of the animals of interest in R
 }
 \examples{
 \dontrun{
-corgis <- pf_find_pets(token, location = 50014, distance = 100, type = "dog",
-    breed = "corgi", gender = c("male", "female"), limit = 100, page = "all",
-    sort = "distance")
+corgis <- pf_find_pets(token, type = "dog", breed="corgi",age = "baby", page = 1:2)
   pf_view_photos(animal_df = corgis, size = "medium")
 }
 }

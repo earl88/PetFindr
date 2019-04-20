@@ -5,10 +5,18 @@
 #' @export
 #' @param token An access token
 #' @param name Names of organizations
-#' @return A dataframe listing information of the desired organizations
 #' 
-#' @importFrom magrittr %>%
-#' @importFrom tibble tibble
+#' @param token An access token, provided by pf_accesstoken(key, secret).
+#' @param name The name of organizations to be found (includes partial matches).
+#' @param location The location of organizations to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".
+#' @param distance The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.
+#' @param sort The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
+#' @param page The page(s) of results to return; default is 1. 
+#' @param limit The maximum number of results to return per page (max of 100).
+#'
+#' @return A data frame of results matching the search organizations
+#' 
+#' @import httr
 #'
 #' @examples
 #' \dontrun{
@@ -22,7 +30,7 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 
   args <- as.list(match.call(expand.dots = T))[-1]
   args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
-  
+
   query_args <- args[!names(args) %in% c("token", "page")]
   query <- paste(names(query_args), query_args, sep = "=", collapse = "&")
   base <- "https://api.petfinder.com/v2/organizations?"
