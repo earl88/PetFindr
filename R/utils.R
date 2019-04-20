@@ -1,3 +1,13 @@
+#' Pipe operator
+#'
+#' @name %>%
+#' @rdname pipe
+#' @keywords internal
+#' @export
+#' @importFrom magrittr %>%
+#' @usage lhs \%>\% rhs
+NULL
+
 # Function to restart Rstudio.
 # This function originates from the package 'usethis'
 # which can be found here : https://github.com/r-lib/usethis
