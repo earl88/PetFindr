@@ -66,7 +66,7 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   
   animal_df <- purrr::map_dfr(animal_info, .f = function(x) {
     rlist::list.flatten(x) %>%
-      rbind.data.frame(., deparse.level = 0, stringsAsFactors = F)
+      rbind.data.frame(deparse.level = 0, stringsAsFactors = F)
   })
   
   return(animal_df)
