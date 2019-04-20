@@ -14,8 +14,8 @@ pet_fun <- function(x) {
   )
 }
 
-ui <- navbarPage("Iowa Liquor Sales",
-                 tabPanel("Locations of Liquor Stores",
+ui <- navbarPage("PetFinder",
+                 tabPanel("Petfinder Shelters",
                           fluidRow(
                             sidebarPanel(
                               numericInput(inputId = "location", 50014,
