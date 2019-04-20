@@ -15,7 +15,8 @@
 #' organizations_of_interest <- pf_find_organizations(token, country = "US",
 #'     limit = 100, page = 1, sort = "state")
 #' }
-pf_find_organizations <- function(token = NULL, name = NULL, location = NULL, distance = NULL,
+pf_find_organizations <- function(token = NULL, name = NULL, 
+                                  location = NULL, distance = NULL,
                                   state = NULL, country = NULL,
                                   sort = "recent", page = 1, limit = 20) {
 

@@ -35,7 +35,7 @@ pf_map_organizations <- function(id) {
     return(content(results)[[1]])
     })
   
-  purrr::map_dfr(organization_info, function(x) {
+  organization_df <- purrr::map_dfr(organization_info, function(x) {
     tibble::tibble(id = x$id, name = x$name, city = x$address[3],
                    state = x$address[4], zip = x$address[5])
   })
