@@ -12,14 +12,16 @@
 #'
 #' @examples
 #' \dontrun{
-#' pf_find_pets(token, type = "dog")
-#' data(zipcode, package = "zipcode")
+#' 
 #' animal_dat <- pf_find_pets(token, location=50014, distance=10, type="dog")
 #' id_ex <- unique(animal_dat$organization_id)
 #' pf_map_organizations(id=id_ex)
 #' }
 
 pf_map_organizations <- function(id) {
+  
+  data(zipcode, package = "zipcode")
+  
   # We should change this to take in raw search results so the user doesn't
   # need to find the ID themselves
   
@@ -39,26 +41,6 @@ pf_map_organizations <- function(id) {
                    state = x$address[4], zip = x$address[5])
   })
 
-  # organization_list <- list()
-  # 
-  # for (i in 1:length(id)) {
-  #   
-  #   query <- tolower(id[i])
-  #   
-  #   url <- paste0(base, query)
-  #   
-  #   search_results <- GET(url = url, 
-  #                      add_headers(Authorization = paste("Bearer", token)))
-  #   organization_info <- content(search_results)[[1]]
-  #   
-  #   organization_list[[i]] <- data.frame(id=organization_info$id, 
-  #                                        name=organization_info$name, 
-  #                                        city=organization_info$address[3],
-  #                                        state=organization_info$address[4], 
-  #                                        zip=organization_info$address[5])
-  # }
-  # 
-  # organization_df <- do.call(plyr::rbind.fill, organization_list)
   
   org_map_dat <- merge(organization_df, zipcode, by="postcode", by.y="zip")
   
