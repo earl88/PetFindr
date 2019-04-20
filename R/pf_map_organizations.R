@@ -35,7 +35,7 @@ pf_map_organizations <- function(token = NULL, name = NULL,
                                  sort = "recent", page = 1, limit = 20) {
   # We should change this to take in raw search results so the user doesn't
   # need to find the ID themselves
-  data(zipcode, package = "zipcode")
+  zipcode <- data(zipcode, package = "zipcode")
   
   args <- as.list(match.call(expand.dots = T))[-1]
   args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
