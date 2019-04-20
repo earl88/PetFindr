@@ -1,4 +1,4 @@
-#' NAME/TITLE OF FUNCTION
+#' Drawing a map and get data frame with organization id.
 #'
 #' @param id 
 #'
@@ -7,7 +7,7 @@
 #' @import zipcode
 #' @import httr
 #' 
-#' @return (Fill this in)
+#' @return A data frame using organzation and print a leaflet map
 #' @export
 #'
 #' @examples
