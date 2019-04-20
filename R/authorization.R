@@ -9,13 +9,15 @@
 #' pf_setup()
 pf_setup <- function() {
   request <- "Welcome to PetFindr! Before you can search for sweet puppers and kitty cats  \n in R, you'll need to register for the official PetFinder API (V2) at \n https://www.petfinder.com/developers/. Would you like to do this now? (Selecting \n 'Yes' will open browser.)"
+  
   if (!interactive()) {
-    stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API (V2) at https://www.petfinder.com/developers/. Once you have your \n user credentials, you can generate your access token using the function pf_accesstoken(key, secret)")
+    stop("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API (V2) at https://www.petfinder.com/developers/. Once you have your user credentials, you can generate your access token using the function pf_accesstoken(key, secret)")
   }
+  
   if (usethis::ui_yeah(request)) {
     utils::browseURL("https://www.petfinder.com/developers/")
     cat("If a browser did not open automatically, please open a browser and register \n at https://www.petfinder.com/developers/.\n\n")
-    cat("After registering, you will be assigned a 'key' and a 'secret'. You can use these \n to generate your access token using the function pf_accesstoken(key, secret).\n You can also choose to save them to your .Rprofile for later use with \n the function pf_save_credentials(key, secret).")
+    cat("After registering, you will be given a 'key' and a 'secret'. You can use these \n to generate your access token using the function pf_accesstoken(key, secret).\n You can also choose to save them to your .Rprofile for later use with \n the function pf_save_credentials(key, secret).")
   }
 }
 
