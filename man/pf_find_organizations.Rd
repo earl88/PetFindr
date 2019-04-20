@@ -2,40 +2,43 @@
 % Please edit documentation in R/pf_find_organizations.R
 \name{pf_find_organizations}
 \alias{pf_find_organizations}
-\title{find_organizations}
+\title{Find Organizations}
 \usage{
 pf_find_organizations(token = NULL, name = NULL, location = NULL,
   distance = NULL, state = NULL, country = NULL, sort = "recent",
   page = 1, limit = 20)
 }
 \arguments{
-\item{token}{An access token}
+\item{token}{An access token, provided by pf_accesstoken(key, secret).}
 
-\item{name}{Names of organizations}
+\item{name}{The name of organizations to be found (includes partial matches).}
 
 \item{location}{The location of organizations to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".}
 
 \item{distance}{The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.}
 
-\item{sort}{The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".}
+\item{state}{The state from which to return organizations. Accepts two-letter abbreviations, e.g. AL, WY.}
 
-\item{page}{The page(s) of results to return; default is 1.}
+\item{country}{The country from which to return organizations. Accepts two-letter abbreviations, e.g. US, CA.}
 
-\item{limit}{The maximum number of results to return per page (max of 100).}
+\item{sort}{The attribute on which to sort results. Possible attributes are "distance", "-distance", "name", "-name", "country", "-country", "state", or "-state".}
 
-\item{token}{An access token, provided by pf_accesstoken(key, secret).}
+\item{page}{The page(s) of results to return (default = 1).}
 
-\item{name}{The name of organizations to be found (includes partial matches).}
+\item{limit}{The maximum number of results to return per page (maximum = 100).}
 }
 \value{
-A data frame of results matching the search organizations
+A data frame of results matching the search parameters.
 }
 \description{
-Longer description of what the function does
+Retrieve a data frame of information about organizations that are listed on
+Petfinder.com via the Petfinder API (V2). Filter searches based on location
+by specifying a postal code, city and state, country, or latitude and
+longitude.
 }
 \examples{
 \dontrun{
 organizations_of_interest <- pf_find_organizations(token, country = "US",
-    limit = 100, page = 1, sort = "state")
+    limit = 100, sort = "state")
 }
 }
