@@ -6,7 +6,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' pf_setup()
+#' }
 pf_setup <- function() {
   request <- "Welcome to PetFindr! Before you can search for sweet puppers and kitty cats  \n in R, you'll need to register for the official PetFinder API (V2) at \n https://www.petfinder.com/developers/. Would you like to do this now? (Selecting \n 'Yes' will open browser.)"
   

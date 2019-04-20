@@ -13,5 +13,7 @@ None
 Running this function will open a browser to "https://www.petfinder.com/developers/" and prompt the user to register for Petfinder's API (V2).
 }
 \examples{
+\dontrun{
 pf_setup()
+}
 }
