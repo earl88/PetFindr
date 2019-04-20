@@ -3,7 +3,7 @@
 #' This function takes in one of the eight animal types found on Petfinder.com and returns a vector containing all available breeds for that animal type
 #'
 #' @export
-#' @param token An access token for the Petfinder API
+#' @param token An access token for the Petfinder API (V2)
 #' @param type One of the eight available types. If no type is specified, dog breeds are returned.
 #' @return A character vector containing the breed names for the given animal type
 #'

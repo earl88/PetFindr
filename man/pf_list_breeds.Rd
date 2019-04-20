@@ -8,7 +8,7 @@ pf_list_breeds(token, type = c("dog", "cat", "rabbit", "small & furry",
   "horse", "bird", "scales, fins, & other", "barnyard"))
 }
 \arguments{
-\item{token}{An access token for the Petfinder API}
+\item{token}{An access token for the Petfinder API (V2)}
 
 \item{type}{One of the eight available types. If no type is specified, dog breeds are returned.}
 }
