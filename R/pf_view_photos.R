@@ -1,17 +1,15 @@
 #' Slideshow all available photos of the animals of interest in R
 #'
-#' @param animal_df YOU NEED TO DESCRIBE THIS
-#' @param size YOU NEED TO DESCRIBE THIS
+#' @param animal_df A data frame of the animals of interest that have been searched for (using pf_find_pet)
+#' @param size The favorite size of the animal photos to be shown 
 #'
 #' @return A slideshow of the searched pets
 #' @export
 #'
 #' @examples 
 #' \dontrun{
-#' corgis <- pf_find_pets(token, location = 50014, distance = 100, type = "dog",
-#'     breed = "corgi", gender = c("male", "female"), limit = 100, page = "all", 
-#'     sort = "distance")
-#' pf_view_photos(animal_df = corgis, size = "medium")
+#' corgis <- pf_find_pets(token, type = "dog", breed="corgi",age = "baby", page = 1:2)
+#'   pf_view_photos(animal_df = corgis, size = "medium")
 #' }
 pf_view_photos<- function(animal_df, size=c("small", "medium", "large", "full")){
   assertthat::assert_that(is.data.frame(animal_df))
