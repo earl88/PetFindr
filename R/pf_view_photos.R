@@ -22,7 +22,7 @@ pf_view_photos <-
            size = c("small", "medium", "large", "full")) {
     assertthat::assert_that(is.data.frame(animal_df))
     assertthat::not_empty(animal_df)
-    assertthat::not_empty(seize)
+    assertthat::not_empty(size)
     size <- match.arg(size)
     
     
