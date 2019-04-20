@@ -1,6 +1,6 @@
 #' Drawing a map and get data frame with organization id.
 #'
-#' @param id 
+#' @param id Organization id
 #'
 #' @importFrom purrr map map_df set_names
 #' @importFrom leaflet leaflet addTiles addCircleMarkers
