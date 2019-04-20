@@ -4,7 +4,7 @@ PetFindr
 ========
 
 <!-- badges: start -->
-<img src='inst/logov3.png' align="right" height="281" /></a>
+<img src='inst/logov4.png' align="right" height="281" /></a>
 ============================================================
 
 <!-- badges: end -->
