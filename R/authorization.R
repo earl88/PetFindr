@@ -42,14 +42,11 @@ pf_setup <- function() {
 #' \dontrun{
 #' pf_save_credentials(petfindr_key, petfindr_secret)
 #' }
-pf_save_credentials <- function(key = NULL, secret = NULL,
-                                scope = c("project", "user")) {
+pf_save_credentials <- function(key = NULL, secret = NULL) {
   
   # Select scope for .Rprofile and make sure file exists
-  scope <- match.arg(scope)
-  rprof_path <- file.path(usethis:::scoped_path_r(scope), ".Rprofile")
-  assertthat::assert_that(file.exists(rprof_path))
-  rprof_contents <- readLines(rprof_path)
+  assertthat::assert_that(file.exists(".Rprofile"))
+  rprof_contents <- readLines(".Rprofile")
   
   # Need user to provide at least one of key or secret
   assertthat::assert_that(!is.null(key) | !is.null(secret))
@@ -66,8 +63,10 @@ pf_save_credentials <- function(key = NULL, secret = NULL,
     if(!key_exists) {
       str <- sprintf('\npetfindr_key = \"%s\"\n', key)
       cat(str, file = rprof_path, append = TRUE)
+      file_changed <- T
     } else{
       cat(".Rprofile already contains a key; no file change was made.\n")
+      file_changed <- F
     }
   }
   
@@ -83,18 +82,20 @@ pf_save_credentials <- function(key = NULL, secret = NULL,
     if(!secret_exists) {
       str <- sprintf('\npetfindr_key = \"%s\"\n', secret)
       cat(str, file = rprof_path, append = TRUE)
+      if(!file_changed){file_changed <- T}
     } else {
       cat(".Rprofile already contains a secret; no file change was made.\n")
     }
   }
-  
-  if(!requireNamespace(rstudioapi, quietly = T) || 
-     !requireNamespace(fs, quietly = T)) {
-    message("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
-  } else {
-    restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+  if(file_changed){
+    if(!requireNamespace("rstudioapi", quietly = T) || 
+       !requireNamespace("fs", quietly = T)) {
+      message("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+    } else {
+      restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+    }
   }
-  return(NULL)
+  return(invisible(NULL))
 }
 
 
