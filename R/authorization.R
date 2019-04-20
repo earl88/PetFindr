@@ -82,7 +82,7 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
 #' @param key A key provided to the user by the Petfinder API (V2)
 #' @param secret A secret provided to the user by the Petfinder API (V2)
 #'
-#' @return An access token for the PetFindr API (V2)
+#' @return An access token for the Petfinder API (V2)
 #' @export
 #'
 #' @examples
