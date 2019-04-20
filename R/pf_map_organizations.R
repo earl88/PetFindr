@@ -35,7 +35,7 @@ pf_map_organizations <- function(token = NULL, name = NULL,
                                  sort = "recent", page = 1, limit = 20) {
   # We should change this to take in raw search results so the user doesn't
   # need to find the ID themselves
-  zipcode <- data(zipcode, package = "zipcode")
+  zipcode <- read.table("inst/extdata/uszip.txt", sep=",", header = TRUE)
   
   args <- as.list(match.call(expand.dots = T))[-1]
   args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
@@ -80,10 +80,10 @@ pf_map_organizations <- function(token = NULL, name = NULL,
       rbind.data.frame(deparse.level = 0, stringsAsFactors = F)
   })
   
-  org_map_dat <- merge(organization_df, zipcode, by="address.postcode", by.y="zip")
+  org_map_dat <- merge(organization_df, zipcode, by="address.postcode", by.y="ZIP")
   
   zipmap <- leaflet(data = org_map_dat) %>% addTiles() %>%
-    addCircleMarkers(~longitude, ~latitude, popup = ~name, label = ~name)
+    addCircleMarkers(~LNG, ~LAT, popup = ~name, label = ~name)
   
   return(zipmap)
 }
