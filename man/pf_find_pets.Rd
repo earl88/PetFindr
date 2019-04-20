@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_find_pets.R
 \name{pf_find_pets}
 \alias{pf_find_pets}
-\title{Search for pets from Petfinder.com}
+\title{Search for pets from Petfinder.com via the Petfinder.com API (V2)}
 \usage{
 pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
   gender = NULL, age = NULL, color = NULL, coat = NULL,
@@ -12,7 +12,7 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
 \arguments{
 \item{token}{An access token, provided by pf_accesstoken(key, secret).}
 
-\item{type}{The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).}
+\item{type}{The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).}
 
 \item{breed}{The breed(s) of animals to be found. A full list of breeds for a given animal type can be found by running pf_breeds(token, type).}
 
@@ -22,9 +22,9 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
 
 \item{age}{The age(s) of animals to be found. Possible values are "baby", "young", "adult", and "senior".}
 
-\item{color}{The color(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).}
+\item{color}{The color(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).}
 
-\item{coat}{The coat(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).}
+\item{coat}{The coat(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).}
 
 \item{status}{The status of animals to be found. Possible values are "adoptable", "adopted", or "found".}
 
@@ -32,13 +32,13 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
 
 \item{organization}{The organization(s) associated with animals to be found. Values should be provided as identification numbers.}
 
-\item{location}{The location of animals to be found. Values can be specified as "\link{City}, \link{State}", "\link{latitude}, \link{longitude}", or "\link{postal code}".}
+\item{location}{The location of animals to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".}
 
 \item{distance}{The distance, in miles, from the provided location to find animals. Note that location is required to use distance.}
 
 \item{sort}{The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".}
 
-\item{page}{The page of results to return; default is 1.}
+\item{page}{The page(s) of results to return; default is 1.}
 
 \item{limit}{The maximum number of results to return per page (max of 100).}
 }
@@ -46,7 +46,7 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
 A data frame of results matching the search parameters
 }
 \description{
-Search for pets from Petfinder.com
+(Longer description)
 }
 \examples{
 \dontrun{

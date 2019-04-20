@@ -15,136 +15,46 @@
 #' organizations_of_interest <- pf_find_organizations(token, country = "US",
 #'     limit = 100, page = 1, sort = "state")
 #' }
-pf_find_organizations <- function(token, name = NULL,
-                                   location = NULL, 
-                                   distance = NULL,
-                                   state = NULL, 
-                                   country = NULL,
-                                   sort = NULL,
-                                   limit = 100, page=1) {
+pf_find_organizations <- function(token = NULL, name = NULL, location = NULL, distance = NULL,
+                                  state = NULL, country = NULL,
+                                  sort = "recent", page = 1, limit = 20) {
 
-  base <- "https://api.petfinder.com/v2/"
+  args <- as.list(match.call(expand.dots = T))[-1]
+  args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
   
-  if(!missing(location)) {
-    organization_location <- paste0("location", "=", location)
-  } else {organization_location <- NULL} # define location
+  query_args <- args[!names(args) %in% c("token", "page")]
+  query <- paste0(paste0(names(query_args), "=", query_args), collapse = "&")
+  base <- "https://api.petfinder.com/v2/organizations?"
+  probe <- GET(url = paste0(base, query),
+               add_headers(Authorization = paste("Bearer", token)))
   
-  if(missing(distance)) {
-    organization_distance <- NULL
-  } else if (missing(location)) {
-    stop("You must specify location in order to filter by distance")
+  if(probe$status_code != 200) {stop(pf_error(probe$status_code))}
+  
+  if(length(page) == 1 && page == 1) {
+    organization_info <- content(probe)$organizations
   } else {
-    organization_distance <- paste0("distance", "=", distance)
-  } # define distance from the location
-  
-  if(missing(limit)) {
-    organization_imit <- 100
-  } else if (limit > 100 & limit <= 0) {
-    stop("The page limit should be between 0 and 100")
-  } else {
-    organization_imit <- paste0("limit", "=", limit)
-  } # define a limit number of pets shown in a page
-  
-  if(!missing(state)) {
-    organization_state <- paste0("state", "=", state)
-  } else {organization_state <- NULL}# define state of organizations
-  
-  if(!missing(country)) {
-    organization_country <- paste0("country", "=", country)
-  } else {organization_country <- NULL}# define country of organizations
-  
-  if(!missing(sort)) {
-    organization_sort <- paste0("sort", "=", sort)
-  } else {organization_sort <- NULL} # define sort information. Null will show the newly updated ones first
-  
-  
-  ####################################
-  
-  if (page != "all") {
-    
-    if(!missing(page)) {
-      organization_page <- paste0("page", "=", page)
-    } else {organization_page <- 1} # define page number
-    
-    query.sub <- gsub("([[:punct:]])\\1+", "\\1", paste0("organizations?", paste(organization_location, organization_distance, 
-                                                                                 organization_state, organization_country,
-                                                                                 organization_imit, organization_page, 
-                                                                                 organization_sort,
-                                                                                 sep = "&")))
-    
-    ifelse(tail(strsplit(query.sub, "")[[1]], 1) == "&",
-           query <- substr(query.sub, 1,nchar(query.sub)-1),
-           query <- query.sub)
-    
-    url <- paste0(base, query)
-    search_results <- httr::GET(url = url, 
-                                httr::add_headers(Authorization = paste("Bearer", token)))
-    organization_info <- httr::content(search_results)[[1]]
-    
-    # Now We can automatically extract the information instead of defining them all.
-    # I would try to find an alternative to the part of the function "tibble.f" below later.
-    new.distinct.names <- organization_info %>% 
-      purrr::map(.x, 
-                 .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
-    
-    unlisted <- organization_info %>% 
-      purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
-    
-    unlisted.info <- purrr::map2(unlisted,
-                                 new.distinct.names,
-                                 .f= ~purrr::set_names(.x, .y))
-    
-    organization_df <- do.call(plyr::rbind.fill, unlisted.info)
-
-    return(organization_df)
-    
-  } else if (page=="all") {
-    organization_df_list <- list()
-    pg <- 1
-    keep <- FALSE
-    organization_info <- c()
-    
-    while(!keep) { # Iteration starts and repeat until keep=TRUE
-      organization_page <- paste0("page", "=", pg) # start iteration with page=1
-      
-      query.sub <- gsub("([[:punct:]])\\1+", "\\1", paste0("organizations?", paste(organization_location, organization_distance, 
-                                                                                   organization_state, organization_country,
-                                                                                   organization_imit, organization_page, 
-                                                                                   organization_sort,
-                                                                                   sep = "&")))
-   
-      
-      ifelse(tail(strsplit(query.sub, "")[[1]], 1) == "&",
-             query <- substr(query.sub, 1,nchar(query.sub)-1),
-             query <- query.sub)
-      
-      url <- paste0(base, query)
-      search_results <- httr::GET(url = url, 
-                                  httr::add_headers(Authorization = paste("Bearer", token)))
-      tmp_info <- httr::content(search_results)[[1]]
-
-      organization_info <- append(organization_info, tmp_info)
-      
-      pg <- pg+1 # go to the next page iteration
-      keep <- length(tmp_info) < limit # keep repeat this until the number of rows in the data frame is less than assigned limit
-      # keep assign the data frame to the list
+    max_page <- content(probe)$pagination$total_pages
+    if("all" %in% page) {
+      page <- 1:max_page
+    } else {
+      if(max(page) > max_page) {
+        warning("You have specified a page number that does not exist. Try using 'page = \"all\"'.")
+        page <- page[page <= max_page]
+      }
     }
-    # Now We can automatically extract the information instead of defining them all.
-    # I would try to find an alternative to the part of the function "tibble.f" below later.
     
-    new.distinct.names <- organization_info %>% 
-      purrr::map(.x, 
-                 .f=~names(rbind.data.frame(rlist::list.flatten(.x),0)))
-    
-    unlisted <- organization_info %>% 
-      purrr::map(.f = ~rbind.data.frame(unlist(.x, recursive=T, use.names=T)))
-    
-    unlisted.info <- purrr::map2(unlisted,
-                                 new.distinct.names,
-                                 .f= ~purrr::set_names(.x, .y))
-    
-    organization_df <- do.call(plyr::rbind.fill, unlisted.info)
-    
-    return(organization_df) # return the data frame with all the pets 
+    organization_info <- lapply(paste0(base, query, "&page=", page), function(x) {
+      results <- GET(url = x,
+                     add_headers(Authorization = paste("Bearer", token)))
+      if(results$status_code != 200) {stop(pf_error(results$status_code))}
+      content(results)$organizations}
+    ) %>% purrr::flatten()
   }
+  
+  organization_df <- purrr::map_dfr(organization_info, .f = function(x) {
+    rlist::list.flatten(x) %>%
+      rbind.data.frame(deparse.level = 0, stringsAsFactors = F)
+  })
+  
+  return(organization_df)
 }

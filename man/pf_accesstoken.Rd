@@ -12,7 +12,7 @@ pf_accesstoken(key = NULL, secret = NULL)
 \item{secret}{A secret provided to the user by the Petfinder API (V2)}
 }
 \value{
-An access token for the PetFindr API (V2)
+An access token for the Petfinder API (V2)
 }
 \description{
 Generate an access token for the Petfinder API (V2)

@@ -10,8 +10,10 @@ pf_setup()
 None
 }
 \description{
-Running this function will open the website for Petfinder's API (V2) and prompt the user to sign up for an account.
+Running this function will open a browser to "https://www.petfinder.com/developers/" and prompt the user to register for Petfinder's API (V2).
 }
 \examples{
+\dontrun{
 pf_setup()
+}
 }

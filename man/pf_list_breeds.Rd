@@ -8,20 +8,19 @@ pf_list_breeds(token, type = c("dog", "cat", "rabbit", "small & furry",
   "horse", "bird", "scales, fins, & other", "barnyard"))
 }
 \arguments{
-\item{token}{An access token for the Petfinder API}
+\item{token}{An access token for the Petfinder API (V2)}
 
-\item{type}{One of the eight available types. If no type is specified, dog breeds are returned.}
+\item{type}{One of the available animal types for which to return breed information. If no type is specified, dog breeds are returned. A full list of animal types can be found by running pf_animaltypes(token).}
 }
 \value{
-A character vector containing the breed names for the given animal type
+A character vector containing the breed names for the specified animal type.
 }
 \description{
-This function takes in one of the eight animal types found on Petfinder.com and returns a vector containing all available breeds for that animal type
+This function allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type.
 }
 \examples{
 \dontrun{
 pf_list_breeds(token, type = "dog")
 pf_list_breeds(token, type = "cat")
 }
-
 }

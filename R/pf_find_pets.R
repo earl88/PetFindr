@@ -1,20 +1,22 @@
-#' Search for pets from Petfinder.com
+#' Search for pets from Petfinder.com via the Petfinder.com API (V2)
+#' 
+#' (Longer description)
 #'
 #' @param token An access token, provided by pf_accesstoken(key, secret).
-#' @param type The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).
+#' @param type The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
 #' @param breed The breed(s) of animals to be found. A full list of breeds for a given animal type can be found by running pf_breeds(token, type).
 #' @param size The size(s) of animals to be found. Possible values are "small", "medium", "large", and "xlarge".
 #' @param gender The gender(s) of animals to be found. Possible values are "male", "female", and "unknown".
 #' @param age The age(s) of animals to be found. Possible values are "baby", "young", "adult", and "senior".
-#' @param color The color(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).
-#' @param coat The coat(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_animaltypes(token).
+#' @param color The color(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
+#' @param coat The coat(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
 #' @param status The status of animals to be found. Possible values are "adoptable", "adopted", or "found".
 #' @param name The name of animals to be found (includes partial matches; e.g. "Fred" will return "Alfredo" and "Frederick").
 #' @param organization The organization(s) associated with animals to be found. Values should be provided as identification numbers.
-#' @param location The location of animals to be found. Values can be specified as "[City], [State]", "[latitude], [longitude]", or "[postal code]".
+#' @param location The location of animals to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".
 #' @param distance The distance, in miles, from the provided location to find animals. Note that location is required to use distance.
 #' @param sort The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
-#' @param page The page of results to return; default is 1.
+#' @param page The page(s) of results to return; default is 1. 
 #' @param limit The maximum number of results to return per page (max of 100).
 #'
 #' @return A data frame of results matching the search parameters
@@ -36,7 +38,8 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
   
   query_args <- args[!names(args) %in% c("token", "page")]
-  query <- paste0(paste0(names(query_args), "=", query_args), collapse = "&")
+  query <- paste(names(query_args), query_args, sep = "=", collapse = "&")
+  #query <- paste0(paste0(names(query_args), "=", query_args), collapse = "&")
   base <- "https://api.petfinder.com/v2/animals?"
   probe <- GET(url = paste0(base, query),
                add_headers(Authorization = paste("Bearer", token)))
@@ -66,7 +69,7 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   
   animal_df <- purrr::map_dfr(animal_info, .f = function(x) {
     rlist::list.flatten(x) %>%
-      rbind.data.frame(., deparse.level = 0, stringsAsFactors = F)
+      rbind.data.frame(deparse.level = 0, stringsAsFactors = F)
   })
   
   return(animal_df)
