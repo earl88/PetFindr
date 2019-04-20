@@ -1,6 +1,8 @@
-#' Search for pets from Petfinder.com via the Petfinder.com API (V2)
+#' Find Pets
 #' 
-#' (Longer description)
+#' Retrieve a data frame of information about pets that are listed on
+#' Petfinder.com via the Petfinder API (V2). Filter searches based on 
+#' characteristics such as animal type, breed, size, age, or location.
 #'
 #' @param token An access token, provided by pf_accesstoken(key, secret).
 #' @param type The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
@@ -16,8 +18,8 @@
 #' @param location The location of animals to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".
 #' @param distance The distance, in miles, from the provided location to find animals. Note that location is required to use distance.
 #' @param sort The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
-#' @param page The page(s) of results to return; default is 1. 
-#' @param limit The maximum number of results to return per page (max of 100).
+#' @param page The page(s) of results to return (default = 1). 
+#' @param limit The maximum number of results to return per page (maximum = 100).
 #'
 #' @return A data frame of results matching the search parameters
 #' @export
@@ -44,16 +46,16 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   probe <- GET(url = paste0(base, query),
                add_headers(Authorization = paste("Bearer", token)))
   
-  if(probe$status_code != 200) {stop(pf_error(probe$status_code))}
+  if (probe$status_code != 200) {stop(pf_error(probe$status_code))}
   
   assertthat::assert_that(is.numeric(page))
-  if(length(page) == 1 && page == 1) {
+  if (length(page) == 1 && page == 1) {
     animal_info <- content(probe)$animals
   } else {
     max_page <- content(probe)$pagination$total_pages
-    if(max(page) > max_page) {
+    if (max(page) > max_page) {
       warning("You have specified one or more page numbers that do not exist.")
-      if(any(page <= max_page)) {
+      if (any(page <= max_page)) {
         page <- page[page <= max_page]
       } else {
         warning("No valid pages were specified. Defaulting to page 1.")
@@ -65,8 +67,9 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   animal_info <- lapply(paste0(base, query, "&page=", page), function(x) {
     results <- GET(url = x,
                    add_headers(Authorization = paste("Bearer", token)))
-    if(results$status_code != 200) {stop(pf_error(results$status_code))}
-    content(results)$animals}) %>% 
+    if (results$status_code != 200) {stop(pf_error(results$status_code))}
+    content(results)$animals
+    }) %>% 
     purrr::flatten()
   
   animal_df <- purrr::map_dfr(animal_info, .f = function(x) {

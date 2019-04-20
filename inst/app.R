@@ -1,7 +1,7 @@
 library(shiny)
 library(tidyr)
-library(tibble)
-library(rvest)
+library(leaflet)
+library(tidyverse)
 
 pet_fun <- function(x) {
   tibble(
@@ -14,8 +14,8 @@ pet_fun <- function(x) {
   )
 }
 
-ui <- navbarPage("PetFinder",
-                 tabPanel("List of pets in your location",
+ui <- navbarPage("Iowa Liquor Sales",
+                 tabPanel("Locations of Liquor Stores",
                           fluidRow(
                             sidebarPanel(
                               numericInput(inputId = "location", 50014,

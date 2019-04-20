@@ -12,9 +12,23 @@ pf_find_organizations(token = NULL, name = NULL, location = NULL,
 \item{token}{An access token}
 
 \item{name}{Names of organizations}
+
+\item{location}{The location of organizations to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".}
+
+\item{distance}{The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.}
+
+\item{sort}{The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".}
+
+\item{page}{The page(s) of results to return; default is 1.}
+
+\item{limit}{The maximum number of results to return per page (max of 100).}
+
+\item{token}{An access token, provided by pf_accesstoken(key, secret).}
+
+\item{name}{The name of organizations to be found (includes partial matches).}
 }
 \value{
-A dataframe listing information of the desired organizations
+A data frame of results matching the search organizations
 }
 \description{
 Longer description of what the function does
