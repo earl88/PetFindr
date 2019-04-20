@@ -28,13 +28,14 @@ pf_list_types <- function(token, type = NULL) {
   
   base <- "https://api.petfinder.com/v2/types/"
   
-  search_results <- httr::GET(url = paste0(base, type), 
+  results <- httr::GET(url = paste0(base, type), 
                        httr::add_headers(Authorization = paste("Bearer", token)))
+  if(results$status_code != 200) {stop(pf_error(results$status_code))}
   
   if(type == "") {
-    type_info <- httr::content(search_results)$types
+    type_info <- httr::content(results)$types
   } else {
-    type_info <- httr::content(search_results)
+    type_info <- httr::content(results)
   }
   
   types_df <- purrr::map_df(type_info, function(x) {
