@@ -39,33 +39,36 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   
   query_args <- args[!names(args) %in% c("token", "page")]
   query <- paste(names(query_args), query_args, sep = "=", collapse = "&")
-  #query <- paste0(paste0(names(query_args), "=", query_args), collapse = "&")
+  
   base <- "https://api.petfinder.com/v2/animals?"
   probe <- GET(url = paste0(base, query),
                add_headers(Authorization = paste("Bearer", token)))
   
-  if(probe$status_code != 200) {stop(pf_error(probe$status_code))}
+  if (probe$status_code != 200) {stop(pf_error(probe$status_code))}
   
-  if(length(page) == 1 && page == 1) {
+  assertthat::assert_that(is.numeric(page))
+  if (length(page) == 1 && page == 1) {
     animal_info <- content(probe)$animals
   } else {
     max_page <- content(probe)$pagination$total_pages
-    if("all" %in% page) {
-      page <- 1:max_page
-    } else {
-      if(max(page) > max_page) {
-        warning("You have specified a page number that does not exist. Try using 'page = \"all\"'.")
+    if (max(page) > max_page) {
+      warning("You have specified one or more page numbers that do not exist.")
+      if (any(page <= max_page)) {
         page <- page[page <= max_page]
+      } else {
+        warning("No valid pages were specified. Defaulting to page 1.")
+        animal_info <- content(probe)$animals
       }
     }
-    
-    animal_info <- lapply(paste0(base, query, "&page=", page), function(x) {
-      results <- GET(url = x,
-                     add_headers(Authorization = paste("Bearer", token)))
-      if(results$status_code != 200) {stop(pf_error(results$status_code))}
-      content(results)$animals}
-    ) %>% purrr::flatten()
   }
+  
+  animal_info <- lapply(paste0(base, query, "&page=", page), function(x) {
+    results <- GET(url = x,
+                   add_headers(Authorization = paste("Bearer", token)))
+    if (results$status_code != 200) {stop(pf_error(results$status_code))}
+    content(results)$animals
+    }) %>% 
+    purrr::flatten()
   
   animal_df <- purrr::map_dfr(animal_info, .f = function(x) {
     rlist::list.flatten(x) %>%
