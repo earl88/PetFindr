@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_find_pets.R
 \name{pf_find_pets}
 \alias{pf_find_pets}
-\title{Search for pets from Petfinder.com via the Petfinder.com API (V2)}
+\title{Find Pets}
 \usage{
 pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
   gender = NULL, age = NULL, color = NULL, coat = NULL,
@@ -38,15 +38,17 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
 
 \item{sort}{The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".}
 
-\item{page}{The page(s) of results to return; default is 1.}
+\item{page}{The page(s) of results to return (default = 1).}
 
-\item{limit}{The maximum number of results to return per page (max of 100).}
+\item{limit}{The maximum number of results to return per page (maximum = 100).}
 }
 \value{
 A data frame of results matching the search parameters
 }
 \description{
-(Longer description)
+Retrieve a data frame of information about pets that are listed on
+Petfinder.com via the Petfinder API (V2). Filter searches based on
+characteristics such as animal type, breed, size, age, or location.
 }
 \examples{
 \dontrun{
