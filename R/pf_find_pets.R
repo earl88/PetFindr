@@ -1,4 +1,6 @@
-#' Search for pets from Petfinder.com
+#' Search for pets from Petfinder.com via the Petfinder.com API (V2)
+#' 
+#' (Longer description)
 #'
 #' @param token An access token, provided by pf_accesstoken(key, secret).
 #' @param type The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
@@ -11,10 +13,10 @@
 #' @param status The status of animals to be found. Possible values are "adoptable", "adopted", or "found".
 #' @param name The name of animals to be found (includes partial matches; e.g. "Fred" will return "Alfredo" and "Frederick").
 #' @param organization The organization(s) associated with animals to be found. Values should be provided as identification numbers.
-#' @param location The location of animals to be found. Values can be specified as "[City], [State]", "[latitude], [longitude]", or "[postal code]".
+#' @param location The location of animals to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".
 #' @param distance The distance, in miles, from the provided location to find animals. Note that location is required to use distance.
 #' @param sort The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
-#' @param page The page of results to return; default is 1.
+#' @param page The page(s) of results to return; default is 1. 
 #' @param limit The maximum number of results to return per page (max of 100).
 #'
 #' @return A data frame of results matching the search parameters
