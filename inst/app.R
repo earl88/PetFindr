@@ -1,14 +1,12 @@
 library(shiny)
-library(tidyverse)
-library(tibble)
-library(rvest)
-library(PetFindr)
+library(DT)
+
 
 ui <- navbarPage("PetFinder",
                  tabPanel("Search by Animals",
                           fluidRow(
                             sidebarPanel(
-                              textInput(inputId = "location", 50014,
+                              numericInput(inputId = "location", 50014,
                                            label = "Your ZIP code"),
                               numericInput(inputId = "distance", 10,
                                            label = "How far away?"),
@@ -19,12 +17,11 @@ ui <- navbarPage("PetFinder",
                                                       "scales, fins, & other", "barnyard")),
                               selectInput(inputId = "status",
                                           label = "Status of the pet:",
-                                          choices = c("adopted", "adoptable", "found")),
-                              submitButton("Submit")
+                                          choices = c("adopted", "adoptable", "found"))
                             ),
                             mainPanel(
                               h1("Pets in your location"),
-                              textOutput("table")
+                              tableOutput("table")
                               #textOutput("table")
                             )
                           )
@@ -33,12 +30,13 @@ ui <- navbarPage("PetFinder",
 )
 
 
-# Define server logic required to draw a histogram
+
 server <- function(input, output, session) {
   
-  output$table <-renderText(
-   pf_find_pets(token=token, location = reactive(input$location))
-   )
+  output$table <- renderTable({
+    #pf_find_pets(token=token, location=50014)
+    pf_find_pets(token=token, location=reactive(input$location))
+    })
 }
 
 # Run the application 
