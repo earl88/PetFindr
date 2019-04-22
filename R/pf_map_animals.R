@@ -5,7 +5,7 @@
 #'
 #' @return The original data frame supplemented with more detailed organization information.
 #' 
-#' @import httr
+#' @importFrom httr GET add_headers content
 pf_merge_organizations <- function(token, animal_df) {
   id <- unique(animal_df$organization_id)
   base <- "https://api.petfinder.com/v2/organizations/"
@@ -25,7 +25,7 @@ pf_merge_organizations <- function(token, animal_df) {
   zips <- utils::read.delim2(system.file("extdata/uszip.txt", 
                                          package = "PetFindr"),
                              sep = ",", colClasses = c("character")) %>%
-    setNames(c("zipcode", "latitude", "longitude"))
+    stats::setNames(c("zipcode", "latitude", "longitude"))
   
   zips$latitude <- as.numeric(zips$latitude)
   zips$longitude <- as.numeric(zips$longitude)

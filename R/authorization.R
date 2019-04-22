@@ -86,6 +86,8 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
 #'
 #' @return An access token for the Petfinder API (V2)
 #' @export
+#' 
+#' @importFrom httr POST content
 #'
 #' @examples
 #' \dontrun{
@@ -95,12 +97,12 @@ pf_accesstoken <- function(key = NULL, secret = NULL) {
   if (is.null(key) || is.null(secret)) {
     stop("You must provide both a key and a secret to receive an access token. Please run 'pf_setup()' for more information.")
   }
-  auth <- httr::POST(url = "https://api.petfinder.com/v2/oauth2/token",
+  auth <- POST(url = "https://api.petfinder.com/v2/oauth2/token",
                      body = list(grant_type = "client_credentials",
                                  client_id = key, client_secret = secret),
                      encode = "json")
   if (auth$status_code != 200) {stop(pf_error(auth$status_code))}
-  accesstoken <- httr::content(auth)$access_token
+  accesstoken <- content(auth)$access_token
   cat("Your access token will last for one hour. After that time, you will need to generate a new token.\n")
   return(accesstoken)
 }
