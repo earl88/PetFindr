@@ -29,6 +29,8 @@
 #' @examples
 #' \dontrun{
 #' puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
+#' 
+#' pf_find_pets(token, type = "dog", age = "baby", page = 1, location="ames,%20ia")
 #' }
 pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL, 
                          gender = NULL, age = NULL, color = NULL, coat = NULL,
@@ -78,4 +80,3 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   
   return(animal_df)
 }
-
