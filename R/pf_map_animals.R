@@ -4,8 +4,10 @@
 #' @param animal_df A data frame of animal information output from pf_find_pets().
 #'
 #' @return The original data frame supplemented with more detailed organiation information
+#' 
+#' @import httr
 pf_merge_organizations <- function(token, animal_df) {
-  id <- unique(animal_df$id)
+  id <- unique(animal_df$organization_id)
   base <- "https://api.petfinder.com/v2/organizations/"
   urls <- paste0(base, tolower(id))
   
@@ -20,7 +22,9 @@ pf_merge_organizations <- function(token, animal_df) {
                    state = x$address[4], zip = x$address[5])
   })
   
-  org_map_dat <- merge(organization_df, zipcode, by="postcode", by.y="zip")
+  zips <- read.delim2(system.file("extdata/uszip.txt", package = "PetFindr"),
+                     sep = ",", colClasses = "character")
+  org_map_dat <- merge(organization_df, zips, by.x = "zip", by.y = "ZIP", all.y = F)
   
   return(org_map_dat)
 }
@@ -35,7 +39,7 @@ pf_merge_organizations <- function(token, animal_df) {
 #' 
 #' @examples
 #' \dontrun{
-#' pups <- pf_find_pets(token, type = "dog", breed = "corgi", location = "50014", distance = "200")
+#' pups <- pf_find_pets(token, type = "dog", breed = "corgi", location = "50014", distance = "150")
 #' pf_map_animals(token, pups)
 #' }
 pf_map_animals <- function(token, animal_df) {
