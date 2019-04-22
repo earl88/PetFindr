@@ -1,10 +1,10 @@
-#' List all animal types found on Petfinder
+#' List available animal types found on Petfinder.com
 #'
 #' Longer description of what the function does
 #'
 #' @export
 #' @param token An access token
-#' @param type One of the eight available types: "dog", "cat", "rabbit", "small & furry", "horse", "bird", "scales, fins, & other", or "barnyard". If no type is provided, all types are returned.
+#' @param type If type is specified, only information for the given type will be returned. One of the eight available types: "dog", "cat", "rabbit", "small & furry", "horse", "bird", "scales, fins, & other", or "barnyard". If no type is provided, all types are returned.
 #' @return A tibble listing the desired animal types with their available coats, colors, and genders
 #'
 #' @examples
