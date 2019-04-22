@@ -25,10 +25,10 @@ pf_merge_organizations <- function(token, animal_df) {
   zips <- utils::read.delim2(system.file("extdata/uszip.txt", 
                                          package = "PetFindr"),
                              sep = ",", colClasses = c("character"))
-  zips$latitude <- as.numeric(zips$LAT)
-  zips$longitude <- as.numeric(zips$LNG)
+  zips$latitude <- as.numeric(zips$latitude)
+  zips$longitude <- as.numeric(zips$longitude)
   org_map_dat <- merge(organization_df, zips, by.x = "zip", 
-                       by.y = "ZIP", all.y = F)
+                       by.y = "zipcode", all.y = F)
   
   return(org_map_dat)
 }
