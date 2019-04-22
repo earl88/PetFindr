@@ -45,7 +45,6 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   base <- "https://api.petfinder.com/v2/animals?"
   probe <- GET(url = paste0(base, query),
                add_headers(Authorization = paste("Bearer", token)))
-  
   if (probe$status_code != 200) {stop(pf_error(probe$status_code))}
   
   assertthat::assert_that(is.numeric(page))
@@ -69,7 +68,7 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
                    add_headers(Authorization = paste("Bearer", token)))
     if (results$status_code != 200) {stop(pf_error(results$status_code))}
     content(results)$animals
-    }) %>% 
+  }) %>% 
     purrr::flatten()
   
   animal_df <- purrr::map_dfr(animal_info, .f = function(x) {
@@ -79,4 +78,3 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   
   return(animal_df)
 }
-

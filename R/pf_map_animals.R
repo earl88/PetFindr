@@ -3,7 +3,7 @@
 #' @param token An access token, provided by pf_accesstoken(key, secret).
 #' @param animal_df A data frame of animal information output from pf_find_pets().
 #'
-#' @return The original data frame supplemented with more detailed organization information
+#' @return The original data frame supplemented with more detailed organization information.
 #' 
 #' @import httr
 pf_merge_organizations <- function(token, animal_df) {
@@ -24,7 +24,9 @@ pf_merge_organizations <- function(token, animal_df) {
   
   zips <- utils::read.delim2(system.file("extdata/uszip.txt", 
                                          package = "PetFindr"),
-                             sep = ",", colClasses = c("character"))
+                             sep = ",", colClasses = c("character")) %>%
+    setNames(c("zipcode", "latitude", "longitude"))
+  
   zips$latitude <- as.numeric(zips$latitude)
   zips$longitude <- as.numeric(zips$longitude)
   org_map_dat <- merge(organization_df, zips, by.x = "zip", 
