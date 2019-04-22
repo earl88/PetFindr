@@ -11,7 +11,7 @@
 #'   puppies <- pf_find_pets(token, type = "dog", age = "baby", breed= "corgi" )
 #'   pf_view_photos(animal_df = puppies, size = "small")
 #'   
-#'   bunnies <- pf_find_pets(token = token, type = "rabbit", age = "baby", page= 1:2)
+#'   bunnies <- pf_find_pets(token = token, type = "rabbit", age = "baby", limit = 10)
 #'   pf_view_photos(animal_df = bunnies, size = "full")
 #' }
 
