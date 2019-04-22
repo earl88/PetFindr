@@ -48,4 +48,4 @@ viewing functions
 
 -   `pf_view_photos()`
 
--   `pf_map_organizations()`
+-   `pf_map_animals()`
