@@ -2,27 +2,28 @@
 % Please edit documentation in R/pf_view_photos.R
 \name{pf_view_photos}
 \alias{pf_view_photos}
-\title{Slideshow all available photos of the animals of interest in R}
+\title{View Photos of Pets}
 \usage{
 pf_view_photos(animal_df, size = c("small", "medium", "large", "full"))
 }
 \arguments{
-\item{animal_df}{A data frame of the animals of interest that have been searched for (using pf_find_pet)}
+\item{animal_df}{A data frame of animal search results from pf_find_pets().}
 
-\item{size}{The favorite size of the animal photos to be shown}
+\item{size}{The desired size of the animal photos to be shown}
 }
 \value{
-A slideshow of the searched pets
+A slideshow of animal pictures
 }
 \description{
-Slideshow all available photos of the animals of interest in R
+This function takes a data frame of searched pets and displays the image in
+a slideshow format.
 }
 \examples{
 \dontrun{
-  puppies <- pf_find_pets(token, type = "dog", age = "baby", breed= "corgi" )
+  puppies <- pf_find_pets(token, type = "dog", age = "baby", breed = "corgi")
   pf_view_photos(animal_df = puppies, size = "small")
   
-  bunnies <- pf_find_pets(token = token, type = "rabbit", age = "baby", page= 1:2)
+  bunnies <- pf_find_pets(token, type = "rabbit", age = "baby", limit = 10)
   pf_view_photos(animal_df = bunnies, size = "full")
 }
 }

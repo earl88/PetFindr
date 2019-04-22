@@ -7,7 +7,6 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom purrr map map_df set_names
-#' @importFrom PetFindr pf_find_pets
 #' 
 #' @return (a data frame obtained by organization id from pf_find_pets)
 #' @export
