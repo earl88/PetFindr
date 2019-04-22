@@ -4,9 +4,6 @@
 #' @param animal_df A data frame of animal information output from pf_find_pets().
 #'
 #' @return The original data frame supplemented with more detailed organiation information
-#' @export
-#'
-#' @examples
 pf_merge_organizations <- function(token, animal_df) {
   id <- unique(animal_df$id)
   base <- "https://api.petfinder.com/v2/organizations/"
@@ -35,8 +32,12 @@ pf_merge_organizations <- function(token, animal_df) {
 #'
 #' @return A leaflet map of the locations of animals provided.
 #' @export
-#'
+#' 
 #' @examples
+#' \dontrun{
+#' pups <- pf_find_pets(token, type = "dog", breed = "corgi", location = "50014", distance = "200")
+#' pf_map_animals(token, pups)
+#' }
 pf_map_animals <- function(token, animal_df) {
   org_map_dat <- pf_merge_organizations(token, animal_df)
   

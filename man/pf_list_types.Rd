@@ -2,14 +2,14 @@
 % Please edit documentation in R/pf_list_types.R
 \name{pf_list_types}
 \alias{pf_list_types}
-\title{List all animal types found on Petfinder}
+\title{List available animal types found on Petfinder.com}
 \usage{
 pf_list_types(token, type = NULL)
 }
 \arguments{
 \item{token}{An access token}
 
-\item{type}{One of the eight available types: "dog", "cat", "rabbit", "small & furry", "horse", "bird", "scales, fins, & other", or "barnyard". If no type is provided, all types are returned.}
+\item{type}{If type is specified, only information for the given type will be returned. One of the eight available types: "dog", "cat", "rabbit", "small & furry", "horse", "bird", "scales, fins, & other", or "barnyard". If no type is provided, all types are returned.}
 }
 \value{
 A tibble listing the desired animal types with their available coats, colors, and genders
