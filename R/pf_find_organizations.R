@@ -29,7 +29,15 @@ pf_find_organizations <- function(token = NULL, name = NULL,
                                   location = NULL, distance = NULL,
                                   state = NULL, country = NULL,
                                   sort = "recent", page = 1, limit = 20) {
+  
+  assertthat::assert_that(is.character(sort) && length(sort)==1, 
+                          msg='sort must be a type of character  and length 1')
+  assertthat::assert_that(is.integer(limit) && limit >= 1 && limit <= 100 && length(limit)==1,
+                          msg='limit must be a type of integers between 1 to 100')
+  assertthat::assert_that(is.integer(page),
+                          msg='page must be a type of integer and length 1')
 
+  ##############testing part is done###############
   args <- as.list(match.call(expand.dots = T))[-1]
   args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
 

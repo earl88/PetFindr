@@ -166,34 +166,58 @@ ui <- fluidPage(
   
   sidebarPanel(
     textInput("Zipcode", "Enter a 5-digit U.S. ZIP (postal) code to see the shelters:", value="50010"),
-    selectInput("Distance", label = "Distance", choices = seq(50, 500, by=50), selected = "100")
-    ),
+    selectInput("Distance", "Input miles from the zip code:", choices = seq(50, 500, by=50), selected = "100"),
+    submitButton("Submit"),
+    width = 4),
   
   mainPanel(
     tabsetPanel(
-      tabPanel("Animal Shelters", leafletOutput("map"))
+      tabPanel("Animal Shelters", leafletOutput("map"), dataTableOutput("pred"),
+               width = 8)
     )
   )
 )
 
 ##
 
-server <- function(input, output) {
-  selectedzip <- eventReactive(input$Zipcode)
-  selecteddist <- eventReactive(input$Distance)
-  output$map <- renderLeaflet({
-    leaflet(data = merge(pf_find_organizations(token, country = "US", location == selectedzip, distance == selecteddist, limit = 100, page = 1),data(zipcode), by="address.postcode", by.y="zip")
-      
-      
-    ) %>%
-      addTiles() %>%
-      addCircleMarkers(~longitude, ~latitude, popup = ~name, label = ~name)
-  })}
-  
-  
 
 ###
-
+server <- function(input, output) {
+  zipmap <- read.csv("C:/Users/Jessica Lee K/Desktop/ISU Stat/Spring 2918/Stat 585/FinalProject585/inst/uszip.txt", colClasses = c("character", rep("numeric", 2)))
+  
+  ## calculate distance given latitude and longitude respectively
+  library(sp)
+  
+  lat0 <- reactive({
+    lat0 <- zipmap[zipmap$ZIP == input$zip1, 2]
+    lat0
+  })
+  
+  lng0 <- reactive({
+    lng0 <- zipmap[zipmap$ZIP == input$zip1, 3]
+    lng0
+  })
+  
+  
+  dest <- reactive({
+    df <- pf_find_organizations(token, token, country = "US", location == selectedzip, distance = selecteddist, limit = 100, page = 1,page = 1, limit = 20) %>%
+      mutate(dist = spDistsN1(as.matrix(macdonaldmap[,1:2]), c(lng0(), lat0()), longlat = TRUE) * 0.621371) %>%
+      filter(dist < input$range) %>%
+      arrange(dist)
+    df
+  })
+  
+  output$plot <- renderLeaflet({
+    leaflet() %>%
+      addTiles() %>%
+      addMarkers(lat = lat0(), lng = lng0(), popup = "Where you start!") %>%
+      addCircleMarkers(lat = dest()$lat, lng = dest()$long, popup = dest()$addr)
+  })
+  output$pred <- renderDataTable({
+    dest()[,3:5]
+  })
+}
+###
   
   
   
@@ -204,5 +228,4 @@ shinyApp(ui = ui, server = server)
  # addCircleMarkers(~longitude, ~latitude, popup = ~name, label = ~name)  
 
 
-
-#data = merge(pf_find_organizations(token, country = "US", location = 50010, distance = 100, limit = 100, page = 1),zipcode, by="address.postcode", by.y="zip") 
+##data = merge(pf_find_organizations(token, country = "US", location = 50010, distance = 100, limit = 100, page = 1),zipcode, by="address.postcode", by.y="zip") 
