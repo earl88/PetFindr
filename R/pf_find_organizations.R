@@ -33,8 +33,7 @@ pf_find_organizations <- function(token = NULL, name = NULL,
   args <- as.list(match.call(expand.dots = T))[-1]
   args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
 
-  query_args <- args[!names(args) %in% c("token", "page")] %>%
-    as.character()
+  query_args <- args[!names(args) %in% c("token", "page")]
   query <- paste(names(query_args), query_args, sep = "=", collapse = "&")
   
   base <- "https://api.petfinder.com/v2/organizations?"
