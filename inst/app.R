@@ -37,12 +37,18 @@ server <- function(input, output, session) {
 
     dat <- reactive({
     my_df <- pf_find_pets(token=token, location=50014, limit=100)
-  })
+    })
   output$table <- DT::renderDataTable(DT::datatable({
     dat() %>% 
       select(c("organization_id", "type", "status", "contact.address.address1", "contact.address.city"))
     })
     )
+  
+    dat_org <- reactive({
+    my_df_org <- pf_find_organizations(token=token, location=50014, limit=100)
+    })
+    
+    
 }
 
 # Run the application 
