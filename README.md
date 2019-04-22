@@ -7,7 +7,8 @@ PetFindr
 <img src='inst/logo.png' align="right" height="281" /></a>
 ==========================================================
 
-<!-- badges: end -->
+[![Travis build status](https://travis-ci.org/earl88/PetFindr.svg?branch=master)](https://travis-ci.org/earl88/PetFindr) <!-- badges: end -->
+
 PetFindr provides an R interface for the Petfinder.com API (V2). Once a user obtains an API key and secret from [Petfinder](https://www.petfinder.com/developers/), this package allows the user to retrieve information about animals by type, breed, location, and other useful characteristics.
 
 Installation
