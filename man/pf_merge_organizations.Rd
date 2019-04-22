@@ -12,7 +12,7 @@ pf_merge_organizations(token, animal_df)
 \item{animal_df}{A data frame of animal information output from pf_find_pets().}
 }
 \value{
-The original data frame supplemented with more detailed organiation information
+The original data frame supplemented with more detailed organization information
 }
 \description{
 Merge Organization Data to Animal Data

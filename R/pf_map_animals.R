@@ -3,7 +3,7 @@
 #' @param token An access token, provided by pf_accesstoken(key, secret).
 #' @param animal_df A data frame of animal information output from pf_find_pets().
 #'
-#' @return The original data frame supplemented with more detailed organiation information
+#' @return The original data frame supplemented with more detailed organization information
 #' 
 #' @import httr
 pf_merge_organizations <- function(token, animal_df) {
