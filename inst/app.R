@@ -1,4 +1,5 @@
 library(shiny)
+library(plotly)
 library(tidyverse)
 library(PetFindr)
 library(DT)
@@ -23,7 +24,11 @@ ui <- navbarPage("PetFinder",
                             ),
                             mainPanel(
                               h1("Pets in your location"),
-                              DT::dataTableOutput("table")
+                              DT::dataTableOutput("table"),
+                              column(6, 
+                                     plotlyOutput("bar")),
+                              column(6, 
+                                     plotlyOutput("companies"))
                               #textOutput("table")
                             )
                           )
@@ -33,22 +38,20 @@ ui <- navbarPage("PetFinder",
 
 
 
-server <- function(input, output, session) {
+server <- function(input, output) {
 
-    dat <- reactive({
-    my_df <- pf_find_pets(token=token, location=50014, limit=100)
-    })
-  output$table <- DT::renderDataTable(DT::datatable({
-    dat() %>% 
-      select(c("organization_id", "type", "status", "contact.address.address1", "contact.address.city"))
+  
+#  dat <-  pf_find_pets(token=token, location=50014)
+  dat <-  pf_find_pets(token=token, location=input$location)
+  
+    output$table <- DT::renderDataTable(DT::datatable({
+      dat %>% 
+        select(c("organization_id", "type", "status", "contact.address.address1", "contact.address.city"))
     })
     )
-  
-    dat_org <- reactive({
-    my_df_org <- pf_find_organizations(token=token, location=50014, limit=100)
-    })
     
-    
+ #   org_df <- pf_merge_organizations(token, dat)
+
 }
 
 # Run the application 
