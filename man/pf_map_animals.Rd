@@ -17,3 +17,9 @@ A leaflet map of the locations of animals provided.
 \description{
 Display Animal Locations
 }
+\examples{
+\dontrun{
+pups <- pf_find_pets(token, type = "dog", breed = "corgi", location = "50014", distance = "150")
+pf_map_animals(token, pups)
+}
+}

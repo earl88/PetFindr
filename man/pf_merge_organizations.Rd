@@ -17,6 +17,3 @@ The original data frame supplemented with more detailed organiation information
 \description{
 Merge Organization Data to Animal Data
 }
-\examples{
-pups <- pf_find_pets(token, type = "dog", breed = "corgi", location = "50014", distance = "200")
-}

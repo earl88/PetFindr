@@ -3,7 +3,7 @@
 #' This function allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type.
 #'
 #' @param token An access token for the Petfinder API (V2)
-#' @param type One of the available animal types for which to return breed information. If no type is specified, dog breeds are returned. A full list of animal types can be found by running \code{\link{pf_list_types(token)}}.
+#' @param type One of the available animal types for which to return breed information. If no type is specified, dog breeds are returned. A full list of animal types can be found by running \code{\link{pf_list_types}}.
 #' @return A character vector containing the breed names for the specified animal type.
 #' @export
 #' 

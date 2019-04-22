@@ -10,7 +10,7 @@ pf_list_breeds(token, type = c("dog", "cat", "rabbit", "small & furry",
 \arguments{
 \item{token}{An access token for the Petfinder API (V2)}
 
-\item{type}{One of the available animal types for which to return breed information. If no type is specified, dog breeds are returned. A full list of animal types can be found by running \code{\link{pf_list_types(token)}}.}
+\item{type}{One of the available animal types for which to return breed information. If no type is specified, dog breeds are returned. A full list of animal types can be found by running \code{\link{pf_list_types}}.}
 }
 \value{
 A character vector containing the breed names for the specified animal type.

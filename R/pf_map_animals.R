@@ -19,12 +19,16 @@ pf_merge_organizations <- function(token, animal_df) {
   
   organization_df <- purrr::map_dfr(organization_info, function(x) {
     tibble::tibble(id = x$id, name = x$name, city = x$address[3],
-                   state = x$address[4], zip = x$address[5])
+                   state = x$address[4], zip = as.character(x$address[5]))
   })
   
-  zips <- read.delim2(system.file("extdata/uszip.txt", package = "PetFindr"),
-                     sep = ",", colClasses = "character")
-  org_map_dat <- merge(organization_df, zips, by.x = "zip", by.y = "ZIP", all.y = F)
+  zips <- utils::read.delim2(system.file("extdata/uszip.txt", 
+                                         package = "PetFindr"),
+                             sep = ",", colClasses = c("character"))
+  zips$latitude <- as.numeric(zips$latitude)
+  zips$longitude <- as.numeric(zips$longitude)
+  org_map_dat <- merge(organization_df, zips, by.x = "zip", 
+                       by.y = "zipcode", all.y = F)
   
   return(org_map_dat)
 }
@@ -37,6 +41,8 @@ pf_merge_organizations <- function(token, animal_df) {
 #' @return A leaflet map of the locations of animals provided.
 #' @export
 #' 
+#' @import leaflet
+#' 
 #' @examples
 #' \dontrun{
 #' pups <- pf_find_pets(token, type = "dog", breed = "corgi", location = "50014", distance = "150")
@@ -47,4 +53,5 @@ pf_map_animals <- function(token, animal_df) {
   
   zipmap <- leaflet(data = org_map_dat) %>% addTiles() %>%
     addCircleMarkers(~longitude, ~latitude, popup = ~name, label = ~name)
+  return(zipmap)
 }
