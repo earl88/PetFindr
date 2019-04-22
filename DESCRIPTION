@@ -48,4 +48,5 @@ Imports:
 Suggests: 
     rstudioapi,
     fs,
-    testthat
+    testthat,
+    covr
