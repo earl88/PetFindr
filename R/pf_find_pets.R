@@ -24,7 +24,7 @@
 #' @return A data frame of results matching the search parameters
 #' @export
 #' 
-#' @import httr
+#' @importFrom httr GET add_headers content
 #'
 #' @examples
 #' \dontrun{
