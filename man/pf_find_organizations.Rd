@@ -13,7 +13,7 @@ pf_find_organizations(token = NULL, name = NULL, location = NULL,
 
 \item{name}{The name of organizations to be found (includes partial matches).}
 
-\item{location}{The location of organizations to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".}
+\item{location}{The location of organizations to be found. Values can be specified as "City, State", "latitude, longitude", or "zipcode".}
 
 \item{distance}{The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.}
 
@@ -32,13 +32,12 @@ A data frame of results matching the search parameters.
 }
 \description{
 Retrieve a data frame of information about organizations that are listed on
-Petfinder.com via the Petfinder API (V2). Filter searches based on location
-by specifying a postal code, city and state, country, or latitude and
-longitude.
+Petfinder.com. Filter searches based on location by specifying a postal code,
+city and state, country, or latitude and longitude.
 }
 \examples{
 \dontrun{
-organizations_of_interest <- pf_find_organizations(token, country = "US",
-    limit = 100, sort = "state")
+US_orgs <- pf_find_organizations(token, country = "US", limit = 100, sort = "state")
+MN_orgs <- pf_find_organizations(token, location = "Minneapolis, MN", distance = 50)
 }
 }

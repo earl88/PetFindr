@@ -1,7 +1,6 @@
 #' View photos of pets
 #' 
-#' This function takes a data frame of searched pets and displays the image in
-#' a slideshow format.
+#' View the photos of searched pets in a slideshow format.
 #'
 #' @param animal_df A data frame of animal search results from \code{\link{pf_find_pets}}.
 #' @param size The desired size of the animal photos to be shown. One of "small", "medium", "large", or "full".

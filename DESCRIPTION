@@ -28,6 +28,8 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+Depends: 
+    R (>= 2.10)
 Imports: 
     tibble,
     magrittr,
@@ -45,4 +47,6 @@ Imports:
     rlist
 Suggests: 
     testthat,
-    covr
+    covr,
+    rmarkdown
+VignetteBuilder: knitr

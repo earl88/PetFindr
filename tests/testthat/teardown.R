@@ -1,0 +1,1 @@
+if (file.exists("token.txt")) file.remove("token.txt")

@@ -32,7 +32,7 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
 
 \item{organization}{The organization(s) associated with animals to be found. Values should be provided as identification numbers.}
 
-\item{location}{The location of animals to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".}
+\item{location}{The location of animals to be found. Values can be specified as "City, State", "latitude, longitude", or "zipcode".}
 
 \item{distance}{The distance, in miles, from the provided location to find animals. Note that location is required to use distance.}
 
@@ -47,13 +47,13 @@ A data frame of results matching the search parameters
 }
 \description{
 Retrieve a data frame of information about pets that are listed on
-Petfinder.com via the Petfinder API (V2). Filter searches based on
-characteristics such as animal type, breed, size, age, or location.
+Petfinder.com. Filter searches based on characteristics such as animal
+type, breed, size, age, or location.
 }
 \examples{
 \dontrun{
 puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
 
-pf_find_pets(token, type = "dog", age = "baby", page = 1, location="ames,\%20ia")
+pf_find_pets(token, type = "dog", age = "baby", location = "Ames, IA")
 }
 }

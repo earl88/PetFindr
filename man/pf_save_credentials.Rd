@@ -7,9 +7,9 @@
 pf_save_credentials(key = NULL, secret = NULL)
 }
 \arguments{
-\item{key}{A key provided to the user by the Petfinder API (V2)}
+\item{key}{A key provided to the user by the Petfinder API (V2).}
 
-\item{secret}{A secret provided to the user by the Petfinder API (V2)}
+\item{secret}{A secret provided to the user by the Petfinder API (V2).}
 }
 \value{
 None

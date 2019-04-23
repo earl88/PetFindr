@@ -9,7 +9,7 @@ PetFindr
 
 [![Travis build status](https://travis-ci.org/earl88/PetFindr.svg?branch=master)](https://travis-ci.org/earl88/PetFindr) [![Codecov test coverage](https://codecov.io/gh/earl88/PetFindr/branch/master/graph/badge.svg)](https://codecov.io/gh/earl88/PetFindr?branch=master) <!-- badges: end -->
 
-PetFindr provides an R interface for the Petfinder.com API (V2). Once a user obtains an API key and secret from [Petfinder](https://www.petfinder.com/developers/), this package allows the user to retrieve information about animals by type, breed, location, and other useful characteristics.
+PetFindr provides an R interface for the [Petfinder.com API (V2)](https://www.petfinder.com/developers/). Once a user obtains an API key and secret from Petfinder, this package allows the user to retrieve information about animals by type, breed, location, and other useful characteristics.
 
 Installation
 ------------
@@ -54,9 +54,26 @@ PetFindr has two functions that list available animal search values: `pf_list_ty
 
 ``` r
 pf_list_types(token)
-
-pf_list_breeds(token, type = "dog")
 ```
+
+    #> # A tibble: 8 x 4
+    #>   name        coats               colors                        genders    
+    #>   <chr>       <chr>               <chr>                         <chr>      
+    #> 1 Dog         Hairless, Short, M~ Apricot / Beige, Bicolor, Bl~ Male, Fema~
+    #> 2 Cat         Hairless, Short, M~ Black, Black & White / Tuxed~ Male, Fema~
+    #> 3 Rabbit      Short, Long         Agouti, Black, Blue / Gray, ~ Male, Fema~
+    #> 4 Small & Fu~ Hairless, Short, L~ Agouti, Albino, Black, Black~ Male, Fema~
+    #> 5 Horse       ""                  Appaloosa, Bay, Bay Roan, Bl~ Male, Fema~
+    #> 6 Bird        ""                  Black, Blue, Brown, Buff, Gr~ Male, Fema~
+    #> 7 Scales, Fi~ ""                  Black, Blue, Brown, Gray, Gr~ Male, Fema~
+    #> 8 Barnyard    Short, Long         Agouti, Black, Black & White~ Male, Fema~
+
+``` r
+pf_list_breeds(token, type = "dog") %>% head()
+```
+
+    #> [1] "Affenpinscher"    "Afghan Hound"     "Airedale Terrier"
+    #> [4] "Akbash"           "Akita"            "Alaskan Malamute"
 
 Armed with options for animal type, breed, coat, color, and gender from the pf\_list\_\*() functions, you can search for animals using a variety of query parameters.
 
