@@ -8,9 +8,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' runExample()
+#' pf_ShinyApp()
 #' }
-runExample <- function() {
+pf_runShinyApp <- function() {
   appDir <- system.file("example", "petorg", package = "PetFindr")
   if (appDir == "") {
     stop("Could not find example directory. Try re-installing `PetFindr`.",
