@@ -23,7 +23,7 @@ function(input, output) {
     
     observeEvent(input$table_rows_selected, {
       row_selected = data[as.numeric(input$table_rows_selected),]
-      selected <- pf_locate_organizations(token, row_selected)
+      selected <- PetFindr:::pf_locate_organizations(token, row_selected)
       
       proxy <- leafletProxy('map1', data=selected)
       proxy %>%
@@ -32,7 +32,7 @@ function(input, output) {
                           lat=~latitude, layerId = "selected")
     })
     
-    org_df <- pf_locate_organizations(token, data)
+    org_df <- PetFindr:::pf_locate_organizations(token, data)
     
     org_sum <- data %>% group_by(organization_id) %>%
       summarise(sum = length(id))
