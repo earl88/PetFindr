@@ -15,4 +15,11 @@ test_that("limit input behaves as expected", {
   expect_error(pf_find_organizations(token, limit = "ten"))
 })
 
-
+test_that("page input behaves as expected", {
+  token <- readLines("token.txt")
+  skip_if_not(exists("token"))
+  expect_error(pf_find_organizations(token, page = -1))
+  expect_error(pf_find_organizations(token, page = "one"))
+  expect_error(pf_find_organizations(token, page = c(1, 1.5, 2.7)))
+  expect_error(pf_find_organizations(token, page = 1000^1000))
+})
