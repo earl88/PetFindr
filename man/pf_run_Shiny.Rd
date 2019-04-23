@@ -10,7 +10,7 @@ pf_run_Shiny()
 Launch the PetFindr Shiny application that displays animal location information
 }
 \details{
-\code{PetFindr::petorg}.
+\code{PetFindr::pf_shiny}.
 }
 \examples{
 \dontrun{
