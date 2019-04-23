@@ -3,15 +3,13 @@
 #' Launch a Shiny app that shows a demo of what can be done with
 #' 
 #' \code{PetFindr::petorg}.
-#'
-#'
-#' @examples
-#' ## Only run this example in interactive R sessions
-#' runExample()
-#' 
 #' 
 #' @export
-#' 
+#'
+#' @examples
+#' \dontrun{
+#' runExample()
+#' }
 runExample <- function() {
   appDir <- system.file("example", "petorg", package = "PetFindr")
   if (appDir == "") {

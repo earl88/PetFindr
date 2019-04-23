@@ -13,8 +13,7 @@ Launch a Shiny app that shows a demo of what can be done with
 \code{PetFindr::petorg}.
 }
 \examples{
-## Only run this example in interactive R sessions
+\dontrun{
 runExample()
-
-
+}
 }
