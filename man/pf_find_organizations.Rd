@@ -2,14 +2,14 @@
 % Please edit documentation in R/pf_find_organizations.R
 \name{pf_find_organizations}
 \alias{pf_find_organizations}
-\title{Find organizations}
+\title{Search for organizations}
 \usage{
 pf_find_organizations(token = NULL, name = NULL, location = NULL,
   distance = NULL, state = NULL, country = NULL, sort = "recent",
   page = 1, limit = 20)
 }
 \arguments{
-\item{token}{An access token, provided by pf_accesstoken(key, secret).}
+\item{token}{An access token, provided by \code{\link{pf_accesstoken}}.}
 
 \item{name}{The name of organizations to be found (includes partial matches).}
 

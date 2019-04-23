@@ -1,12 +1,12 @@
-#' Add organization data to animal data
+#' Get location information for searched pets
 #'
-#' @param token An access token, provided by pf_accesstoken(key, secret).
-#' @param animal_df A data frame of animal information output from pf_find_pets().
+#' @param token An access token, provided by \code{\link{pf_accesstoken}}.
+#' @param animal_df A data frame of animal information output from \code{\link{pf_find_pets}}.
 #'
-#' @return The original data frame supplemented with more detailed organization information.
+#' @return The original data frame supplemented with more detailed organization location information.
 #' 
 #' @importFrom httr GET add_headers content
-pf_merge_organizations <- function(token, animal_df) {
+pf_locate_organizations <- function(token, animal_df) {
   id <- unique(animal_df$organization_id)
   base <- "https://api.petfinder.com/v2/organizations/"
   urls <- paste0(base, tolower(id))
@@ -48,10 +48,10 @@ pf_merge_organizations <- function(token, animal_df) {
 #' @examples
 #' \dontrun{
 #' pups <- pf_find_pets(token, type = "dog", breed = "corgi", location = "50014", distance = "150")
-#' pf_map_animals(token, pups)
+#' pf_map_locations(token, pups)
 #' }
-pf_map_animals <- function(token, animal_df) {
-  org_map_dat <- pf_merge_organizations(token, animal_df)
+pf_map_locations <- function(token, animal_df) {
+  org_map_dat <- pf_locate_organizations(token, animal_df)
   
   zipmap <- leaflet(data = org_map_dat) %>% addTiles() %>%
     addCircleMarkers(~longitude, ~latitude, popup = ~name, label = ~name)
