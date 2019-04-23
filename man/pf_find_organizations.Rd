@@ -32,13 +32,12 @@ A data frame of results matching the search parameters.
 }
 \description{
 Retrieve a data frame of information about organizations that are listed on
-Petfinder.com via the Petfinder API (V2). Filter searches based on location
-by specifying a postal code, city and state, country, or latitude and
-longitude.
+Petfinder.com. Filter searches based on location by specifying a postal code,
+city and state, country, or latitude and longitude.
 }
 \examples{
 \dontrun{
-organizations_of_interest <- pf_find_organizations(token, country = "US",
-    limit = 100, sort = "state")
+US_orgs <- pf_find_organizations(token, country = "US", limit = 100, sort = "state")
+MN_orgs <- pf_find_organizations(token, location = "Minneapolis, MN", distance = 50)
 }
 }

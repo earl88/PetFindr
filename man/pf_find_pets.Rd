@@ -47,13 +47,13 @@ A data frame of results matching the search parameters
 }
 \description{
 Retrieve a data frame of information about pets that are listed on
-Petfinder.com via the Petfinder API (V2). Filter searches based on
-characteristics such as animal type, breed, size, age, or location.
+Petfinder.com. Filter searches based on characteristics such as animal
+type, breed, size, age, or location.
 }
 \examples{
 \dontrun{
 puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
 
-pf_find_pets(token, type = "dog", age = "baby", page = 1, location="ames,\%20ia")
+pf_find_pets(token, type = "dog", age = "baby", location = "Ames, IA")
 }
 }

@@ -1,9 +1,8 @@
 #' Search for organizations
 #'
 #' Retrieve a data frame of information about organizations that are listed on
-#' Petfinder.com via the Petfinder API (V2). Filter searches based on location
-#' by specifying a postal code, city and state, country, or latitude and
-#' longitude.
+#' Petfinder.com. Filter searches based on location by specifying a postal code,
+#' city and state, country, or latitude and longitude.
 #'
 #' @param token An access token, provided by \code{\link{pf_accesstoken}}.
 #' @param name The name of organizations to be found (includes partial matches).
@@ -22,19 +21,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' organizations_of_interest <- pf_find_organizations(token, country = "US",
-#'     limit = 100, sort = "state")
+#' US_orgs <- pf_find_organizations(token, country = "US", limit = 100, sort = "state")
+#' MN_orgs <- pf_find_organizations(token, location = "Minneapolis, MN", distance = 50)
 #' }
 pf_find_organizations <- function(token = NULL, name = NULL, 
                                   location = NULL, distance = NULL,
                                   state = NULL, country = NULL,
                                   sort = "recent", page = 1, limit = 20) {
   
-  args <- as.list(match.call(expand.dots = T))[-1]
-  args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
-
-  query_args <- args[!names(args) %in% c("token", "page")]
-  query <- paste(names(query_args), query_args, sep = "=", collapse = "&")
+  query <- pf_build_query(as.list(match.call(expand.dots = T))[-1])
   
   base <- "https://api.petfinder.com/v2/organizations?"
   probe <- GET(url = paste0(base, query),

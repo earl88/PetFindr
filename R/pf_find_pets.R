@@ -1,8 +1,8 @@
 #' Search for pets
 #' 
 #' Retrieve a data frame of information about pets that are listed on
-#' Petfinder.com via the Petfinder API (V2). Filter searches based on 
-#' characteristics such as animal type, breed, size, age, or location.
+#' Petfinder.com. Filter searches based on characteristics such as animal 
+#' type, breed, size, age, or location.
 #'
 #' @param token An access token, provided by\code{\link{pf_accesstoken}}.
 #' @param type The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
@@ -30,7 +30,7 @@
 #' \dontrun{
 #' puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
 #' 
-#' pf_find_pets(token, type = "dog", age = "baby", page = 1, location="ames,%20ia")
+#' pf_find_pets(token, type = "dog", age = "baby", location = "Ames, IA")
 #' }
 pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL, 
                          gender = NULL, age = NULL, color = NULL, coat = NULL,
@@ -38,11 +38,7 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
                          location = NULL, distance = NULL, 
                          sort = "recent", page = 1, limit = 20) {
   
-  args <- as.list(match.call(expand.dots = T))[-1]
-  args <- args[!purrr::map_lgl(args, is.null)] %>% purrr::map(eval)
-  
-  query_args <- args[!names(args) %in% c("token", "page")]
-  query <- paste(names(query_args), query_args, sep = "=", collapse = "&")
+  query <- pf_build_query(as.list(match.call(expand.dots = T))[-1])
   
   base <- "https://api.petfinder.com/v2/animals?"
   probe <- GET(url = paste0(base, query),
