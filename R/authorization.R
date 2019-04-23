@@ -61,7 +61,7 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
     assertthat::are_equal(nchar(secret), 40)
     secret_exists <- any(grepl("petfindr_secret", rprof_contents))
     if (!secret_exists) {
-      str <- sprintf('\npetfindr_key = \"%s\"\n', secret)
+      str <- sprintf('\npetfindr_secret = \"%s\"\n', secret)
       cat(str, file = ".Rprofile", append = TRUE)
       if (!file_changed) {file_changed <- T}
     } else {
