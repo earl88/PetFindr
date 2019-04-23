@@ -1,5 +1,5 @@
 ---
-title: "Using Petfindr"
+title: "Petfindr: Find Pets Near You!"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using Petfindr}
@@ -14,7 +14,25 @@ knitr::opts_chunk$set(
 )
 ```
 
-## About `PetFindr`
+
+## In This Vignette
+
+* Introducing `PetFindr`
+* Getting Started
+    + Authentication
+* Usage
+    + Functions
+    + Examples Using Sample Data
+    + Shiny
+* Conclusion
+
+
+
+
+
+
+
+## Introducing `PetFindr`
 
 
 The goal of 'PetFindr' is to provide a fast and friendly way to extract data from https://www.petfinder.com/, which is the largest online pet adoption website, and to facilitate data analysis and other tasks from the extracted data.\
@@ -26,10 +44,17 @@ This vignette introduces and walks through the package,`PetFindr`, and the Petfi
 
 ## Getting Started
 
-First, you need to install and load the `PetFindr` package.
+First, install the  the development version from [GitHub](https://github.com/) with:
+
+``` {r, eval= F}
+# install.packages("devtools")
+devtools::install_github("earl88/PetFindr")
+```
 
 
-```{r setup}
+Now load the package. 
+
+```{r setup, eval = F}
 library(PetFindr)
 ```
 
@@ -37,17 +62,16 @@ library(PetFindr)
 ### Authentication
 
 In order to begin, you need a secure authentication. \
+
 To get your own `key` and `secret` from the API website, you have to create an account on [Petfinder](https://www.petfinder.com/user/register/).\
 
 `pf_setup` function will guide you through whole process to initialize the API connection to Petfinder.\
 Running this function will open a browser to "https://www.petfinder.com/developers/" and prompt you to register for Petfinder's API (V2).
 
-```{r}
+```{r, eval = F}
 pf_setup()
 
 ```
-
-
 
 
 ```{r}
@@ -61,10 +85,13 @@ pf_setup()
 ```{r, eval = F}
 pf_save_credentials(key, secret)
 ````
-Once you creat an account on [Petfinder](https://www.petfinder.com/) and receive a unique `key` and a secret, you now can use the function `petfindr_save_credentials()` to store their key and secret to your .Rprofile so that you do not have to run `pf_save_credentials(key, secret)` everytime you use the package. Using `pf_save_credentials(key, secret)` makes it easier to access the API in the future, but this function is not required to access the database.  /
+
+Once you creat an account on [Petfinder](https://www.petfinder.com/) and receive a unique `key` and a `secret`, you now can use the function `petfindr_save_credentials()` to store their key and secret to your .Rprofile so that you do not have to run `pf_save_credentials(key, secret)` everytime you use the package.\
+Using `pf_save_credentials(key, secret)` makes it easier to access the API in the future, but this function is not required to access the database.  \
 
 
-You have one more step to use `PetFindr'! In order to maintain security, you need an access token to request access to API database./
+You're ALMOST ready to find pets! You have one more step to use `PetFindr'! \
+In order to maintain security, you need an access token to request access to API database.\
 
 ```{r, eval = F}
 pf_accesstoken(key, secret)
@@ -73,12 +100,23 @@ pf_accesstoken(key, secret)
 Once you use their key and secret as the inputs of `pf_accesstoken()`, you now have an access to the Petfinder servers and can start your own query to find your future pets. By the way, you should remember that the token has to be requested every hour.\
 
 
-Now, The [Petfinder API v2.0](https://www.petfinder.com/developers/v2/docs/) are now accessible through R! Let's find pets! \
+Now, The [Petfinder API v2.0](https://www.petfinder.com/developers/v2/docs/) are now accessible through R! \ 
+Let's find pets! \
 
 
 
 
 ## Usage
+
+
+The Petfinder API allows users to search and view pet listings based on pet characteristics, location, and status. In addition, they can search for and display animal shelters based on the organization's name, ID, and location.\
+
+The following section introduces the functions in `PetFindr` package and how to interact with the Petfinder API with some cute examples of extracting data from the database. \
+
+The examples are mainly split into pet, shelter, photo-viewing functions.
+
+
+### 
 
 
 
