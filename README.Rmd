@@ -5,6 +5,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
+library(PetFindr)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -63,9 +64,23 @@ PetFindr has two functions that list available animal search values: `pf_list_ty
 
 ```{r, eval = FALSE}
 pf_list_types(token)
-
-pf_list_breeds(token, type = "dog")
 ```
+
+```{r, echo = F}
+# Running search code requires a token. Showing static data for README
+data(pf_types, package = "PetFindr")
+tibble::as_tibble(pf_types)
+```
+```{r, eval = FALSE}
+pf_list_breeds(token, type = "dog") %>% head()
+```
+
+```{r, echo = F}
+# Running search code requires a token. Showing static data for README
+data(pf_breeds, package = "PetFindr")
+pf_breeds[1,2] %>% stringr::str_split(., ", ") %>% unlist %>% head
+```
+
 
 Armed with options for animal type, breed, coat, color, and gender from the pf_list_*() functions, you can search for animals using a variety of query parameters.
 

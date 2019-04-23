@@ -54,9 +54,26 @@ PetFindr has two functions that list available animal search values: `pf_list_ty
 
 ``` r
 pf_list_types(token)
-
-pf_list_breeds(token, type = "dog")
 ```
+
+    #> # A tibble: 8 x 4
+    #>   name        coats               colors                        genders    
+    #>   <chr>       <chr>               <chr>                         <chr>      
+    #> 1 Dog         Hairless, Short, M~ Apricot / Beige, Bicolor, Bl~ Male, Fema~
+    #> 2 Cat         Hairless, Short, M~ Black, Black & White / Tuxed~ Male, Fema~
+    #> 3 Rabbit      Short, Long         Agouti, Black, Blue / Gray, ~ Male, Fema~
+    #> 4 Small & Fu~ Hairless, Short, L~ Agouti, Albino, Black, Black~ Male, Fema~
+    #> 5 Horse       ""                  Appaloosa, Bay, Bay Roan, Bl~ Male, Fema~
+    #> 6 Bird        ""                  Black, Blue, Brown, Buff, Gr~ Male, Fema~
+    #> 7 Scales, Fi~ ""                  Black, Blue, Brown, Gray, Gr~ Male, Fema~
+    #> 8 Barnyard    Short, Long         Agouti, Black, Black & White~ Male, Fema~
+
+``` r
+pf_list_breeds(token, type = "dog") %>% head()
+```
+
+    #> [1] "Affenpinscher"    "Afghan Hound"     "Airedale Terrier"
+    #> [4] "Akbash"           "Akita"            "Alaskan Malamute"
 
 Armed with options for animal type, breed, coat, color, and gender from the pf\_list\_\*() functions, you can search for animals using a variety of query parameters.
 
