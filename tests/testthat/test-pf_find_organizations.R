@@ -1,19 +1,18 @@
 context("test-pf_find_organizations")
 
-test_that(" provide the correct limit", {
-  
+test_that("name input behaves as expected", {
   token <- readLines("token.txt")
   skip_if_not(exists("token"))
-  # expect an error due to incorrect state
-  expect_error(pf_find_organizations(token, country = "US",
-                                    limit = 100, sort = recent))
-  expect_error(pf_find_organizations(token, country = "US",
-                                    limit = 1:2, sort = "recent"))
-  # expect an error due to page 
-  expect_error(pf_find_organizations(token, country = "US",
-                                    limit = 101, sort = "recent"))
-  # expect an error due to non-numeric limit
-  expect_error(pf_find_organizations(token, country = "US",
-                                     limit = "hundred", sort = "recent"))
+  expect_error(pf_find_organizations(token, name = -1))
 })
+
+test_that("limit input behaves as expected", {
+  token <- readLines("token.txt")
+  skip_if_not(exists("token"))
+  expect_error(pf_find_organizations(token, limit = -1))
+  expect_error(pf_find_organizations(token, limit = 1:2))
+  expect_error(pf_find_organizations(token, limit = 101))
+  expect_error(pf_find_organizations(token, limit = "ten"))
+})
+
 
