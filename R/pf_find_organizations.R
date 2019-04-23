@@ -6,7 +6,7 @@
 #'
 #' @param token An access token, provided by \code{\link{pf_accesstoken}}.
 #' @param name The name of organizations to be found (includes partial matches).
-#' @param location The location of organizations to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".
+#' @param location The location of organizations to be found. Values can be specified as "City, State", "latitude, longitude", or "zipcode".
 #' @param distance The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.
 #' @param state The state from which to return organizations. Accepts two-letter abbreviations, e.g. AL, WY.
 #' @param country The country from which to return organizations. Accepts two-letter abbreviations, e.g. US, CA.

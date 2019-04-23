@@ -13,7 +13,7 @@ pf_find_organizations(token = NULL, name = NULL, location = NULL,
 
 \item{name}{The name of organizations to be found (includes partial matches).}
 
-\item{location}{The location of organizations to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".}
+\item{location}{The location of organizations to be found. Values can be specified as "City, State", "latitude, longitude", or "zipcode".}
 
 \item{distance}{The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.}
 
