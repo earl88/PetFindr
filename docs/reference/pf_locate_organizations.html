@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Search for organizations — pf_find_organizations • PetFindr</title>
+<title>Get location information for searched pets — pf_locate_organizations • PetFindr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,12 +30,9 @@
 
 
 
-<meta property="og:title" content="Search for organizations — pf_find_organizations" />
+<meta property="og:title" content="Get location information for searched pets — pf_locate_organizations" />
 
-<meta property="og:description" content="Retrieve a data frame of information about organizations that are listed on
-Petfinder.com via the Petfinder API (V2). Filter searches based on location
-by specifying a postal code, city and state, country, or latitude and
-longitude." />
+<meta property="og:description" content="Get location information for searched pets" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,23 +94,18 @@ longitude." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Search for organizations</h1>
+    <h1>Get location information for searched pets</h1>
     
-    <div class="hidden name"><code>pf_find_organizations.Rd</code></div>
+    <div class="hidden name"><code>pf_locate_organizations.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Retrieve a data frame of information about organizations that are listed on
-Petfinder.com via the Petfinder API (V2). Filter searches based on location
-by specifying a postal code, city and state, country, or latitude and
-longitude.</p>
+    <p>Get location information for searched pets</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>pf_find_organizations</span>(<span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>location</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>distance</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"recent"</span>,
-  <span class='kw'>page</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>20</span>)</pre>
+    <pre class="usage"><span class='fu'>pf_locate_organizations</span>(<span class='no'>token</span>, <span class='no'>animal_df</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,49 +115,16 @@ longitude.</p>
       <td><p>An access token, provided by <code><a href='pf_accesstoken.html'>pf_accesstoken</a></code>.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>The name of organizations to be found (includes partial matches).</p></td>
-    </tr>
-    <tr>
-      <th>location</th>
-      <td><p>The location of organizations to be found. Values can be specified as "&lt;City&gt;, &lt;State&gt;", "&lt;latitude&gt;, &lt;longitude&gt;", or "&lt;postal code&gt;".</p></td>
-    </tr>
-    <tr>
-      <th>distance</th>
-      <td><p>The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.</p></td>
-    </tr>
-    <tr>
-      <th>state</th>
-      <td><p>The state from which to return organizations. Accepts two-letter abbreviations, e.g. AL, WY.</p></td>
-    </tr>
-    <tr>
-      <th>country</th>
-      <td><p>The country from which to return organizations. Accepts two-letter abbreviations, e.g. US, CA.</p></td>
-    </tr>
-    <tr>
-      <th>sort</th>
-      <td><p>The attribute on which to sort results. Possible attributes are "distance", "-distance", "name", "-name", "country", "-country", "state", or "-state".</p></td>
-    </tr>
-    <tr>
-      <th>page</th>
-      <td><p>The page(s) of results to return (default = 1).</p></td>
-    </tr>
-    <tr>
-      <th>limit</th>
-      <td><p>The maximum number of results to return per page (maximum = 100).</p></td>
+      <th>animal_df</th>
+      <td><p>A data frame of animal information output from <code><a href='pf_find_pets.html'>pf_find_pets</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame of results matching the search parameters.</p>
+    <p>The original data frame supplemented with more detailed organization location information.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>organizations_of_interest</span> <span class='kw'>&lt;-</span> <span class='fu'>pf_find_organizations</span>(<span class='no'>token</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"US"</span>,
-    <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"state"</span>)
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -173,9 +132,7 @@ longitude.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

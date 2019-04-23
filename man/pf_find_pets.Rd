@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_find_pets.R
 \name{pf_find_pets}
 \alias{pf_find_pets}
-\title{Find pets}
+\title{Search for pets}
 \usage{
 pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
   gender = NULL, age = NULL, color = NULL, coat = NULL,
@@ -10,7 +10,7 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
   distance = NULL, sort = "recent", page = 1, limit = 20)
 }
 \arguments{
-\item{token}{An access token, provided by pf_accesstoken(key, secret).}
+\item{token}{An access token, provided by\code{\link{pf_accesstoken}}.}
 
 \item{type}{The type(s) of animals to be found. A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).}
 

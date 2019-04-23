@@ -1,11 +1,11 @@
-#' Find organizations
+#' Search for organizations
 #'
 #' Retrieve a data frame of information about organizations that are listed on
 #' Petfinder.com via the Petfinder API (V2). Filter searches based on location
 #' by specifying a postal code, city and state, country, or latitude and
 #' longitude.
 #'
-#' @param token An access token, provided by pf_accesstoken(key, secret).
+#' @param token An access token, provided by \code{\link{pf_accesstoken}}.
 #' @param name The name of organizations to be found (includes partial matches).
 #' @param location The location of organizations to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".
 #' @param distance The distance, in miles, from the provided location to find organizations. Note that location is required to use distance.

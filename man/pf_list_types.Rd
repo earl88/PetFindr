@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_list_types.R
 \name{pf_list_types}
 \alias{pf_list_types}
-\title{List all available animal types}
+\title{List animal types with their respective coat, color, and gender options}
 \usage{
 pf_list_types(token, type = NULL)
 }
@@ -15,7 +15,7 @@ pf_list_types(token, type = NULL)
 A tibble listing the desired animal types with their available coats, colors, and genders
 }
 \description{
-Longer description of what the function does
+This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options. If "type" is specified, only information for that type is returned.
 }
 \examples{
 \dontrun{

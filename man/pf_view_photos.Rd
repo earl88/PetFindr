@@ -7,9 +7,9 @@
 pf_view_photos(animal_df, size = c("small", "medium", "large", "full"))
 }
 \arguments{
-\item{animal_df}{A data frame of animal search results from pf_find_pets().}
+\item{animal_df}{A data frame of animal search results from \code{\link{pf_find_pets}}.}
 
-\item{size}{The desired size of the animal photos to be shown}
+\item{size}{The desired size of the animal photos to be shown. One of "small", "medium", "large", or "full".}
 }
 \value{
 A slideshow of animal pictures

@@ -1,6 +1,6 @@
-#' List all available animal types
+#' List animal types with their respective coat, color, and gender options
 #'
-#' Longer description of what the function does
+#' This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options. If "type" is specified, only information for that type is returned.
 #'
 #' @export
 #' @param token An access token
