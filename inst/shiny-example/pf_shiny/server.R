@@ -58,7 +58,7 @@ function(input, output) {
     data$number <- c(1:nrow(data))
     
     validate(
-      need(input$table_rows_selected, "Please select a pet")
+      need(input$table_rows_selected, "Please select a pet from above table")
     )
     
     selected_df <- data %>% filter(number == as.numeric(input$table_rows_selected))
