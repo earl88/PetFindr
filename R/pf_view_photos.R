@@ -16,6 +16,9 @@
 #'   
 #'   bunnies <- pf_find_pets(token, type = "rabbit", age = "baby", limit = 10)
 #'   pf_view_photos(animal_df = bunnies, size = "full")
+#'   
+#'   birds<- pf_find_pets(token, type= "Bird")
+#'   pf_view_photos(birds)
 #' }
 pf_view_photos <- function(animal_df, 
                            size = c("small", "medium", "large", "full")) {
