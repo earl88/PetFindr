@@ -1,8 +1,6 @@
 #' Run PetFindr Shiny app
 #'
-#' Launch the PetFindr Shiny application that displays animal location information
-#' 
-#' \code{PetFindr::pf_shiny}.
+#' Launch the PetFindr Shiny application that displays animal location information.
 #' 
 #' @export
 #'
