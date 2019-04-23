@@ -10,6 +10,6 @@
 #' }
 #' @examples
 #' \dontrun{
-#'  types
+#'  pf_types
 #' }
-"types"
+"pf_types"
