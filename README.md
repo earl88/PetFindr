@@ -29,7 +29,7 @@ Example
 Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API (V2) at <https://www.petfinder.com/developers/>.
 
 ``` r
-# pf_setup()
+pf_setup()
 ```
 
 The PetFinder API (V2) will assign you a key and secret. Those values can be saved to your .Rprofile for future use.
@@ -37,44 +37,38 @@ The PetFinder API (V2) will assign you a key and secret. Those values can be sav
 ``` r
 petfindr_key <- "paste_key_here"
 petfindr_secret <- "paste_secret_here"
-# pf_save_credentials(key = petfindr_key, secret = petfindr_secret)
+pf_save_credentials(key = petfindr_key, secret = petfindr_secret)
 ```
 
-You're almost ready! Before you can make a search, you'll need to get an access token.
+You're almost ready to find pets! Before you can make a search, you'll need to get an access token.
 
 ``` r
-# token <- pf_accesstoken(petfindr_key, petfindr_secret)
+token <- pf_accesstoken(petfindr_key, petfindr_secret)
 ```
 
 Your access token will last for one hour. After that time, you will need to generate a new token.
 
 ### Using PetFindr
 
-Contents
---------
+PetFindr has two functions that list available animal search values: `pf_list_types()` and `pf_list_breeds()`. To list animal breeds, you must specify one of the primary animal types.
 
-Setup functions
+``` r
+pf_list_types(token)
 
--   `pf_setup()`
+pf_list_breeds(token, type = "dog")
+```
 
--   `pf_save_credentials()`
+Armed with options for animal type, breed, coat, color, and gender from the pf\_list\_\*() functions, you can search for animals using a variety of query parameters.
 
--   `pf_accesstoken()`
+``` r
+# Search for baby dogs
+puppies <- pf_find_pets(token, type = "dog", age = "baby", gender = "female")
 
-Search functions
+# View images of horses near Dallas, TX
+pf_find_pets(token, type = "horse", location = "Dallas,%20TX", sort = "distance") %>%
+  pf_view_photos(., size = "small")
 
--   `pf_find_pets()`
-
--   `pf_find_organizations()`
-
-List functions
-
--   `pf_list_types()`
-
--   `pf_list_breeds()`
-
-viewing functions
-
--   `pf_view_photos()`
-
--   `pf_map_animals()`
+# Map the locations of small & furry animals
+pf_find_pets(token, type = "small-furry", page = 1:2) %>%
+  pf_map_animals(token, .)
+```

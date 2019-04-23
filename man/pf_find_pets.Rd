@@ -53,5 +53,7 @@ characteristics such as animal type, breed, size, age, or location.
 \examples{
 \dontrun{
 puppies <- pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
+
+pf_find_pets(token, type = "dog", age = "baby", page = 1, location="ames,\%20ia")
 }
 }

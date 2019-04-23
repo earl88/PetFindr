@@ -80,30 +80,41 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"earl88/PetFindr"</span>)</code></pre></div>
 </div>
-<div id="contents" class="section level2">
+<div id="example" class="section level2">
 <h2 class="hasAnchor">
-<a href="#contents" class="anchor"></a>Contents</h2>
-<p>Setup functions</p>
-<ul>
-<li><p><code><a href="reference/pf_setup.html">pf_setup()</a></code></p></li>
-<li><p><code><a href="reference/pf_save_credentials.html">pf_save_credentials()</a></code></p></li>
-<li><p><code><a href="reference/pf_accesstoken.html">pf_accesstoken()</a></code></p></li>
-</ul>
-<p>Search functions</p>
-<ul>
-<li><p><code><a href="reference/pf_find_pets.html">pf_find_pets()</a></code></p></li>
-<li><p><code><a href="reference/pf_find_organizations.html">pf_find_organizations()</a></code></p></li>
-</ul>
-<p>List functions</p>
-<ul>
-<li><p><code><a href="reference/pf_list_types.html">pf_list_types()</a></code></p></li>
-<li><p><code><a href="reference/pf_list_breeds.html">pf_list_breeds()</a></code></p></li>
-</ul>
-<p>viewing functions</p>
-<ul>
-<li><p><code><a href="reference/pf_view_photos.html">pf_view_photos()</a></code></p></li>
-<li><p><code>pf_map_organizations()</code></p></li>
-</ul>
+<a href="#example" class="anchor"></a>Example</h2>
+<div id="set-up" class="section level3">
+<h3 class="hasAnchor">
+<a href="#set-up" class="anchor"></a>Set up</h3>
+<p>Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you’ll need to register for the official PetFinder API (V2) at <a href="https://www.petfinder.com/developers/" class="uri">https://www.petfinder.com/developers/</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/pf_setup.html">pf_setup</a></span>()</code></pre></div>
+<p>The PetFinder API (V2) will assign you a key and secret. Those values can be saved to your .Rprofile for future use.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">petfindr_key &lt;-<span class="st"> "paste_key_here"</span>
+petfindr_secret &lt;-<span class="st"> "paste_secret_here"</span>
+<span class="kw"><a href="reference/pf_save_credentials.html">pf_save_credentials</a></span>(<span class="dt">key =</span> petfindr_key, <span class="dt">secret =</span> petfindr_secret)</code></pre></div>
+<p>You’re almost ready to find pets! Before you can make a search, you’ll need to get an access token.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">token &lt;-<span class="st"> </span><span class="kw"><a href="reference/pf_accesstoken.html">pf_accesstoken</a></span>(petfindr_key, petfindr_secret)</code></pre></div>
+<p>Your access token will last for one hour. After that time, you will need to generate a new token.</p>
+</div>
+<div id="using-petfindr" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-petfindr" class="anchor"></a>Using PetFindr</h3>
+<p>PetFindr has two functions that list available animal search values: <code><a href="reference/pf_list_types.html">pf_list_types()</a></code> and <code><a href="reference/pf_list_breeds.html">pf_list_breeds()</a></code>. To list animal breeds, you must specify one of the primary animal types.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/pf_list_types.html">pf_list_types</a></span>(token)
+
+<span class="kw"><a href="reference/pf_list_breeds.html">pf_list_breeds</a></span>(token, <span class="dt">type =</span> <span class="st">"dog"</span>)</code></pre></div>
+<p>Armed with options for animal type, breed, coat, color, and gender from the pf_list_*() functions, you can search for animals using a variety of query parameters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Search for baby dogs</span>
+puppies &lt;-<span class="st"> </span><span class="kw"><a href="reference/pf_find_pets.html">pf_find_pets</a></span>(token, <span class="dt">type =</span> <span class="st">"dog"</span>, <span class="dt">age =</span> <span class="st">"baby"</span>, <span class="dt">gender =</span> <span class="st">"female"</span>)
+
+<span class="co"># View images of horses near Dallas, TX</span>
+<span class="kw"><a href="reference/pf_find_pets.html">pf_find_pets</a></span>(token, <span class="dt">type =</span> <span class="st">"horse"</span>, <span class="dt">location =</span> <span class="st">"Dallas,%20TX"</span>, <span class="dt">sort =</span> <span class="st">"distance"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/pf_view_photos.html">pf_view_photos</a></span>(., <span class="dt">size =</span> <span class="st">"small"</span>)
+
+<span class="co"># Map the locations of small &amp; furry animals</span>
+<span class="kw"><a href="reference/pf_find_pets.html">pf_find_pets</a></span>(token, <span class="dt">type =</span> <span class="st">"small-furry"</span>, <span class="dt">page =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/pf_map_animals.html">pf_map_animals</a></span>(token, .)</code></pre></div>
+</div>
 </div>
 </div>
   </div>
@@ -127,6 +138,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/earl88/PetFindr"><img src="https://travis-ci.org/earl88/PetFindr.svg?branch=master" alt="Travis build status"></a></li>
+<li><a href="https://codecov.io/gh/earl88/PetFindr?branch=master"><img src="https://codecov.io/gh/earl88/PetFindr/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 </div>
