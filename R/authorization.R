@@ -27,8 +27,8 @@ pf_setup <- function() {
 #'
 #' This function allows the user to save their Petfinder API (V2) key and/or secret to their .Rprofile for future use.
 #'
-#' @param key A key provided to the user by the Petfinder API (V2)
-#' @param secret A secret provided to the user by the Petfinder API (V2)
+#' @param key A key provided to the user by the Petfinder API (V2).
+#' @param secret A secret provided to the user by the Petfinder API (V2).
 #'
 #' @return None
 #' @export
