@@ -4,8 +4,8 @@ PetFindr
 ========
 
 <!-- badges: start -->
-<img src='inst/logo.png' align="right" height="281" /></a>
-==========================================================
+<img src='man/figures/logo.png' align="right" height="281" /></a>
+=================================================================
 
 [![Travis build status](https://travis-ci.org/earl88/PetFindr.svg?branch=master)](https://travis-ci.org/earl88/PetFindr) [![Codecov test coverage](https://codecov.io/gh/earl88/PetFindr/branch/master/graph/badge.svg)](https://codecov.io/gh/earl88/PetFindr?branch=master) <!-- badges: end -->
 
