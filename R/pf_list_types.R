@@ -3,7 +3,7 @@
 #' This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options.
 #'
 #' @export
-#' @param token An access token
+#' @param token An access token, provided by \code{\link{pf_accesstoken}}.
 #' @return A tibble listing all available animal types with their respective coat, color, and gender options.
 #'
 #' @importFrom httr GET add_headers content

@@ -7,7 +7,7 @@
 pf_list_types(token)
 }
 \arguments{
-\item{token}{An access token}
+\item{token}{An access token, provided by \code{\link{pf_accesstoken}}.}
 }
 \value{
 A tibble listing all available animal types with their respective coat, color, and gender options.
