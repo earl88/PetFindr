@@ -8,6 +8,7 @@ pf_error <- function(status_code) {
                 "500" = "The request ran into an unexpected error. If the problem persists, please contact support at https://www.petfinder.com/developers/support/.",
                 "00001" = "The request has missing parameters.",
                 "00002" = "Your request contains invalid parameters.")
+  
   if(is.null(err)) {
     err <- httr::http_status(as.integer(status_code))$message
   }
