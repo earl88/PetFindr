@@ -51,7 +51,7 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
       cat(str, file = ".Rprofile", append = TRUE)
       file_changed <- T
     } else {
-      cat(".Rprofile already contains a key; no file change was made.\n")
+      message(".Rprofile already contains a key; no file change was made.\n")
       file_changed <- F
     }
   }
@@ -65,18 +65,21 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
       cat(str, file = ".Rprofile", append = TRUE)
       if (!file_changed) {file_changed <- T}
     } else {
-      cat(".Rprofile already contains a secret; no file change was made.\n")
+      message(".Rprofile already contains a secret; no file change was made.\n")
     }
   }
   
   if (file_changed) {
-    if (!requireNamespace("rstudioapi", quietly = T) || 
-        !requireNamespace("fs", quietly = T)) {
-      message("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
-    } else {
-      restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
-    }
+    source(".Rprofile")
   }
+#     if (!requireNamespace("rstudioapi", quietly = T) || 
+#         !requireNamespace("fs", quietly = T)) {
+# 
+#       message("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+#     } else {
+#       restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+#     }
+#   }
 }
 
 #' Generate an access token for the Petfinder API (V2)
@@ -86,6 +89,8 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
 #'
 #' @return An access token for the Petfinder API (V2)
 #' @export
+#' 
+#' @importFrom httr POST content
 #'
 #' @examples
 #' \dontrun{
@@ -95,12 +100,12 @@ pf_accesstoken <- function(key = NULL, secret = NULL) {
   if (is.null(key) || is.null(secret)) {
     stop("You must provide both a key and a secret to receive an access token. Please run 'pf_setup()' for more information.")
   }
-  auth <- httr::POST(url = "https://api.petfinder.com/v2/oauth2/token",
+  auth <- POST(url = "https://api.petfinder.com/v2/oauth2/token",
                      body = list(grant_type = "client_credentials",
                                  client_id = key, client_secret = secret),
                      encode = "json")
   if (auth$status_code != 200) {stop(pf_error(auth$status_code))}
-  accesstoken <- httr::content(auth)$access_token
-  cat("Your access token will last for one hour. After that time, you will need to generate a new token.\n")
+  accesstoken <- content(auth)$access_token
+  message("Your access token will last for one hour. After that time, you will need to generate a new token.\n")
   return(accesstoken)
 }

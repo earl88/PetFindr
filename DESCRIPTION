@@ -35,7 +35,6 @@ Imports:
     assertthat,
     purrr,
     plyr,
-    nlme,
     usethis (>= 1.5.0),
     dplyr,
     magick,
@@ -46,6 +45,5 @@ Imports:
     leaflet,
     rlist
 Suggests: 
-    rstudioapi,
-    fs,
-    testthat
+    testthat,
+    covr

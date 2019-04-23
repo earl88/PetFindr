@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 # <img src='inst/logo.png' align="right" height="281" /></a>
 [![Travis build status](https://travis-ci.org/earl88/PetFindr.svg?branch=master)](https://travis-ci.org/earl88/PetFindr)
+[![Codecov test coverage](https://codecov.io/gh/earl88/PetFindr/branch/master/graph/badge.svg)](https://codecov.io/gh/earl88/PetFindr?branch=master)
 <!-- badges: end -->
 
 PetFindr provides an R interface for the Petfinder.com API (V2). Once a user obtains an API key and secret from [Petfinder](https://www.petfinder.com/developers/), this package allows the user to retrieve information about animals by type, breed, location, and other useful characteristics.
@@ -30,30 +31,53 @@ You can install the  the development version from [GitHub](https://github.com/) 
 devtools::install_github("earl88/PetFindr")
 ```
 
-## Contents
+## Example
 
-Setup functions
+### Set up
 
-* `pf_setup()`
+Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API (V2) at https://www.petfinder.com/developers/.
 
-* `pf_save_credentials()`
+```{r, eval = FALSE}
+pf_setup()
+```
 
-* `pf_accesstoken()`
+The PetFinder API (V2) will assign you a key and secret. Those values can be saved to your .Rprofile for future use.
 
-Search functions
+```{r, eval = FALSE}
+petfindr_key <- "paste_key_here"
+petfindr_secret <- "paste_secret_here"
+pf_save_credentials(key = petfindr_key, secret = petfindr_secret)
+```
 
-* `pf_find_pets()`
+You're almost ready to find pets! Before you can make a search, you'll need to get an access token.
 
-* `pf_find_organizations()`
+```{r, eval = FALSE}
+token <- pf_accesstoken(petfindr_key, petfindr_secret)
+```
 
-List functions
+Your access token will last for one hour. After that time, you will need to generate a new token.
 
-* `pf_list_types()`
+### Using PetFindr
 
-* `pf_list_breeds()`
+PetFindr has two functions that list available animal search values: `pf_list_types()` and `pf_list_breeds()`. To list animal breeds, you must specify one of the primary animal types.
 
-viewing functions
+```{r, eval = FALSE}
+pf_list_types(token)
 
-* `pf_view_photos()`
+pf_list_breeds(token, type = "dog")
+```
 
-* `pf_map_organizations()`
+Armed with options for animal type, breed, coat, color, and gender from the pf_list_*() functions, you can search for animals using a variety of query parameters.
+
+```{r, eval = FALSE}
+# Search for baby dogs
+puppies <- pf_find_pets(token, type = "dog", age = "baby", gender = "female")
+
+# View images of horses near Dallas, TX
+pf_find_pets(token, type = "horse", location = "Dallas,%20TX", sort = "distance") %>%
+  pf_view_photos(., size = "small")
+
+# Map the locations of small & furry animals
+pf_find_pets(token, type = "small-furry", page = 1:2) %>%
+  pf_map_animals(token, .)
+```
