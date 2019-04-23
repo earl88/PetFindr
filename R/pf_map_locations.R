@@ -6,7 +6,6 @@
 #' @return The original data frame supplemented with more detailed organization location information.
 #' 
 #' @importFrom httr GET add_headers content
-#' @export
 pf_locate_organizations <- function(token, animal_df) {
   id <- unique(animal_df$organization_id)
   base <- "https://api.petfinder.com/v2/organizations/"
