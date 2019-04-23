@@ -51,7 +51,7 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
       cat(str, file = ".Rprofile", append = TRUE)
       file_changed <- T
     } else {
-      cat(".Rprofile already contains a key; no file change was made.\n")
+      message(".Rprofile already contains a key; no file change was made.\n")
       file_changed <- F
     }
   }
@@ -65,19 +65,21 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
       cat(str, file = ".Rprofile", append = TRUE)
       if (!file_changed) {file_changed <- T}
     } else {
-      cat(".Rprofile already contains a secret; no file change was made.\n")
+      message(".Rprofile already contains a secret; no file change was made.\n")
     }
   }
   
   if (file_changed) {
-    if (!requireNamespace("rstudioapi", quietly = T) || 
-        !requireNamespace("fs", quietly = T)) {
-      source(".Rprofile")
-      message("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
-    } else {
-      restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
-    }
+    source(".Rprofile")
   }
+#     if (!requireNamespace("rstudioapi", quietly = T) || 
+#         !requireNamespace("fs", quietly = T)) {
+# 
+#       message("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+#     } else {
+#       restart_rstudio("Your credentials will be avaiable in your Global Environment after restarting RStudio.")
+#     }
+#   }
 }
 
 #' Generate an access token for the Petfinder API (V2)
