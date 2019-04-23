@@ -15,8 +15,7 @@ pf_view_photos(animal_df, size = c("small", "medium", "large", "full"))
 A slideshow of animal pictures
 }
 \description{
-This function takes a data frame of searched pets and displays the image in
-a slideshow format.
+View the photos of searched pets in a slideshow format.
 }
 \examples{
 \dontrun{
