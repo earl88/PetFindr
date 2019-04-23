@@ -4,23 +4,20 @@
 \alias{pf_list_types}
 \title{List animal types with their respective coat, color, and gender options}
 \usage{
-pf_list_types(token, type = NULL)
+pf_list_types(token)
 }
 \arguments{
 \item{token}{An access token}
-
-\item{type}{If type is specified, only information for the given type will be returned. One of the eight available types: "dog", "cat", "rabbit", "small & furry", "horse", "bird", "scales, fins, & other", or "barnyard". If no type is provided, all types are returned.}
 }
 \value{
-A tibble listing the desired animal types with their available coats, colors, and genders
+A tibble listing all available animal types with their respective coat, color, and gender options.
 }
 \description{
-This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options. If "type" is specified, only information for that type is returned.
+This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options.
 }
 \examples{
 \dontrun{
 pf_list_types(token)
-pf_list_types(token, "dog")
 pf_list_types(token)$name
 }
 }

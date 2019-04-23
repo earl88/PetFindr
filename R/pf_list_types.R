@@ -1,44 +1,24 @@
 #' List animal types with their respective coat, color, and gender options
 #'
-#' This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options. If "type" is specified, only information for that type is returned.
+#' This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options.
 #'
 #' @export
 #' @param token An access token
-#' @param type If type is specified, only information for the given type will be returned. One of the eight available types: "dog", "cat", "rabbit", "small & furry", "horse", "bird", "scales, fins, & other", or "barnyard". If no type is provided, all types are returned.
-#' @return A tibble listing the desired animal types with their available coats, colors, and genders
+#' @return A tibble listing all available animal types with their respective coat, color, and gender options.
 #'
 #' @importFrom httr GET add_headers content
 #'
 #' @examples
 #' \dontrun{
 #' pf_list_types(token)
-#' pf_list_types(token, "dog")
 #' pf_list_types(token)$name
 #' }
-pf_list_types <- function(token, type = NULL) {
+pf_list_types <- function(token) {
   
-  if(is.null(type)) {
-    type <- ""
-  } else {
-    assertthat::is.string(type)
-    type <- tolower(type)
-    type <- match.arg(type, choices = c("dog", "cat", "rabbit",
-                                        "small & furry", "horse","bird",
-                                        "scales, fins, & other", "barnyard")) %>%
-      gsub(pattern = "([, &]{1,4})", replacement = "-")
-  }
-  
-  base <- "https://api.petfinder.com/v2/types/"
-  
-  results <- GET(url = paste0(base, type), 
+  probe <- GET(url = "https://api.petfinder.com/v2/types/", 
                        add_headers(Authorization = paste("Bearer", token)))
-  if(results$status_code != 200) {stop(pf_error(results$status_code))}
-  
-  if(type == "") {
-    type_info <- content(results)$types
-  } else {
-    type_info <- content(results)
-  }
+  if(probe$status_code != 200) {stop(pf_error(probe$status_code))}
+  test <- content(probe)
   
   types_df <- purrr::map_df(type_info, function(x) {
     tibble::tibble(name = x$name,
