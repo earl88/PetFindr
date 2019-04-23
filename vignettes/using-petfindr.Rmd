@@ -28,10 +28,6 @@ knitr::opts_chunk$set(
 
 
 
-
-
-
-
 ## Introducing `PetFindr`
 
 
