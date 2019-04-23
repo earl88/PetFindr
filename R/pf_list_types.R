@@ -15,11 +15,11 @@
 #' }
 pf_list_types <- function(token) {
   
-  probe <- GET(url = "https://api.petfinder.com/v2/types/", 
+  results <- GET(url = "https://api.petfinder.com/v2/types/", 
                        add_headers(Authorization = paste("Bearer", token)))
-  if(probe$status_code != 200) {stop(pf_error(probe$status_code))}
+  if(results$status_code != 200) {stop(pf_error(results$status_code))}
   
-  types_df <- purrr::map_df(content(probe)[[1]], function(x) {
+  types_df <- purrr::map_df(content(results)[[1]], function(x) {
     tibble::tibble(name = x$name,
                    coats = unlist(x$coats) %>% paste0(collapse = ", "),
                    colors = unlist(x$colors) %>% paste0(collapse = ", "),
