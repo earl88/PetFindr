@@ -13,3 +13,17 @@
 #'  pf_types
 #' }
 "pf_types"
+
+#' Available breeds by type from Petfinder.com
+#'
+#' @source Petfinder API (V2); retrieved on April 23, 2019 \url{https://www.petfinder.com/developers/}
+#' @format A data frame with columns:
+#' \describe{
+#'  \item{name}{Available animal types}
+#'  \item{breeds}{Available breeds for each animal type, separated by commas}
+#' }
+#' @examples
+#' \dontrun{
+#'  pf_breeds
+#' }
+"pf_breeds"
