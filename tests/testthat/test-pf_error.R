@@ -9,4 +9,7 @@ test_that("error codes function as expected", {
             "The requested resource was not found.", 
             "The request ran into an unexpected error. If the problem persists, please contact support at https://www.petfinder.com/developers/support/.")
   expect_equivalent(sapply(errors, pf_error), msgs)
+  
+  expect_equivalent(pf_error(429), httr::http_status(429L)$message)
+  expect_error(pf_error(2))
 })
