@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_find_pets.R
 \name{pf_find_pets}
 \alias{pf_find_pets}
-\title{Find Pets}
+\title{Find pets}
 \usage{
 pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
   gender = NULL, age = NULL, color = NULL, coat = NULL,

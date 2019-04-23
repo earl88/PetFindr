@@ -1,4 +1,4 @@
-#' Merge Organization Data to Animal Data
+#' Add organization data to animal data
 #'
 #' @param token An access token, provided by pf_accesstoken(key, secret).
 #' @param animal_df A data frame of animal information output from pf_find_pets().
@@ -35,7 +35,7 @@ pf_merge_organizations <- function(token, animal_df) {
   return(org_map_dat)
 }
 
-#' Display Animal Locations
+#' Display animal locations
 #'
 #' @param token An access token, provided by pf_accesstoken(key, secret).
 #' @param animal_df A data frame of animal information output from pf_find_pets().

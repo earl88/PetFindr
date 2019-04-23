@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_view_photos.R
 \name{pf_view_photos}
 \alias{pf_view_photos}
-\title{View Photos of Pets}
+\title{View photos of pets}
 \usage{
 pf_view_photos(animal_df, size = c("small", "medium", "large", "full"))
 }

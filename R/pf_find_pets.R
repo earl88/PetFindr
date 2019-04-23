@@ -1,4 +1,4 @@
-#' Find Pets
+#' Find pets
 #' 
 #' Retrieve a data frame of information about pets that are listed on
 #' Petfinder.com via the Petfinder API (V2). Filter searches based on 

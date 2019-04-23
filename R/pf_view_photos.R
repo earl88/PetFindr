@@ -1,4 +1,4 @@
-#' View Photos of Pets
+#' View photos of pets
 #' 
 #' This function takes a data frame of searched pets and displays the image in
 #' a slideshow format.

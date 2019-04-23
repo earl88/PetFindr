@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_find_organizations.R
 \name{pf_find_organizations}
 \alias{pf_find_organizations}
-\title{Find Organizations}
+\title{Find organizations}
 \usage{
 pf_find_organizations(token = NULL, name = NULL, location = NULL,
   distance = NULL, state = NULL, country = NULL, sort = "recent",

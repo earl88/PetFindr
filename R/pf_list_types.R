@@ -1,4 +1,4 @@
-#' List available animal types found on Petfinder.com
+#' List all available animal types
 #'
 #' Longer description of what the function does
 #'

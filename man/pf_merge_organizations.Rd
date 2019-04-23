@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_map_animals.R
 \name{pf_merge_organizations}
 \alias{pf_merge_organizations}
-\title{Merge Organization Data to Animal Data}
+\title{Add organization data to animal data}
 \usage{
 pf_merge_organizations(token, animal_df)
 }
@@ -15,5 +15,5 @@ pf_merge_organizations(token, animal_df)
 The original data frame supplemented with more detailed organization information.
 }
 \description{
-Merge Organization Data to Animal Data
+Add organization data to animal data
 }

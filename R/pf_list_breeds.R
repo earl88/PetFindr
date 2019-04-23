@@ -1,4 +1,4 @@
-#' List available breeds for a specific animal type on Petfinder.com
+#' List available breeds for a given animal type
 #'
 #' This function allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type.
 #'

@@ -1,4 +1,4 @@
-#' Find Organizations
+#' Find organizations
 #'
 #' Retrieve a data frame of information about organizations that are listed on
 #' Petfinder.com via the Petfinder API (V2). Filter searches based on location

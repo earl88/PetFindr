@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_list_breeds.R
 \name{pf_list_breeds}
 \alias{pf_list_breeds}
-\title{List available breeds for a specific animal type on Petfinder.com}
+\title{List available breeds for a given animal type}
 \usage{
 pf_list_breeds(token, type = c("dog", "cat", "rabbit", "small & furry",
   "horse", "bird", "scales, fins, & other", "barnyard"))

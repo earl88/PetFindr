@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_list_types.R
 \name{pf_list_types}
 \alias{pf_list_types}
-\title{List available animal types found on Petfinder.com}
+\title{List all available animal types}
 \usage{
 pf_list_types(token, type = NULL)
 }

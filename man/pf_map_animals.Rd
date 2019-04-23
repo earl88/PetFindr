@@ -2,7 +2,7 @@
 % Please edit documentation in R/pf_map_animals.R
 \name{pf_map_animals}
 \alias{pf_map_animals}
-\title{Display Animal Locations}
+\title{Display animal locations}
 \usage{
 pf_map_animals(token, animal_df)
 }
@@ -15,7 +15,7 @@ pf_map_animals(token, animal_df)
 A leaflet map of the locations of animals provided.
 }
 \description{
-Display Animal Locations
+Display animal locations
 }
 \examples{
 \dontrun{
