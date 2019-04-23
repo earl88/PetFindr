@@ -14,6 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
+## About `PetFindr`
+
+
 The goal of 'PetFindr' is to provide a fast and friendly way to extract data from https://www.petfinder.com/, which is the largest online pet adoption website, and to facilitate data analysis and other tasks from the extracted data.\
 
 The package provides a useful tool to enable R users to search for their favorite pets in their own R session, and to browse pictures of the pets. All of this is possible thanks to API (Application Programming Interface) which is a set of instructions and standards for accessing structured information on the web. The Petfinder website provides us with an API that allows us to access the Petfinder database of hundreds of thousands of pets ready for adoption and over ten thousand animal welfare organizations. \
@@ -21,7 +24,7 @@ The package provides a useful tool to enable R users to search for their favorit
 This vignette introduces and walks through the package,`PetFindr`, and the Petfinder API for authenticating and extracting data from the database.\
 
 
-### Getting Started
+## Getting Started
 
 First, you need to install and load the `PetFindr` package.
 
@@ -31,7 +34,9 @@ library(PetFindr)
 ```
 
 
+### Authentication
 
+In order to begin, you need a secure authentication. \
 To get your own `key` and `secret` from the API website, you have to create an account on [Petfinder](https://www.petfinder.com/user/register/).\
 
 `pf_setup` function will guide you through whole process to initialize the API connection to Petfinder.\
@@ -56,9 +61,24 @@ pf_setup()
 ```{r, eval = F}
 pf_save_credentials(key, secret)
 ````
-Once you creat an account on [Petfinder](https://www.petfinder.com/) and receive a unique `key` and a secret, you now can use the function `petfindr_save_credentials()` to store their key and secret to your .Rprofile so that you do not have to run `pf_save_credentials(key, secret)` everytime you use the package. /
+Once you creat an account on [Petfinder](https://www.petfinder.com/) and receive a unique `key` and a secret, you now can use the function `petfindr_save_credentials()` to store their key and secret to your .Rprofile so that you do not have to run `pf_save_credentials(key, secret)` everytime you use the package. Using `pf_save_credentials(key, secret)` makes it easier to access the API in the future, but this function is not required to access the database.  /
 
 
+You have one more step to use `PetFindr'! In order to maintain security, you need an access token to request access to API database./
+
+```{r, eval = F}
+pf_accesstoken(key, secret)
+```
+
+Once you use their key and secret as the inputs of `pf_accesstoken()`, you now have an access to the Petfinder servers and can start your own query to find your future pets. By the way, you should remember that the token has to be requested every hour.\
+
+
+Now, The [Petfinder API v2.0](https://www.petfinder.com/developers/v2/docs/) are now accessible through R! Let's find pets! \
+
+
+
+
+## Usage
 
 
 
