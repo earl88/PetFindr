@@ -1,10 +1,8 @@
-
 library(shiny)
 library(zipcode)
 library(tidyr)
 library(leaflet)
 library(PetFindr)
-library(tidyverse)
 
 ui <- fluidPage(
   

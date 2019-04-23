@@ -1,10 +1,10 @@
 library(shiny)
 library(zipcode)
 library(tidyr)
-library(readr)
 library(leaflet)
 library(PetFindr)
-library(tidyverse)
+
+
 
 server <- function(input, output) {
   zipmap <- read_csv("https://gist.githubusercontent.com/erichurst/7882666/raw/5bdc46db47d9515269ab12ed6fb2850377fd869e/US%2520Zip%2520Codes%2520from%25202013%2520Government%2520Data")
@@ -25,5 +25,9 @@ server <- function(input, output) {
       addMarkers(lat = data$LAT, lng = data$LNG, popup = ~data$name)
   })
 }
+### print n rows of data
 
+
+
+# Run the application 
 shinyApp(ui = ui, server = server)
