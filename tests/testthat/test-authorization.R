@@ -1,7 +1,7 @@
 context("test-authorization")
 
 test_that("setup function works", {
-  expect_error(pf_setup())
+  expect_message(pf_setup(), "Welcome to PetFindr!")
 })
 
 test_that("save credentials", {
