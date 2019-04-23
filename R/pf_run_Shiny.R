@@ -1,17 +1,17 @@
-#'  Run petorg example
+#' Run PetFindr Shiny app
 #'
-#' Launch a Shiny app that shows a demo of what can be done with
+#' Launch the PetFindr Shiny application that displays animal location information
 #' 
-#' \code{PetFindr::petorg}.
+#' \code{PetFindr::pf_shiny}.
 #' 
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' pf_ShinyApp()
+#' pf_run_Shiny()
 #' }
-pf_runShinyApp <- function() {
-  appDir <- system.file("example", "petorg", package = "PetFindr")
+pf_run_Shiny <- function() {
+  appDir <- system.file("example", "pf_shiny", package = "PetFindr")
   if (appDir == "") {
     stop("Could not find example directory. Try re-installing `PetFindr`.",
          call. = FALSE
