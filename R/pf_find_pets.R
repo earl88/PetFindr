@@ -15,7 +15,7 @@
 #' @param status The status of animals to be found. Possible values are "adoptable", "adopted", or "found".
 #' @param name The name of animals to be found (includes partial matches; e.g. "Fred" will return "Alfredo" and "Frederick").
 #' @param organization The organization(s) associated with animals to be found. Values should be provided as identification numbers.
-#' @param location The location of animals to be found. Values can be specified as "<City>, <State>", "<latitude>, <longitude>", or "<postal code>".
+#' @param location The location of animals to be found. Values can be specified as "City, State", "latitude, longitude", or "zipcode".
 #' @param distance The distance, in miles, from the provided location to find animals. Note that location is required to use distance.
 #' @param sort The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
 #' @param page The page(s) of results to return (default = 1). 
