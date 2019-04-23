@@ -47,4 +47,6 @@ Imports:
     rlist
 Suggests: 
     testthat,
-    covr
+    covr,
+    rmarkdown
+VignetteBuilder: knitr
