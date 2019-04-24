@@ -45,7 +45,7 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   
   query <- paste(names(query_args), query_args, sep = "=", collapse = "&") %>%
     gsub(pattern = "[ ]", replacement = "%20")
-  
+
   base <- "https://api.petfinder.com/v2/animals?"
   probe <- GET(url = paste0(base, query),
                add_headers(Authorization = paste("Bearer", token)))
