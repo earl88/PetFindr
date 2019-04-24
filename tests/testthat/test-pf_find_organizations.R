@@ -9,11 +9,6 @@ token <- readLines("token.txt")
 #   skip_if_not(exists("token"))
 # })
 
-#test_that("name input behaves as expected", {
-#  token <- readLines("token.txt")
-#  skip_if_not(exists("token"))
-#  expect_error(pf_find_organizations(token, name = -1))
-#})
 
 test_that("limit input behaves as expected", {
   skip_if_not(exists("token"))
