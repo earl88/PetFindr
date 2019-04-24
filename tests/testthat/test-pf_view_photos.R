@@ -1,7 +1,7 @@
 context("test-pf_view_photos")
 
 test_that("correct animal dataframe ", {
-  
+
   # expect an error due to incorrect search result from pf_find_pet
   expect_error(pf_view_photos(animal_df = puppies, size = 123))
   
@@ -13,12 +13,14 @@ test_that("correct animal dataframe ", {
   
 })
 
-test_that("photo view has output as expected", {
-  token <- readLines("token.txt")
-  skip_if_not(exists("token"))
-  birds<- pf_find_pets(token, type= "Bird", limit = 10)
-  birds_df<-pf_view_photos(birds, "small")
-  expect_true(tibble::is_tibble( magick::image_info(birds_df) ))
-  
-  
-})
+# test_that("photo view has output as expected", {
+#   token <- readLines("token.txt")
+#   skip_if_not(exists("token"))
+#   
+#   birds<- pf_find_pets(token=token, type= "Bird")
+#   expect_true(is.data.frame(birds))
+#   birds_df<-pf_view_photos(birds, "small")
+#   expect_true(tibble::is_tibble( magick::image_info(birds_df) ))
+#    
+#   
+# })
