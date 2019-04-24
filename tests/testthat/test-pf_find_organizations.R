@@ -1,9 +1,13 @@
 context("test-pf_find_organizations")
 
 
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
-})
+token <- readLines("token.txt")
+# print(token)
+# 
+# test_that("function runs", {
+#   # token <- readLines("token.txt")
+#   skip_if_not(exists("token"))
+# })
 
 #test_that("name input behaves as expected", {
 #  token <- readLines("token.txt")
@@ -12,16 +16,17 @@ test_that("multiplication works", {
 #})
 
 test_that("limit input behaves as expected", {
-  token <- readLines("token.txt")
   skip_if_not(exists("token"))
-  expect_error(pf_find_organizations(token, limit = -1))
+  df <- pf_find_organizations(token = token, name = "dog")
+  expect_s3_class(df, "data.frame")
+  expect_error(pf_find_organizations(token, name = "dog", limit = -1))
 #  expect_error(pf_find_organizations(token, limit = 1:2))
 #  expect_error(pf_find_organizations(token, limit = 101))
 #  expect_error(pf_find_organizations(token, limit = "ten"))
 })
 
 test_that("page input behaves as expected", {
-  token <- readLines("token.txt")
+  # token <- readLines("token.txt")
   skip_if_not(exists("token"))
 #  expect_error(pf_find_organizations(token, page = -1))
 #  expect_error(pf_find_organizations(token, page = "one"))

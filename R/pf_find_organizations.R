@@ -29,8 +29,14 @@ pf_find_organizations <- function(token = NULL, name = NULL,
                                   state = NULL, country = NULL,
                                   sort = "recent", page = 1, limit = 20) {
   
-  query <- pf_build_query(as.list(match.call(expand.dots = T))[-1])
+  args <- as.list(match.call())[-1]
+  query_args <- args[!names(args) %in% c("token", "page")] %>% purrr::map(eval)
+  query_args <- stats::setNames(unlist(query_args, use.names=F),
+                                rep(names(query_args), lengths(query_args)))
   
+  query <- paste(names(query_args), query_args, sep = "=", collapse = "&") %>%
+    gsub(pattern = "[ ]", replacement = "%20")
+
   base <- "https://api.petfinder.com/v2/organizations?"
   probe <- GET(url = paste0(base, query),
                add_headers(Authorization = paste("Bearer", token)))
