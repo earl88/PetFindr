@@ -26,7 +26,6 @@ test_that("limit input behaves as expected", {
 })
 
 test_that("page input behaves as expected", {
-  # token <- readLines("token.txt")
   skip_if_not(exists("token"))
 #  expect_error(pf_find_organizations(token, page = -1))
 #  expect_error(pf_find_organizations(token, page = "one"))
