@@ -7,8 +7,6 @@ pf_breeds <- pf_types %>%
   cbind(types$name, .) %>%
   setNames(c("name", "breeds"))
 
-
-
 # usethis::use_data(pf_types)
 # usethis::use_data(pf_breeds)
 
@@ -20,12 +18,18 @@ LA_puppies <- pf_find_pets(token, type = "dog", age = "baby",
 rm_indices <- c(paste0("photos.[a-z]{4,6}.", 2:5), "hours", "tags", "links") %>%
   sapply(., grepl, names(LA_puppies)) %>% 
   apply(1, any)
-LA_puppies <- LA_puppies[,!rm_indices]
+keep_cols <- names(LA_puppies)[!rm_indices]
+LA_puppies <- LA_puppies[,keep_cols]
 #usethis::use_data(LA_puppies)
 
 
 
 #organizations.data 
 NY_orgs <- pf_find_organizations(token, state = "NY", 
-                                 limit = 100, page = 1:5, sort = "-name") %>% select("id", "name", "address.city", "address.state", "address.state", "address.postcode")
+                                 limit = 100, page = 1:5, sort = "-name")
+rm_indices <- c(paste0("photos.[a-z]{4,6}.", 2:5), "hours", "tags", "links") %>%
+  sapply(., grepl, names(NY_orgs)) %>% 
+  apply(1, any)
+keep_cols <- names(NY_orgs)[!rm_indices]
+NY_orgs <- NY_orgs[,keep_cols]
 #usethis::use_data(NY_orgs)
