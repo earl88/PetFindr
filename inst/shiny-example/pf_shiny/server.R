@@ -46,7 +46,6 @@ function(input, output, session) {
                   "contact.address.address1", "contact.address.city", 
                   "contact.phone")
     
-    # MuST FIX !!!!!: Need to check whether the columns exist before selecting
     petdata() %>% 
       select(names(petdata())[names(petdata()) %in% colnames])
   }, selection = "single")
