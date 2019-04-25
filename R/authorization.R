@@ -44,8 +44,8 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
   assertthat::assert_that(!is.null(key) | !is.null(secret))
   
   if (!is.null(key)) {
-    assertthat::is.string(key)
-    assertthat::are_equal(nchar(key), 50)
+    assertthat::assert_that(is.character(key))
+    assertthat::assert_that(nchar(key) == 50)
     key_exists <- any(grepl("petfindr_key", rprof_contents))
     if (!key_exists) {
       str <- sprintf('\npetfindr_key = \"%s\"\n', key)
@@ -58,8 +58,8 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
   }
   
   if (!is.null(secret)) {
-    assertthat::is.string(secret)
-    assertthat::are_equal(nchar(secret), 40)
+    assertthat::assert_that(is.character(secret))
+    assertthat::assert_that(nchar(secret) == 40)
     secret_exists <- any(grepl("petfindr_secret", rprof_contents))
     if (!secret_exists) {
       str <- sprintf('\npetfindr_secret = \"%s\"\n', secret)
