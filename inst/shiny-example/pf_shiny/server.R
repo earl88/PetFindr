@@ -1,4 +1,3 @@
-
 function(input, output, session) {
   
   if (exists("petfindr_key")) {
@@ -41,8 +40,9 @@ function(input, output, session) {
   
     
   output$table <- DT::renderDataTable(DT::datatable({
+    # MuST FIX !!!!!: Need to check whether the columns exist before selecting
     petdata() %>% 
-      select(c("organization_id", "type", "status", 
+      select(c("name", "breeds.primary", "organization_id", "type", #"status", 
                "contact.address.address1", "contact.address.city", 
                "contact.phone"))
   }, selection = "single")
@@ -83,7 +83,7 @@ function(input, output, session) {
   })
   
   output$photos = renderImage({
-    
+    # MuST FIX !!!: Check whether the pet has a photo, display "No photos" if not
     data <- petdata()
     data$number <- c(1:nrow(data))
     
