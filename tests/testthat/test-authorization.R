@@ -10,6 +10,8 @@ test_that("can use key and secret", {
   token <- expect_message(pf_accesstoken(test_key, test_secret), 
                           "Your access token will last for one hour")
   if (nchar(token) > 0) writeLines(token, "token.txt")
+  expect_error(pf_accesstoken(key = "ceci n'est pas une key",
+                              secret = "ceci n'est pas une secret"))
 })
 
 test_that("can save credentials", {
