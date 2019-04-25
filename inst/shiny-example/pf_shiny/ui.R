@@ -2,6 +2,8 @@ shinyUI(navbarPage("PetFinder",
                  tabPanel("Search by Animals",
                           fluidRow(
                             sidebarPanel(
+                              textInput("key", "Your key", ifelse(exists("petfindr_key"), petfindr_key, "Paste your key here")),
+                              textInput("secret", "Your secret", ifelse(exists("petfindr_secret"), petfindr_secret, "Paste your secret here")),
                               numericInput(inputId = "location", 50014,
                                            label = "Your ZIP code"),
                               numericInput(inputId = "distance", 50,

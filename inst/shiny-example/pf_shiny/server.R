@@ -1,25 +1,30 @@
 function(input, output) {
-  
   output$table <- DT::renderDataTable(DT::datatable({
-    key <- "Z69HqIlhMDkYHo9HCKH78NwtP2v8Js2YlqZs2heB887n5ePUpF"
-    secret <- "X7RUPlGuPkbXP0gNXz8r2KfpZUfb5EB1pg4neruZ"
+    key <- input$key
+    secret <- input$secret
     token <- pf_accesstoken(key, secret)
-    data <- do.call(PetFindr::pf_find_pets, args = list(token=token, location=input$location, distance=input$distance, type=input$animal,
-                                                        status=input$status, limit=input$limit))
+    data <- do.call(PetFindr::pf_find_pets, 
+                    args = list(token = token, location = input$location, 
+                                distance = input$distance, type = input$animal,
+                                status = input$status, limit = input$limit))
     
     data %>% 
-      select(c("organization_id", "type", "status", "contact.address.address1", "contact.address.city", "contact.phone"))
+      select(c("organization_id", "type", "status", 
+               "contact.address.address1", "contact.address.city", 
+               "contact.phone"))
   }, selection = "single")
   )
   
   
   
   output$map1 <- renderLeaflet({
-    key <- "Z69HqIlhMDkYHo9HCKH78NwtP2v8Js2YlqZs2heB887n5ePUpF"
-    secret <- "X7RUPlGuPkbXP0gNXz8r2KfpZUfb5EB1pg4neruZ"
+    key <- input$key
+    secret <- input$secret
     token <- pf_accesstoken(key, secret)
-    data <- do.call(PetFindr::pf_find_pets, args = list(token=token, location=input$location, distance=input$distance, type=input$animal,
-                                                        status=input$status, limit=input$limit))
+    data <- do.call(PetFindr::pf_find_pets, 
+                    args = list(token = token, location = input$location, 
+                                distance = input$distance, type = input$animal,
+                                status = input$status, limit = input$limit))
     
     observeEvent(input$table_rows_selected, {
       row_selected = data[as.numeric(input$table_rows_selected),]
@@ -49,11 +54,13 @@ function(input, output) {
   })
   
   output$photos = renderImage({
-    key <- "Z69HqIlhMDkYHo9HCKH78NwtP2v8Js2YlqZs2heB887n5ePUpF"
-    secret <- "X7RUPlGuPkbXP0gNXz8r2KfpZUfb5EB1pg4neruZ"
+    key <- input$key
+    secret <- input$secret
     token <- pf_accesstoken(key, secret)
-    data <- do.call(PetFindr::pf_find_pets, args = list(token=token, location=input$location, distance=input$distance, type=input$animal,
-                                                        status=input$status, limit=input$limit))
+    data <- do.call(PetFindr::pf_find_pets, 
+                    args = list(token = token, location = input$location, 
+                                distance = input$distance, type = input$animal,
+                                status = input$status, limit = input$limit))
     
     data$number <- c(1:nrow(data))
     

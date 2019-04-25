@@ -9,7 +9,7 @@
 #' pf_run_Shiny()
 #' }
 pf_run_Shiny <- function() {
-  appDir <- system.file("example", "pf_shiny", package = "PetFindr")
+  appDir <- system.file("shiny-example", "pf_shiny", package = "PetFindr")
   if (appDir == "") {
     stop("Could not find example directory. Try re-installing `PetFindr`.",
          call. = FALSE
