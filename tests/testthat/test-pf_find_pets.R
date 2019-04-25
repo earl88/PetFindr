@@ -24,7 +24,8 @@ test_that("page input behaves as expected", {
   expect_error(pf_find_pets(token, page = -1))
   expect_error(pf_find_pets(token, page = "one"))
   expect_error(pf_find_pets(token, page = c(1, 1.5, 2.7)))
-  expect_error(pf_find_pets(token, page = 1000^1000))
+  expect_warning(pf_find_pets(token, type = "dog", age = "baby", location = 50014, name = "Bobby Kennedy", page = 10))
+  expect_warning(pf_find_pets(token, type = "dog", age = "baby", location = 50014, name = "Bobby Kennedy", page = 1:200))
 })
 
 test_that("age input behaves as expected", {
@@ -33,16 +34,6 @@ test_that("age input behaves as expected", {
 
 })
 
-
-
-test_that("limit, sort and page inputs behaves as expected", {
-  
-  expect_error(pf_find_organizations(token, type= "dog", limit = -1))
-  expect_error(pf_find_pets(token, sort = "123"))
-  expect_error(pf_find_pets(token, page = 1000^1000))
-  
- 
-})
 
 test_that("the output is a data frame", {
   
