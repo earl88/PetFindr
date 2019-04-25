@@ -9,7 +9,3 @@ test_that("data input behaves as expected", {
   leaflet_map <- pf_map_locations(token = token, animal_df = pf_find_pets(token=token, location=50014))
   expect_s3_class(leaflet_map, "leaflet")
 })
-
-test_that("id should be character", {
-  
-})

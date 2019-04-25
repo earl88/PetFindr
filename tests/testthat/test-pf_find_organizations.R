@@ -25,6 +25,7 @@ test_that("page input behaves as expected", {
   expect_error(pf_find_organizations(token, page = "one"))
   expect_error(pf_find_organizations(token, page = c(1, 1.5, 2.7)))
   expect_warning(pf_find_organizations(token, name = "Minnkota Persian Rescue", page = 200))
+  expect_warning(pf_find_organizations(token, name = "Minnkota Persian Rescue", page = 1:200))
 })
 
 
