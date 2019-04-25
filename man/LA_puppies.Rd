@@ -48,7 +48,7 @@
 \item{photos.large.1}{Second photo, large size}
 \item{photos.full.1}{Second photo, full size}
 \item{contact.address.address2}{Contact address: line 2}
-\item{"colors.tertiary"}{Tertiary color}
+\item{colors.tertiary}{Tertiary color}
 }}
 \source{
 Petfinder API (V2); retrieved on April 25, 2019 \url{https://www.petfinder.com/developers/}
