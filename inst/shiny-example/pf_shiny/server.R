@@ -1,8 +1,20 @@
 function(input, output) {
-  output$table <- DT::renderDataTable(DT::datatable({
-    key <- input$key
-    secret <- input$secret
+  get_token <- reactive({
+    key <- req(input$key)
+    secret <- req(input$secret)
     token <- pf_accesstoken(key, secret)
+  })
+  
+  observeEvent(input$search, {
+    get_token()
+  })
+  
+  output$table <- DT::renderDataTable(DT::datatable({
+    # key <- input$key
+    # secret <- input$secret
+    # token <- pf_accesstoken(key, secret)
+    
+    
     data <- do.call(PetFindr::pf_find_pets, 
                     args = list(token = token, location = input$location, 
                                 distance = input$distance, type = input$animal,
@@ -18,9 +30,9 @@ function(input, output) {
   
   
   output$map1 <- renderLeaflet({
-    key <- input$key
-    secret <- input$secret
-    token <- pf_accesstoken(key, secret)
+    # key <- input$key
+    # secret <- input$secret
+    # token <- pf_accesstoken(key, secret)
     data <- do.call(PetFindr::pf_find_pets, 
                     args = list(token = token, location = input$location, 
                                 distance = input$distance, type = input$animal,
@@ -54,9 +66,9 @@ function(input, output) {
   })
   
   output$photos = renderImage({
-    key <- input$key
-    secret <- input$secret
-    token <- pf_accesstoken(key, secret)
+    # key <- input$key
+    # secret <- input$secret
+    # token <- pf_accesstoken(key, secret)
     data <- do.call(PetFindr::pf_find_pets, 
                     args = list(token = token, location = input$location, 
                                 distance = input$distance, type = input$animal,
