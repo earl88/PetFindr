@@ -40,8 +40,15 @@ pf_find_pets <- function(token = NULL, type = NULL, breed = NULL, size = NULL,
   
   args <- as.list(match.call())[-1]
   query_args <- args[!names(args) %in% c("token", "page")] %>% purrr::map(eval)
-  query_args <- stats::setNames(unlist(query_args, use.names=F),
-                                rep(names(query_args), lengths(query_args)))
+  
+  if(length(query_args) > 0) {
+    query_args <- stats::setNames(unlist(query_args, use.names=F),
+                                  rep(names(query_args), lengths(query_args)))
+  }
+  
+  type_args <- grepl("type", names(query_args))
+  query_args[type_args] <- query_args[type_args] %>%
+    gsub(pattern = "[& ,]{2,4}", replacement = "-")
   
   query <- paste(names(query_args), query_args, sep = "=", collapse = "&") %>%
     gsub(pattern = "[ ]", replacement = "%20")
