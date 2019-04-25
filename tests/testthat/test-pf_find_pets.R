@@ -12,7 +12,7 @@ token <- readLines("token.txt")
 
 test_that("limit input behaves as expected", {
   skip_if_not(exists("token"))
-  df <- pf_find_pets(token = token, type = "dog")
+  df <- pf_find_pets(token = token)
   expect_s3_class(df, "data.frame")
   expect_error(pf_find_pets(token, name = "dog", limit = -1))
   expect_error(pf_find_pets(token, limit = 101))
