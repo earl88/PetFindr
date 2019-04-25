@@ -1,26 +1,47 @@
-function(input, output) {
+
+function(input, output, session) {
+  
+  if (exists("petfindr_key")) {
+    updateTextInput(session, "key", value = petfindr_key)
+  }
+  if (exists("petfindr_secret")) {
+    updateTextInput(session, "secret", value = petfindr_secret)
+  }
+  
   get_token <- reactive({
-    key <- req(input$key)
-    secret <- req(input$secret)
-    token <- pf_accesstoken(key, secret)
+    if (input$auth > 0) {
+      key <- req(isolate(input$key))
+      secret <- req(isolate(input$secret))
+      token <- pf_accesstoken(key, secret)
+    } else {
+      token <- ""
+    }
+    validate(need(nchar(token) > 0, "Please authenticate - add your key and secret, then click the Authenticate button"))
+    token
   })
   
-  observeEvent(input$search, {
-    get_token()
+  
+  output$tokenstatus <- reactive({
+    nchar(get_token() > 0)
   })
   
-  output$table <- DT::renderDataTable(DT::datatable({
-    # key <- input$key
-    # secret <- input$secret
-    # token <- pf_accesstoken(key, secret)
-    
-    
+  outputOptions(output, "tokenstatus", suspendWhenHidden = FALSE)
+
+  petdata <- reactive({
+    # add dependency on search button
+    input$search
     data <- do.call(PetFindr::pf_find_pets, 
-                    args = list(token = token, location = input$location, 
-                                distance = input$distance, type = input$animal,
-                                status = input$status, limit = input$limit))
+                    args = list(token = get_token(), 
+                                location = isolate(input$location), 
+                                distance = isolate(input$distance), 
+                                type = isolate(input$animal),
+                                status = isolate(input$status), 
+                                limit = isolate(input$limit)))
+  })
+  
     
-    data %>% 
+  output$table <- DT::renderDataTable(DT::datatable({
+    petdata() %>% 
       select(c("organization_id", "type", "status", 
                "contact.address.address1", "contact.address.city", 
                "contact.phone"))
@@ -30,17 +51,11 @@ function(input, output) {
   
   
   output$map1 <- renderLeaflet({
-    # key <- input$key
-    # secret <- input$secret
-    # token <- pf_accesstoken(key, secret)
-    data <- do.call(PetFindr::pf_find_pets, 
-                    args = list(token = token, location = input$location, 
-                                distance = input$distance, type = input$animal,
-                                status = input$status, limit = input$limit))
+    validate(need(nrow(petdata()) > 0, "No pets found"))
     
     observeEvent(input$table_rows_selected, {
-      row_selected = data[as.numeric(input$table_rows_selected),]
-      selected <- PetFindr:::pf_locate_organizations(token, row_selected)
+      row_selected = petdata()[as.numeric(input$table_rows_selected),]
+      selected <- PetFindr:::pf_locate_organizations(get_token(), row_selected)
       
       proxy <- leafletProxy('map1', data=selected)
       proxy %>%
@@ -49,15 +64,17 @@ function(input, output) {
                           lat=~latitude, layerId = "selected")
     })
     
-    org_df <- PetFindr:::pf_locate_organizations(token, data)
+    org_df <- PetFindr:::pf_locate_organizations(get_token(), petdata())
     
-    org_sum <- data %>% group_by(organization_id) %>%
+    org_sum <- petdata() %>% group_by(organization_id) %>%
       summarise(sum = length(id))
     
     df_map <- merge(org_df, org_sum, by.x = "id", by.y = "organization_id")
+    
     leaflet()  %>%
       addProviderTiles("Esri.WorldStreetMap") %>%
-      addCircleMarkers(data=df_map, lat = ~latitude, lng = ~longitude, radius = ~sum,
+      addCircleMarkers(data=df_map, lat = ~latitude, lng = ~longitude, 
+                       radius = ~sum,
                        popup = ~paste("Name of Organization:", name, "<br>",
                                       "City:", city, state, "<br>",
                                       "Number of Pets:", sum))
@@ -66,21 +83,16 @@ function(input, output) {
   })
   
   output$photos = renderImage({
-    # key <- input$key
-    # secret <- input$secret
-    # token <- pf_accesstoken(key, secret)
-    data <- do.call(PetFindr::pf_find_pets, 
-                    args = list(token = token, location = input$location, 
-                                distance = input$distance, type = input$animal,
-                                status = input$status, limit = input$limit))
     
+    data <- petdata()
     data$number <- c(1:nrow(data))
     
     validate(
       need(input$table_rows_selected, "Please select a pet from above table")
     )
     
-    selected_df <- data %>% filter(number == as.numeric(input$table_rows_selected))
+    selected_df <- data %>% 
+      filter(number == as.numeric(input$table_rows_selected))
     
     photo.dat <- pf_view_photos(selected_df, size="medium") %>%
       image_write(tempfile(fileext='jpg'), format = 'jpg')
