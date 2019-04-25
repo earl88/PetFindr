@@ -42,6 +42,7 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
   assertthat::assert_that(file.exists(".Rprofile"))
   rprof_contents <- readLines(".Rprofile")
   assertthat::assert_that(!is.null(key) | !is.null(secret))
+  file_changed <- F
   
   if (!is.null(key)) {
     assertthat::assert_that(is.character(key))
@@ -52,8 +53,7 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
       cat(str, file = ".Rprofile", append = TRUE)
       file_changed <- T
     } else {
-      message(".Rprofile already contains a key; no file change was made.\n")
-      file_changed <- F
+      warning(".Rprofile already contains a key; no file change was made.\n")
     }
   }
   
@@ -64,9 +64,9 @@ pf_save_credentials <- function(key = NULL, secret = NULL) {
     if (!secret_exists) {
       str <- sprintf('\npetfindr_secret = \"%s\"\n', secret)
       cat(str, file = ".Rprofile", append = TRUE)
-      if (!file_changed) {file_changed <- T}
+      file_changed <- T
     } else {
-      message(".Rprofile already contains a secret; no file change was made.\n")
+      warning(".Rprofile already contains a secret; no file change was made.\n")
     }
   }
   

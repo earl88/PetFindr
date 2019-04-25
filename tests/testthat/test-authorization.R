@@ -15,10 +15,18 @@ test_that("can use key and secret", {
 test_that("can save credentials", {
   if(!file.exists(".RProfile")) writeLines("# Test\n", ".Rprofile")
   skip_if_not(file.exists(".Rprofile"))
-  cat(readLines(".Rprofile"))
+
   expect_error(pf_save_credentials())
+  
   expect_error(pf_save_credentials(key = 1))
-  expect_error(pf_save_credentials(key = "Ceci n'est pas un key"))
+  expect_error(pf_save_credentials(key = "Ceci n'est pas une key"))
+  
+  pf_save_credentials(key = "Ceci n'est pas une key, mais il a 50 caracteres :)")
+  expect_warning(pf_save_credentials(key = "This is not a key but it also has 50 characters :)"))
+  
   expect_error(pf_save_credentials(secret = 1))
-  expect_error(pf_save_credentials(secret = "Ceci n'est pas un secret"))
+  expect_error(pf_save_credentials(secret = "Ceci n'est pas une secret"))
+  
+  pf_save_credentials(secret = "Ceci n'est pas une secret, c'est vrai :(")
+  expect_warning(pf_save_credentials(secret = "This is not a secret; so sad but true :("))
 })
