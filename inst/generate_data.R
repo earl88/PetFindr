@@ -15,16 +15,20 @@ pf_breeds <- pf_types %>%
 
 #puppy.data
 LA_puppies <- pf_find_pets(token, type = "dog", age = "baby", location = 90405, 
+<<<<<<< HEAD
                            distance = 100, limit = 100, page = 1:5, sort = "recent") 
 rm_indices <- c(paste0("photos.[a-z]{4,6}.", 2:5), "hours", "tags", "links") %>%
   sapply(., grepl, names(LA_puppies)) %>% 
   apply(1, any)
 test <- LA_puppies[,!rm_indices]
+=======
+                           distance = 100, limit = 100, page = 1:5, sort = "recent") %>% select("id", "organization_id", "type", "species", "age", "name")
+>>>>>>> 434fca3f45ba41d43cf5ce4f6bee73721520544c
 #usethis::use_data(LA_puppies)
 
 
 
 #organizations.data 
 NY_orgs <- pf_find_organizations(token, state = "NY", 
-                                 limit = 100, page = 1:5, sort = "-name")
+                                 limit = 100, page = 1:5, sort = "-name") %>% select("id", "name", "address.city", "address.state", "address.state", "address.postcode")
 #usethis::use_data(NY_orgs)
