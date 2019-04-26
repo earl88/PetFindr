@@ -39,6 +39,10 @@ function(input, output, session) {
       page <- ceiling(req / 100)
     }
     
+    if(!is.na(isolate(input$distance))) {
+      validate(need(isolate(input$location), "To specify Distance, you must specify Location"))
+    }
+    
     data <- do.call(PetFindr::pf_find_pets, 
                     args = list(token = get_token(), 
                                 location = isolate(input$location), 

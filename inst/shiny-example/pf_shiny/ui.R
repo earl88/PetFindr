@@ -26,7 +26,7 @@ shinyUI(
             selectInput(inputId = "status",
                         label = "Pet Status",
                         choices = c("Adoptable", "Adopted", "Found")),
-            numericInput(inputId = "num_animals", value = 50, min = 0,
+            numericInput(inputId = "num_animals", value = 50,
                         label = "Number of Pets to show:"),
             actionButton("search","Search")
           )
