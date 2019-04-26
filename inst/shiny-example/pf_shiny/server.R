@@ -29,16 +29,26 @@ function(input, output, session) {
   petdata <- reactive({
     # add dependency on search button
     input$search
+    
+    req <- as.numeric(isolate(input$num_animals))
+    if(req <= 100) {
+      limit <- req
+      page <- 1
+    } else {
+      limit <- 100
+      page <- ceiling(req / 100)
+    }
+    
     data <- do.call(PetFindr::pf_find_pets, 
                     args = list(token = get_token(), 
                                 location = isolate(input$location), 
                                 distance = isolate(input$distance), 
                                 type = isolate(input$animal),
                                 status = isolate(input$status), 
-                                limit = isolate(input$limit)))
+                                limit = limit, page = page))
+    data <- data[1:req,]
   })
   
-    
   output$table <- DT::renderDataTable(DT::datatable({
     validate(need(nrow(petdata()) > 0, "No pets found. Are your search parameters too narrow?"))
     
