@@ -1,6 +1,8 @@
 context("test-pf_find_pets")
 
-token <- readLines("token.txt")
+if(file.exists("token.txt")) {
+  token <- readLines("token.txt")
+}
 
 # print(token)
 # 

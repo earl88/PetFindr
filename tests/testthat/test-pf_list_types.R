@@ -1,7 +1,10 @@
 context("test-pf_list_types")
 
-test_that("list breeds has input as expected", {
+if(file.exists("token.txt")) {
   token <- readLines("token.txt")
+}
+
+test_that("list breeds has input as expected", {
   skip_if_not(exists("token"))
   expect_error(pf_list_types(token= 123))
   df<-pf_list_types(token= token)

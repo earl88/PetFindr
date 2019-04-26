@@ -1,7 +1,9 @@
 context("test-pf_find_organizations")
 
+if(file.exists("token.txt")) {
+  token <- readLines("token.txt")
+}
 
-token <- readLines("token.txt")
 # print(token)
 # 
 # test_that("function runs", {

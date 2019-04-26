@@ -1,10 +1,13 @@
 context("test-pf_view_photos")
 
+if(file.exists("token.txt")) {
+  token <- readLines("token.txt")
+}
+
 test_that("correct animal dataframe ", {
   expect_error(pf_view_photos(animal_df = puppies, size = 123))
   expect_error(pf_view_photos(animal_df = puppies, size = "abc"))
   
-  token <- readLines("token.txt")
   skip_if_not(exists("token"))
   df <- pf_find_pets(token, type = "dog", limit = 3)
   output <- pf_view_photos(df, "small")
