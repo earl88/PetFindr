@@ -21,10 +21,10 @@ knitr::opts_chunk$set(
 * Getting Started
     + Authentication
 * Usage
-    + Functions
-    + Examples Using Sample Data
-    + Shiny
-* Conclusion
+    + Functions - Amin
+    + Examples Using Sample Data - Jess
+    + Shiny  - Earl
+* Conclusion - ? 
 
 
 
