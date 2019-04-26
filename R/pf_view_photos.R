@@ -42,9 +42,6 @@ pf_view_photos <- function(animal_df,
   photos <- animal_photos %>%
     stats::na.omit() %>%
     stringr::str_remove(paste0("&width=", npix))
-  # if(length(photos) == 0) {
-  #   stop("No photos found!!! :(")
-  # }
   
   return(photos %>%
            knitr::include_graphics() %>%

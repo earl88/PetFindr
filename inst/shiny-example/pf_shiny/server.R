@@ -40,7 +40,8 @@ function(input, output, session) {
     }
     
     if(!is.na(isolate(input$distance))) {
-      validate(need(isolate(input$location), "To specify Distance, you must specify Location"))
+      validate(need(isolate(input$location), 
+                    "To specify Distance, you must specify Location"))
     }
     
     data <- do.call(PetFindr::pf_find_pets, 
@@ -107,7 +108,7 @@ function(input, output, session) {
     
     selected_df <- data %>% 
       filter(number == as.numeric(input$table_rows_selected))
-    # MuST FIX !!!: Check whether the pet has a photo, display "No photos" if not
+
     photo.dat <- pf_view_photos(selected_df, size="medium") %>%
       image_write(tempfile(fileext='jpg'), format = 'jpg')
     list(src = photo.dat, contentType = "image/jpg")
