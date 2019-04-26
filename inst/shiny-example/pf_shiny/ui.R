@@ -12,8 +12,8 @@ shinyUI(
           br(),
           conditionalPanel(
             "output.tokenstatus",
-            numericInput(inputId = "location", 50014,
-                         label = "Zip code"),
+            textInput(inputId = "location", "50014",
+                      label = 'Location (City, State; Latitude, Longitude; or Zipcode)'),
             numericInput(inputId = "distance", 50,
                          label = "Search Radius (miles)"),
             selectInput(inputId = "animal",
