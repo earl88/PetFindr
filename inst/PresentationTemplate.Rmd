@@ -1,8 +1,7 @@
 ---
-title: "PetFindr"
-subtitle: "Find Pets Near You!"
-author: "Jessica Kueon, Hana Lee, Amin Shirazi, Miranda Tilton"
-date: "`r Sys.Date()`"
+title: "PetFindr: Find Pets Near You!"
+author: "Earl Hur, Jessica Kueon, Hana Lee, Amin Shirazi, Miranda Tilton"
+date: "April 29, 2019"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -19,61 +18,48 @@ library(magick)
 library(hexSticker)
 library(showtext)
 library(knitr)
-
 ```
 
 ```{r include = FALSE}
-
 sticker <- image_read('https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo.png')
-
-
 ```
 
+# Petfinder.com 
 
-```{r include = FALSE}
-
+```{r, echo = F, out.width = "100%"}
+knitr::include_graphics("pres_images/petfinder-website.PNG")
 ```
 
-```{r include = FALSE}
+---
 
+# The Petfinder API (V2)
+
+* https://www.petfinder.com/developers/v2/docs/
+
+* New version requires sign-up to receive 'key' and 'secret'
+
+* Conduct searches using 'curl' (client url) on the command line
+
+* Responses are in JSON format
+
+* List search options (available animal types, breeds, etc.)
+
+* Search pets and organizations by type, location, id, and more <br/><br/><br/>
+
+```{r, echo = F, out.width = "40%", fig.align = "center"}
+knitr::include_graphics("pres_images/petfinder-for-developers.PNG")
 ```
 
-```{r include = FALSE}
+---
 
+# PetFindr
+
+https://github.com/earl88/PetFindr
+
+```{r, echo = F, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("../man/figures/logo.png")
 ```
 
-
-
-```{r include = FALSE}
-
-
-```
-
-```{r include = FALSE}
-
-  
-```
-
-
-
-### Introducing `PetFindr`  -Name- 
-
-
-
-```{r  out.width = "50%",echo=FALSE}
-sticker
-
-
-```
-
-
-
-
-- Started in 1998
-
-- Basically short "dates" lasting from three to eight minutes
-
-- Offered by more than 100 companies
 
 ---
 
