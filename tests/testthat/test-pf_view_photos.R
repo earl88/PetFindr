@@ -4,7 +4,7 @@ if(file.exists("token.txt")) {
   token <- readLines("token.txt")
 }
 
-test_that("correct animal dataframe ", {
+test_that("pf_view_photos works", {
   expect_error(pf_view_photos(animal_df = puppies, size = 123))
   expect_error(pf_view_photos(animal_df = puppies, size = "abc"))
   
@@ -12,6 +12,10 @@ test_that("correct animal dataframe ", {
   df <- pf_find_pets(token, type = "dog", limit = 3)
   output <- pf_view_photos(df, "small")
   expect_true(tibble::is_tibble(magick::image_info(output)))
+  
+  photo_cols <- grepl(pattern = "photo", x = names(df))
+  df[,photo_cols] <- NA
+  expect_error(pf_view_photos(df, "small"))
 })
 
 # test_that("photo view has output as expected", {
