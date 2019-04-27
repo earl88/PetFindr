@@ -89,10 +89,10 @@ Armed with options for animal type, breed, coat, color, and gender from the pf_l
 puppies <- pf_find_pets(token, type = "dog", age = "baby", gender = "female")
 
 # View images of horses near Dallas, TX
-pf_find_pets(token, type = "horse", location = "Dallas,%20TX", sort = "distance") %>%
+pf_find_pets(token, type = "horse", location = "Dallas, TX", sort = "distance") %>%
   pf_view_photos(., size = "small")
 
 # Map the locations of small & furry animals
-pf_find_pets(token, type = "small-furry", page = 1:2) %>%
+pf_find_pets(token, type = "Small & furry", page = 1:2) %>%
   pf_map_animals(token, .)
 ```
