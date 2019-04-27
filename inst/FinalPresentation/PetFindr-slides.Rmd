@@ -27,8 +27,7 @@ sticker <- image_read('https://raw.githubusercontent.com/earl88/PetFindr/master/
 # Petfinder.com 
 
 ```{r, echo = F, out.width = "100%"}
-knitr::include_graphics("pres_images/petfinder-website.PNG")
-knitr::include_graphics("FinalPresentation/")
+knitr::include_graphics("images/petfinder-website.PNG")
 ```
 
 ---
@@ -48,7 +47,7 @@ knitr::include_graphics("FinalPresentation/")
 * Search pets and organizations by type, location, id, and more <br/><br/><br/>
 
 ```{r, echo = F, out.width = "40%", fig.align = "center"}
-knitr::include_graphics("pres_images/petfinder-for-developers.PNG")
+knitr::include_graphics("images/petfinder-for-developers.PNG")
 ```
 
 ---
@@ -58,7 +57,7 @@ knitr::include_graphics("pres_images/petfinder-for-developers.PNG")
 https://github.com/earl88/PetFindr
 
 ```{r, echo = F, out.width = "100%", fig.align = "center"}
-knitr::include_graphics("../man/figures/logo.png")
+knitr::include_graphics("../../man/figures/logo.png")
 ```
 
 
