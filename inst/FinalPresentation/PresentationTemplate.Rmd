@@ -28,6 +28,7 @@ sticker <- image_read('https://raw.githubusercontent.com/earl88/PetFindr/master/
 
 ```{r, echo = F, out.width = "100%"}
 knitr::include_graphics("pres_images/petfinder-website.PNG")
+knitr::include_graphics("FinalPresentation/")
 ```
 
 ---
