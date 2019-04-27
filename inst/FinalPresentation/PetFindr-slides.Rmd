@@ -11,7 +11,8 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r include=FALSE}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
 library(tidyverse)
 library(gridExtra)
 library(magick)
@@ -26,8 +27,16 @@ sticker <- image_read('https://raw.githubusercontent.com/earl88/PetFindr/master/
 
 # Petfinder.com 
 
-```{r, echo = F, out.width = "100%"}
+```{r, out.width = "100%"}
 knitr::include_graphics("images/petfinder-website.PNG")
+```
+
+---
+
+# Petfinder.com 
+
+```{r, out.width = "100%"}
+knitr::include_graphics("images/petfinder-dogs.PNG")
 ```
 
 ---
@@ -46,7 +55,7 @@ knitr::include_graphics("images/petfinder-website.PNG")
 
 * Search pets and organizations by type, location, id, and more <br/><br/><br/>
 
-```{r, echo = F, out.width = "40%", fig.align = "center"}
+```{r, out.width = "40%"}
 knitr::include_graphics("images/petfinder-for-developers.PNG")
 ```
 
@@ -56,7 +65,7 @@ knitr::include_graphics("images/petfinder-for-developers.PNG")
 
 https://github.com/earl88/PetFindr
 
-```{r, echo = F, out.width = "100%", fig.align = "center"}
+```{r, out.width = "100%", fig.align = "center"}
 knitr::include_graphics("../../man/figures/logo.png")
 ```
 
