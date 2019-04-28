@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>PetFindr: Find Pets Near You!</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Earl Hur, Jessica Kueon, Hana Lee, Amin Shirazi, Miranda Tilton" />
+    <meta name="date" content="2019-04-29" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# PetFindr: Find Pets Near You!
+### Earl Hur, Jessica Kueon, Hana Lee, Amin Shirazi, Miranda Tilton
+### April 29, 2019
+
+---
+
+class: inverse
+
+### Package functions  -Amin-
+
+
+* What types of pets are available?
+
+* What information is available of each type?
+  * coat
+  * color
+  * gender
+
+
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+
+### Package functions  -Amin-
+* What types of pets are available?
+<<<<<<< HEAD
+&lt;img src="PetFindr-slides_amin_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+=======
+&lt;img src="PetFindr-slides_amin_files/figure-html/unnamed-chunk-1-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+>>>>>>> dd6139280be1eb0bc82d5d7be15763938a612c2c
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  -Amin-
+
+* What types of pets are available?
+
+
+* Petfinder.com
+
+&lt;img src="./images/list.type.jpg" width="110%" style="display: block; margin: auto;" /&gt;
+ 
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  -Amin-
+* How to have a list of available pets in R?
+
+&lt;img src="./images/list.type.1.jpg" width="110%" style="display: block; margin: auto;" /&gt;
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+class: inverse
+### Package functions  -Amin-
+#### pf_list_type
+ * Input: token
+ * Output: a tibble of all available animal types with their respective coat, color, and gender options
+ 
+&lt;img src="./images/list.type_R_output.jpg" width="110%" style="display: block; margin: auto;" /&gt;
+ 
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+class: inverse
+### Package functions  -Amin-
+
+ * What breeds are available for each pet?
+
+#### pf_list_breed
+ 
+ * A list of all available breeds of each pet
+ * input: `token`, `type`
+ * output: A character vector of the breed names
+<<<<<<< HEAD
+ 
+---
+class: inverse
+
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+
+### Package functions  -Amin-
+#### pf_list_breed
+
+
+
+&lt;img src="./images/list.breed_R.jpg" width="75%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse
+
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  -Amin-
+#### Searching for pets 
+
+* pf_list_types: List all available types of pets
+
+* pf_list_breeds: List all available breeds of each pet
+
+* A function to search for pets 
+    * pf_find_pets
+---
+class: inverse
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  -Amin-
+#### Searching for pets
+##### Pf_find_pets
+.pull-left[
+* A data frame of pets info listed on Petfinder.com
+
+* Filter searches
+  * Animal type
+  * Breed
+  * Size
+  * Gender
+  * Age
+  * Color
+  * Location
+  * ...
+  
+* Sort information
+  * Recent information
+  * Distance from the user
+  ]
+.pull-right[
+&lt;img src="./images/find.pets.3.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  -Amin-
+#### Searching for pets
+##### Pf_find_pets
+
+&lt;img src="./images/find.pets.2.png" width="110%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  -Amin-
+#### Searching for pets
+##### Pf_find_pets
+
+
+&lt;img src="./images/find.pets.png" width="112%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: inverse
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  -Amin-
+#### Searching for pets
+##### Pf_find_pets
+
+
+&lt;img src="./images/find.pets.1.png" width="100%" style="display: block; margin: auto;" /&gt;
+=======
+<<<<<<< HEAD
+
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+
+* A function to find information of animal shelters and rescue groups. It returns a dataframe of details on a group of organizations based on criteria given in parameters.
+  * https://www.petfinder.com/developers/v2/docs/#get-organizations
+
+* What information is available?
+  * id, name, and link for query
+  * contact info. (email, phone, address, and social media)
+  * page url in petfinder
+  * photos
+  * Adoption policy, website url, and etc.
+  * e.g., https://www.petfinder.com/member/us/ia/ames/ames-animal-shelter-ia197/
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+* How to search on petfinder
+* https://www.petfinder.com/animal-shelters-and-rescues/search/
+
+&lt;img src="images/petfinder-org.PNG" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+* How to search on PetFindr
+
+
+```r
+pf_find_organizations &lt;- function(token = NULL, name = NULL, 
+                                  location = NULL, distance = NULL,
+                                  state = NULL, country = NULL,
+                                  sort = "recent", page = 1, limit = 20) {...}
+```
+
+
+
+
+
+```r
+US_orgs &lt;- PetFindr::pf_find_organizations(token, 
+                                           country = "US", 
+                                           limit = 10, 
+                                           page = 1:3, 
+                                           sort = "state")
+
+IA_orgs &lt;- PetFindr::pf_find_organizations(token, 
+                                           location = "Ames, IA", 
+                                           distance = 10, 
+                                           sort = "-distance")
+```
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+
+
+```r
+IA_orgs %&gt;%
+  filter(name == "Ames Animal Shelter") %&gt;%
+  select(id, name, url, 
+         address.address1, address.city, address.state,
+         address.postcode, address.country,
+         X_links.self.href, X_links.animals.href,
+         photos.small)
+```
+
+```
+##      id                name
+## 1 IA197 Ames Animal Shelter
+##                                                                                                                       url
+## 1 https://www.petfinder.com/member/us/ia/ames/ames-animal-shelter-ia197/?referrer_id=0364fc52-c58b-48fa-9e9b-2f23017febb2
+##      address.address1 address.city address.state address.postcode
+## 1 325 Billy Sunday Rd         Ames            IA            50010
+##   address.country       X_links.self.href           X_links.animals.href
+## 1              US /v2/organizations/ia197 /v2/animals?organization=ia197
+##                                                                                                                               photos.small
+## 1 https://s3.amazonaws.com/petfinder-us-east-1-petimages-prod/organization-photos/21383/21383-1.jpg?bust=2018-07-18+18%3A33%3A38&amp;width=100
+```
+---
+### Package functions  -Hana-
+#### pf_map_locations
+* Input: token, a dataframe of pets returned from pf_find_pets
+* Ouput: locations of organizations of pets on a Leaflet map
+* How it works: Request location information by organizations' id that are extracted from a dataframe of individual pets
+* https://www.petfinder.com/developers/v2/docs/#get-organization
+
+<div id="htmlwidget-afa1dc7e8ceaf3fab971" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-afa1dc7e8ceaf3fab971">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[33.195534,-117.354538,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,"San Diego Humane Society and SPCA Oceanside Campus for Dogs",null,"San Diego Humane Society and SPCA Oceanside Campus for Dogs",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[33.195534,33.195534],"lng":[-117.354538,-117.354538]}},"evals":[],"jsHooks":[]}</script>
+=======
+>>>>>>> dd6139280be1eb0bc82d5d7be15763938a612c2c
+>>>>>>> 5db12d4a78be3bd9ee68982e60c027bce4845ecd
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

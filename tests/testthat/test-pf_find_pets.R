@@ -4,13 +4,6 @@ if(file.exists("token.txt")) {
   token <- readLines("token.txt")
 }
 
-# print(token)
-# 
-# test_that("function runs", {
-#   # token <- readLines("token.txt")
-#   skip_if_not(exists("token"))
-# })
-
 
 test_that("limit input behaves as expected", {
   skip_if_not(exists("token"))
@@ -44,10 +37,4 @@ test_that("the output is a data frame", {
   expect_s3_class(df, "data.frame")
 
 })
-
-# test_that("output is a data frame  as expected", {
-#   skip_if_not(exists("token"))
-#   data(LA_puppies, package = "PetFindr")
-#   expect_true(is.data.frame(LA_puppies))
-# })
 

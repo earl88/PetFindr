@@ -19,12 +19,13 @@ knitr::opts_chunk$set(
 
 * Introducing `PetFindr`
 * Getting Started
-    + Authentication
+    + Authentication  - Jess is working on this :)
 * Usage
     + Functions - Amin
     + Examples Using Sample Data - Jess
     + Shiny  - Earl
-* Conclusion - ? 
+    + Extensions - Jess 
+
 
 
 
@@ -112,11 +113,64 @@ The following section introduces the functions in `PetFindr` package and how to 
 The examples are mainly split into pet, shelter, photo-viewing functions.
 
 
-### 
+### Functions
+
+Amin's part
 
 
 
+### Examples Using Sample Data
 
+
+The developers have stored sample datasets extracted from Petfinder, \
+because it can be useful to include example datasets in the R package, to illustrate how the datasets are structures and how it can be leveraged to explore your interests in pets \
+
+The datasets in the package are immediately available when the package is loaded.
+
+#### Sample data: Puppies in Los Angeles
+
+The dataset summarises information of 500 puppies in Greater Los Angeles area extracted from Petfinder on April 25, 2019. 
+Output below is the first observation from the dataset.
+
+```{r, echo = F, eval = T, message = F}
+library(tidyverse)
+library(PetFindr)
+```
+
+```{r, eval = T, echo = T}
+t(LA_puppies %>% head(n = 1))
+
+```
+
+Note the data has been transposed (otherwise the table would be very wide).
+
+The first row from the sample data (column 1 above) represents:
+
+- id: Animal ID
+- organization_id : Organization Id
+- url: url of the animal
+- type : Type of the animal
+- specides: Species of the animal
+- breeds.primary: Primary breed (if known)
+- breeds.secondary: Secondary breed (if known)
+- breeds.mixed: Is breed mixed? (TRUE if secondary breed exists)
+- breeds.unknown: Is breed unknown?
+- age: Age
+- gender: Gender
+- size : Size
+
+
+#### Sample data: Shelters in New York State
+
+The dataset summarises the list of animal sheters in New York State. \
+Output below is the first observation from the dataset.
+
+```{r, eval = T, echo = T}
+t(NY_orgs %>% head(n = 1))
+
+```
+
+Note the data has been transposed (otherwise the table would be very wide).
 
 
 

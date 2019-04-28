@@ -46,6 +46,6 @@ pf_view_photos <- function(animal_df,
   return(photos %>%
            knitr::include_graphics() %>%
            magick::image_read() %>%
-           magick::image_scale("x400")
+           magick::image_scale("x500")
   )
 }
