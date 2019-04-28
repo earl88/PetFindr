@@ -103,37 +103,23 @@ background-size: 150px
 background-position: 98% 8%
 
 ### Package functions  
-#### pf_list_breed
+#### `pf_list_breeds`
 
 ```{r out.width = "110%",echo=FALSE}
 data("pf_breeds", package = "PetFindr")
-view_pf_breeds<- view(pf_breeds)
-view_pf_breeds
+
+#view(pf_breeds)
+knitr::include_graphics("./images/pf_breeds.png")
 ```
 
 ---
-class: inverse
 
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-### Package functions  
-#### Searching for pets 
-
-* pf_list_types: List all available types of pets
-
-* pf_list_breeds: List all available breeds of each pet
-
-* A function to search for pets 
-    * pf_find_pets
----
-class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 ### Package functions  
 #### Searching for pets
-##### Pf_find_pets
+##### `Pf_find_pets`
 .pull-left[
 * A data frame of pets info listed on Petfinder.com
 
@@ -162,80 +148,78 @@ background-size: 150px
 background-position: 98% 8%
 ### Package functions  
 #### Searching for pets
-##### Pf_find_pets
+##### `Pf_find_pets`
 
-```{r out.width = "110%",echo=FALSE}
-knitr::include_graphics(path = "./images/find.pets.2.png")
-```
+`pf_find_pets(token)`
+
+`pf_find_pets(token, type = "horse")`
+
+`pf_find_pets(token, type = "dog", age = "baby", page = 1:5)`
+
+`pf_find_pets(token, type = "Scales, Fins, & Others", breed = "Python", sort = "-rencent")`
 
 ---
-class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 ### Package functions  
 #### Searching for pets
-##### Pf_find_pets
+##### `Pf_find_pets`
 
 
 ```{r out.width = "112%",echo=FALSE}
-knitr::include_graphics(path = "./images/find.pets.png")
+#knitr::include_graphics(path = "./images/find.pets.png")
+data("LA_puppies", package = "PetFindr")
+names(LA_puppies)
 ```
 
 
 ---
-class: inverse
+
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 ### Package functions  
 #### Searching for pets
-##### Pf_find_pets
+##### `Pf_find_pets`
 
 
 ```{r out.width = "100%",echo=FALSE}
-knitr::include_graphics(path = "./images/find.pets.1.png", dpi = 1.1)
+#knitr::include_graphics(path = "./images/find.pets.1.png", dpi = 1.1)
+LA_puppies %>%  select("species", "breeds.primary","type", "age","gender","size", "name", "status",
+                       "colors.primary", "coat" ) %>% head()
 ```
 
 ---
-class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 ### Package functions  
-#### Visualization of photos
+#### Visualization 
+##### `pf_view_photos(animal_df, size)`
 
 * View the photos of searched pets in a slideshow format
 
 * Input: 
   * A data frame of animal search results from pf_find_pets
   * Photo size
-    * Small
-    * Medium
-    * Large
-    * Full
+      * Small
+      * Medium
+      * Large
+      * Full
 
 * Output: A slideshow of pet pictures
 
 ---
-class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 ### Package functions  
 #### Visualization of photos
-##### pf_view_photos
+##### `pf_view_photos(token, size)`
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-#library("rstudioapi")
-
-# token<- PetFindr:: pf_accesstoken(key = "VhnNFBDUm1M6LxUbxf1RJ3UeVFtc9o4oqeZrw5ZL8fZvBghKJq", secret = "lRS7blb0ajDN5sYaEE4KjFiKCRZCg2tuNZQFw2F7")
-# corgi<- PetFindr:: pf_find_pets(token, type = "dog", breed = "corgi", age = "baby", limit = 10)
-# PetFindr:: pf_view_photos(animal_df = corgi, size = "small")
-# # viewer <- getOption("viewer")
-# # rstudioapi:: viewer("http://localhost:23412/session/preview.gif")
-# 
-
+magick:: image_read("https://media.giphy.com/media/Maz1hoeGskARW/giphy.gif")
 ```
 
 
