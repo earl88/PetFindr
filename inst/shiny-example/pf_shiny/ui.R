@@ -4,7 +4,7 @@ shinyUI(
     tabPanel(
       "Get Authentication",
       fluidRow(
-        sidebarPanel(width = 2, "Click below to get open link to Petfinder.com",
+        sidebarPanel(width = 2, "Click below to open link to Petfinder.com",
                      br(),
                   actionButton(inputId="setup", "Get Account"),
         br(),
@@ -19,7 +19,7 @@ shinyUI(
         
         mainPanel(
           fluidRow(
-            tags$img(src='logo1.jpg', height = '300', width = '400px'),
+            tags$img(src='logo1.jpg', height = '300', width = '420px'),
             column(12,
                    uiOutput("instruction")
             )
@@ -102,6 +102,12 @@ shinyUI(
           )
         )
       )
-    )
+    ),
+    tabPanel(
+      "Thank you!",
+      tags$img(src='dogs.gif', height = '400', width = '700', align = "center"),
+      br(),
+      tags$img(src='cats.gif', height = '400', width = '700', align = "center")
+      )
   )
 )
