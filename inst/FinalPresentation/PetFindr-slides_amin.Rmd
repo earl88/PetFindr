@@ -28,17 +28,19 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 
-class: inverse
 
-### Package functions  -Amin-
+### Package functions  
+#### Amin Shirazi
 
 
-* What types of pets are available?
-
-* What information is available of each type?
+* What information is available of each type of pet?
+  * breed
+  * age
   * coat
   * color
   * gender
+  * size
+  * ...
 
 
 
@@ -47,7 +49,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 
-### Package functions  -Amin-
+### Package functions  
 * What types of pets are available?
 ```{r   out.width = "70%",echo=FALSE, warning = FALSE, , message = FALSE}
 
@@ -62,77 +64,51 @@ plot_grid(p1, p2, p3, p4)
 ```
 
 ---
+
+
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
 
-* What types of pets are available?
-
-
-* Petfinder.com
-
-```{r  out.width = "110%",echo=FALSE}
-knitr::include_graphics(path = "./images/list.type.jpg")
-```
- 
----
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-### Package functions  -Amin-
-* How to have a list of available pets in R?
-
-```{r  out.width = "110%",echo=FALSE}
-knitr::include_graphics(path = "./images/list.type.1.jpg")
-```
-
----
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-class: inverse
-### Package functions  -Amin-
-#### pf_list_type
+### Package functions  
+#### `pf_list_types(token)`
  * Input: token
  * Output: a tibble of all available animal types with their respective coat, color, and gender options
  
 ```{r out.width = "110%",echo=FALSE}
-knitr::include_graphics(path = "./images/list.type_R_output.jpg")
-
+data("pf_types", package = "PetFindr")
+pf_types
 ```
  
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-class: inverse
-### Package functions  -Amin-
+
+### Package functions  
+#### `pf_list_breeds(token, type)`
 
  * What breeds are available for each pet?
 
-#### pf_list_breed
- 
  * A list of all available breeds of each pet
- * input: `token`, `type`
- * output: A character vector of the breed names
+ 
+ * Input: `token`, `type`
+ 
+ * Output: A character vector of the breed names
  
 ---
-class: inverse
 
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 
-### Package functions  -Amin-
+### Package functions  
 #### pf_list_breed
 
-
-
-```{r out.width = "75%",echo=FALSE}
-
-knitr::include_graphics(path = "./images/list.breed_R.jpg")
-
+```{r out.width = "110%",echo=FALSE}
+data("pf_breeds", package = "PetFindr")
+view_pf_breeds<- view(pf_breeds)
+view_pf_breeds
 ```
 
 ---
@@ -141,7 +117,7 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets 
 
 * pf_list_types: List all available types of pets
@@ -155,7 +131,7 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets
 ##### Pf_find_pets
 .pull-left[
@@ -184,7 +160,7 @@ knitr::include_graphics(path = "./images/find.pets.3.png")
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets
 ##### Pf_find_pets
 
@@ -197,7 +173,7 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets
 ##### Pf_find_pets
 
@@ -212,7 +188,7 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets
 ##### Pf_find_pets
 
@@ -226,7 +202,7 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Visualization of photos
 
 * View the photos of searched pets in a slideshow format
@@ -246,18 +222,19 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Visualization of photos
 ##### pf_view_photos
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #library("rstudioapi")
-# token<- pf_accesstoken(petfindr_key, petfindr_secret)
-# corgi <- pf_find_pets(token, type = "dog", breed = "corgi", age = "baby", limit = 10)
-# pf_view_photos(animal_df = corgi, size = "small")
-viewer <- getOption("viewer")
-viewer("http://localhost:13262/session/preview.gif")
 
+# token<- PetFindr:: pf_accesstoken(key = "VhnNFBDUm1M6LxUbxf1RJ3UeVFtc9o4oqeZrw5ZL8fZvBghKJq", secret = "lRS7blb0ajDN5sYaEE4KjFiKCRZCg2tuNZQFw2F7")
+# corgi<- PetFindr:: pf_find_pets(token, type = "dog", breed = "corgi", age = "baby", limit = 10)
+# PetFindr:: pf_view_photos(animal_df = corgi, size = "small")
+# # viewer <- getOption("viewer")
+# # rstudioapi:: viewer("http://localhost:23412/session/preview.gif")
+# 
 
 ```
 
