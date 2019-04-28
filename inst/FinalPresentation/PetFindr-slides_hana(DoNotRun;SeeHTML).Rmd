@@ -212,25 +212,38 @@ class: inverse
 #### pf_find_organizations
 
 * A function to find information of animal shelters and rescue groups. It returns a dataframe of details on a group of organizations based on criteria given in parameters.
+  
   * https://www.petfinder.com/developers/v2/docs/#get-organizations
-
-* What information is available?
-  * id, name, and link for query
-  * contact info. (email, phone, address, and social media)
-  * page url in petfinder
-  * photos
-  * Adoption policy, website url, and etc.
-  * e.g., https://www.petfinder.com/member/us/ia/ames/ames-animal-shelter-ia197/
 
 ---
 ### Package functions  -Hana-
 #### pf_find_organizations
+
 * How to search on petfinder
-* https://www.petfinder.com/animal-shelters-and-rescues/search/
+  
+  * https://www.petfinder.com/animal-shelters-and-rescues/search/
 
 ```{r, out.width = "100%"}
 knitr::include_graphics("images/petfinder-org.PNG")
 ```
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+
+* What information is available?
+
+  * id, name, and link for query
+  
+  * contact info. (email, phone, address, and social media)
+  
+  * page url in petfinder
+  
+  * photos
+  
+  * Adoption policy, website url, and etc.
+  
+  * e.g., https://www.petfinder.com/member/us/ia/ames/ames-animal-shelter-ia197/
 
 ---
 ### Package functions  -Hana-
@@ -246,8 +259,8 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 
 
 ```{r, echo = F, message = F}
-#petfindr_key = "9XDk9x1IpkaRt0ebypatBNgF4zV9MeVkSjW1bDtiId8LWd2bPX"
-#petfindr_secret = "eqU3FlGSfGsdvgKKSifJlLBB4wsxqzqvQJ9njHjX"
+petfindr_key = "Wek7qbUzbMdeoC8BRbuntuatAeXtUKdOfEFvmGjVQptPi5JNeJ"
+petfindr_secret = "zY3BeBMRwM4tTCMmVLZLHAD8BZzeJYEsAGfrXvMC"
 
 token <- PetFindr::pf_accesstoken(petfindr_key, petfindr_secret)
 ```
@@ -278,16 +291,31 @@ IA_orgs %>%
          X_links.self.href, X_links.animals.href,
          photos.small)
 ```
+
 ---
 ### Package functions  -Hana-
 #### pf_map_locations
 * Input: token, a dataframe of pets returned from pf_find_pets
+
 * Ouput: locations of organizations of pets on a Leaflet map
+
 * How it works: Request location information by organizations' id that are extracted from a dataframe of individual pets
+
 * https://www.petfinder.com/developers/v2/docs/#get-organization
 
-```{r}
+* Example
+
+```{r, echo = T, eval = F}
 data(LA_puppies, package = "PetFindr")
-PetFindr::pf_map_locations(token, LA_puppies[1,])
+PetFindr::pf_map_locations(token, LA_puppies)
 ```
 
+---
+### Package functions  -Hana-
+#### pf_map_locations
+* Example
+
+```{r, echo = F, eval = T, out.height = "70%"}
+data(LA_puppies, package = "PetFindr")
+PetFindr::pf_map_locations(token, LA_puppies)
+```
