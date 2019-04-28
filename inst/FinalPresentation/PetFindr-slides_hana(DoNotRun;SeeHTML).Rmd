@@ -133,23 +133,33 @@ knitr::include_graphics("table.jpg", dpi = 50)
 
 - Meow
 ---
-class: inverse
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
 
-### Package functions  -Amin-
+
+### Package functions  
+#### Amin Shirazi
 
 
-* What types of pets are available?
+* What information is available of each type of pet?
 
-* What information is available of each type?
+  * breed
+  * age
   * coat
   * color
   * gender
+  * size
+  * ...
 
 
 
 ---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
 
-### Package functions  -Amin-
+### Package functions  
 * What types of pets are available?
 ```{r   out.width = "70%",echo=FALSE, warning = FALSE, , message = FALSE}
 
@@ -164,48 +174,163 @@ plot_grid(p1, p2, p3, p4)
 ```
 
 ---
-### Package functions  -Amin-
-
-* What types of pets are available?
 
 
-* Petfinder.com
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
 
-```{r  out.width = "110%",echo=FALSE}
-knitr::include_graphics(path = "./images/list.type.jpg")
-```
- 
----
-### Package functions  -Amin-
-* How to have a list of available pets in R?
-
-```{r  out.width = "110%",echo=FALSE}
-knitr::include_graphics(path = "./images/list.type.1.jpg")
-```
-
----
-class: inverse
-### Package functions  -Amin-
-#### pf_list_type
+### Package functions  
+#### `pf_list_types(token)`
  * Input: token
  * Output: a tibble of all available animal types with their respective coat, color, and gender options
  
 ```{r out.width = "110%",echo=FALSE}
-knitr::include_graphics(path = "./images/list.type_R_output.jpg")
+data("pf_types", package = "PetFindr")
+pf_types
 ```
  
 ---
-class: inverse
-### Package functions  -Amin-
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+
+### Package functions  
+#### `pf_list_breeds(token, type)`
 
  * What breeds are available for each pet?
 
-#### pf_list_breed
- 
  * A list of all available breeds of each pet
- * input: `token`, `type`
- * output: A character vector of the breed names
+ 
+ * Input: `token`, `type`
+ 
+ * Output: A character vector of the breed names
+ 
+---
 
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+
+### Package functions  
+#### `pf_list_breeds`
+
+```{r out.width = "110%",echo=FALSE}
+data("pf_breeds", package = "PetFindr")
+
+#view(pf_breeds)
+knitr::include_graphics("./images/pf_breeds.png")
+```
+
+---
+
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Searching for pets
+##### `Pf_find_pets`
+.pull-left[
+* A data frame of pets info listed on Petfinder.com
+
+* Filter searches
+  * Animal type
+  * Breed
+  * Size
+  * Gender
+  * Age
+  * Color
+  * Location
+  * ...
+  
+* Sort information
+  * Recent information
+  * Distance from the user
+  ]
+.pull-right[
+```{r out.width = "100%",echo=FALSE}
+knitr::include_graphics(path = "./images/find.pets.3.png")
+```
+]
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Searching for pets
+##### `Pf_find_pets`
+
+`pf_find_pets(token)`
+
+`pf_find_pets(token, type = "horse")`
+
+`pf_find_pets(token, type = "dog", age = "baby", page = 1:5)`
+
+`pf_find_pets(token, type = "Scales, Fins, & Others", breed = "Python", sort = "-rencent")`
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Searching for pets
+##### `Pf_find_pets`
+
+
+```{r out.width = "112%",echo=FALSE}
+#knitr::include_graphics(path = "./images/find.pets.png")
+data("LA_puppies", package = "PetFindr")
+names(LA_puppies)
+```
+
+
+---
+
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Searching for pets
+##### `Pf_find_pets`
+
+
+```{r out.width = "100%",echo=FALSE}
+#knitr::include_graphics(path = "./images/find.pets.1.png", dpi = 1.1)
+LA_puppies %>%  select("species", "breeds.primary","type", "age","gender","size", "name", "status",
+                       "colors.primary", "coat" ) %>% head()
+```
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Visualization 
+##### `pf_view_photos(animal_df, size)`
+
+* View the photos of searched pets in a slideshow format
+
+* Input: 
+  * A data frame of animal search results from pf_find_pets
+  * Photo size
+      * Small
+      * Medium
+      * Large
+      * Full
+
+* Output: A slideshow of pet pictures
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Visualization of photos
+##### `pf_view_photos(token, size)`
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+magick:: image_read("https://media.giphy.com/media/Maz1hoeGskARW/giphy.gif")
+```
 
 ---
 ### Package functions  -Hana-
