@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>PetFindr: Find Pets Near You!</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Earl Hur, Jessica Kueon, Hana Lee, Amin Shirazi, Miranda Tilton" />
+    <meta name="date" content="2019-04-29" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-1.3.1/leaflet.js"></script>
+    <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+    <script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+    <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+    <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# PetFindr: Find Pets Near You!
+### Earl Hur, Jessica Kueon, Hana Lee, Amin Shirazi, Miranda Tilton
+### April 29, 2019
+
+---
+
+
+
+
+
+
+
+
+# Petfinder.com 
+
+&lt;img src="images/petfinder-website.PNG" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Petfinder.com 
+
+&lt;img src="images/petfinder-dogs.PNG" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The Petfinder API (V2)
+
+* https://www.petfinder.com/developers/v2/docs/
+
+* New version requires sign-up to receive 'key' and 'secret'
+
+* Conduct searches using 'curl' (client url) on the command line
+
+* Responses are in JSON format
+
+* List search options (available animal types, breeds, etc.)
+
+* Search pets and organizations by type, location, id, and more &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+
+&lt;img src="images/petfinder-for-developers.PNG" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# PetFindr
+
+https://github.com/earl88/PetFindr
+
+&lt;img src="../../man/figures/logo.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### Getting Started  -Name-
+
+
+
+
+```
+## [1] 4
+```
+
+Research done by R.Fisman, S. Iyeangar et al (2006)
+
+- One of the famous research done on Speed Dating
+
+- Investigated gender differences in partner selection
+
+- Focused on prediction with regression models
+
+
+---
+### Authentication  -Jessica-
+
+
+
+- Subjects: Graduate students at Columbia University 
+
+- 14 Speed dating sessions from 2002 - 2004 
+
+- 4 minute interaction
+
+&lt;img src="table.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Usage  -Jessica-
+
+
+
+- Meow
+
+---
+### Functions  -Jessica-
+
+
+- Meow
+
+
+
+---
+### Examples Using Sample Data  -Jessica-
+
+- Meow
+---
+class: inverse
+
+### Package functions  -Amin-
+
+
+* What types of pets are available?
+
+* What information is available of each type?
+  * coat
+  * color
+  * gender
+
+
+
+---
+
+### Package functions  -Amin-
+* What types of pets are available?
+&lt;img src="PetFindr-slides_hana_DoNotRun_SeeHTML__files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+### Package functions  -Amin-
+
+* What types of pets are available?
+
+
+* Petfinder.com
+
+&lt;img src="./images/list.type.jpg" width="110%" style="display: block; margin: auto;" /&gt;
+ 
+---
+### Package functions  -Amin-
+* How to have a list of available pets in R?
+
+&lt;img src="./images/list.type.1.jpg" width="110%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse
+### Package functions  -Amin-
+#### pf_list_type
+ * Input: token
+ * Output: a tibble of all available animal types with their respective coat, color, and gender options
+ 
+&lt;img src="./images/list.type_R_output.jpg" width="110%" style="display: block; margin: auto;" /&gt;
+ 
+---
+class: inverse
+### Package functions  -Amin-
+
+ * What breeds are available for each pet?
+
+#### pf_list_breed
+ 
+ * A list of all available breeds of each pet
+ * input: `token`, `type`
+ * output: A character vector of the breed names
+
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+
+* A function to find information of animal shelters and rescue groups. It returns a dataframe of details on a group of organizations based on criteria given in parameters.
+  
+  * https://www.petfinder.com/developers/v2/docs/#get-organizations
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+
+* How to search on petfinder
+  
+  * https://www.petfinder.com/animal-shelters-and-rescues/search/
+
+&lt;img src="images/petfinder-org.PNG" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+
+* What information is available?
+
+  * id, name, and link for query
+  
+  * contact info. (email, phone, address, and social media)
+  
+  * page url in petfinder
+  
+  * photos
+  
+  * Adoption policy, website url, and etc.
+  
+  * e.g., https://www.petfinder.com/member/us/ia/ames/ames-animal-shelter-ia197/
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+* How to search on PetFindr
+
+
+```r
+pf_find_organizations &lt;- function(token = NULL, name = NULL, 
+                                  location = NULL, distance = NULL,
+                                  state = NULL, country = NULL,
+                                  sort = "recent", page = 1, limit = 20) {...}
+```
+
+
+
+
+
+```r
+US_orgs &lt;- PetFindr::pf_find_organizations(token, 
+                                           country = "US", 
+                                           limit = 10, 
+                                           page = 1:3, 
+                                           sort = "state")
+
+IA_orgs &lt;- PetFindr::pf_find_organizations(token, 
+                                           location = "Ames, IA", 
+                                           distance = 10, 
+                                           sort = "-distance")
+```
+
+---
+### Package functions  -Hana-
+#### pf_find_organizations
+
+
+```r
+IA_orgs %&gt;%
+  filter(name == "Ames Animal Shelter") %&gt;%
+  select(id, name, url, 
+         address.address1, address.city, address.state,
+         address.postcode, address.country,
+         X_links.self.href, X_links.animals.href,
+         photos.small)
+```
+
+```
+##      id                name
+## 1 IA197 Ames Animal Shelter
+##                                                                                                                       url
+## 1 https://www.petfinder.com/member/us/ia/ames/ames-animal-shelter-ia197/?referrer_id=fbe2b905-005f-4605-aaff-9b9ba5c5e45b
+##      address.address1 address.city address.state address.postcode
+## 1 325 Billy Sunday Rd         Ames            IA            50010
+##   address.country       X_links.self.href           X_links.animals.href
+## 1              US /v2/organizations/ia197 /v2/animals?organization=ia197
+##                                                                                                                               photos.small
+## 1 https://s3.amazonaws.com/petfinder-us-east-1-petimages-prod/organization-photos/21383/21383-1.jpg?bust=2018-07-18+18%3A33%3A38&amp;width=100
+```
+
+---
+### Package functions  -Hana-
+#### pf_map_locations
+* Input: token, a dataframe of pets returned from pf_find_pets
+
+* Ouput: locations of organizations of pets on a Leaflet map
+
+* How it works: Request location information by organizations' id that are extracted from a dataframe of individual pets
+
+* https://www.petfinder.com/developers/v2/docs/#get-organization
+
+* Example
+
+
+```r
+data(LA_puppies, package = "PetFindr")
+PetFindr::pf_map_locations(token, LA_puppies)
+```
+
+---
+### Package functions  -Hana-
+#### pf_map_locations
+* Example
+
+<div id="htmlwidget-26833706c1892ef75128" style="width:504px;height:70%;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-26833706c1892ef75128">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[34.076198,34.028129,34.065723,34.045421,34.045421,34.080017,34.080017,34.127194,34.030578,34.07041,34.072924,34.09254,34.037251,34.037251,34.002028,34.057597,33.970343,34.100517,33.940445,33.921793,33.91714,33.914775,33.889151,33.753155,33.753155,33.830006,33.830006,33.976582,33.976582,33.956526,34.013666,34.030755,33.850616,33.793809,33.771616,33.794348,34.222119,34.146671,34.123286,34.198292,34.209532,34.160236,34.265879,34.439855,34.15404,34.15404,34.402509,34.199824,34.195685,34.178522,34.148617,34.169706,34.150818,34.140822,34.165783,34.137564,33.963723,34.080444,34.10097,34.046243,33.999005,33.974883,34.18001,34.042286,34.110186,34.105282,33.09547,33.056022,33.195534,33.343438,32.983606,33.164374,32.765244,34.571218,34.571218,34.02452,34.391145,34.376159,34.259971,34.083016,34.212433,34.083458,33.511228,33.665848,33.601966,33.645736,33.591304,33.634626,33.623208,33.467371,33.50186,33.50186,33.752468,33.619672,33.611945,33.611945,33.734005,33.856459,33.879329,33.826393,33.80098,33.827409,33.748086,33.748086,34.227892,35.384336,35.468183,34.74739,34.74739,35.118772,35.118772,35.118772,37.82935,45.489938],[-118.310722,-118.284829,-118.434969,-118.445873,-118.445873,-118.262643,-118.262643,-118.295647,-118.399613,-118.350411,-118.37271,-118.491064,-118.423573,-118.423573,-118.430656,-118.413998,-118.171368,-118.414712,-118.129022,-118.140588,-118.404267,-118.348083,-118.402127,-118.367963,-118.367963,-118.387124,-118.387124,-118.455222,-118.455222,-118.358654,-118.49375,-118.492101,-118.039565,-118.31717,-118.143631,-118.116391,-118.205306,-118.139455,-118.758541,-118.600913,-118.577563,-118.515472,-118.456748,-118.644401,-118.593153,-118.593153,-118.363427,-118.447609,-118.490752,-118.459234,-118.433298,-118.323548,-118.368159,-118.392864,-118.399795,-117.599945,-117.738596,-117.854734,-117.57882,-118.053748,-117.972146,-117.900676,-117.773939,-117.756106,-117.81039,-117.662035,-117.243882,-117.2599,-117.354538,-117.31725,-117.019035,-117.24027,-117.200391,-117.133073,-117.133073,-117.289255,-117.405722,-117.294397,-117.199381,-117.073317,-117.381239,-117.270016,-117.042396,-117.04966,-117.864254,-117.685503,-117.697512,-117.874882,-117.933903,-117.613509,-117.608646,-117.608646,-117.993933,-117.612087,-117.665867,-117.665867,-117.819163,-117.740176,-117.961752,-117.851307,-117.843772,-117.524128,-117.468037,-117.468037,-119.079552,-119.020562,-118.779649,-118.369249,-118.369249,-118.493811,-118.493811,-118.493811,-122.203507,-122.690453],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,["The Dog Rescue","Fur Baby Rescue","Dachshund Rescue of Los Angeles","Lange Foundation","NKLA Pet Adoption Center","The Real Bark","The Mutt Scouts","Mutt Match LA","Much Love Animal Rescue","Bark n' Bitches - Jimi's Angels","Dogs Without Borders","I Stand With My Pack","Wags and Walks","Westside German Shepherd Rescue of LA","Rescue Me Pet Foundation","Used Pets","Miracle Dog Rescue","Perfect Pet Rescue","SEAACA (Southeast Area Animal Control Authority)","L.A. County Animal Care & Control: Downey","PAL Rescue & Adoption","Adoptables at spcaLA South Bay PAC","Noahs Bark","H.E.L.P. (a Home for Every Living Pet)","Whiskers & Tails Foundation","The Dexter Foundation","Bullies and Buddies","Pacific Pups Rescue","Catmandoo Rescue","The Lovejoy Foundation Inc./Facility Clubhouse","Philozoia","The Forgotten Dog Foundation","Saving Shelter Souls","St. Anthonys Canine Rescue & Corgi Matchmaker","Ghetto Rescue FFoundation","Adoptables at spcaLA","California Miniature Schnauzer Rescue","Sweet Pawz & Meows Rescue","LIFE Animal Rescue","Pet Adoption Fund","Little Pampered Paws Rescue","Precious Pals Pet Rescue","Best Friends Pet Adoption & Spay Neuter Center","Siberian Husky Haven of L.A.","J.J. Woofin' Paws Rescue Agency","Ady Gil World Conservation","Deaf Dog Rescue of America","Smashface Rescue/Rehab","Delaney's Dog","Strangest Angels Animal Rescue","Animal Hope and Wellness Foundation","Blue Man Dog","The Rescue Train","START","Big Love Animal Rescue","Angels for Animals Rescue","Priceless Pet Rescue","Happiness Is INC Rescue","Rancho Cucamonga Animal Care and Adoption Center","Pet Rescue Solutions","Furry Smiles International Rescue","Ozzie and Friends Rescue","I Dream of Home Rescue, Inc.","Inland Valley Humane Society S.P.C.A.","Maltese Rescue California","Helping Out Pets Everyday","K9 Connection Pet ReHoming and Adoption","Rancho Coastal Humane Society","San Diego Humane Society and SPCA Oceanside Campus for Dogs","Last Chance at Life All Breed Rescue","Pugs N Roses","Animal Rescue Resource Foundation (ARRF)","Rover's Retreat Dog Rescue","Beagles & Buddies","Victor Valley Animal Protective League","TLC with PUPS","Pets Forever Found","Dachshund PAWS","Mountains Humane Society","BARC","Great Pyrenees Assoc. of So. CA Rescue Inc.","San Bernardino City Animal Control","Animals Need U Rescue","Southern Star Animal Rescue","Lovebugs Rescue","The Little Red Dog","Dogs In Need Organization","Mutts in Need","German Shepherd Rescue of Orange County","Fur-Ever Home","Promise 4 Paws","Doggie Bonez, Inc.","WAGS ~ Westminster Adoption Group and Services","I.C.A.R.E. Dog Rescue","Compassionate Animal Rescue for Medical Aid","Leashes of Love Rescue, Inc.","Pooch Match","Pardon . . . Me, Inc.","Furry Canines Rescue","FOCHP","Bichon Rescue Brigade","The Musical Truckin Death Row Dogs Adoption Program . . . Angels Saving Animals","Chihuahua Haven Rescue","Recycled LoVe DoG Rescue","Paw Works","H.A.L.T. (Helping Animals Live Tomorrow)","Mutts and Runts Rescue","Doggy Smiles Rescue","L.A. County Animal Care Control: Lancaster","Save Tehachapi's Orphaned Pets (STOP)","Have-a-Heart Humane Society","Marley's Mutts Dog Rescue","Bella Vita Rescue","Dream Team Angels Rescue"],null,["The Dog Rescue","Fur Baby Rescue","Dachshund Rescue of Los Angeles","Lange Foundation","NKLA Pet Adoption Center","The Real Bark","The Mutt Scouts","Mutt Match LA","Much Love Animal Rescue","Bark n' Bitches - Jimi's Angels","Dogs Without Borders","I Stand With My Pack","Wags and Walks","Westside German Shepherd Rescue of LA","Rescue Me Pet Foundation","Used Pets","Miracle Dog Rescue","Perfect Pet Rescue","SEAACA (Southeast Area Animal Control Authority)","L.A. County Animal Care &amp; Control: Downey","PAL Rescue &amp; Adoption","Adoptables at spcaLA South Bay PAC","Noahs Bark","H.E.L.P. (a Home for Every Living Pet)","Whiskers &amp; Tails Foundation","The Dexter Foundation","Bullies and Buddies","Pacific Pups Rescue","Catmandoo Rescue","The Lovejoy Foundation Inc./Facility Clubhouse","Philozoia","The Forgotten Dog Foundation","Saving Shelter Souls","St. Anthonys Canine Rescue &amp; Corgi Matchmaker","Ghetto Rescue FFoundation","Adoptables at spcaLA","California Miniature Schnauzer Rescue","Sweet Pawz &amp; Meows Rescue","LIFE Animal Rescue","Pet Adoption Fund","Little Pampered Paws Rescue","Precious Pals Pet Rescue","Best Friends Pet Adoption &amp; Spay Neuter Center","Siberian Husky Haven of L.A.","J.J. Woofin' Paws Rescue Agency","Ady Gil World Conservation","Deaf Dog Rescue of America","Smashface Rescue/Rehab","Delaney's Dog","Strangest Angels Animal Rescue","Animal Hope and Wellness Foundation","Blue Man Dog","The Rescue Train","START","Big Love Animal Rescue","Angels for Animals Rescue","Priceless Pet Rescue","Happiness Is INC Rescue","Rancho Cucamonga Animal Care and Adoption Center","Pet Rescue Solutions","Furry Smiles International Rescue","Ozzie and Friends Rescue","I Dream of Home Rescue, Inc.","Inland Valley Humane Society S.P.C.A.","Maltese Rescue California","Helping Out Pets Everyday","K9 Connection Pet ReHoming and Adoption","Rancho Coastal Humane Society","San Diego Humane Society and SPCA Oceanside Campus for Dogs","Last Chance at Life All Breed Rescue","Pugs N Roses","Animal Rescue Resource Foundation (ARRF)","Rover's Retreat Dog Rescue","Beagles &amp; Buddies","Victor Valley Animal Protective League","TLC with PUPS","Pets Forever Found","Dachshund PAWS","Mountains Humane Society","BARC","Great Pyrenees Assoc. of So. CA Rescue Inc.","San Bernardino City Animal Control","Animals Need U Rescue","Southern Star Animal Rescue","Lovebugs Rescue","The Little Red Dog","Dogs In Need Organization","Mutts in Need","German Shepherd Rescue of Orange County","Fur-Ever Home","Promise 4 Paws","Doggie Bonez, Inc.","WAGS ~ Westminster Adoption Group and Services","I.C.A.R.E. Dog Rescue","Compassionate Animal Rescue for Medical Aid","Leashes of Love Rescue, Inc.","Pooch Match","Pardon . . . Me, Inc.","Furry Canines Rescue","FOCHP","Bichon Rescue Brigade","The Musical Truckin Death Row Dogs Adoption Program . . . Angels Saving Animals","Chihuahua Haven Rescue","Recycled LoVe DoG Rescue","Paw Works","H.A.L.T. (Helping Animals Live Tomorrow)","Mutts and Runts Rescue","Doggy Smiles Rescue","L.A. County Animal Care Control: Lancaster","Save Tehachapi's Orphaned Pets (STOP)","Have-a-Heart Humane Society","Marley's Mutts Dog Rescue","Bella Vita Rescue","Dream Team Angels Rescue"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[32.765244,45.489938],"lng":[-122.690453,-117.019035]}},"evals":[],"jsHooks":[]}</script>
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
