@@ -4,7 +4,7 @@ shinyUI(
     tabPanel(
       "Search by Animals",
       fluidRow(
-        sidebarPanel(
+        sidebarPanel(width = 2,
           textInput(
             "key", "Key", value = "", placeholder = "Paste your key here"),
           textInput("secret", "Secret", value = "", placeholder = "Paste your secret here"),
@@ -40,9 +40,9 @@ shinyUI(
           ),
           br(),
           fluidRow(
-            column(6, 
+            column(8, 
                    leafletOutput("map1")),
-            column(6,
+            column(4,
                    imageOutput("photos"))
           )
           
@@ -50,6 +50,34 @@ shinyUI(
         )
       )
     ),
-    tabPanel("Location of shelters")
+    tabPanel(
+      "Search by Organizations",
+      fluidRow(
+        sidebarPanel(width = 2,
+          textInput(inputId = "location_org", "50014",
+                    label = 'Location (City, State; Latitude, Longitude; or Zipcode)'),
+          numericInput(inputId = "distance_org", 50,
+                       label = "Search Radius (miles)"),
+          numericInput(inputId = "num_orgs", 50,
+                       label = "Number of Organizations to show:"),
+          actionButton("search_org","Search")
+          ),
+        mainPanel(
+          fluidRow(
+            column(12,
+                   h1("Organizations in your location"), 
+                   leafletOutput("map2")
+            )
+          ),
+          br(),
+          fluidRow(
+            column(6, 
+                   DT::dataTableOutput("list_table")),
+            column(6,
+                   plotlyOutput("bars"))
+          )
+        )
+      )
+    )
   )
 )

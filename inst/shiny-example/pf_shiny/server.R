@@ -52,6 +52,8 @@ function(input, output, session) {
                                 status = isolate(input$status), 
                                 limit = limit, page = page))
     data <- data[1:req,]
+    
+    
   })
   
   output$table <- DT::renderDataTable(DT::datatable({
@@ -108,10 +110,134 @@ function(input, output, session) {
     
     selected_df <- data %>% 
       filter(number == as.numeric(input$table_rows_selected))
+    
+    if (is.na(selected_df$photos.small)) {
+      stop("Ooops, this pet does not have photos")
+    }
 
     photo.dat <- pf_view_photos(selected_df, size="medium") %>%
       image_write(tempfile(fileext='jpg'), format = 'jpg')
     list(src = photo.dat, contentType = "image/jpg")
   })
+
+
+  petmapdata <- reactive({
+    input$search_org
+    
+    req <- as.numeric(isolate(input$num_orgs))
+    if(req <= 100) {
+      limit <- req
+      page <- 1
+    } else {
+      limit <- 100
+      page <- ceiling(req / 100)
+    }
+    
+    if(!is.na(isolate(input$distance_org))) {
+      validate(need(isolate(input$location_org), 
+                    "To specify Distance, you must specify Location"))
+    }
+    
+    data <- do.call(PetFindr::pf_find_pets, 
+                    args = list(token = get_token(), 
+                                location = isolate(input$location_org), 
+                                distance = isolate(input$distance_org), 
+                                limit = limit, page = page))
+    data <- data[1:req,]
+    
+  })
   
+  output$map2 <- renderLeaflet({
+    
+    validate(need(nrow(petmapdata()) > 0, "No organizations found. Are your search parameters too narrow?"))
+    
+    pet_locate = petmapdata()
+    selected_pet <- PetFindr:::pf_locate_organizations(get_token(), pet_locate)
+    
+    pet_locate_sum <- pet_locate %>% group_by(organization_id) %>%
+      summarise(sum = length(id))
+    
+    req <- as.numeric(isolate(input$num_orgs))
+    if(req <= 100) {
+      limit <- req
+      page <- 1
+    } else {
+      limit <- 100
+      page <- ceiling(req / 100)
+    }
+    
+    if(!is.na(isolate(input$distance_org))) {
+      validate(need(isolate(input$location_org), 
+                    "To specify Distance, you must specify Location"))
+    }
+    
+    orgdata <- do.call(PetFindr::pf_find_organizations, 
+                       args = list(token = get_token(), 
+                                   location = isolate(input$location_org), 
+                                   distance = isolate(input$distance_org), 
+                                   limit = limit, page = page))
+
+    org_locate <- orgdata %>%
+      mutate(organization_id = id)
+
+    selected_org <- PetFindr:::pf_locate_organizations(get_token(), org_locate)
+
+    orgmap_data <- rbind(selected_org, selected_pet)
+    
+    orgmap_data <- orgmap_data[which(!duplicated(orgmap_data$id)), ]
+
+    orgmap_sum <- merge(orgmap_data, pet_locate_sum, by.x="id", by.y="organization_id", all.x = TRUE)
+    
+    orgmap_sum$sum[is.na(orgmap_sum$sum)] <- 0
+    
+    orgmap_sum$radius <- as.numeric(orgmap_sum$sum)
+    
+    leaflet(data=orgmap_sum) %>%
+      addTiles() %>%
+      # addCircleMarkers(data=orgmap_sum, lat = ~latitude, lng = ~longitude) %>%
+      addCircles(lat = ~latitude, lng = ~longitude, color = "red", radius = ~(radius*5)^2,
+                 popup = ~paste("Name of Organization:", name, "<br>",
+                                "City:", city, state, "<br>",
+                                "Number of Pets:", sum), layerId = ~id)
+  })
+  
+  output$list_table <- DT::renderDataTable(DT::datatable({
+    
+    validate(need(!is.null(input$map2_shape_click), "Please Make Selection"))
+    
+    event <- input$map2_shape_click
+
+    newloc <- paste0(event$lat, ",","%20", event$lng)
+    orgdata_list <- do.call(PetFindr::pf_find_organizations,
+                       args = list(token = get_token(),
+                                   location = newloc)) %>% filter(id==event$id) %>%
+      select(c(name, email, phone, address.address1, address.city, address.state, address.postcode))
+
+    orgdata_list
+  })
+  )
+
+  output$bars <- renderPlotly({
+    
+    validate(need(!is.null(input$map2_shape_click), "Please Make Selection"))
+    
+    event <- input$map2_shape_click
+    
+    plotmap <- petmapdata() %>% 
+        dplyr::filter(organization_id == event$id) %>% 
+        group_by(type) %>%
+        summarise(sum=length(id))
+    
+    plotmap <- data.frame(plotmap)
+    
+    validate(need(nrow(plotmap) > 0, "No pets in this organization..."))
+
+    p <- ggplot(data=plotmap, aes(x=type, y=sum)) +
+        geom_bar(stat="identity", fill="navy") +
+        labs(x="Animal Types", y="Number of Animals")+
+        theme_bw()
+    
+    ggplotly(p)
+
+  })
 }
