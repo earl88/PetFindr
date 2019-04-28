@@ -113,7 +113,25 @@ The following section introduces the functions in `PetFindr` package and how to 
 The examples are mainly split into pet, shelter, photo-viewing functions.
 
 
-### 
+### Functions
+
+
+### Examples Using Sample Data
+
+
+The developers have stored sample datasets extracted from Petfinder, \
+because it can be useful to include example datasets in the R package, to illustrate how the datasets are structures and how it can be leveraged to explore your interests in pets \
+
+The datasets in the package are immediately available when the package is loaded.
+
+#### Sample data: Puppies in Los Angeles
+
+The dataset summarises 
+
+
+#### Sample data: Shelters in New York State
+
+The dataset summarises 
 
 
 
