@@ -7,6 +7,15 @@
     <meta name="date" content="2019-04-29" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-1.3.1/leaflet.js"></script>
+    <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+    <script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+    <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+    <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
   </head>
   <body>
     <textarea id="source">
@@ -18,6 +27,104 @@ class: center, middle, inverse, title-slide
 
 ---
 
+
+
+
+
+
+
+
+# Petfinder.com 
+
+&lt;img src="images/petfinder-website.PNG" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Petfinder.com 
+
+&lt;img src="images/petfinder-dogs.PNG" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The Petfinder API (V2)
+
+* https://www.petfinder.com/developers/v2/docs/
+
+* New version requires sign-up to receive 'key' and 'secret'
+
+* Conduct searches using 'curl' (client url) on the command line
+
+* Responses are in JSON format
+
+* List search options (available animal types, breeds, etc.)
+
+* Search pets and organizations by type, location, id, and more &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+
+&lt;img src="images/petfinder-for-developers.PNG" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# PetFindr
+
+https://github.com/earl88/PetFindr
+
+&lt;img src="../../man/figures/logo.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### Getting Started  -Name-
+
+
+
+
+```
+## [1] 4
+```
+
+Research done by R.Fisman, S. Iyeangar et al (2006)
+
+- One of the famous research done on Speed Dating
+
+- Investigated gender differences in partner selection
+
+- Focused on prediction with regression models
+
+
+---
+### Authentication  -Jessica-
+
+
+
+- Subjects: Graduate students at Columbia University 
+
+- 14 Speed dating sessions from 2002 - 2004 
+
+- 4 minute interaction
+
+&lt;img src="table.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Usage  -Jessica-
+
+
+
+- Meow
+
+---
+### Functions  -Jessica-
+
+
+- Meow
+
+
+
+---
+### Examples Using Sample Data  -Jessica-
+
+- Meow
+---
 class: inverse
 
 ### Package functions  -Amin-
@@ -33,22 +140,12 @@ class: inverse
 
 
 ---
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
 
 ### Package functions  -Amin-
 * What types of pets are available?
-<<<<<<< HEAD
-&lt;img src="PetFindr-slides_amin_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /&gt;
-=======
-&lt;img src="PetFindr-slides_amin_files/figure-html/unnamed-chunk-1-1.png" width="70%" style="display: block; margin: auto;" /&gt;
->>>>>>> dd6139280be1eb0bc82d5d7be15763938a612c2c
+&lt;img src="PetFindr-slides_hana_Do_not_run__files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
 ### Package functions  -Amin-
 
 * What types of pets are available?
@@ -59,18 +156,12 @@ background-position: 98% 8%
 &lt;img src="./images/list.type.jpg" width="110%" style="display: block; margin: auto;" /&gt;
  
 ---
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
 ### Package functions  -Amin-
 * How to have a list of available pets in R?
 
 &lt;img src="./images/list.type.1.jpg" width="110%" style="display: block; margin: auto;" /&gt;
 
 ---
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
 class: inverse
 ### Package functions  -Amin-
 #### pf_list_type
@@ -80,9 +171,6 @@ class: inverse
 &lt;img src="./images/list.type_R_output.jpg" width="110%" style="display: block; margin: auto;" /&gt;
  
 ---
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
 class: inverse
 ### Package functions  -Amin-
 
@@ -93,101 +181,6 @@ class: inverse
  * A list of all available breeds of each pet
  * input: `token`, `type`
  * output: A character vector of the breed names
-<<<<<<< HEAD
- 
----
-class: inverse
-
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-
-### Package functions  -Amin-
-#### pf_list_breed
-
-
-
-&lt;img src="./images/list.breed_R.jpg" width="75%" style="display: block; margin: auto;" /&gt;
-
----
-class: inverse
-
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-### Package functions  -Amin-
-#### Searching for pets 
-
-* pf_list_types: List all available types of pets
-
-* pf_list_breeds: List all available breeds of each pet
-
-* A function to search for pets 
-    * pf_find_pets
----
-class: inverse
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-### Package functions  -Amin-
-#### Searching for pets
-##### Pf_find_pets
-.pull-left[
-* A data frame of pets info listed on Petfinder.com
-
-* Filter searches
-  * Animal type
-  * Breed
-  * Size
-  * Gender
-  * Age
-  * Color
-  * Location
-  * ...
-  
-* Sort information
-  * Recent information
-  * Distance from the user
-  ]
-.pull-right[
-&lt;img src="./images/find.pets.3.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
----
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-### Package functions  -Amin-
-#### Searching for pets
-##### Pf_find_pets
-
-&lt;img src="./images/find.pets.2.png" width="110%" style="display: block; margin: auto;" /&gt;
-
----
-class: inverse
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-### Package functions  -Amin-
-#### Searching for pets
-##### Pf_find_pets
-
-
-&lt;img src="./images/find.pets.png" width="112%" style="display: block; margin: auto;" /&gt;
-
-
----
-class: inverse
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-### Package functions  -Amin-
-#### Searching for pets
-##### Pf_find_pets
-
-
-&lt;img src="./images/find.pets.1.png" width="100%" style="display: block; margin: auto;" /&gt;
-=======
-<<<<<<< HEAD
 
 
 ---
@@ -278,11 +271,8 @@ IA_orgs %&gt;%
 * How it works: Request location information by organizations' id that are extracted from a dataframe of individual pets
 * https://www.petfinder.com/developers/v2/docs/#get-organization
 
-<div id="htmlwidget-afa1dc7e8ceaf3fab971" style="width:504px;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-afa1dc7e8ceaf3fab971">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[33.195534,-117.354538,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,"San Diego Humane Society and SPCA Oceanside Campus for Dogs",null,"San Diego Humane Society and SPCA Oceanside Campus for Dogs",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[33.195534,33.195534],"lng":[-117.354538,-117.354538]}},"evals":[],"jsHooks":[]}</script>
-=======
->>>>>>> dd6139280be1eb0bc82d5d7be15763938a612c2c
->>>>>>> 5db12d4a78be3bd9ee68982e60c027bce4845ecd
+<div id="htmlwidget-8c54c9b84a1a9b63678d" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c54c9b84a1a9b63678d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[33.195534,-117.354538,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,"San Diego Humane Society and SPCA Oceanside Campus for Dogs",null,"San Diego Humane Society and SPCA Oceanside Campus for Dogs",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[33.195534,33.195534],"lng":[-117.354538,-117.354538]}},"evals":[],"jsHooks":[]}</script>
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
