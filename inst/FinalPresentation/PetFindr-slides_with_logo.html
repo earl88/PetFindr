@@ -21,74 +21,150 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
+
+
+## Petfinder.com 
+
+
+
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo.png)
 background-size: 150px
 background-position: 98% 8%
 
-class: inverse
+## Petfinder.com 
 
-### Package functions  -Amin-
+&lt;img src="images/petfinder-dogs.PNG" width="100%" style="display: block; margin: auto;" /&gt;
 
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo.png)
+background-size: 150px
+background-position: 98% 8%
 
-* What types of pets are available?
+## The Petfinder API (V2)
 
-* What information is available of each type?
-  * coat
-  * color
-  * gender
+- https://www.petfinder.com/developers/v2/docs/
 
+- New version requires sign-up to receive 'key' and 'secret'
+
+- Conduct searches using 'curl' (client url) on the command line
+
+- Responses are in JSON format
+
+- List search options (available animal types, breeds, etc.)
+
+- Search pets and organizations by type, location, id, and more &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
 
 
 ---
 
-### Package functions  -Amin-
-* What types of pets are available?
-&lt;img src="PetFindr-slides_amin_files/figure-html/unnamed-chunk-1-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+# Introducing PetFindr
+
+https://github.com/earl88/PetFindr
+
+&lt;img src="PetFindr-slides_with_logo_files/figure-html/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
-### Package functions  -Amin-
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo.png)
+background-size: 150px
+background-position: 98% 8%
 
-* What types of pets are available?
+### Getting Started 
 
 
-* Petfinder.com
 
-&lt;img src="./images/list.type.jpg" width="110%" style="display: block; margin: auto;" /&gt;
- 
+```
+## [1] 4
+```
+
+Research done by R.Fisman, S. Iyeangar et al (2006)
+
+- One of the famous research done on Speed Dating
+
+- Investigated gender differences in partner selection
+
+- Focused on prediction with regression models
+
+
 ---
-### Package functions  -Amin-
-* How to have a list of available pets in R?
 
-&lt;img src="./images/list.type.1.jpg" width="110%" style="display: block; margin: auto;" /&gt;
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo.png)
+background-size: 150px
+background-position: 98% 8%
+
+### Authentication  -Jessica-
+
+
+
+- Subjects: Graduate students at Columbia University 
+
+- 14 Speed dating sessions from 2002 - 2004 
+
+- 4 minute interaction
+
+&lt;img src="table.jpg" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
-class: inverse
-### Package functions  -Amin-
-#### pf_list_type
- * Input: token
- * Output: a tibble of all available animal types with their respective coat, color, and gender options
- 
-&lt;img src="./images/list.type_R_output.jpg" width="110%" style="display: block; margin: auto;" /&gt;
- 
+
+### Usage  -Jessica-
+
+
+
+- Meow
+
 ---
-class: inverse
-### Package functions  -Amin-
+### Functions  -Jessica-
 
- * What breeds are available for each pet?
 
-#### pf_list_breed
- 
- * A list of all available breeds of each pet
- * input: `token`, `type`
- * output: A character vector of the breed names
+- Meow
+
+
+
+---
+### Examples Using Sample Data  -Jessica-
+
+- Meow
+---
+
+### Shiny  -Hana-
+
+- Meow
+---
+
+
+---
+### Matches and Popularity by different ambitions of future career  -Sungchan-
+
+| Car.Ambtion(A)|Car.Ambition(B)|Match   |A=Female  |A=Male    |
+|--------------------------------------------------------------|
+| C.Art/Ent     |Lawyer         | 27%    |    49%   |&lt;span style="color:blue"&gt;67%&lt;/span&gt;|
+| C.Art/Ent     |Academic       | 17%    |    54%   |    39%   |
+| C.Art/Ent     |C.Art/Ent      |  0%    |    18%   |&lt;span style="color:blue"&gt;53%&lt;/span&gt;|
+| C.Art/Ent     |Fin/Biz        | 17%    |    43%   |    40%   |
+| Fin/Biz       |Lawyer         | 24%    |&lt;span style="color:red"&gt;60%&lt;/span&gt;|    36%   |
+| Fin/Biz       |Academic       | 16%    |    59%   |    36%   |
+| Fin/Biz       |C.Art/Ent      | 17%    |    52%   |    40%   |
+| Fin/Biz       |Fin/Biz        | 20%    |&lt;span style="color:red"&gt;62%&lt;/span&gt;| c30%|
+| Fin/Biz       |Undecided      | 19%    |    35%   |&lt;span style="color:blue"&gt;37%&lt;/span&gt;|
+| Undecided     |Academic       | 10%    |    52%   |&lt;span style="color:blue"&gt;59%&lt;/span&gt;|
+| Undecided     |Fin/Biz        | 19%    |    54%   |    35%   |
+---
+### Main results  -Sungchan-
+
+- Each gender had different criteria when choosing their partner.
+  - Intelligence was more important for women.
+  - Attractiveness was more important for men. 
+- We find no association with the age difference and the chance of getting the second date.
+- Overall, women were asked for a second date more often.
+  - Opposite result when it comes to some fields of study and types of  dream jobs
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+"highlightLines": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
