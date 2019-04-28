@@ -132,12 +132,12 @@ The datasets in the package are immediately available when the package is loaded
 The dataset summarises information of 500 puppies in Greater Los Angeles area extracted from Petfinder on April 25, 2019. 
 Output below is the first observation from the dataset.
 
-```{r, echo = F, eval = T, message = F}
+```{r, echo = F, eval = F, message = F}
 library(tidyverse)
 library(PetFindr)
 ```
 
-```{r, eval = T, echo = T}
+```{r, eval = F, echo = F}
 t(LA_puppies %>% head(n = 1))
 
 ```
@@ -165,7 +165,7 @@ The first row from the sample data (column 1 above) represents:
 The dataset summarises the list of animal sheters in New York State. \
 Output below is the first observation from the dataset.
 
-```{r, eval = T, echo = T}
+```{r, eval = F, echo = F}
 t(NY_orgs %>% head(n = 1))
 
 ```
