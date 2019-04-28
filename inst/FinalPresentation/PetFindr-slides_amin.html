@@ -18,17 +18,27 @@ class: center, middle, inverse, title-slide
 
 ---
 
-class: inverse
-
-### Package functions  -Amin-
 
 
-* What types of pets are available?
 
-* What information is available of each type?
+
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+
+
+### Package functions  
+#### Amin Shirazi
+
+
+* What information is available of each type of pet?
+  * breed
+  * age
   * coat
   * color
   * gender
+  * size
+  * ...
 
 
 
@@ -37,77 +47,83 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 
-### Package functions  -Amin-
+### Package functions  
 * What types of pets are available?
-<<<<<<< HEAD
-&lt;img src="PetFindr-slides_amin_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /&gt;
-=======
 &lt;img src="PetFindr-slides_amin_files/figure-html/unnamed-chunk-1-1.png" width="70%" style="display: block; margin: auto;" /&gt;
->>>>>>> dd6139280be1eb0bc82d5d7be15763938a612c2c
 
 ---
+
+
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
 
-* What types of pets are available?
-
-
-* Petfinder.com
-
-&lt;img src="./images/list.type.jpg" width="110%" style="display: block; margin: auto;" /&gt;
- 
----
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-### Package functions  -Amin-
-* How to have a list of available pets in R?
-
-&lt;img src="./images/list.type.1.jpg" width="110%" style="display: block; margin: auto;" /&gt;
-
----
-background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
-background-size: 150px
-background-position: 98% 8%
-class: inverse
-### Package functions  -Amin-
-#### pf_list_type
+### Package functions  
+#### `pf_list_types(token)`
  * Input: token
  * Output: a tibble of all available animal types with their respective coat, color, and gender options
  
-&lt;img src="./images/list.type_R_output.jpg" width="110%" style="display: block; margin: auto;" /&gt;
+
+```
+## # A tibble: 8 x 4
+##   name        coats               colors                        genders    
+##   &lt;chr&gt;       &lt;chr&gt;               &lt;chr&gt;                         &lt;chr&gt;      
+## 1 Dog         Hairless, Short, M~ Apricot / Beige, Bicolor, Bl~ Male, Fema~
+## 2 Cat         Hairless, Short, M~ Black, Black &amp; White / Tuxed~ Male, Fema~
+## 3 Rabbit      Short, Long         Agouti, Black, Blue / Gray, ~ Male, Fema~
+## 4 Small &amp; Fu~ Hairless, Short, L~ Agouti, Albino, Black, Black~ Male, Fema~
+## 5 Horse       ""                  Appaloosa, Bay, Bay Roan, Bl~ Male, Fema~
+## 6 Bird        ""                  Black, Blue, Brown, Buff, Gr~ Male, Fema~
+## 7 Scales, Fi~ ""                  Black, Blue, Brown, Gray, Gr~ Male, Fema~
+## 8 Barnyard    Short, Long         Agouti, Black, Black &amp; White~ Male, Fema~
+```
  
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-class: inverse
-### Package functions  -Amin-
+
+### Package functions  
+#### `pf_list_breeds(token, type)`
 
  * What breeds are available for each pet?
 
-#### pf_list_breed
- 
  * A list of all available breeds of each pet
- * input: `token`, `type`
- * output: A character vector of the breed names
-<<<<<<< HEAD
+ 
+ * Input: `token`, `type`
+ 
+ * Output: A character vector of the breed names
  
 ---
-class: inverse
 
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 
-### Package functions  -Amin-
+### Package functions  
 #### pf_list_breed
 
 
-
-&lt;img src="./images/list.breed_R.jpg" width="75%" style="display: block; margin: auto;" /&gt;
+```
+##                   name
+## 1                  Dog
+## 2                  Cat
+## 3               Rabbit
+## 4        Small &amp; Furry
+## 5                Horse
+## 6                 Bird
+## 7 Scales, Fins &amp; Other
+## 8             Barnyard
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      breeds
+## 1 Affenpinscher, Afghan Hound, Airedale Terrier, Akbash, Akita, Alaskan Malamute, American Bulldog, American Eskimo Dog, American Foxhound, American Hairless Terrier, American Staffordshire Terrier, American Water Spaniel, Anatolian Shepherd, Appenzell Mountain Dog, Australian Cattle Dog / Blue Heeler, Australian Kelpie, Australian Shepherd, Australian Terrier, Basenji, Basset Hound, Beagle, Bearded Collie, Beauceron, Bedlington Terrier, Belgian Shepherd / Laekenois, Belgian Shepherd / Malinois, Belgian Shepherd / Sheepdog, Belgian Shepherd / Tervuren, Bernese Mountain Dog, Bichon Frise, Black and Tan Coonhound, Black Labrador Retriever, Black Mouth Cur, Black Russian Terrier, Bloodhound, Blue Lacy, Bluetick Coonhound, Boerboel, Bolognese, Border Collie, Border Terrier, Borzoi, Boston Terrier, Bouvier des Flandres, Boxer, Boykin Spaniel, Briard, Brittany Spaniel, Brussels Griffon, Bull Terrier, Bullmastiff, Cairn Terrier, Canaan Dog, Cane Corso, Cardigan Welsh Corgi, Carolina Dog, Catahoula Leopard Dog, Cattle Dog, Caucasian Sheepdog / Caucasian Ovtcharka, Cavalier King Charles Spaniel, Chesapeake Bay Retriever, Chihuahua, Chinese Crested Dog, Chinese Foo Dog, Chinook, Chocolate Labrador Retriever, Chow Chow, Cirneco dell'Etna, Clumber Spaniel, Cockapoo, Cocker Spaniel, Collie, Coonhound, Corgi, Coton de Tulear, Curly-Coated Retriever, Dachshund, Dalmatian, Dandie Dinmont Terrier, Doberman Pinscher, Dogo Argentino, Dogue de Bordeaux, Dutch Shepherd, English Bulldog, English Cocker Spaniel, English Coonhound, English Foxhound, English Pointer, English Setter, English Shepherd, English Springer Spaniel, English Toy Spaniel, Entlebucher, Eskimo Dog, Feist, Field Spaniel, Fila Brasileiro, Finnish Lapphund, Finnish Spitz, Flat-Coated Retriever, Fox Terrier, Foxhound, French Bulldog, Galgo Spanish Greyhound, German Pinscher, German Shepherd Dog, German Shorthaired Pointer, German Spitz, German Wirehaired Pointer, Giant Schnauzer, Glen of Imaal Terrier, Golden Retriever, Gordon Setter, Great Dane, Great Pyrenees, Greater Swiss Mountain Dog, Greyhound, Hamiltonstovare, Harrier, Havanese, Hound, Hovawart, Husky, Ibizan Hound, Icelandic Sheepdog, Illyrian Sheepdog, Irish Setter, Irish Terrier, Irish Water Spaniel, Irish Wolfhound, Italian Greyhound, Jack Russell Terrier, Japanese Chin, Jindo, Kai Dog, Karelian Bear Dog, Keeshond, Kerry Blue Terrier, Kishu, Klee Kai, Komondor, Kuvasz, Kyi Leo, Labrador Retriever, Lakeland Terrier, Lancashire Heeler, Leonberger, Lhasa Apso, Lowchen, Maltese, Manchester Terrier, Maremma Sheepdog, Mastiff, McNab, Miniature Bull Terrier, Miniature Dachshund, Miniature Pinscher, Miniature Poodle, Miniature Schnauzer, Mixed Breed, Mountain Cur, Mountain Dog, Munsterlander, Neapolitan Mastiff, New Guinea Singing Dog, Newfoundland Dog, Norfolk Terrier, Norwegian Buhund, Norwegian Elkhound, Norwegian Lundehund, Norwich Terrier, Nova Scotia Duck Tolling Retriever, Old English Sheepdog, Otterhound, Papillon, Parson Russell Terrier, Patterdale Terrier / Fell Terrier, Pekingese, Pembroke Welsh Corgi, Peruvian Inca Orchid, Petit Basset Griffon Vendeen, Pharaoh Hound, Pit Bull Terrier, Plott Hound, Pointer, Polish Lowland Sheepdog, Pomeranian, Poodle, Portuguese Podengo, Portuguese Water Dog, Presa Canario, Pug, Puli, Pumi, Pyrenean Shepherd, Rat Terrier, Redbone Coonhound, Retriever, Rhodesian Ridgeback, Rottweiler, Rough Collie, Saint Bernard, Saluki, Samoyed, Sarplaninac, Schipperke, Schnauzer, Scottish Deerhound, Scottish Terrier, Sealyham Terrier, Setter, Shar-Pei, Sheep Dog, Shepherd, Shetland Sheepdog / Sheltie, Shiba Inu, Shih Tzu, Siberian Husky, Silky Terrier, Skye Terrier, Sloughi, Smooth Collie, Smooth Fox Terrier, South Russian Ovtcharka, Spaniel, Spanish Water Dog, Spinone Italiano, Spitz, Staffordshire Bull Terrier, Standard Poodle, Standard Schnauzer, Sussex Spaniel, Swedish Vallhund, Terrier, Thai Ridgeback, Tibetan Mastiff, Tibetan Spaniel, Tibetan Terrier, Tosa Inu, Toy Fox Terrier, Toy Manchester Terrier, Treeing Walker Coonhound, Vizsla, Weimaraner, Welsh Springer Spaniel, Welsh Terrier, West Highland White Terrier / Westie, Wheaten Terrier, Whippet, White German Shepherd, Wire Fox Terrier, Wirehaired Dachshund, Wirehaired Pointing Griffon, Wirehaired Terrier, Xoloitzcuintli / Mexican Hairless, Yellow Labrador Retriever, Yorkshire Terrier
+## 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Abyssinian, American Bobtail, American Curl, American Shorthair, American Wirehair, Applehead Siamese, Balinese, Bengal, Birman, Bombay, British Shorthair, Burmese, Burmilla, Calico, Canadian Hairless, Chartreux, Chausie, Chinchilla, Cornish Rex, Cymric, Devon Rex, Dilute Calico, Dilute Tortoiseshell, Domestic Long Hair, Domestic Medium Hair, Domestic Short Hair, Egyptian Mau, Exotic Shorthair, Extra-Toes Cat / Hemingway Polydactyl, Havana, Himalayan, Japanese Bobtail, Javanese, Korat, LaPerm, Maine Coon, Manx, Munchkin, Nebelung, Norwegian Forest Cat, Ocicat, Oriental Long Hair, Oriental Short Hair, Oriental Tabby, Persian, Pixiebob, Ragamuffin, Ragdoll, Russian Blue, Scottish Fold, Selkirk Rex, Siamese, Siberian, Silver, Singapura, Snowshoe, Somali, Sphynx / Hairless Cat, Tabby, Tiger, Tonkinese, Torbie, Tortoiseshell, Turkish Angora, Turkish Van, Tuxedo, York Chocolate
+## 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              American, American Fuzzy Lop, American Sable, Angora Rabbit, Belgian Hare, Beveren, Britannia Petite, Bunny Rabbit, Californian, Champagne D'Argent, Checkered Giant, Chinchilla, Cinnamon, Creme D'Argent, Dutch, Dwarf, Dwarf Eared, English Lop, English Spot, Flemish Giant, Florida White, French Lop, Harlequin, Havana, Himalayan, Holland Lop, Hotot, Jersey Wooly, Lilac, Lionhead, Lop Eared, Mini Lop, Mini Rex, Netherland Dwarf, New Zealand, Palomino, Polish, Rex, Rhinelander, Satin, Silver, Silver Fox, Silver Marten, Tan
+## 4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Abyssinian, Chinchilla, Degu, Dwarf Hamster, Ferret, Gerbil, Guinea Pig, Hamster, Hedgehog, Mouse, Peruvian, Prairie Dog, Rat, Rex, Short-Haired, Silkie / Sheltie, Skunk, Sugar Glider, Teddy
+## 5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Appaloosa, Arabian, Belgian, Clydesdale, Connemara, Curly Horse, Donkey, Draft, Friesian, Gaited, Grade, Haflinger, Icelandic Horse, Lipizzan, Miniature Horse, Missouri Foxtrotter, Morgan, Mule, Mustang, Paint / Pinto, Palomino, Paso Fino, Percheron, Peruvian Paso, Pony, Pony of the Americas, Quarterhorse, Rocky Mountain Horse, Saddlebred, Shetland Pony, Standardbred, Tennessee Walker, Thoroughbred, Warmblood
+## 6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 African Grey, Amazon, Brotogeris, Budgie / Budgerigar, Button-Quail, Caique, Canary, Chicken, Cockatiel, Cockatoo, Conure, Dove, Duck, Eclectus, Emu, Finch, Goose, Guinea Fowl, Kakariki, Lory / Lorikeet, Lovebird, Macaw, Ostrich, Parakeet (Other), Parrot (Other), Parrotlet, Peacock / Peafowl, Pheasant, Pigeon, Pionus, Poicephalus / Senegal, Quail, Quaker Parakeet, Rhea, Ringneck / Psittacula, Rosella, Swan, Toucan, Turkey
+## 7                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Asian Box, Ball Python, Bearded Dragon, Boa, Boa Constrictor, Box, Bull, Bullfrog, Burmese Python, Chameleon, Corn / Rat, Eastern Box, Fire Salamander, Fire-Bellied, Fire-Bellied Newt, Florida Box, Freshwater Fish, Frog, Garter / Ribbon, Gecko, Goldfish, Hermit Crab, Horned Frog, Iguana, King / Milk, Leopard, Leopard Frog, Lizard, Mississippi Map Turtle, Monitor, Mud, Musk, Oregon Newt, Ornamental Box, Other, Paddle Tailed Newt, Painted, Python, Red Foot, Red-Eared Slider, Russian, Saltwater Fish, Scorpion, Snake, Snapping, Soft Shell, Southern, Sulcata, Tarantula, Three-Toed Box, Tiger Salamander, Toad, Tortoise, Tree Frog, Turtle, Uromastyx, Water Dragon, Yellow-Bellied Slider
+## 8                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Alpaca, Alpine, Angora, Angus, Barbados, Boer, Cow, Duroc, Goat, Hampshire, Holstein, Jersey, LaMancha, Landrace, Llama, Merino, Mouflon, Myotonic / Fainting, Nigerian Dwarf, Nubian, Oberhasli, Pig, Pot Bellied, Pygmy, Saanen, Sheep, Shetland, Toggenburg, Vietnamese Pot Bellied, Yorkshire
+```
 
 ---
 class: inverse
@@ -115,7 +131,7 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets 
 
 * pf_list_types: List all available types of pets
@@ -129,7 +145,7 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets
 ##### Pf_find_pets
 .pull-left[
@@ -156,7 +172,7 @@ background-position: 98% 8%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets
 ##### Pf_find_pets
 
@@ -167,7 +183,7 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets
 ##### Pf_find_pets
 
@@ -180,109 +196,41 @@ class: inverse
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
-### Package functions  -Amin-
+### Package functions  
 #### Searching for pets
 ##### Pf_find_pets
 
 
 &lt;img src="./images/find.pets.1.png" width="100%" style="display: block; margin: auto;" /&gt;
-=======
-<<<<<<< HEAD
-
 
 ---
-### Package functions  -Hana-
-#### pf_find_organizations
+class: inverse
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Visualization of photos
 
-* A function to find information of animal shelters and rescue groups. It returns a dataframe of details on a group of organizations based on criteria given in parameters.
-  * https://www.petfinder.com/developers/v2/docs/#get-organizations
+* View the photos of searched pets in a slideshow format
 
-* What information is available?
-  * id, name, and link for query
-  * contact info. (email, phone, address, and social media)
-  * page url in petfinder
-  * photos
-  * Adoption policy, website url, and etc.
-  * e.g., https://www.petfinder.com/member/us/ia/ames/ames-animal-shelter-ia197/
+* Input: 
+  * A data frame of animal search results from pf_find_pets
+  * Photo size
+    * Small
+    * Medium
+    * Large
+    * Full
 
----
-### Package functions  -Hana-
-#### pf_find_organizations
-* How to search on petfinder
-* https://www.petfinder.com/animal-shelters-and-rescues/search/
-
-&lt;img src="images/petfinder-org.PNG" width="100%" style="display: block; margin: auto;" /&gt;
+* Output: A slideshow of pet pictures
 
 ---
-### Package functions  -Hana-
-#### pf_find_organizations
-* How to search on PetFindr
-
-
-```r
-pf_find_organizations &lt;- function(token = NULL, name = NULL, 
-                                  location = NULL, distance = NULL,
-                                  state = NULL, country = NULL,
-                                  sort = "recent", page = 1, limit = 20) {...}
-```
-
-
-
-
-
-```r
-US_orgs &lt;- PetFindr::pf_find_organizations(token, 
-                                           country = "US", 
-                                           limit = 10, 
-                                           page = 1:3, 
-                                           sort = "state")
-
-IA_orgs &lt;- PetFindr::pf_find_organizations(token, 
-                                           location = "Ames, IA", 
-                                           distance = 10, 
-                                           sort = "-distance")
-```
-
----
-### Package functions  -Hana-
-#### pf_find_organizations
-
-
-```r
-IA_orgs %&gt;%
-  filter(name == "Ames Animal Shelter") %&gt;%
-  select(id, name, url, 
-         address.address1, address.city, address.state,
-         address.postcode, address.country,
-         X_links.self.href, X_links.animals.href,
-         photos.small)
-```
-
-```
-##      id                name
-## 1 IA197 Ames Animal Shelter
-##                                                                                                                       url
-## 1 https://www.petfinder.com/member/us/ia/ames/ames-animal-shelter-ia197/?referrer_id=0364fc52-c58b-48fa-9e9b-2f23017febb2
-##      address.address1 address.city address.state address.postcode
-## 1 325 Billy Sunday Rd         Ames            IA            50010
-##   address.country       X_links.self.href           X_links.animals.href
-## 1              US /v2/organizations/ia197 /v2/animals?organization=ia197
-##                                                                                                                               photos.small
-## 1 https://s3.amazonaws.com/petfinder-us-east-1-petimages-prod/organization-photos/21383/21383-1.jpg?bust=2018-07-18+18%3A33%3A38&amp;width=100
-```
----
-### Package functions  -Hana-
-#### pf_map_locations
-* Input: token, a dataframe of pets returned from pf_find_pets
-* Ouput: locations of organizations of pets on a Leaflet map
-* How it works: Request location information by organizations' id that are extracted from a dataframe of individual pets
-* https://www.petfinder.com/developers/v2/docs/#get-organization
-
-<div id="htmlwidget-afa1dc7e8ceaf3fab971" style="width:504px;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-afa1dc7e8ceaf3fab971">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[33.195534,-117.354538,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,"San Diego Humane Society and SPCA Oceanside Campus for Dogs",null,"San Diego Humane Society and SPCA Oceanside Campus for Dogs",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[33.195534,33.195534],"lng":[-117.354538,-117.354538]}},"evals":[],"jsHooks":[]}</script>
-=======
->>>>>>> dd6139280be1eb0bc82d5d7be15763938a612c2c
->>>>>>> 5db12d4a78be3bd9ee68982e60c027bce4845ecd
+class: inverse
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Visualization of photos
+##### pf_view_photos
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
