@@ -69,6 +69,15 @@ https://github.com/earl88/PetFindr
 knitr::include_graphics("../../man/figures/logo.png")
 ```
 
+---
+
+# Interacting with the API
+
+* Hadley's package `httr`
+
+    + `GET`, `POST`, `add_headers`, `content`, `status_code`
+    
+* 
 
 ---
 
