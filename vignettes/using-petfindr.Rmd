@@ -19,12 +19,13 @@ knitr::opts_chunk$set(
 
 * Introducing `PetFindr`
 * Getting Started
-    + Authentication
+    + Authentication  - Jess is working on this :)
 * Usage
     + Functions - Amin
     + Examples Using Sample Data - Jess
     + Shiny  - Earl
-* Conclusion - ? 
+    + Extensions - Jess 
+
 
 
 
