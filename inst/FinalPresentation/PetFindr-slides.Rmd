@@ -69,6 +69,15 @@ https://github.com/earl88/PetFindr
 knitr::include_graphics("../../man/figures/logo.png")
 ```
 
+---
+
+# Interacting with the API
+
+* Hadley's package `httr`
+
+    + `GET`, `POST`, `add_headers`, `content`, `status_code`
+    
+* 
 
 ---
 
@@ -187,11 +196,4 @@ pf_list_breeds(token, type = "cat") %>% head(n = 20)
 ```{r  out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://media3.giphy.com/media/xTg8AXwgs79YFFvzeo/giphy.gif")
 ```
-
-
----
-
-### Shiny  
-
-- Meow
 ---
