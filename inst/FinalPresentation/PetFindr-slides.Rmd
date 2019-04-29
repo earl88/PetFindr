@@ -545,7 +545,7 @@ background-position: 99.5% 4.5%
 
 * The same set of information may not exist for all of the organizations (or pets)
 
-* Flatten the list, assign distinct names (e.g., photo1, photo2,..), and return a dataframe!
+* Flatten the list, assign distinct names (e.g., photo1, photo2, ...), and return a dataframe!
  
 ```{r, echo = T, eval = F}
   organization_df <- purrr::map_dfr(organization_info, 
