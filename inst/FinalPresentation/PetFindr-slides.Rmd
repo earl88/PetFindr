@@ -142,7 +142,7 @@ background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
-Once you create an account, you will get assigned a unique `key` and `secret`.
+Once you create an account, you will be assigned a unique `key` and `secret`.
 
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png")
@@ -155,7 +155,8 @@ background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
-Once you create an account, you will get assigned a unique `key` and `secret`.
+Once you create an account, you will be assigned a unique `key` and `secret`.
+
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
 ```
@@ -175,12 +176,13 @@ background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
+
 With your `key` and `secret`, you can request an access token for the API database.
 
 But what is a token?
 
-- A credential that can be used to receive information 
-- Structure
+With your `key` and `secret`, you must now request an access token for the API.
+
 
 ```{r, eval = F, echo = T}
 pf_accesstoken <- function(key = NULL, secret = NULL) {
@@ -209,8 +211,6 @@ background-position: 99.5% 4.5%
 ```{r,eval = F, echo = T}
 token <- pf_accesstoken(petfindr_key, petfindr_secret)
 ```
-
-Your access token will last for one hour.
 
 ```{r  out.width = "95%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/tokenmessage.png")
@@ -271,6 +271,7 @@ background-position: 99.5% 4.5%
 
  * Input: token
  * Output: a tibble of all available animal types with their respective coat, color, and gender options
+ * Also available as a data frame: `data(pf_types)`
  
 ```{r out.width = "100%",echo=FALSE}
 data("pf_types", package = "PetFindr")
@@ -290,6 +291,8 @@ background-position: 99.5% 4.5%
    * Input: token, type of animal
    
    * Output: A character vector of the available breeds for the specified animal type
+   * Breeds for each type are available as a data frame: `data(pf_breeds)`
+   
    
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
@@ -307,13 +310,13 @@ knitr::include_graphics("./images/pf_breeds.png")
 ```
 
 ---
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions  
 #### Searching for pets
-##### `Pf_find_pets(token, type, breed, size, gender, color, location,  ...)`
+##### `pf_find_pets(token, type, breed, size, gender, color, location,  ...)`
 .pull-left[
 * A data frame of pets info listed on Petfinder.com
 
@@ -331,12 +334,11 @@ knitr::include_graphics(path = "./images/find.pets.3.png")
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions  
 #### Searching for pets
-##### `pf_find_pets`
 
 ```{r, echo = T, eval = F}
-
 `pf_find_pets(token)`
 
 `pf_find_pets(token, type = "horse")`
@@ -351,8 +353,9 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions  
-Data frame columns of `pf_find_pets`
+Column names of data frames output from `pf_find_pets`
 
 
 ```{r out.width = "112%",echo=FALSE}
@@ -361,15 +364,15 @@ data("LA_puppies", package = "PetFindr")
 names(LA_puppies)
 ```
 
-
 ---
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions  
 #### Searching for pets
 ##### Available puppies from the Los Angeles area
+
 ```{r, echo = T}
 LA_puppies %>%  select("species", "breeds.primary","type", "age",
                        "gender","size", "name",
@@ -380,6 +383,7 @@ LA_puppies %>%  select("species", "breeds.primary","type", "age",
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions  
 #### Visualization 
 ##### `pf_view_photos(animal_df, size)`
@@ -400,6 +404,7 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions  
 #### Visualization of photos
 ##### `pf_view_photos(token, size)`
@@ -408,17 +413,15 @@ background-position: 99.5% 4.5%
 knitr::include_graphics("https://media.giphy.com/media/Maz1hoeGskARW/giphy.gif")
 ```
 
-
 ---
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions - Hana Lee
+#### `pf_find_organizations(token, name, location, distance, ...)`
 
-#### `pf_find_organizations`
-
-* It returns a dataframe of details on a group of organizations based on criteria given in parameters. How it works?
+* Returns a dataframe of details on a group of organizations based on criteria given in parameters. How does it work?
   
 * A GET request structure: 
   + base URL of the request, and
@@ -435,8 +438,9 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
-#### `pf_find_organizations(token, name, location, distance, ...)`
+#### `pf_find_organizations`
 
 * Write a GET request structure from the input arguments of a function.
 
@@ -464,12 +468,13 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
 #### `pf_find_organizations`
 
 * Request the listed information on the first page to R!
 
-* If errors occur with the API work, informative message will be printed in a HTTP response. No needs to define new error response formats for HTTP APIs.
+* If the API returns an error, an informative message will be printed in an HTTP response format.
 
 ```{r, echo = T, eval = F}
   probe <- GET(url = paste0(base, query),
@@ -487,12 +492,13 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
 #### `pf_find_organizations`
 
 * Deal with some issues of page specification (default: page=1).
 
-* A single page request: use the saved list! 
+* A single page request: use the initial request! 
 
 ```{r, echo = T, eval = F}
   assertthat::assert_that(is.numeric(page))
@@ -515,6 +521,7 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
 #### `pf_find_organizations`
 
@@ -539,12 +546,13 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
 #### `pf_find_organizations`
 
-* Not the same set of information for all of the organizations (or pets) as well as pages
+* The same set of information may not exist for all of the organizations (or pets)
 
-* Assign distinct names (e.g., photo1, photo2,..), and return a dataframe!
+* Flatten the list, assign distinct names (e.g., photo1, photo2,..), and return a dataframe!
  
 ```{r, echo = T, eval = F}
   organization_df <- purrr::map_dfr(organization_info, 
@@ -561,6 +569,7 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
 #### `pf_map_locations`
 
@@ -583,6 +592,7 @@ PetFindr::pf_map_locations(token, LA_puppies)
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Shiny Application
 
 ```{r, out.width = "50%"}

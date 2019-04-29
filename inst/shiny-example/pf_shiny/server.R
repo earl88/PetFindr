@@ -2,12 +2,10 @@ function(input, output, session) {
   
   url <- a("Petfinder API", href="https://www.petfinder.com/developers/")
   
-  observeEvent(input$setup, {
     output$instruction <- renderUI(
       tagList("Make an account here:", url)
       )
-  },ignoreInit = TRUE)
-  
+    
   if (exists("petfindr_key")) {
     updateTextInput(session, "key", value = petfindr_key)
   }
@@ -33,6 +31,14 @@ function(input, output, session) {
   })
   
   outputOptions(output, "tokenstatus", suspendWhenHidden = FALSE)
+  
+  output$select_breeds <- renderUI({
+    
+    choices <- pf_list_breeds(get_token(), input$animal)
+    
+    selectInput('breeds', label = 'Select breeds:',
+                       choices = choices)
+  })
   
   output$gettoken <- renderText(
     if (nchar(get_token() > 0)) {
@@ -66,6 +72,7 @@ function(input, output, session) {
                                 location = isolate(input$location), 
                                 distance = isolate(input$distance), 
                                 type = isolate(input$animal),
+                                breed = isolate(input$breeds),
                                 status = isolate(input$status), 
                                 limit = limit, page = page))
     data <- data[1:req,]
@@ -227,9 +234,8 @@ function(input, output, session) {
                             args = list(token = get_token(),location = newloc)) %>% filter(id==event$id) %>%
       select(c(name, email, phone, address.address1, address.city, address.postcode, hours.monday, hours.tuesday, hours.wednesday, hours.thursday, hours.friday))
     validate(need(nrow(orgdata_list)>0, "Organization information cannot be found by petfinder API's organization searching algorithm."))
-    orgdata_list <- data.frame(Variables, Organization_Info = transpose(orgdata_list) %>% setNames("Organization_Info"))
-    print(orgdata_list)
-    })
+    orgdata_list <- data.frame(Variables, Organization_Info = t(orgdata_list) %>% setNames("Organization_Info"))
+        })
 
   output$bars <- renderPlotly({
     

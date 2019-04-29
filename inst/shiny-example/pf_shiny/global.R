@@ -6,3 +6,5 @@ library(DT)
 library(shinyjs)
 library(PetFindr)
 library(plotly)
+
+token = pf_accesstoken(petfindr_key, petfindr_secret)
