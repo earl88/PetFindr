@@ -449,15 +449,13 @@ pf_find_organizations <- function(token = NULL, name = NULL,
   base <- "https://api.petfinder.com/v2/organizations?"
   
   args <- as.list(match.call())[-1]
-  query_args <- args[!names(args) %in% c("token", "page")] %>%
+  query <- args[!names(args) %in% c("token", "page")] %>%
     purrr::map(eval)
-  query_args[(query_args != "") & !is.na(query_args)]
+  query[(query != "") & !is.na(query)]
   
-  if(length(query_args) > 0) {query_args <- 
-    stats::setNames(unlist(query_args, use.names=F),
-                    rep(names(query_args), lengths(query_args)))}
+...  
   
-  query <- paste(names(query_args), query_args, 
+  query <- paste(names(query), query, 
                  sep = "=", collapse = "&") %>%
     gsub(pattern = "[ ]", replacement = "%20")
 ```
@@ -473,14 +471,18 @@ background-position: 99.5% 4.5%
 
 * If errors occur with the API work, informative message will be printed in a HTTP response. No needs to define new error response formats for HTTP APIs.
 
-* https://www.petfinder.com/developers/v2/docs/#errors
-
 ```{r, echo = T, eval = F}
   probe <- GET(url = paste0(base, query),
                add_headers(Authorization = paste("Bearer", token)))
 
   if (probe$status_code != 200) {stop(pf_error(probe$status_code))}
 ```
+
+* Example:
+  + Invalid API key/secret/token (ERR-401)
+  + Missing parameters in requests (ERR-00001)
+
+* https://www.petfinder.com/developers/v2/docs/#errors
 
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
@@ -581,7 +583,7 @@ PetFindr::pf_map_locations(token, LA_puppies)
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Shiny Application
 
 ```{r, out.width = "50%"}
