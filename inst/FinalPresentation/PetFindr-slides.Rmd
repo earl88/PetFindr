@@ -210,7 +210,7 @@ background-position: 98% 8%
 #### Amin Shirazi
 
 
-* What information is available of each type of pet?
+* Available information of each type of pet 
   * breed
   * age
   * coat
