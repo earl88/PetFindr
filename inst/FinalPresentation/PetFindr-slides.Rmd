@@ -26,7 +26,7 @@ library(cowplot)
 sticker <- image_read('https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo.png')
 ```
 
-# Petfinder.com 
+# Petfinder.com - Miranda Tilton
 
 ```{r, out.width = "100%"}
 knitr::include_graphics("images/petfinder-website.PNG")
@@ -71,6 +71,9 @@ knitr::include_graphics("../../man/figures/logo.png")
 ```
 
 ---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 99.5% 4.5%
 
 # Interacting with the API
 
@@ -92,19 +95,15 @@ knitr::include_graphics("images/curl-oauth.PNG")
 knitr::include_graphics("images/curl-search.PNG")
 ```
 
-
 ---
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication) - Jessica Kueon
 
 
-To guide users in the authentication process, 
-`pf_setup` is there for you.
-
+To guide users in the authentication process, `pf_setup` is there for you.
 
 First, let's install the package!
 
@@ -119,8 +118,6 @@ You need a Petfinder account.
 pf_setup()
 ```
 
-
-
 ```{r  out.width = "90%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
 ```
@@ -128,7 +125,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
@@ -141,7 +138,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
@@ -151,14 +148,10 @@ Once you create an account, you will get assigned a unique `key` and `secret`.
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png")
 ```
 
-
-
-
-
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5% 
 
 ### Getting Started (Authentication)
 
@@ -175,11 +168,10 @@ petfindr_secret <- "paste_secret_here"
 pf_save_credentials(key = petfindr_key, secret = petfindr_secret)
 ```
 
-
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
@@ -206,10 +198,11 @@ pf_accesstoken <- function(key = NULL, secret = NULL) {
 }
 
 ```
+
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
@@ -236,10 +229,10 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 
-### Package functions   -Amin-
+### Package functions - Amin Shirazi
 
 * Available information for each type of pet 
   * breed
@@ -253,7 +246,7 @@ background-position: 98% 8%
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 ### Package functions  
 
@@ -271,7 +264,7 @@ plot_grid(p1, p2, p3, p4)
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 ### Package functions  
 #### `pf_list_types(token)`
@@ -287,7 +280,7 @@ pf_types
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 ### Package functions  
 #### `pf_list_breeds(token, type)`
@@ -299,10 +292,9 @@ background-position: 98% 8%
    * Output: A character vector of the available breeds for the specified animal type
    
 ---
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 ### Package functions  
 #### `pf_list_breeds`
@@ -318,7 +310,7 @@ knitr::include_graphics("./images/pf_breeds.png")
 
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions  
 #### Searching for pets
 ##### `Pf_find_pets`
@@ -347,23 +339,26 @@ knitr::include_graphics(path = "./images/find.pets.3.png")
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions  
 #### Searching for pets
 ##### `Pf_find_pets`
 
+```{r, echo = T, eval = F}
 `pf_find_pets(token)`
 
 `pf_find_pets(token, type = "horse")`
 
 `pf_find_pets(token, type = "dog", age = "baby", page = 1:5)`
 
-`pf_find_pets(token, type = "Scales, Fins, & Others", breed = "Python", sort = "-rencent")`
+`pf_find_pets(token, type = "Scales, Fins, & Others", 
+              breed = "Python", sort = "-recent")`
+```
 
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions  
 #### Searching for pets
 ##### `Pf_find_pets`
@@ -380,7 +375,7 @@ names(LA_puppies)
 
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions  
 #### Searching for pets
 ##### `Pf_find_pets`
@@ -394,7 +389,7 @@ LA_puppies %>%  select("species", "breeds.primary","type", "age",
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions  
 #### Visualization 
 ##### `pf_view_photos(animal_df, size)`
@@ -414,7 +409,7 @@ background-position: 98% 8%
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions  
 #### Visualization of photos
 ##### `pf_view_photos(token, size)`
@@ -425,10 +420,12 @@ knitr::include_graphics("https://media.giphy.com/media/Maz1hoeGskARW/giphy.gif")
 
 
 ---
+
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
-### Package functions  -Hana-
+background-position: 99.5% 4.5%
+### Package functions - Hana Lee
+
 #### `pf_find_organizations`
 
 * It returns a dataframe of details on a group of organizations based on criteria given in parameters. How it works?
@@ -447,7 +444,7 @@ background-position: 98% 8%
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions
 #### `pf_find_organizations`
 
@@ -478,7 +475,7 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions
 #### `pf_find_organizations`
 
@@ -498,7 +495,7 @@ background-position: 98% 8%
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions
 #### `pf_find_organizations`
 
@@ -526,7 +523,7 @@ background-position: 98% 8%
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions
 #### `pf_find_organizations`
 
@@ -550,7 +547,7 @@ background-position: 98% 8%
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions
 #### `pf_find_organizations`
 
@@ -572,7 +569,7 @@ background-position: 98% 8%
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 ### Package functions
 #### `pf_map_locations`
 
