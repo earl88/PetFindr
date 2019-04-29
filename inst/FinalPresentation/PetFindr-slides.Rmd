@@ -113,7 +113,7 @@ devtools::install_github("earl88/PetFindr")
 library(PetFindr)
 ```
 
-You need an Petfinder account.  
+You need a Petfinder account.  
 
 ```{r, eval = F, echo = T}
 pf_setup()
@@ -132,9 +132,7 @@ background-position: 98% 8%
 
 ### Getting Started (Authentication)
 
-Once you create an account, you will get assigned a unique `key` and `secret`.
-Register for an account.
-
+Once you create an account, you will be assigned a unique `key` and `secret`.
 
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/register.png")
@@ -148,8 +146,6 @@ background-position: 98% 8%
 ### Getting Started (Authentication)
 
 Once you create an account, you will get assigned a unique `key` and `secret`.
-Register for an account.
-
 
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png")
@@ -167,16 +163,11 @@ background-position: 98% 8%
 ### Getting Started (Authentication)
 
 Once you create an account, you will get assigned a unique `key` and `secret`.
-
-
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
 ```
 
-Now save them.
-
-Those values can be saved to your .Rprofile for future use.
-
+These values can be saved to your .Rprofile for future use.
 
 ```{r, echo = T, eval = F}
 petfindr_key <- "paste_key_here"
@@ -192,11 +183,11 @@ background-position: 98% 8%
 
 ### Getting Started (Authentication)
 
-`key` and `secret` will generate an access token to the API database.
+With your `key` and `secret`, you can request an access token for the API database.
 
 But what is a token?
 
-- is a credential that can be used to receive information form . 
+- A credential that can be used to receive information 
 - Structure
 
 ```{r, eval = F, echo = T}
@@ -222,8 +213,6 @@ background-position: 98% 8%
 
 ### Getting Started (Authentication)
 
-
-
 ```{r,eval = F, echo = T}
 token <- pf_accesstoken(petfindr_key, petfindr_secret)
 ```
@@ -234,9 +223,7 @@ Your access token will last for one hour.
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/tokenmessage.png")
 ```
 
-Now you are all set. 
-
-Let's find pets!
+Now you are all set. Let's find pets!
 
 ```{r, eval = F, echo = F}
 pf_list_breeds(token, type = "cat") %>% head(n = 20)
@@ -245,10 +232,8 @@ pf_list_breeds(token, type = "cat") %>% head(n = 20)
 ```{r  out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/chowchow.gif")
 ```
+
 ---
-
-
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
@@ -256,7 +241,6 @@ background-position: 98% 8%
 
 ### Package functions  
 #### Amin Shirazi
-
 
 * Available information for each type of pet 
   * breed
@@ -267,36 +251,32 @@ background-position: 98% 8%
   * size
   * ...
 
-
-
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 
 ### Package functions  
+
 * What types of pets are available?
+
 ```{r   out.width = "70%",echo=FALSE, warning = FALSE, , message = FALSE}
-
-
 p1 <- ggdraw() + draw_image(image =  "./images/list.type.2.jpg", scale = 1.2)
 p2 <- ggdraw() + draw_image(image =  "./images/list.type.4.jpg", scale = 1)
 p3 <- ggdraw() + draw_image(image =  "./images/list.type.3.jpg", scale = 1)
 p4 <- ggdraw() + draw_image(image =  "./images/list.type.6.jpg", scale = 0.9)
 
 plot_grid(p1, p2, p3, p4)
-
 ```
 
 ---
-
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 
 ### Package functions  
 #### `pf_list_types(token)`
+
  * Input: token
  * Output: a tibble of all available animal types with their respective coat, color, and gender options
  
@@ -315,9 +295,9 @@ background-position: 98% 8%
 
  * A list of all available breeds of each pet
    
-   * Input: `token`, `type`
+   * Input: token, type of animal
    
-   * Output: A character vector of the breed names
+   * Output: A character vector of the available breeds for the specified animal type
    
 ---
 
@@ -331,7 +311,7 @@ background-position: 98% 8%
 ```{r out.width = "110%",echo=FALSE}
 data("pf_breeds", package = "PetFindr")
 
-#view(pf_breeds)
+#pf_breeds
 knitr::include_graphics("./images/pf_breeds.png")
 ```
 
