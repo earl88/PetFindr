@@ -210,7 +210,7 @@ background-position: 98% 8%
 #### Amin Shirazi
 
 
-* Available information of each type of pet 
+* Available information for each type of pet 
   * breed
   * age
   * coat
@@ -252,7 +252,7 @@ background-position: 98% 8%
  * Input: token
  * Output: a tibble of all available animal types with their respective coat, color, and gender options
  
-```{r out.width = "110%",echo=FALSE}
+```{r out.width = "100%",echo=FALSE}
 data("pf_types", package = "PetFindr")
 pf_types
 ```
