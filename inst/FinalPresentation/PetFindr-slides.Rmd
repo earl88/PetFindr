@@ -313,19 +313,10 @@ background-size: 150px
 background-position: 99.5% 4.5%
 ### Package functions  
 #### Searching for pets
-##### `Pf_find_pets`
+##### `Pf_find_pets(token, type, breed, size, gender, color, location,  ...)`
 .pull-left[
 * A data frame of pets info listed on Petfinder.com
 
-* Filter searches
-  * Animal type
-  * Breed
-  * Size
-  * Gender
-  * Age
-  * Color
-  * Location
-  * ...
   
 * Sort information
   * Recent information
@@ -378,12 +369,11 @@ background-size: 150px
 background-position: 99.5% 4.5%
 ### Package functions  
 #### Searching for pets
-##### `Pf_find_pets`
 ##### Available puppies from the Los Angeles area
 ```{r, echo = T}
 LA_puppies %>%  select("species", "breeds.primary","type", "age",
-                       "gender","size", "name", "status",
-                       "colors.primary", "coat" ) %>% head()
+                       "gender","size", "name",
+                       "colors.primary" ) %>% head()
 ```
 
 ---
