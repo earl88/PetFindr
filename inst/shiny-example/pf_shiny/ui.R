@@ -96,7 +96,7 @@ shinyUI(
           br(),
           fluidRow(
             column(6, 
-                   DT::dataTableOutput("list_table")),
+                   tableOutput("list_table")),
             column(6,
                    plotlyOutput("bars"))
           )
