@@ -34,10 +34,11 @@ function(input, output, session) {
   
   output$select_breeds <- renderUI({
     
-    choices <- pf_list_breeds(get_token(), input$animal)
+    choices <- c(pf_list_breeds(get_token(), input$animal), "NULL")
     
     selectInput('breeds', label = 'Select breeds:',
-                       choices = choices)
+                selected = "NULL",
+                choices = choices)
   })
   
   output$gettoken <- renderText(
@@ -230,9 +231,11 @@ function(input, output, session) {
     event <- input$map2_shape_click
     newloc <- paste0(event$lat, ",","%20", event$lng)
     Variables = c("Name", "Email", "Phone", "Street", "City", "Postcode", "Hours_Monday", "Hours_Tuesday", "Hours_Wednesday", "Hours_Thursday", "Hours_Friday")
+    
     orgdata_list <- do.call(PetFindr::pf_find_organizations,
                             args = list(token = get_token(),location = newloc)) %>% filter(id==event$id) %>%
       select(c(name, email, phone, address.address1, address.city, address.postcode, hours.monday, hours.tuesday, hours.wednesday, hours.thursday, hours.friday))
+    
     validate(need(nrow(orgdata_list)>0, "Organization information cannot be found by petfinder API's organization searching algorithm."))
     orgdata_list <- data.frame(Variables, Organization_Info = t(orgdata_list) %>% setNames("Organization_Info"))
         })
