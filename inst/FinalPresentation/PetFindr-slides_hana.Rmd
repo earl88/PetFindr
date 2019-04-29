@@ -56,7 +56,7 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 ---
 ### Package functions: `pf_find_organizations`
 
-* Request the listed information on the first page in R!
+* Request the listed information on the first page to R!
 
 * If errors occur with the API work, informative message will be printed in a HTTP response. No needs to define new error response formats for HTTP APIs.
 
