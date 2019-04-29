@@ -474,7 +474,7 @@ background-position: 99.5% 4.5%
 
 * Request the listed information on the first page to R!
 
-* If the API returns an error, an informative message will be printed in an HTTP response.
+* If the API returns an error, an informative message will be printed in an HTTP response format.
 
 ```{r, echo = T, eval = F}
   probe <- GET(url = paste0(base, query),
@@ -485,7 +485,7 @@ background-position: 99.5% 4.5%
 
 * Example:
   + Invalid API key/secret/token (ERR-401)
-  + Missing/invalid parameters in requests (ERR-00001)
+  + Missing/invalid parameters in requests (ERR-400)
 
 * https://www.petfinder.com/developers/v2/docs/#errors
 
@@ -493,12 +493,13 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
 #### `pf_find_organizations`
 
 * Deal with some issues of page specification (default: page=1).
 
-* A single page request: use the saved list! 
+* A single page request: use the initial request! 
 
 ```{r, echo = T, eval = F}
   assertthat::assert_that(is.numeric(page))
@@ -521,6 +522,7 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
 #### `pf_find_organizations`
 
@@ -545,6 +547,7 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
 #### `pf_find_organizations`
 
@@ -567,6 +570,7 @@ background-position: 99.5% 4.5%
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Package functions
 #### `pf_map_locations`
 
@@ -589,6 +593,7 @@ PetFindr::pf_map_locations(token, LA_puppies)
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 99.5% 4.5%
+
 ### Shiny Application
 
 ```{r, out.width = "50%"}
