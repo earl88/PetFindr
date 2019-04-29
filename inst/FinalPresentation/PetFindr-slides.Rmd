@@ -74,7 +74,7 @@ knitr::include_graphics("../../man/figures/logo.png")
 
 # Interacting with the API
 
-* Hadley's package `httr`
+* Package `httr` by Hadley Wickham
 
     + `GET`, `POST`, `add_headers`, `content`, `status_code`
     
