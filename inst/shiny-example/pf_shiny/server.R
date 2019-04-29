@@ -4,7 +4,7 @@ function(input, output, session) {
   
   observeEvent(input$setup, {
     output$instruction <- renderUI(
-      tagList("URL link:", url)
+      tagList("Make an account here:", url)
       )
   },ignoreInit = TRUE)
   
