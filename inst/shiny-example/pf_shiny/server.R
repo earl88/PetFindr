@@ -33,6 +33,15 @@ function(input, output, session) {
   })
   
   outputOptions(output, "tokenstatus", suspendWhenHidden = FALSE)
+  
+  output$gettoken <- renderText(
+    if (nchar(get_token() > 0)) {
+      res <- "Your access token will last for one hour. After that time, you will need to generate a new token."
+    } else {
+      res <- "Access was denied due to invalid credentials. This could be an invalid API key/secret combination, missing access token, or expired access token."
+    }
+  )
+  
 
   petdata <- reactive({
     # add dependency on search button

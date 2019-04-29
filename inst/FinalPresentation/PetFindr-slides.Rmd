@@ -87,6 +87,7 @@ background-size: 150px
 background-position: 98% 8%
 
 ### Getting Started (Authentication)
+#### Jess
 
 To guide users in the authentication process, 
 `pf_setup` is there for you.
@@ -110,6 +111,40 @@ pf_setup()
 ```{r  out.width = "90%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
 ```
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
+background-size: 150px
+background-position: 98% 8%
+
+### Getting Started (Authentication)
+
+Once you create an account, you will get assigned a unique `key` and `secret`.
+Register for an account.
+
+
+```{r  out.width = "85%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/register.png")
+```
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
+background-size: 150px
+background-position: 98% 8%
+
+### Getting Started (Authentication)
+
+Once you create an account, you will get assigned a unique `key` and `secret`.
+Register for an account.
+
+
+```{r  out.width = "85%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png")
+```
+
+
+
+
 
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
@@ -195,7 +230,7 @@ pf_list_breeds(token, type = "cat") %>% head(n = 20)
 ```
 
 ```{r  out.width = "60%",echo=FALSE}
-knitr::include_graphics("https://media3.giphy.com/media/xTg8AXwgs79YFFvzeo/giphy.gif")
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/chowchow.gif")
 ```
 ---
 
@@ -357,11 +392,10 @@ background-position: 98% 8%
 ### Package functions  
 #### Searching for pets
 ##### `Pf_find_pets`
-
-
-```{r out.width = "100%",echo=FALSE}
-#knitr::include_graphics(path = "./images/find.pets.1.png", dpi = 1.1)
-LA_puppies %>%  select("species", "breeds.primary","type", "age","gender","size", "name", "status",
+##### Available puppies from the Los Angeles area
+```{r, echo = T}
+LA_puppies %>%  select("species", "breeds.primary","type", "age",
+                       "gender","size", "name", "status",
                        "colors.primary", "coat" ) %>% head()
 ```
 
