@@ -2,12 +2,10 @@ function(input, output, session) {
   
   url <- a("Petfinder API", href="https://www.petfinder.com/developers/")
   
-  observeEvent(input$setup, {
     output$instruction <- renderUI(
       tagList("Make an account here:", url)
       )
-  },ignoreInit = TRUE)
-  
+    
   if (exists("petfindr_key")) {
     updateTextInput(session, "key", value = petfindr_key)
   }
