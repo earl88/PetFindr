@@ -19,7 +19,7 @@ shinyUI(
         
         mainPanel(
           fluidRow(
-            tags$img(src='logo1.jpg', height = '300', width = '420px'),
+            tags$img(src='logo1.jpg', height = '300px', width = '450px'),
             column(12,
                    uiOutput("instruction")
             )

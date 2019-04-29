@@ -220,7 +220,9 @@ function(input, output, session) {
                        args = list(token = get_token(),
                                    location = newloc)) %>% filter(id==event$id) %>%
       select(c(name, email, phone, address.address1, address.city, address.state, address.postcode))
-
+    
+    orgdata_list <- data.frame(orgdata_list)
+    validate(need(nrow(orgdata_list)>0, "Organization information cannot be found by petfinder API's organization searching algorithm."))
     orgdata_list
   })
   )
