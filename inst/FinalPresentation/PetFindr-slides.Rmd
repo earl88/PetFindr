@@ -357,11 +357,10 @@ background-position: 98% 8%
 ### Package functions  
 #### Searching for pets
 ##### `Pf_find_pets`
-
-
-```{r out.width = "100%",echo=FALSE}
-#knitr::include_graphics(path = "./images/find.pets.1.png", dpi = 1.1)
-LA_puppies %>%  select("species", "breeds.primary","type", "age","gender","size", "name", "status",
+##### Available puppies from the Los Angeles area
+```{r, echo = T}
+LA_puppies %>%  select("species", "breeds.primary","type", "age",
+                       "gender","size", "name", "status",
                        "colors.primary", "coat" ) %>% head()
 ```
 
