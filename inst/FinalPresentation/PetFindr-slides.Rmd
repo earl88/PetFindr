@@ -99,8 +99,8 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/i
 background-size: 150px
 background-position: 98% 8%
 
-### Getting Started (Authentication)
-#### Jess
+### Getting Started (Authentication) - Jessica Kueon
+
 
 To guide users in the authentication process, 
 `pf_setup` is there for you.
@@ -229,7 +229,7 @@ Now you are all set. Let's find pets!
 pf_list_breeds(token, type = "cat") %>% head(n = 20)
 ```
 
-```{r  out.width = "60%",echo=FALSE}
+```{r  out.width = "50%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/chowchow.gif")
 ```
 
