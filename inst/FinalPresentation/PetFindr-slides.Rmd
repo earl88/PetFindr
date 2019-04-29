@@ -179,8 +179,6 @@ With your `key` and `secret`, you can request an access token for the API databa
 
 But what is a token?
 
-- A credential that can be used to receive information 
-- Structure
 
 ```{r, eval = F, echo = T}
 pf_accesstoken <- function(key = NULL, secret = NULL) {
