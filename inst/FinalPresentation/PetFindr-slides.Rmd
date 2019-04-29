@@ -19,6 +19,7 @@ library(magick)
 library(hexSticker)
 library(showtext)
 library(knitr)
+library(cowplot)
 ```
 
 ```{r include = FALSE}
@@ -69,99 +70,332 @@ https://github.com/earl88/PetFindr
 knitr::include_graphics("../../man/figures/logo.png")
 ```
 
+---
+
+# Interacting with the API
+
+* Hadley's package `httr`
+
+    + `GET`, `POST`, `add_headers`, `content`, `status_code`
+    
+* 
 
 ---
 
-### Getting Started  -Name-
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
+background-size: 150px
+background-position: 98% 8%
+
+### Getting Started (Authentication)
+
+To guide users in the authentication process, 
+`pf_setup` is there for you.
 
 
+First, let's install the package!
 
-```{r echo = FALSE}
-1+3
+```{r, eval = F, echo = T}
+devtools::install_github("earl88/PetFindr")
+library(PetFindr)
 ```
 
-Research done by R.Fisman, S. Iyeangar et al (2006)
+You need an Petfinder account.  
 
-- One of the famous research done on Speed Dating
+```{r, eval = F, echo = T}
+pf_setup()
+```
 
-- Investigated gender differences in partner selection
 
-- Focused on prediction with regression models
+
+```{r  out.width = "90%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
+```
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
+background-size: 150px
+background-position: 98% 8%
+
+### Getting Started (Authentication)
+
+Once you create an account, you will get assigned a unique `key` and `secret`.
+
+
+```{r  out.width = "85%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
+```
+
+Now save them.
+
+Those values can be saved to your .Rprofile for future use.
+
+
+```{r, echo = T, eval = F}
+petfindr_key <- "paste_key_here"
+petfindr_secret <- "paste_secret_here"
+pf_save_credentials(key = petfindr_key, secret = petfindr_secret)
+```
 
 
 ---
-### Authentication  -Jessica-
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
+background-size: 150px
+background-position: 98% 8%
+
+### Getting Started (Authentication)
+
+`key` and `secret` will generate an access token to the API database.
+
+But what is a token?
+
+- is a credential that can be used to receive information form . 
+- Structure
+
+```{r, eval = F, echo = T}
+pf_accesstoken <- function(key = NULL, secret = NULL) {
+  if (is.null(key) || is.null(secret)) {
+    stop("You must provide both a key and a secret to receive an access token. Please run 'pf_setup()' for more information.")
+  }
+  auth <- POST(url = "https://api.petfinder.com/v2/oauth2/token",
+                     body = list(grant_type = "client_credentials",
+                                 client_id = key, client_secret = secret),
+                     encode = "json")
+  if (auth$status_code != 200) {stop(pf_error(auth$status_code))}
+  accesstoken <- content(auth)$access_token
+  message("Your access token will last for one hour. After that time, you will need to generate a new token.\n")
+  return(accesstoken)
+}
+
+```
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
+background-size: 150px
+background-position: 98% 8%
+
+### Getting Started (Authentication)
 
 
 
-- Subjects: Graduate students at Columbia University 
+```{r,eval = F, echo = T}
+token <- pf_accesstoken(petfindr_key, petfindr_secret)
+```
 
-- 14 Speed dating sessions from 2002 - 2004 
+Your access token will last for one hour.
 
-- 4 minute interaction
+```{r  out.width = "95%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/tokenmessage.png")
+```
 
-```{r  out.width = "50%",echo=FALSE}
+Now you are all set. 
+
+Let's find pets!
+
+```{r, eval = F, echo = F}
+pf_list_breeds(token, type = "cat") %>% head(n = 20)
+```
+
+```{r  out.width = "60%",echo=FALSE}
+knitr::include_graphics("https://media3.giphy.com/media/xTg8AXwgs79YFFvzeo/giphy.gif")
+```
+---
 
 
-knitr::include_graphics("table.jpg", dpi = 50)
+
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+
+
+### Package functions  
+#### Amin Shirazi
+
+
+* Available information of each type of pet 
+  * breed
+  * age
+  * coat
+  * color
+  * gender
+  * size
+  * ...
+
+
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+
+### Package functions  
+* What types of pets are available?
+```{r   out.width = "70%",echo=FALSE, warning = FALSE, , message = FALSE}
+
+
+p1 <- ggdraw() + draw_image(image =  "./images/list.type.2.jpg", scale = 1.2)
+p2 <- ggdraw() + draw_image(image =  "./images/list.type.4.jpg", scale = 1)
+p3 <- ggdraw() + draw_image(image =  "./images/list.type.3.jpg", scale = 1)
+p4 <- ggdraw() + draw_image(image =  "./images/list.type.6.jpg", scale = 0.9)
+
+plot_grid(p1, p2, p3, p4)
+
 ```
 
 ---
 
-### Usage  -Jessica-
 
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
 
-
-- Meow
-
----
-### Functions  -Jessica-
-
-
-- Meow
-
-
-```{r, echo = FALSE, warning = FALSE, message = FALSE, fig.align='center', fig.width=12, fig.height = 8}
-
+### Package functions  
+#### `pf_list_types(token)`
+ * Input: token
+ * Output: a tibble of all available animal types with their respective coat, color, and gender options
+ 
+```{r out.width = "110%",echo=FALSE}
+data("pf_types", package = "PetFindr")
+pf_types
 ```
+ 
 ---
-### Examples Using Sample Data  -Jessica-
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
 
-- Meow
+### Package functions  
+#### `pf_list_breeds(token, type)`
+
+ * A list of all available breeds of each pet
+   
+   * Input: `token`, `type`
+   
+   * Output: A character vector of the breed names
+   
 ---
 
-### Shiny  -Hana-
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
 
-- Meow
+### Package functions  
+#### `pf_list_breeds`
+
+```{r out.width = "110%",echo=FALSE}
+data("pf_breeds", package = "PetFindr")
+
+#view(pf_breeds)
+knitr::include_graphics("./images/pf_breeds.png")
+```
+
 ---
 
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Searching for pets
+##### `Pf_find_pets`
+.pull-left[
+* A data frame of pets info listed on Petfinder.com
+
+* Filter searches
+  * Animal type
+  * Breed
+  * Size
+  * Gender
+  * Age
+  * Color
+  * Location
+  * ...
+  
+* Sort information
+  * Recent information
+  * Distance from the user
+  ]
+.pull-right[
+```{r out.width = "100%",echo=FALSE}
+knitr::include_graphics(path = "./images/find.pets.3.png")
+```
+]
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Searching for pets
+##### `Pf_find_pets`
+
+`pf_find_pets(token)`
+
+`pf_find_pets(token, type = "horse")`
+
+`pf_find_pets(token, type = "dog", age = "baby", page = 1:5)`
+
+`pf_find_pets(token, type = "Scales, Fins, & Others", breed = "Python", sort = "-rencent")`
 
 ---
-### Matches and Popularity by different ambitions of future career  -Sungchan-
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Searching for pets
+##### `Pf_find_pets`
 
-| Car.Ambtion(A)|Car.Ambition(B)|Match   |A=Female  |A=Male    |
-|--------------------------------------------------------------|
-| C.Art/Ent     |Lawyer         | 27%    |    49%   |<span style="color:blue">67%</span>|
-| C.Art/Ent     |Academic       | 17%    |    54%   |    39%   |
-| C.Art/Ent     |C.Art/Ent      |  0%    |    18%   |<span style="color:blue">53%</span>|
-| C.Art/Ent     |Fin/Biz        | 17%    |    43%   |    40%   |
-| Fin/Biz       |Lawyer         | 24%    |<span style="color:red">60%</span>|    36%   |
-| Fin/Biz       |Academic       | 16%    |    59%   |    36%   |
-| Fin/Biz       |C.Art/Ent      | 17%    |    52%   |    40%   |
-| Fin/Biz       |Fin/Biz        | 20%    |<span style="color:red">62%</span>| c30%|
-| Fin/Biz       |Undecided      | 19%    |    35%   |<span style="color:blue">37%</span>|
-| Undecided     |Academic       | 10%    |    52%   |<span style="color:blue">59%</span>|
-| Undecided     |Fin/Biz        | 19%    |    54%   |    35%   |
+
+```{r out.width = "112%",echo=FALSE}
+#knitr::include_graphics(path = "./images/find.pets.png")
+data("LA_puppies", package = "PetFindr")
+names(LA_puppies)
+```
+
+
 ---
-### Main results  -Sungchan-
 
-- Each gender had different criteria when choosing their partner.
-  - Intelligence was more important for women.
-  - Attractiveness was more important for men. 
-- We find no association with the age difference and the chance of getting the second date.
-- Overall, women were asked for a second date more often.
-  - Opposite result when it comes to some fields of study and types of  dream jobs 
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Searching for pets
+##### `Pf_find_pets`
 
+
+```{r out.width = "100%",echo=FALSE}
+#knitr::include_graphics(path = "./images/find.pets.1.png", dpi = 1.1)
+LA_puppies %>%  select("species", "breeds.primary","type", "age","gender","size", "name", "status",
+                       "colors.primary", "coat" ) %>% head()
+```
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Visualization 
+##### `pf_view_photos(animal_df, size)`
+
+* View the photos of searched pets in a slideshow format
+
+* Input: 
+  * A data frame of animal search results from pf_find_pets
+  * Photo size
+      * Small
+      * Medium
+      * Large
+      * Full
+
+* Output: A slideshow of pet pictures
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions  
+#### Visualization of photos
+##### `pf_view_photos(token, size)`
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::include_graphics("https://media.giphy.com/media/Maz1hoeGskARW/giphy.gif")
+```
 
 
 

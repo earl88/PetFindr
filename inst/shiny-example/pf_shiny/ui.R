@@ -2,14 +2,35 @@ shinyUI(
   navbarPage(
     "PetFinder",
     tabPanel(
+      "Get Authentication",
+      fluidRow(
+        sidebarPanel(width = 2, "Click below to open link to Petfinder.com",
+                     br(),
+                  actionButton(inputId="setup", "Get Account"),
+        br(),
+        conditionalPanel(
+          "input.setup > 0",
+          br(),
+          "Paste your Key and Secret. Then Authenticate!",
+          textInput(
+          "key", "Key", value = "", placeholder = "Paste your key here"),
+          textInput("secret", "Secret", value = "", placeholder = "Paste your secret here"),
+          actionButton("auth", label = "Authenticate"))),
+        
+        mainPanel(
+          fluidRow(
+            tags$img(src='logo1.jpg', height = '300', width = '420px'),
+            column(12,
+                   uiOutput("instruction")
+            )
+          )
+          )
+      )
+    ),
+    tabPanel(
       "Search by Animals",
       fluidRow(
         sidebarPanel(width = 2,
-          textInput(
-            "key", "Key", value = "", placeholder = "Paste your key here"),
-          textInput("secret", "Secret", value = "", placeholder = "Paste your secret here"),
-          actionButton("auth", label = "Authenticate"),
-          br(),
           conditionalPanel(
             "output.tokenstatus",
             textInput(inputId = "location", "50014",
@@ -54,6 +75,8 @@ shinyUI(
       "Search by Organizations",
       fluidRow(
         sidebarPanel(width = 2,
+        conditionalPanel(
+          "output.tokenstatus",
           textInput(inputId = "location_org", "50014",
                     label = 'Location (City, State; Latitude, Longitude; or Zipcode)'),
           numericInput(inputId = "distance_org", 50,
@@ -61,6 +84,7 @@ shinyUI(
           numericInput(inputId = "num_orgs", 50,
                        label = "Number of Organizations to show:"),
           actionButton("search_org","Search")
+          )
           ),
         mainPanel(
           fluidRow(
@@ -78,6 +102,12 @@ shinyUI(
           )
         )
       )
-    )
+    ),
+    tabPanel(
+      "Thank you!",
+      tags$img(src='dogs.gif', height = '400', width = '700', align = "center"),
+      br(),
+      tags$img(src='cats.gif', height = '400', width = '700', align = "center")
+      )
   )
 )
