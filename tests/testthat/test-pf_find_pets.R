@@ -20,7 +20,7 @@ test_that("page input behaves as expected", {
   expect_error(pf_find_pets(token, page = "one"))
   expect_error(pf_find_pets(token, page = c(1, 1.5, 2.7)))
   expect_warning(pf_find_pets(token, type = "dog", age = "baby", location = 50014, name = "Bobby Kennedy", page = 10))
-  expect_warning(pf_find_pets(token, type = "dog", age = "baby", location = 50014, name = "Bobby Kennedy", page = 1:200))
+  expect_warning(pf_find_pets(token, type = "dog", age = "baby", location = 50014, name = "Bobby Kennedy", limit = 10, page = c(1, 199, 200)))
 })
 
 test_that("age input behaves as expected", {
