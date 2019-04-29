@@ -33,6 +33,15 @@ function(input, output, session) {
   })
   
   outputOptions(output, "tokenstatus", suspendWhenHidden = FALSE)
+  
+  output$gettoken <- renderText(
+    if (nchar(get_token() > 0)) {
+      res <- "Your access token will last for one hour. After that time, you will need to generate a new token."
+    } else {
+      res <- "Access was denied due to invalid credentials. This could be an invalid API key/secret combination, missing access token, or expired access token."
+    }
+  )
+  
 
   petdata <- reactive({
     # add dependency on search button
@@ -209,21 +218,19 @@ function(input, output, session) {
                                 "Number of Pets:", sum), layerId = ~id)
   })
   
-  output$list_table <- DT::renderDataTable(DT::datatable({
-    
+  output$list_table <- renderTable({
     validate(need(!is.null(input$map2_shape_click), "Please Make Selection"))
-    
     event <- input$map2_shape_click
-
     newloc <- paste0(event$lat, ",","%20", event$lng)
     orgdata_list <- do.call(PetFindr::pf_find_organizations,
-                       args = list(token = get_token(),
-                                   location = newloc)) %>% filter(id==event$id) %>%
-      select(c(name, email, phone, address.address1, address.city, address.state, address.postcode))
-
+                            args = list(token = get_token(),location = newloc)) %>% filter(id==event$id) %>%
+      select(c(name, email, phone, address.address1, address.city, address.postcode, hours.monday, hours.tuesday, hours.wednesday, hours.thursday, hours.friday))
+    validate(need(nrow(orgdata_list)>0, "Organization information cannot be found by petfinder API's organization searching algorithm."))
+    orgdata_list <- data.frame(Variables = c("Name", "Email", "Phone", "Street", "City", "Postcode", "Monday Hours:", "Tuesday Hours:", "Wednesday Hours:", "Thursday Hours:", "Friday Hours:"), Organization_Info = transpose(orgdata_list) 
+                               %>% setNames("Organization_Info"))
     orgdata_list
-  })
-  )
+    print(orgdata_list)
+    })
 
   output$bars <- renderPlotly({
     

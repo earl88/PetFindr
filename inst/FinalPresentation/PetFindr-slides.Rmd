@@ -74,11 +74,24 @@ knitr::include_graphics("../../man/figures/logo.png")
 
 # Interacting with the API
 
-* Hadley's package `httr`
+* Package `httr` by Hadley Wickham
 
     + `GET`, `POST`, `add_headers`, `content`, `status_code`
     
-* 
+* Endpoint: https://api.petfinder.com/v2/
+
+* Request token
+
+```{r, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("images/curl-oauth.PNG")
+```
+
+* Make a search
+
+```{r, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("images/curl-search.PNG")
+```
+
 
 ---
 
@@ -87,6 +100,7 @@ background-size: 150px
 background-position: 98% 8%
 
 ### Getting Started (Authentication)
+#### Jess
 
 To guide users in the authentication process, 
 `pf_setup` is there for you.
@@ -99,7 +113,7 @@ devtools::install_github("earl88/PetFindr")
 library(PetFindr)
 ```
 
-You need an Petfinder account.  
+You need a Petfinder account.  
 
 ```{r, eval = F, echo = T}
 pf_setup()
@@ -118,17 +132,42 @@ background-position: 98% 8%
 
 ### Getting Started (Authentication)
 
+Once you create an account, you will be assigned a unique `key` and `secret`.
+
+```{r  out.width = "85%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/register.png")
+```
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
+background-size: 150px
+background-position: 98% 8%
+
+### Getting Started (Authentication)
+
 Once you create an account, you will get assigned a unique `key` and `secret`.
 
+```{r  out.width = "85%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png")
+```
 
+
+
+
+
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
+background-size: 150px
+background-position: 98% 8%
+
+### Getting Started (Authentication)
+
+Once you create an account, you will get assigned a unique `key` and `secret`.
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
 ```
 
-Now save them.
-
-Those values can be saved to your .Rprofile for future use.
-
+These values can be saved to your .Rprofile for future use.
 
 ```{r, echo = T, eval = F}
 petfindr_key <- "paste_key_here"
@@ -144,11 +183,11 @@ background-position: 98% 8%
 
 ### Getting Started (Authentication)
 
-`key` and `secret` will generate an access token to the API database.
+With your `key` and `secret`, you can request an access token for the API database.
 
 But what is a token?
 
-- is a credential that can be used to receive information form . 
+- A credential that can be used to receive information 
 - Structure
 
 ```{r, eval = F, echo = T}
@@ -174,8 +213,6 @@ background-position: 98% 8%
 
 ### Getting Started (Authentication)
 
-
-
 ```{r,eval = F, echo = T}
 token <- pf_accesstoken(petfindr_key, petfindr_secret)
 ```
@@ -186,21 +223,17 @@ Your access token will last for one hour.
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/tokenmessage.png")
 ```
 
-Now you are all set. 
-
-Let's find pets!
+Now you are all set. Let's find pets!
 
 ```{r, eval = F, echo = F}
 pf_list_breeds(token, type = "cat") %>% head(n = 20)
 ```
 
 ```{r  out.width = "60%",echo=FALSE}
-knitr::include_graphics("https://media3.giphy.com/media/xTg8AXwgs79YFFvzeo/giphy.gif")
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/chowchow.gif")
 ```
+
 ---
-
-
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
@@ -209,8 +242,7 @@ background-position: 98% 8%
 ### Package functions  
 #### Amin Shirazi
 
-
-* Available information of each type of pet 
+* Available information for each type of pet 
   * breed
   * age
   * coat
@@ -219,40 +251,36 @@ background-position: 98% 8%
   * size
   * ...
 
-
-
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 
 ### Package functions  
+
 * What types of pets are available?
+
 ```{r   out.width = "70%",echo=FALSE, warning = FALSE, , message = FALSE}
-
-
 p1 <- ggdraw() + draw_image(image =  "./images/list.type.2.jpg", scale = 1.2)
 p2 <- ggdraw() + draw_image(image =  "./images/list.type.4.jpg", scale = 1)
 p3 <- ggdraw() + draw_image(image =  "./images/list.type.3.jpg", scale = 1)
 p4 <- ggdraw() + draw_image(image =  "./images/list.type.6.jpg", scale = 0.9)
 
 plot_grid(p1, p2, p3, p4)
-
 ```
 
 ---
-
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
 
 ### Package functions  
 #### `pf_list_types(token)`
+
  * Input: token
  * Output: a tibble of all available animal types with their respective coat, color, and gender options
  
-```{r out.width = "110%",echo=FALSE}
+```{r out.width = "100%",echo=FALSE}
 data("pf_types", package = "PetFindr")
 pf_types
 ```
@@ -267,9 +295,9 @@ background-position: 98% 8%
 
  * A list of all available breeds of each pet
    
-   * Input: `token`, `type`
+   * Input: token, type of animal
    
-   * Output: A character vector of the breed names
+   * Output: A character vector of the available breeds for the specified animal type
    
 ---
 
@@ -283,7 +311,7 @@ background-position: 98% 8%
 ```{r out.width = "110%",echo=FALSE}
 data("pf_breeds", package = "PetFindr")
 
-#view(pf_breeds)
+#pf_breeds
 knitr::include_graphics("./images/pf_breeds.png")
 ```
 
@@ -357,11 +385,10 @@ background-position: 98% 8%
 ### Package functions  
 #### Searching for pets
 ##### `Pf_find_pets`
-
-
-```{r out.width = "100%",echo=FALSE}
-#knitr::include_graphics(path = "./images/find.pets.1.png", dpi = 1.1)
-LA_puppies %>%  select("species", "breeds.primary","type", "age","gender","size", "name", "status",
+##### Available puppies from the Los Angeles area
+```{r, echo = T}
+LA_puppies %>%  select("species", "breeds.primary","type", "age",
+                       "gender","size", "name", "status",
                        "colors.primary", "coat" ) %>% head()
 ```
 

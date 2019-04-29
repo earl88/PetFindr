@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Using Petfindr • PetFindr</title>
+<title>Petfindr: Find Pets Near You! • PetFindr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Using Petfindr">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Petfindr: Find Pets Near You!">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
@@ -60,7 +60,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/using-petfindr.html">Using Petfindr</a>
+      <a href="../articles/using-petfindr.html">Petfindr: Find Pets Near You!</a>
     </li>
   </ul>
 </li>
@@ -77,7 +77,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Using Petfindr</h1>
+      <h1>Petfindr: Find Pets Near You!</h1>
             
       
       
@@ -87,10 +87,123 @@
 
     
     
+<div id="in-this-vignette" class="section level2">
+<h2 class="hasAnchor">
+<a href="#in-this-vignette" class="anchor"></a>In This Vignette</h2>
+<ul>
+<li>Introducing <code>PetFindr</code>
+</li>
+<li>Getting Started
+<ul>
+<li>Authentication - Jess is working on this :)</li>
+</ul>
+</li>
+<li>Usage
+<ul>
+<li>Functions - Amin</li>
+<li>Examples Using Sample Data - Jess</li>
+<li>Shiny - Earl</li>
+<li>Extensions - Jess</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="introducing-petfindr" class="section level2">
+<h2 class="hasAnchor">
+<a href="#introducing-petfindr" class="anchor"></a>Introducing <code>PetFindr</code>
+</h2>
+<p>The goal of ‘PetFindr’ is to provide a fast and friendly way to extract data from <a href="https://www.petfinder.com/" class="uri">https://www.petfinder.com/</a>, which is the largest online pet adoption website, and to facilitate data analysis and other tasks from the extracted data.<br>
+The package provides a useful tool to enable R users to search for their favorite pets in their own R session, and to browse pictures of the pets. All of this is possible thanks to API (Application Programming Interface) which is a set of instructions and standards for accessing structured information on the web. The Petfinder website provides us with an API that allows us to access the Petfinder database of hundreds of thousands of pets ready for adoption and over ten thousand animal welfare organizations.<br>
+This vignette introduces and walks through the package,<code>PetFindr</code>, and the Petfinder API for authenticating and extracting data from the database.<br></p>
+</div>
+<div id="getting-started" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-started" class="anchor"></a>Getting Started</h2>
+<p>First, install the the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
+devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"earl88/PetFindr"</span>)</code></pre></div>
+<p>Now load the package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(PetFindr)</code></pre></div>
+<div id="authentication" class="section level3">
+<h3 class="hasAnchor">
+<a href="#authentication" class="anchor"></a>Authentication</h3>
+<p>In order to begin, you need a secure authentication.<br>
+To get your own <code>key</code> and <code>secret</code> from the API website, you have to create an account on <a href="https://www.petfinder.com/user/register/">Petfinder</a>.<br><code>pf_setup</code> function will guide you through whole process to initialize the API connection to Petfinder.<br>
+Running this function will open a browser to “<a href="https://www.petfinder.com/developers/" class="uri">https://www.petfinder.com/developers/</a>” and prompt you to register for Petfinder’s API (V2).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_setup.html">pf_setup</a></span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1: No way</span>
+<span class="co">#2: Not now</span>
+<span class="co">#3: Yup</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_save_credentials.html">pf_save_credentials</a></span>(key, secret)</code></pre></div>
+<p>Once you creat an account on <a href="https://www.petfinder.com/">Petfinder</a> and receive a unique <code>key</code> and a <code>secret</code>, you now can use the function <code>petfindr_save_credentials()</code> to store their key and secret to your .Rprofile so that you do not have to run <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> everytime you use the package.<br>
+Using <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> makes it easier to access the API in the future, but this function is not required to access the database.<br></p>
+<p>You’re ALMOST ready to find pets! You have one more step to use `PetFindr’!<br>
+In order to maintain security, you need an access token to request access to API database.<br></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_accesstoken.html">pf_accesstoken</a></span>(key, secret)</code></pre></div>
+<p>Once you use their key and secret as the inputs of <code><a href="../reference/pf_accesstoken.html">pf_accesstoken()</a></code>, you now have an access to the Petfinder servers and can start your own query to find your future pets. By the way, you should remember that the token has to be requested every hour.<br></p>
+<p>Now, The <a href="https://www.petfinder.com/developers/v2/docs/">Petfinder API v2.0</a> are now accessible through R!   Let’s find pets!<br></p>
+</div>
+</div>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
+<p>The Petfinder API allows users to search and view pet listings based on pet characteristics, location, and status. In addition, they can search for and display animal shelters based on the organization’s name, ID, and location.<br>
+The following section introduces the functions in <code>PetFindr</code> package and how to interact with the Petfinder API with some cute examples of extracting data from the database.<br>
+The examples are mainly split into pet, shelter, photo-viewing functions.</p>
+<div id="functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#functions" class="anchor"></a>Functions</h3>
+<p>Amin’s part</p>
+</div>
+<div id="examples-using-sample-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#examples-using-sample-data" class="anchor"></a>Examples Using Sample Data</h3>
+<p>The developers have stored sample datasets extracted from Petfinder,<br>
+because it can be useful to include example datasets in the R package, to illustrate how the datasets are structures and how it can be leveraged to explore your interests in pets<br>
+The datasets in the package are immediately available when the package is loaded.</p>
+<div id="sample-data-puppies-in-los-angeles" class="section level4">
+<h4 class="hasAnchor">
+<a href="#sample-data-puppies-in-los-angeles" class="anchor"></a>Sample data: Puppies in Los Angeles</h4>
+<p>The dataset summarises information of 500 puppies in Greater Los Angeles area extracted from Petfinder on April 25, 2019. Output below is the first observation from the dataset.</p>
+<p>Note the data has been transposed (otherwise the table would be very wide).</p>
+<p>The first row from the sample data (column 1 above) represents:</p>
+<ul>
+<li>id: Animal ID</li>
+<li>organization_id : Organization Id</li>
+<li>url: url of the animal</li>
+<li>type : Type of the animal</li>
+<li>specides: Species of the animal</li>
+<li>breeds.primary: Primary breed (if known)</li>
+<li>breeds.secondary: Secondary breed (if known)</li>
+<li>breeds.mixed: Is breed mixed? (TRUE if secondary breed exists)</li>
+<li>breeds.unknown: Is breed unknown?</li>
+<li>age: Age</li>
+<li>gender: Gender</li>
+<li>size : Size</li>
+</ul>
+</div>
+<div id="sample-data-shelters-in-new-york-state" class="section level4">
+<h4 class="hasAnchor">
+<a href="#sample-data-shelters-in-new-york-state" class="anchor"></a>Sample data: Shelters in New York State</h4>
+<p>The dataset summarises the list of animal sheters in New York State.<br>
+Output below is the first observation from the dataset.</p>
+<p>Note the data has been transposed (otherwise the table would be very wide).</p>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#in-this-vignette">In This Vignette</a></li>
+      <li><a href="#introducing-petfindr">Introducing <code>PetFindr</code></a></li>
+      <li><a href="#getting-started">Getting Started</a></li>
+      <li><a href="#usage">Usage</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
