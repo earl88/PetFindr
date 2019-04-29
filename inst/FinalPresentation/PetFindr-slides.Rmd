@@ -339,14 +339,14 @@ background-position: 99.5% 4.5%
 #### Searching for pets
 
 ```{r, echo = T, eval = F}
-`pf_find_pets(token)`
+pf_find_pets(token)
 
-`pf_find_pets(token, type = "horse")`
+pf_find_pets(token, type = "horse")
 
-`pf_find_pets(token, type = "dog", age = "baby", page = 1:5)`
+pf_find_pets(token, type = "dog", age = "baby", page = 1:5)
 
-`pf_find_pets(token, type = "Scales, Fins, & Others", 
-              breed = "Python", sort = "-recent")`
+pf_find_pets(token, type = "Scales, Fins, & Others", 
+             breed = "Python", sort = "-recent")
 ```
 
 ---
