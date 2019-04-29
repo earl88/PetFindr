@@ -578,3 +578,12 @@ data(LA_puppies, package = "PetFindr")
 PetFindr::pf_map_locations(token, LA_puppies)
 ```
 
+---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Shiny Application
+
+```{r, out.width = "50%"}
+knitr::include_graphics("images/Shiny-hex.png")
+```
