@@ -293,7 +293,7 @@ background-size: 150px
 background-position: 99.5% 4.5%
 
 ### Package functions  
-#### `pf_list_breeds`
+#### `pf_breeds`
 
 ```{r out.width = "110%",echo=FALSE}
 data("pf_breeds", package = "PetFindr")
@@ -369,7 +369,7 @@ background-position: 99.5% 4.5%
 ```{r, echo = T}
 LA_puppies %>%  select("species", "breeds.primary","type", "age",
                        "gender","size", "name",
-                       "colors.primary" ) %>% head()
+                       "colors.primary" ) %>% head(8)
 ```
 
 ---
