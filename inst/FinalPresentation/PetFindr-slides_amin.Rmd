@@ -33,7 +33,7 @@ background-position: 98% 8%
 #### Amin Shirazi
 
 
-* What information is available of each type of pet?
+* Available information  of each type of pet
   * breed
   * age
   * coat
@@ -88,14 +88,13 @@ background-position: 98% 8%
 ### Package functions  
 #### `pf_list_breeds(token, type)`
 
- * What breeds are available for each pet?
 
  * A list of all available breeds of each pet
  
- * Input: `token`, `type`
- 
- * Output: A character vector of the breed names
- 
+   * Input: `token`, `type`
+   
+   * Output: A character vector of the breed names
+   
 ---
 
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
