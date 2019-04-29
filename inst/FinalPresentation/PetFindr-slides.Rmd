@@ -425,4 +425,143 @@ knitr::include_graphics("https://media.giphy.com/media/Maz1hoeGskARW/giphy.gif")
 ```
 
 
+---
+### Package functions  -Hana-
+#### `pf_find_organizations`
+
+* It returns a dataframe of details on a group of organizations based on criteria given in parameters. How it works?
+  
+* A GET request structure: 
+  + base URL of the request, and
+  + an optional query string consisting of a question mark followed by parameter/value pairs separated by ampersands  
+  
+* Base url: https://api.petfinder.com/v2/organizations?
+  
+* Example of query string: 
+  + location=Ames,%20IA&distance=50&page=2  
+  
+* https://www.petfinder.com/developers/v2/docs/#get-organizations
+
+---
+### Package functions: `pf_find_organizations`
+
+* Write a GET request structure from the input arguments of a function.
+
+```{r, echo = T, eval = F}
+pf_find_organizations <- function(token = NULL, name = NULL, 
+                                  location = NULL, distance = NULL,
+                                  state = NULL, country = NULL,
+                                  sort = "recent", 
+                                  page = 1, limit = 20) {
+  base <- "https://api.petfinder.com/v2/organizations?"
+  
+  args <- as.list(match.call())[-1]
+  query_args <- args[!names(args) %in% c("token", "page")] %>%
+    purrr::map(eval)
+  query_args[(query_args != "") & !is.na(query_args)]
+  
+  if(length(query_args) > 0) {query_args <- 
+    stats::setNames(unlist(query_args, use.names=F),
+                    rep(names(query_args), lengths(query_args)))}
+  
+  query <- paste(names(query_args), query_args, 
+                 sep = "=", collapse = "&") %>%
+    gsub(pattern = "[ ]", replacement = "%20")
+```
+
+---
+### Package functions: `pf_find_organizations`
+
+* Request the listed information on the first page to R!
+
+* If errors occur with the API work, informative message will be printed in a HTTP response. No needs to define new error response formats for HTTP APIs.
+
+* https://www.petfinder.com/developers/v2/docs/#errors
+
+```{r, echo = T, eval = F}
+  probe <- GET(url = paste0(base, query),
+               add_headers(Authorization = paste("Bearer", token)))
+
+  if (probe$status_code != 200) {stop(pf_error(probe$status_code))}
+```
+
+---
+### Package functions: `pf_find_organizations`
+
+* Deal with some issues of page specification (default: page=1).
+
+* A single page request: use the saved list! 
+
+```{r, echo = T, eval = F}
+  assertthat::assert_that(is.numeric(page))
+  if (length(page) == 1 && page == 1) {
+    organization_info <- content(probe)$organizations
+  } else {
+    max_page <- content(probe)$pagination$total_pages
+    if (max(page) > max_page) {
+      warning("You have specified one or more page numbers 
+              that do not exist.")
+      if (any(page <= max_page)) {
+        page <- page[page <= max_page]
+      } else {
+        warning("No valid pages were specified. 
+                Defaulting to page 1.")
+        organization_info <- content(probe)$organizations}}}
+```
+
+---
+### Package functions: `pf_find_organizations`
+
+* Multiple pages: repeat the request by pages with apply-based method.
+
+* Listed information for each page is stored in a bigger list.
+
+```{r, echo = T, eval = F}
+  organization_info <- lapply(paste0(base, query, "&page=", page), 
+                              function(x) {
+    results <- GET(url = x,
+                   add_headers(Authorization = paste("Bearer", 
+                                                     token)))
+    
+    if (results$status_code != 200) {
+      stop(pf_error(results$status_code))}
+    content(results)$organizations}) %>% 
+    purrr::flatten()
+```
+
+---
+### Package functions: `pf_find_organizations`
+
+* Not the same set of information for all of the organizations (or pets) as well as pages
+
+* Assign distinct names (e.g., photo1, photo2,..), and return a dataframe!
+ 
+```{r, echo = T, eval = F}
+  organization_df <- purrr::map_dfr(organization_info, 
+                                    .f = function(x) {
+    rlist::list.flatten(x) %>%
+      rbind.data.frame(deparse.level = 0, stringsAsFactors = F)
+  })
+  
+  return(organization_df)
+}
+```
+
+---
+### Package functions: `pf_map_locations`
+
+* Input: token, a dataframe of pets returned from pf_find_pets
+
+* Ouput: locations of organizations of pets on a Leaflet map
+
+* How it works: Request location information by organizations' id that are extracted from a dataframe of individual pets
+
+* https://www.petfinder.com/developers/v2/docs/#get-organization
+
+* Example
+
+```{r, echo = T, eval = F}
+data(LA_puppies, package = "PetFindr")
+PetFindr::pf_map_locations(token, LA_puppies)
+```
 
