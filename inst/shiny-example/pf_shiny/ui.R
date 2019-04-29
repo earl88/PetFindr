@@ -42,6 +42,8 @@ shinyUI(
                                                "Bird", 
                                                "Scales, fins, & other",
                                                "Barnyard")),
+                       conditionalPanel(condition = "input.animal",
+                                        uiOutput("select_breeds")),
                        selectInput(inputId = "status",
                                    label = "Pet Status",
                                    choices = c("Adoptable", "Adopted", "Found")),

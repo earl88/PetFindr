@@ -34,6 +34,14 @@ function(input, output, session) {
   
   outputOptions(output, "tokenstatus", suspendWhenHidden = FALSE)
   
+  output$select_breeds <- renderUI({
+    
+    choices <- pf_list_breeds(get_token(), input$animal)
+    
+    selectInput('breeds', label = 'Select breeds:',
+                       choices = choices)
+  })
+  
   output$gettoken <- renderText(
     if (nchar(get_token() > 0)) {
       res <- "Your access token will last for one hour. After that time, you will need to generate a new token."
@@ -66,6 +74,7 @@ function(input, output, session) {
                                 location = isolate(input$location), 
                                 distance = isolate(input$distance), 
                                 type = isolate(input$animal),
+                                breed = isolate(input$breeds),
                                 status = isolate(input$status), 
                                 limit = limit, page = page))
     data <- data[1:req,]
