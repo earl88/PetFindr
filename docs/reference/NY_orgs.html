@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List animal types with their respective coat, color, and gender options — pf_list_types • PetFindr</title>
+<title>List of animal shelters in New York State extracted from Petfinder.com — NY_orgs • PetFindr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,9 @@
 
 
 
-<meta property="og:title" content="List animal types with their respective coat, color, and gender options — pf_list_types" />
+<meta property="og:title" content="List of animal shelters in New York State extracted from Petfinder.com — NY_orgs" />
 
-<meta property="og:description" content="This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options." />
+<meta property="og:description" content="List of animal shelters in New York State extracted from Petfinder.com" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,45 +115,69 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List animal types with their respective coat, color, and gender options</h1>
+    <h1>List of animal shelters in New York State extracted from Petfinder.com</h1>
     
-    <div class="hidden name"><code>pf_list_types.Rd</code></div>
+    <div class="hidden name"><code>NY_orgs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options.</p>
+    <p>List of animal shelters in New York State extracted from Petfinder.com</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>pf_list_types</span>(<span class='no'>token</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>token</th>
-      <td><p>An access token, provided by <code><a href='pf_accesstoken.html'>pf_accesstoken</a></code>.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='no'>NY_orgs</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble listing all available animal types with their respective coat, color, and gender options.</p>
+    <p>A data frame with columns:</p><dl class='dl-horizontal'>
+<dt>id</dt><dd><p>Organization ID</p></dd>
+<dt>name</dt><dd><p>Organization name</p></dd>
+<dt>email</dt><dd><p>Organization email address</p></dd>
+<dt>phone</dt><dd><p>phone</p></dd>
+<dt>address.city</dt><dd><p>Organization address: city</p></dd>
+<dt>address.state</dt><dd><p>Organization address: state</p></dd>
+<dt>address.postcode</dt><dd><p>Organization address: postcode/zipcode</p></dd>
+<dt>address.country</dt><dd><p>Organization address: country</p></dd>
+<dt>url</dt><dd><p>URL</p></dd>
+<dt>website</dt><dd><p>Organization website</p></dd>
+<dt>mission_statement</dt><dd><p>Organization mission statement</p></dd>
+<dt>adoption.policy</dt><dd><p>Adoption policy</p></dd>
+<dt>photos.small</dt><dd><p>First photo, small size</p></dd>
+<dt>photos.medium</dt><dd><p>First photo, medium size</p></dd>
+<dt>photos.large</dt><dd><p>First photo, large size</p></dd>
+<dt>photos.full</dt><dd><p>First photo, full size</p></dd>
+<dt>photos.small.1</dt><dd><p>Second photo, small size</p></dd>
+<dt>photos.medium.1</dt><dd><p>Second photo, medium size</p></dd>
+<dt>photos.large.1</dt><dd><p>Second photo, large size</p></dd>
+<dt>photos.full.1</dt><dd><p>Second photo, full size</p></dd>
+<dt>address.address1</dt><dd><p>Organization address: line 1</p></dd>
+<dt>address.address2</dt><dd><p>Organization address: line 2</p></dd>
+<dt>adoption.url</dt><dd><p>Adoption URL</p></dd>
+<dt>social_media.facebook</dt><dd><p>Social media link: Facebook</p></dd>
+<dt>social_media.youtube</dt><dd><p>Social media link: YouTube</p></dd>
+<dt>social_media.instagram</dt><dd><p>Social media link: Instagram</p></dd>
+<dt>social_media.twitter</dt><dd><p>Social media link: Twitter</p></dd>
+<dt>social_media.pinterest</dt><dd><p>Social media link: Pinterest</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Petfinder API (V2); retrieved on April 24, 2019 <a href='https://www.petfinder.com/developers/'>https://www.petfinder.com/developers/</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>pf_list_types</span>(<span class='no'>token</span>)
-<span class='fu'>pf_list_types</span>(<span class='no'>token</span>)$<span class='no'>name</span>
+ <span class='no'>NY_orgs</span>
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#source">Source</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List animal types with their respective coat, color, and gender options — pf_list_types • PetFindr</title>
+<title>Available puppies from the Los Angeles area extracted from Petfinder.com — LA_puppies • PetFindr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,9 @@
 
 
 
-<meta property="og:title" content="List animal types with their respective coat, color, and gender options — pf_list_types" />
+<meta property="og:title" content="Available puppies from the Los Angeles area extracted from Petfinder.com — LA_puppies" />
 
-<meta property="og:description" content="This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options." />
+<meta property="og:description" content="Available puppies from the Los Angeles area extracted from Petfinder.com" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,45 +115,84 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List animal types with their respective coat, color, and gender options</h1>
+    <h1>Available puppies from the Los Angeles area extracted from Petfinder.com</h1>
     
-    <div class="hidden name"><code>pf_list_types.Rd</code></div>
+    <div class="hidden name"><code>LA_puppies.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options.</p>
+    <p>Available puppies from the Los Angeles area extracted from Petfinder.com</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>pf_list_types</span>(<span class='no'>token</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>token</th>
-      <td><p>An access token, provided by <code><a href='pf_accesstoken.html'>pf_accesstoken</a></code>.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='no'>LA_puppies</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble listing all available animal types with their respective coat, color, and gender options.</p>
+    <p>A data frame with columns:</p><dl class='dl-horizontal'>
+<dt>id</dt><dd><p>Animal ID</p></dd>
+<dt>organization_id</dt><dd><p>Organization ID</p></dd>
+<dt>url</dt><dd><p>URL</p></dd>
+<dt>type</dt><dd><p>Type</p></dd>
+<dt>species</dt><dd><p>Species</p></dd>
+<dt>breeds.primary</dt><dd><p>Primary breed (if known)</p></dd>
+<dt>breeds.secondary</dt><dd><p>Secondary breed (if known)</p></dd>
+<dt>breeds.mixed</dt><dd><p>Is breed mixed? (TRUE if secondary breed exists)</p></dd>
+<dt>breeds.unknown</dt><dd><p>Is breed unknown?</p></dd>
+<dt>age</dt><dd><p>Age</p></dd>
+<dt>gender</dt><dd><p>Gender</p></dd>
+<dt>size</dt><dd><p>Size</p></dd>
+<dt>attributes.spayed_neutered</dt><dd><p>Is the animal spayed or neutered?</p></dd>
+<dt>attributes.house_trained</dt><dd><p>Is the animal house-trained?</p></dd>
+<dt>attributes.special_needs</dt><dd><p>Does the animal have special needs?</p></dd>
+<dt>attributes.shots_current</dt><dd><p>Are the animal's vaccinations current?</p></dd>
+<dt>name</dt><dd><p>Name</p></dd>
+<dt>description</dt><dd><p>Description of the animal's history, personality, and other characteristics</p></dd>
+<dt>status</dt><dd><p>Adoption status</p></dd>
+<dt>published_at</dt><dd><p>Date and time the animal's listing was posted</p></dd>
+<dt>contact.email</dt><dd><p>Contact email</p></dd>
+<dt>contact.phone</dt><dd><p>Contact phone</p></dd>
+<dt>contact.address.address1</dt><dd><p>Contact address: line 1</p></dd>
+<dt>contact.address.city</dt><dd><p>Contact address: city</p></dd>
+<dt>contact.address.state</dt><dd><p>Contact address: state</p></dd>
+<dt>contact.address.postcode</dt><dd><p>Contact address: postcode/zipcode</p></dd>
+<dt>contact.address.country</dt><dd><p>Contact address: country</p></dd>
+<dt>colors.primary</dt><dd><p>Primary color</p></dd>
+<dt>colors.secondary</dt><dd><p>Secondary color</p></dd>
+<dt>coat</dt><dd><p>Coat type</p></dd>
+<dt>environment.children</dt><dd><p>Can the animal live with children?</p></dd>
+<dt>environment.dogs</dt><dd><p>Can the animal live with dogs?</p></dd>
+<dt>environment.cats</dt><dd><p>Can the animal live with cats?</p></dd>
+<dt>photos.small</dt><dd><p>First photo, small size</p></dd>
+<dt>photos.medium</dt><dd><p>First photo, medium size</p></dd>
+<dt>photos.large</dt><dd><p>First photo, large size</p></dd>
+<dt>photos.full</dt><dd><p>First photo, full size</p></dd>
+<dt>photos.small.1</dt><dd><p>Second photo, small size</p></dd>
+<dt>photos.medium.1</dt><dd><p>Second photo, medium size</p></dd>
+<dt>photos.large.1</dt><dd><p>Second photo, large size</p></dd>
+<dt>photos.full.1</dt><dd><p>Second photo, full size</p></dd>
+<dt>contact.address.address2</dt><dd><p>Contact address: line 2</p></dd>
+<dt>colors.tertiary</dt><dd><p>Tertiary color</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Petfinder API (V2); retrieved on April 25, 2019 <a href='https://www.petfinder.com/developers/'>https://www.petfinder.com/developers/</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>pf_list_types</span>(<span class='no'>token</span>)
-<span class='fu'>pf_list_types</span>(<span class='no'>token</span>)$<span class='no'>name</span>
+ <span class='no'>LA_puppies</span>
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#source">Source</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
