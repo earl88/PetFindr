@@ -16,6 +16,7 @@ shinyUI(
                      actionButton("setup", label = "Get Account")),
         mainPanel(
           fluidRow(
+            textOutput("gettoken"),
             tags$img(src='logo1.jpg', height = '300px', width = '450px'),
             column(12,
                    uiOutput("instruction")
