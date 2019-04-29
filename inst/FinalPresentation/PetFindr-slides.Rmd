@@ -425,6 +425,9 @@ knitr::include_graphics("https://media.giphy.com/media/Maz1hoeGskARW/giphy.gif")
 
 
 ---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
 ### Package functions  -Hana-
 #### `pf_find_organizations`
 
@@ -442,7 +445,11 @@ knitr::include_graphics("https://media.giphy.com/media/Maz1hoeGskARW/giphy.gif")
 * https://www.petfinder.com/developers/v2/docs/#get-organizations
 
 ---
-### Package functions: `pf_find_organizations`
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions
+* `pf_find_organizations`
 
 * Write a GET request structure from the input arguments of a function.
 
@@ -469,7 +476,11 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 ```
 
 ---
-### Package functions: `pf_find_organizations`
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions
+* `pf_find_organizations`
 
 * Request the listed information on the first page to R!
 
@@ -485,7 +496,11 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 ```
 
 ---
-### Package functions: `pf_find_organizations`
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions
+* `pf_find_organizations`
 
 * Deal with some issues of page specification (default: page=1).
 
@@ -509,7 +524,11 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 ```
 
 ---
-### Package functions: `pf_find_organizations`
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions
+* `pf_find_organizations`
 
 * Multiple pages: repeat the request by pages with apply-based method.
 
@@ -529,7 +548,11 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 ```
 
 ---
-### Package functions: `pf_find_organizations`
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions
+* `pf_find_organizations`
 
 * Not the same set of information for all of the organizations (or pets) as well as pages
 
@@ -547,7 +570,11 @@ pf_find_organizations <- function(token = NULL, name = NULL,
 ```
 
 ---
-### Package functions: `pf_map_locations`
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
+### Package functions
+* `pf_map_locations`
 
 * Input: token, a dataframe of pets returned from pf_find_pets
 
