@@ -176,14 +176,13 @@ background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
-<<<<<<< HEAD
+
 With your `key` and `secret`, you can request an access token for the API database.
 
 But what is a token?
 
-=======
 With your `key` and `secret`, you must now request an access token for the API.
->>>>>>> b07472217d3d417df3ff095f59fbd489e0efe4a5
+
 
 ```{r, eval = F, echo = T}
 pf_accesstoken <- function(key = NULL, secret = NULL) {
