@@ -234,9 +234,8 @@ function(input, output, session) {
                             args = list(token = get_token(),location = newloc)) %>% filter(id==event$id) %>%
       select(c(name, email, phone, address.address1, address.city, address.postcode, hours.monday, hours.tuesday, hours.wednesday, hours.thursday, hours.friday))
     validate(need(nrow(orgdata_list)>0, "Organization information cannot be found by petfinder API's organization searching algorithm."))
-    orgdata_list <- data.frame(Variables, Organization_Info = transpose(orgdata_list) %>% setNames("Organization_Info"))
-    print(orgdata_list)
-    })
+    orgdata_list <- data.frame(Variables, Organization_Info = t(orgdata_list) %>% setNames("Organization_Info"))
+        })
 
   output$bars <- renderPlotly({
     

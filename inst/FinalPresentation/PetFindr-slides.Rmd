@@ -419,7 +419,7 @@ background-size: 150px
 background-position: 99.5% 4.5%
 
 ### Package functions - Hana Lee
-#### `pf_find_organizations`
+#### `pf_find_organizations(token, name, location, distance, ...)`
 
 * Returns a dataframe of details on a group of organizations based on criteria given in parameters. How does it work?
   
@@ -484,8 +484,7 @@ background-position: 99.5% 4.5%
 ```
 
 * Example:
-  + Invalid API key/secret/token (ERR-401)
-  + Missing/invalid parameters in requests (ERR-400)
+  + Invalid API key/secret/token
 
 * https://www.petfinder.com/developers/v2/docs/#errors
 
