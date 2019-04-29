@@ -1,10 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-PetFindr
-========
-
-pkgdown <img src='man/figures/logo.png' align="right" height="280" />
-=====================================================================
+PetFindr <img src='man/figures/logo.png' align="right" height="280" />
+======================================================================
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/earl88/PetFindr.svg?branch=master)](https://travis-ci.org/earl88/PetFindr) [![Codecov test coverage](https://codecov.io/gh/earl88/PetFindr/branch/master/graph/badge.svg)](https://codecov.io/gh/earl88/PetFindr?branch=master) <!-- badges: end -->
