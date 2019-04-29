@@ -104,7 +104,7 @@ shinyUI(
       "Thank you!",
       tags$img(src='dogs.gif', height = '400', width = '700', align = "center"),
       br(),
-      tags$img(src='cats.gif', height = '400', width = '700', align = "center")
+      tags$img(src='cats2.gif', height = '400', width = '600', align = "center")
     )
   )
 )
