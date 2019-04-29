@@ -449,7 +449,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 ### Package functions
-* `pf_find_organizations`
+#### `pf_find_organizations`
 
 * Write a GET request structure from the input arguments of a function.
 
@@ -480,7 +480,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 ### Package functions
-* `pf_find_organizations`
+#### `pf_find_organizations`
 
 * Request the listed information on the first page to R!
 
@@ -500,7 +500,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 ### Package functions
-* `pf_find_organizations`
+#### `pf_find_organizations`
 
 * Deal with some issues of page specification (default: page=1).
 
@@ -528,7 +528,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 ### Package functions
-* `pf_find_organizations`
+#### `pf_find_organizations`
 
 * Multiple pages: repeat the request by pages with apply-based method.
 
@@ -552,7 +552,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 ### Package functions
-* `pf_find_organizations`
+#### `pf_find_organizations`
 
 * Not the same set of information for all of the organizations (or pets) as well as pages
 
@@ -574,7 +574,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 ### Package functions
-* `pf_map_locations`
+#### `pf_map_locations`
 
 * Input: token, a dataframe of pets returned from pf_find_pets
 
