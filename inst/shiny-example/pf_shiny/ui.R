@@ -13,8 +13,11 @@ shinyUI(
                      actionButton("auth", label = "Authenticate"),
                      br(),
                      br(),
+                     br(),
+                     br(),
                      "Don't have a Petfinder API (V2) account?",
-                     actionButton("setup", label = "Get Account")),
+                     br(),
+                     "Please click the URL to get one!"),
         mainPanel(
           fluidRow(
             textOutput("gettoken"),
