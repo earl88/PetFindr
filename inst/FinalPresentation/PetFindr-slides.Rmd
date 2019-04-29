@@ -26,7 +26,7 @@ library(cowplot)
 sticker <- image_read('https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo.png')
 ```
 
-# Petfinder.com - Miranda Tilton
+### Petfinder.com - Miranda Tilton
 
 ```{r, out.width = "100%"}
 knitr::include_graphics("images/petfinder-website.PNG")
@@ -34,7 +34,7 @@ knitr::include_graphics("images/petfinder-website.PNG")
 
 ---
 
-# Petfinder.com 
+### Petfinder.com 
 
 ```{r, out.width = "100%"}
 knitr::include_graphics("images/petfinder-dogs.PNG")
@@ -42,7 +42,7 @@ knitr::include_graphics("images/petfinder-dogs.PNG")
 
 ---
 
-# The Petfinder API (V2)
+### The Petfinder API (V2)
 
 * https://www.petfinder.com/developers/v2/docs/
 
@@ -62,7 +62,7 @@ knitr::include_graphics("images/petfinder-for-developers.PNG")
 
 ---
 
-# PetFindr
+### PetFindr
 
 https://github.com/earl88/PetFindr
 
@@ -75,7 +75,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 98% 8%
 
-# Interacting with the API
+### Interacting with the API
 
 * Package `httr` by Hadley Wickham
 
