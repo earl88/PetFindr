@@ -78,7 +78,20 @@ knitr::include_graphics("../../man/figures/logo.png")
 
     + `GET`, `POST`, `add_headers`, `content`, `status_code`
     
-* 
+* Endpoint: https://api.petfinder.com/v2/
+
+* Request token
+
+```{r, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("images/curl-oauth.PNG")
+```
+
+* Make a search
+
+```{r, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("images/curl-search.PNG")
+```
+
 
 ---
 
