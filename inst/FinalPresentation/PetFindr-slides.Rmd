@@ -142,7 +142,7 @@ background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
-Once you create an account, you will get assigned a unique `key` and `secret`.
+Once you create an account, you will be assigned a unique `key` and `secret`.
 
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png")
@@ -155,7 +155,8 @@ background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
-Once you create an account, you will get assigned a unique `key` and `secret`.
+Once you create an account, you will be assigned a unique `key` and `secret`.
+
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
 ```
@@ -175,12 +176,7 @@ background-position: 99.5% 4.5%
 
 ### Getting Started (Authentication)
 
-With your `key` and `secret`, you can request an access token for the API database.
-
-But what is a token?
-
-- A credential that can be used to receive information 
-- Structure
+With your `key` and `secret`, you must now request an access token for the API.
 
 ```{r, eval = F, echo = T}
 pf_accesstoken <- function(key = NULL, secret = NULL) {
@@ -209,8 +205,6 @@ background-position: 99.5% 4.5%
 ```{r,eval = F, echo = T}
 token <- pf_accesstoken(petfindr_key, petfindr_secret)
 ```
-
-Your access token will last for one hour.
 
 ```{r  out.width = "95%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/tokenmessage.png")
