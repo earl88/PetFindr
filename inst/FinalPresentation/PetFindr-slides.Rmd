@@ -26,7 +26,7 @@ library(cowplot)
 sticker <- image_read('https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo.png')
 ```
 
-# Petfinder.com -Miranda-
+# Petfinder.com - Miranda Tilton
 
 ```{r, out.width = "100%"}
 knitr::include_graphics("images/petfinder-website.PNG")
@@ -232,7 +232,7 @@ background-size: 150px
 background-position: 98% 8%
 
 
-### Package functions   -Amin-
+### Package functions - Amin Shirazi
 
 * Available information for each type of pet 
   * breed
@@ -420,7 +420,7 @@ knitr::include_graphics("https://media.giphy.com/media/Maz1hoeGskARW/giphy.gif")
 
 
 ---
-### Package functions  -Hana-
+### Package functions - Hana Lee
 #### `pf_find_organizations`
 
 * It returns a dataframe of details on a group of organizations based on criteria given in parameters. How it works?
