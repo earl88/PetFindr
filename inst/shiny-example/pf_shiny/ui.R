@@ -5,21 +5,21 @@ shinyUI(
       "Get Authentication",
       fluidRow(
         sidebarPanel(width = 2, 
-                     "Paste your Key and Secret. Then Authenticate!",
-                     textInput(
-                       "key", "Key", value = "", placeholder = "Paste your key here"),
-                     textInput("secret", "Secret", value = "", placeholder = "Paste your secret here"),
+                     "Enter your key and secret",
+                     textInput("key", "Key", value = "",
+                               placeholder = "Paste your key here"),
+                     textInput("secret", "Secret", value = "", 
+                               placeholder = "Paste your secret here"),
                      actionButton("auth", label = "Authenticate"),
                      br(),
                      br(),
-                     "In case you do not have petfinder API account, please click the url",
+                     "Don't have a Petfinder API (V2) account?",
                      actionButton("setup", label = "Get Account")),
         mainPanel(
           fluidRow(
             textOutput("gettoken"),
             tags$img(src='logo1.jpg', height = '300px', width = '450px'),
-            column(12,
-                   uiOutput("instruction")
+            column(12, uiOutput("instruction")
             )
           )
         )
@@ -96,7 +96,7 @@ shinyUI(
           br(),
           fluidRow(
             column(6, 
-                   DT::dataTableOutput("list_table")),
+                   tableOutput("list_table")),
             column(6,
                    plotlyOutput("bars"))
           )

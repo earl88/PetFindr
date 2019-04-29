@@ -1,12 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-PetFindr
-========
+PetFindr <img src='man/figures/logo.png' align="right" height="280" />
+======================================================================
 
 <!-- badges: start -->
-<img src='man/figures/logo.png' align="right" height="280" /></a>
-=================================================================
-
 [![Travis build status](https://travis-ci.org/earl88/PetFindr.svg?branch=master)](https://travis-ci.org/earl88/PetFindr) [![Codecov test coverage](https://codecov.io/gh/earl88/PetFindr/branch/master/graph/badge.svg)](https://codecov.io/gh/earl88/PetFindr?branch=master) <!-- badges: end -->
 
 PetFindr provides an R interface for the [Petfinder.com API (V2)](https://www.petfinder.com/developers/). Once a user obtains an API key and secret from Petfinder, this package allows the user to retrieve information about animals by type, breed, location, and other useful characteristics. Find more documentation at <https://earl88.github.io/PetFindr/>.
