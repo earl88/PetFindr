@@ -239,8 +239,7 @@ background-size: 150px
 background-position: 98% 8%
 
 
-### Package functions  
-#### Amin Shirazi
+### Package functions   -Amin-
 
 * Available information for each type of pet 
   * breed
