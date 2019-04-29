@@ -73,7 +73,7 @@ knitr::include_graphics("../../man/figures/logo.png")
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
-background-position: 98% 8%
+background-position: 99.5% 4.5%
 
 # Interacting with the API
 
