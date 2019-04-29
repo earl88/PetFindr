@@ -26,7 +26,7 @@ library(cowplot)
 sticker <- image_read('https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo.png')
 ```
 
-# Petfinder.com 
+# Petfinder.com -Miranda-
 
 ```{r, out.width = "100%"}
 knitr::include_graphics("images/petfinder-website.PNG")
@@ -71,6 +71,9 @@ knitr::include_graphics("../../man/figures/logo.png")
 ```
 
 ---
+background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
+background-size: 150px
+background-position: 98% 8%
 
 # Interacting with the API
 
@@ -92,9 +95,7 @@ knitr::include_graphics("images/curl-oauth.PNG")
 knitr::include_graphics("images/curl-search.PNG")
 ```
 
-
 ---
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
 background-size: 150px
 background-position: 98% 8%
@@ -102,9 +103,7 @@ background-position: 98% 8%
 ### Getting Started (Authentication)
 #### Jess
 
-To guide users in the authentication process, 
-`pf_setup` is there for you.
-
+To guide users in the authentication process, `pf_setup` is there for you.
 
 First, let's install the package!
 
@@ -118,8 +117,6 @@ You need a Petfinder account.
 ```{r, eval = F, echo = T}
 pf_setup()
 ```
-
-
 
 ```{r  out.width = "90%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
@@ -151,10 +148,6 @@ Once you create an account, you will get assigned a unique `key` and `secret`.
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png")
 ```
 
-
-
-
-
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
 background-size: 150px
@@ -174,7 +167,6 @@ petfindr_key <- "paste_key_here"
 petfindr_secret <- "paste_secret_here"
 pf_save_credentials(key = petfindr_key, secret = petfindr_secret)
 ```
-
 
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
@@ -206,6 +198,7 @@ pf_accesstoken <- function(key = NULL, secret = NULL) {
 }
 
 ```
+
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/logo1.jpg)
 background-size: 150px
@@ -300,7 +293,6 @@ background-position: 98% 8%
    * Output: A character vector of the available breeds for the specified animal type
    
 ---
-
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
 background-size: 150px
 background-position: 98% 8%
@@ -353,13 +345,16 @@ background-position: 98% 8%
 #### Searching for pets
 ##### `Pf_find_pets`
 
+```{r, echo = T, eval = F}
 `pf_find_pets(token)`
 
 `pf_find_pets(token, type = "horse")`
 
 `pf_find_pets(token, type = "dog", age = "baby", page = 1:5)`
 
-`pf_find_pets(token, type = "Scales, Fins, & Others", breed = "Python", sort = "-rencent")`
+`pf_find_pets(token, type = "Scales, Fins, & Others", 
+              breed = "Python", sort = "-recent")`
+```
 
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
