@@ -272,6 +272,7 @@ background-position: 99.5% 4.5%
 
  * Input: token
  * Output: a tibble of all available animal types with their respective coat, color, and gender options
+ * Also available as a data frame: `data(pf_types)`
  
 ```{r out.width = "100%",echo=FALSE}
 data("pf_types", package = "PetFindr")
@@ -291,6 +292,8 @@ background-position: 99.5% 4.5%
    * Input: token, type of animal
    
    * Output: A character vector of the available breeds for the specified animal type
+   * Breeds for each type are available as a data frame: `data(pf_breeds)`
+   
    
 ---
 background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/man/figures/logo1.png)
