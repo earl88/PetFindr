@@ -332,7 +332,8 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 99.5% 4.5%
 ### Package functions  
-Data frame columns of `pf_fin_pets`
+#### Searching for pets
+##### `pf_find_pets`
 
 ```{r, echo = T, eval = F}
 
@@ -351,8 +352,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 99.5% 4.5%
 ### Package functions  
-#### Searching for pets
-##### `Pf_find_pets`
+Data frame columns of `pf_find_pets`
 
 
 ```{r out.width = "112%",echo=FALSE}
