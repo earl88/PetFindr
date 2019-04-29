@@ -436,7 +436,7 @@ background-image: url(https://raw.githubusercontent.com/earl88/PetFindr/master/m
 background-size: 150px
 background-position: 99.5% 4.5%
 ### Package functions
-#### `pf_find_organizations`
+#### `pf_find_organizations(token, name, location, distance, ...)`
 
 * Write a GET request structure from the input arguments of a function.
 
@@ -479,8 +479,7 @@ background-position: 99.5% 4.5%
 ```
 
 * Example:
-  + Invalid API key/secret/token (ERR-401)
-  + Missing parameters in requests (ERR-00001)
+  + Invalid API key/secret/token
 
 * https://www.petfinder.com/developers/v2/docs/#errors
 
