@@ -95,15 +95,18 @@
 </li>
 <li>Getting Started
 <ul>
-<li>Authentication - Jess is working on this :)</li>
+<li>Authentication<br>
+</li>
 </ul>
 </li>
 <li>Usage
 <ul>
-<li>Functions - Amin</li>
-<li>Examples Using Sample Data - Jess</li>
-<li>Shiny - Earl</li>
-<li>Extensions - Jess</li>
+<li>Functions</li>
+<li>Examples Using Sample Data</li>
+<li>Shiny</li>
+<li>Extensions<br>
+</li>
+<li>Further Reading</li>
 </ul>
 </li>
 </ul>
@@ -131,9 +134,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 To get your own <code>key</code> and <code>secret</code> from the API website, you have to create an account on <a href="https://www.petfinder.com/user/register/">Petfinder</a>.<br><code>pf_setup</code> function will guide you through whole process to initialize the API connection to Petfinder.<br>
 Running this function will open a browser to “<a href="https://www.petfinder.com/developers/" class="uri">https://www.petfinder.com/developers/</a>” and prompt you to register for Petfinder’s API (V2).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_setup.html">pf_setup</a></span>()</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1: No way</span>
-<span class="co">#2: Not now</span>
-<span class="co">#3: Yup</span></code></pre></div>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png" width="50%"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_save_credentials.html">pf_save_credentials</a></span>(key, secret)</code></pre></div>
 <p>Once you creat an account on <a href="https://www.petfinder.com/">Petfinder</a> and receive a unique <code>key</code> and a <code>secret</code>, you now can use the function <code>petfindr_save_credentials()</code> to store their key and secret to your .Rprofile so that you do not have to run <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> everytime you use the package.<br>
 Using <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> makes it easier to access the API in the future, but this function is not required to access the database.<br></p>
@@ -153,7 +154,43 @@ The examples are mainly split into pet, shelter, photo-viewing functions.</p>
 <div id="functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#functions" class="anchor"></a>Functions</h3>
-<p>Amin’s part</p>
+<div id="pf_find_pets" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pf_find_pets" class="anchor"></a><code>pf_find_pets</code>
+</h4>
+<p>Retrieve a data frame of information about pets that are listed on Petfinder.com.<br>
+Filter searches based on characteristics such as animal type, breed, size, age, or location.</p>
+</div>
+<div id="pf_list_breeds" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pf_list_breeds" class="anchor"></a><code>pf_list_breeds</code>
+</h4>
+<p>This function allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type.</p>
+</div>
+<div id="pf_list_types" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pf_list_types" class="anchor"></a><code>pf_list_types</code>
+</h4>
+<p>This function returns the available animal types from Petfinder.com, along with each type’s available coat, color, and gender options.</p>
+</div>
+<div id="pf_map_locations" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pf_map_locations" class="anchor"></a><code>pf_map_locations</code>
+</h4>
+<p>This function display animal locations.</p>
+</div>
+<div id="pf_find_organizations" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pf_find_organizations" class="anchor"></a><code>pf_find_organizations</code>
+</h4>
+<p>This function retrieves a data frame of information about organizations that are listed on Petfinder.com. Filter searches based on location by specifying a postal code, city and state, country, or latitude and longitude.</p>
+</div>
+<div id="pf_view_photos" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pf_view_photos" class="anchor"></a><code>pf_view_photos</code>
+</h4>
+<p>This function retrieves the photos of searched pets in a slideshow format.</p>
+</div>
 </div>
 <div id="examples-using-sample-data" class="section level3">
 <h3 class="hasAnchor">
@@ -165,14 +202,21 @@ The datasets in the package are immediately available when the package is loaded
 <h4 class="hasAnchor">
 <a href="#sample-data-puppies-in-los-angeles" class="anchor"></a>Sample data: Puppies in Los Angeles</h4>
 <p>The dataset summarises information of 500 puppies in Greater Los Angeles area extracted from Petfinder on April 25, 2019. Output below is the first observation from the dataset.</p>
-<p>Note the data has been transposed (otherwise the table would be very wide).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LA_puppies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(id, organization_id, type, species, name,age,gender, size, status)
+<span class="co">#&gt;         id organization_id type species  name  age gender   size    status</span>
+<span class="co">#&gt; 1 44543735           CA448  Dog     Dog  Cola Baby Female Medium adoptable</span>
+<span class="co">#&gt; 2 44543736           CA448  Dog     Dog   Pop Baby   Male Medium adoptable</span>
+<span class="co">#&gt; 3 44541265          CA2510  Dog     Dog Clyde Baby   Male Medium adoptable</span>
+<span class="co">#&gt; 4 44541241          CA1066  Dog     Dog  Echo Baby   Male Medium adoptable</span>
+<span class="co">#&gt; 5 44541240          CA1066  Dog     Dog Ernie Baby   Male Medium adoptable</span></code></pre></div>
+<p>Note the output does not show every column in the sample dataset (otherwise the table would be very wide).</p>
 <p>The first row from the sample data (column 1 above) represents:</p>
 <ul>
 <li>id: Animal ID</li>
 <li>organization_id : Organization Id</li>
 <li>url: url of the animal</li>
 <li>type : Type of the animal</li>
-<li>specides: Species of the animal</li>
+<li>species: Species of the animal</li>
 <li>breeds.primary: Primary breed (if known)</li>
 <li>breeds.secondary: Secondary breed (if known)</li>
 <li>breeds.mixed: Is breed mixed? (TRUE if secondary breed exists)</li>
@@ -187,8 +231,74 @@ The datasets in the package are immediately available when the package is loaded
 <a href="#sample-data-shelters-in-new-york-state" class="anchor"></a>Sample data: Shelters in New York State</h4>
 <p>The dataset summarises the list of animal sheters in New York State.<br>
 Output below is the first observation from the dataset.</p>
-<p>Note the data has been transposed (otherwise the table would be very wide).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NY_orgs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(id, name, email, phone)
+<span class="co">#&gt;       id                         name                      email</span>
+<span class="co">#&gt; 1 NY1351           Zero Stray Pawject  info@zerostraypawject.org</span>
+<span class="co">#&gt; 2  NY606 Zanis Furry Friends ZFF, Inc info@zanisfurryfriends.org</span>
+<span class="co">#&gt; 3  NY995       Yorkie911 Rescue, Inc.  yorkie911rescue@gmail.com</span>
+<span class="co">#&gt; 4  NY716  Yonkers Humane Society Inc.         enviro3232@aol.com</span>
+<span class="co">#&gt; 5   NY63       Yonkers Animal Shelter       lesliem147@gmail.com</span>
+<span class="co">#&gt;             phone</span>
+<span class="co">#&gt; 1  (917) 929-5756</span>
+<span class="co">#&gt; 2            &lt;NA&gt;</span>
+<span class="co">#&gt; 3 631-965-6418   </span>
+<span class="co">#&gt; 4  (914) 751-7870</span>
+<span class="co">#&gt; 5  (201) 981-3215</span></code></pre></div>
+<p>Note the output does not show every column in the sample dataset<br>
+(otherwise the table would be very wide).</p>
 </div>
+</div>
+<div id="shiny" class="section level3">
+<h3 class="hasAnchor">
+<a href="#shiny" class="anchor"></a>Shiny</h3>
+<p>The Shiny is a convenient way to explore data through an interactive user interface in the user’s default browser straight from R. This section of the vignette will present a couple of examples to show users how to explore Petfinder using R Shiny.<br>
+You also need an authentication to use the Shiny because Shiny extracts information from the API as well.<br>
+The app includes multiple ways to extract and visualize data from Petfinder. All of the output on the Shiny app can be created directly in R as well. To run the app, load the <code>PetFindr</code> package, and run the <code><a href="../reference/pf_run_Shiny.html">pf_run_Shiny()</a></code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(PetFindr)
+<span class="kw"><a href="../reference/pf_run_Shiny.html">pf_run_Shiny</a></span>()</code></pre></div>
+<p>The computer’s default browser will open up and display the following pages:</p>
+<div id="authentication-1" class="section level4">
+<h4 class="hasAnchor">
+<a href="#authentication-1" class="anchor"></a>Authentication</h4>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny_main.png" width="70%"></p>
+<p>To ensure that the users are registered and have their own <code>key</code> and <code>secret</code>, the main page of the Shiny app shows a short instruction to let the users know that <code>key</code> and <code>secret</code> are required to use the Shiny app and the token has to be regenerated every hour..<br>
+The shiny app also detects invalid <code>key</code> and <code>secret</code>.</p>
+</div>
+<div id="search-by-animals" class="section level4">
+<h4 class="hasAnchor">
+<a href="#search-by-animals" class="anchor"></a>Search by Animals</h4>
+<p>After you are granted to access the API, you can search animals as below.</p>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny2.png" width="70%"></p>
+<p>The first tab is divided into 4 main sections:</p>
+<p>The left sidebar is used to input the required information (location, search radius, types of animals, breeds of animals, adoption status, number of pets in the output) to request the AP to search for pets that meet certain criteria.</p>
+<p><code>Pets in your location</code> is a table output that displays the list of pets from the output.</p>
+<p>The main visualization display section shows a <code>leaflet</code> output to visualize the location of the pets.</p>
+<p>Finally, if you click one of the rows in <code>Pets in your location</code> table, app will show you a picture of the selected animal. If the photo is unavailable, it will return an error message.</p>
+</div>
+<div id="search-by-organizations" class="section level4">
+<h4 class="hasAnchor">
+<a href="#search-by-organizations" class="anchor"></a>Search by Organizations</h4>
+<p>Second tab allows you to find information on animal shelters and is also dicided into 4 main sections.<br>
+You can search organization based on 3 criteria (location, search radius , and number of outputs) and<br>
+the left sidebar shows the input section.<br>
+The main visualization display show three types of information.<br>
+First, it shows a <code>leaflet</code> to visualize the location of the animal shelters,<br>
+and the table below shows information from a selected shelter in the <code>leaflet</code>.<br>
+Finally, the bar graph summarizes the types and number of pets in the selected shelter.</p>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/orginfo.png" width="70%"></p>
+</div>
+</div>
+<div id="extensions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#extensions" class="anchor"></a>Extensions</h3>
+</div>
+<div id="further-reading" class="section level3">
+<h3 class="hasAnchor">
+<a href="#further-reading" class="anchor"></a>Further Reading</h3>
+<ul>
+<li>For further documentation on Petfinder APIs (v2), see <a href="https://www.petfinder.com/developers/v2/docs/" class="uri">https://www.petfinder.com/developers/v2/docs/</a>
+</li>
+</ul>
 </div>
 </div>
   </div>
