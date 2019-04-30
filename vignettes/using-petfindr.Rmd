@@ -169,11 +169,10 @@ library(PetFindr)
 ```
 
 ```{r, eval = T, echo = T}
-t(LA_puppies %>% head(n = 1))
-
+LA_puppies %>% head(n = 5) %>% select(id, organization_id, type, species, name,age,gender, size, status)
 ```
 
-Note the data has been transposed (otherwise the table would be very wide).
+Note the output does not show every column in the sample dataset (otherwise the table would be very wide).
 
 The first row from the sample data (column 1 above) represents:
 
@@ -181,7 +180,7 @@ The first row from the sample data (column 1 above) represents:
 - organization_id : Organization Id
 - url: url of the animal
 - type : Type of the animal
-- specides: Species of the animal
+- species: Species of the animal
 - breeds.primary: Primary breed (if known)
 - breeds.secondary: Secondary breed (if known)
 - breeds.mixed: Is breed mixed? (TRUE if secondary breed exists)
@@ -197,11 +196,11 @@ The dataset summarises the list of animal sheters in New York State. \
 Output below is the first observation from the dataset.
 
 ```{r, eval = T, echo = T}
-t(NY_orgs %>% head(n = 1))
-
+NY_orgs %>% head(n = 5) %>% select(id, name, email, phone)
 ```
 
-Note the data has been transposed (otherwise the table would be very wide).
+Note the output does not show every column in the sample dataset\
+(otherwise the table would be very wide).
 
 
 
@@ -276,3 +275,6 @@ Finally, the bar graph summarizes the types and number of pets in the selected s
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/orginfo.png")
 
 ```
+
+
+### Extensions
