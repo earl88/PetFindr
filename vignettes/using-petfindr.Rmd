@@ -19,12 +19,12 @@ knitr::opts_chunk$set(
 
 * Introducing `PetFindr`
 * Getting Started
-    + Authentication  - Jess is working on this :)
+    + Authentication  
 * Usage
-    + Functions - Amin
-    + Examples Using Sample Data - Jess
-    + Shiny  - Earl
-    + Extensions - Jess 
+    + Functions 
+    + Examples Using Sample Data 
+    + Shiny 
+    + Extensions  
 
 
 
@@ -71,11 +71,8 @@ pf_setup()
 ```
 
 
-```{r}
-#1: No way
-#2: Not now
-#3: Yup
-
+```{r out.width = "50%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
 ```
 
 
@@ -115,7 +112,41 @@ The examples are mainly split into pet, shelter, photo-viewing functions.
 
 ### Functions
 
-Amin's part
+
+#### `pf_find_pets`
+
+Retrieve a data frame of information about pets that are listed on Petfinder.com. \
+Filter searches based on characteristics such as animal type, breed, size, age, or location.
+
+
+#### `pf_list_breeds`
+
+This function allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type.
+
+
+
+#### `pf_list_types`
+
+This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options.
+
+
+#### `pf_map_locations`
+
+This function display animal locations.
+
+
+#### `pf_find_organizations`
+
+This function retrieves a data frame of information about organizations that are listed on Petfinder.com. Filter searches based on location by specifying a postal code, city and state, country, or latitude and longitude.
+
+#### `pf_view_photos`
+
+This function retrieves the photos of searched pets in a slideshow format.
+
+
+
+
+
 
 
 
@@ -132,12 +163,12 @@ The datasets in the package are immediately available when the package is loaded
 The dataset summarises information of 500 puppies in Greater Los Angeles area extracted from Petfinder on April 25, 2019. 
 Output below is the first observation from the dataset.
 
-```{r, echo = F, eval = F, message = F}
-library(tidyverse)
+```{r, echo = F, eval = T, message = F}
+library(dplyr)
 library(PetFindr)
 ```
 
-```{r, eval = F, echo = F}
+```{r, eval = T, echo = T}
 t(LA_puppies %>% head(n = 1))
 
 ```
@@ -165,7 +196,7 @@ The first row from the sample data (column 1 above) represents:
 The dataset summarises the list of animal sheters in New York State. \
 Output below is the first observation from the dataset.
 
-```{r, eval = F, echo = F}
+```{r, eval = T, echo = T}
 t(NY_orgs %>% head(n = 1))
 
 ```
