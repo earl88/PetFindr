@@ -205,3 +205,74 @@ Note the data has been transposed (otherwise the table would be very wide).
 
 
 
+### Shiny
+
+The Shiny is a convenient way to explore data through an interactive user interface in the user’s default browser straight from R.\
+This section of the vignette will present a couple of examples to show users how to explore Petfinder using R Shiny.\
+You also need an authentication to use the Shiny because Shiny extracts information from the API as well.\
+
+The app includes multiple ways to extract and visualize data from Petfinder. All of the output on the Shiny app can be created directly in R as well. \
+
+To run the app, load the `PetFindr` package, and run the `pf_run_Shiny()` function:
+
+```{r, eval = F, echo = T}
+library(PetFindr)
+pf_run_Shiny()
+```
+
+The computer’s default browser will open up and display the following page:
+
+#### Authentication
+
+```{r out.width = "70%", eval = T, echo = F}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny_main.png")
+
+```
+
+
+To ensure that the users register for `key` and `secret`, the main page of the Shiny app 
+has a short instruction to let the users know that `key` and `secret` are required to use the Shiny app.\
+
+The shiny app also detects invalid `key` and `secret` and tells the users that the token has to be regenerated every hour. \
+
+
+
+#### Search by Animals
+
+After you are granted to access the API, you can search animals as below. 
+
+
+```{r out.width = "70%", eval = T, echo = F}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny2.png")
+
+```
+
+The first tab is divided into 4 main sections:
+
+The left sidebar is used to input the required information (location, search radius, types of animals, breeds of animals, adoption status, number of pets in the output) to request the AP to search for pets that meet certain criteria. 
+
+`Pets in your location` is a table output that displays the list of pets from the output.
+
+The main visualization display section shows a `leaflet` output to visualize the location of the pets. 
+
+Finally, if you click one of the rows in `Pets in your location` table, app will show you a picture of the selected animal. If the photo is unavailable, it will return an error message.  
+
+
+
+#### Search by Organizations
+
+Second tab allows you to find information on animal shelters and is also dicided into 4 main sections.\
+
+You can search organization based on 3 criteria (location, search radius , and number of outputs) and \
+the left sidebar shows the input section.\
+
+The main visualization display show three types of information.\
+First, it shows a `leaflet` to visualize the location of the animal shelters,\
+and the table below shows information from a selected shelter in the `leaflet`.\
+Finally, the bar graph summarizes the types and number of pets in the selected shelter. 
+
+
+```{r out.width = "70%", eval = T, echo = F}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/orginfo.png")
+
+```
