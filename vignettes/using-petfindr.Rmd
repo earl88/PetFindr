@@ -25,6 +25,7 @@ knitr::opts_chunk$set(
     + Examples Using Sample Data 
     + Shiny 
     + Extensions  
+    + Further Reading
 
 
 
@@ -206,20 +207,18 @@ Note the output does not show every column in the sample dataset\
 
 ### Shiny
 
-The Shiny is a convenient way to explore data through an interactive user interface in the user’s default browser straight from R.\
-This section of the vignette will present a couple of examples to show users how to explore Petfinder using R Shiny.\
+The Shiny is a convenient way to explore data through an interactive user interface in the user’s default browser straight from R. This section of the vignette will present a couple of examples to show users how to explore Petfinder using R Shiny.\
+
 You also need an authentication to use the Shiny because Shiny extracts information from the API as well.\
 
-The app includes multiple ways to extract and visualize data from Petfinder. All of the output on the Shiny app can be created directly in R as well. \
-
-To run the app, load the `PetFindr` package, and run the `pf_run_Shiny()` function:
+The app includes multiple ways to extract and visualize data from Petfinder. All of the output on the Shiny app can be created directly in R as well. To run the app, load the `PetFindr` package, and run the `pf_run_Shiny()` function:
 
 ```{r, eval = F, echo = T}
 library(PetFindr)
 pf_run_Shiny()
 ```
 
-The computer’s default browser will open up and display the following page:
+The computer’s default browser will open up and display the following pages:
 
 #### Authentication
 
@@ -229,10 +228,10 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 ```
 
 
-To ensure that the users register for `key` and `secret`, the main page of the Shiny app 
-has a short instruction to let the users know that `key` and `secret` are required to use the Shiny app.\
+To ensure that the users are registered and have their own  `key` and `secret`, the main page of the Shiny app 
+shows a short instruction to let the users know that `key` and `secret` are required to use the Shiny app and the token has to be regenerated every hour..\
 
-The shiny app also detects invalid `key` and `secret` and tells the users that the token has to be regenerated every hour. \
+The shiny app also detects invalid `key` and `secret`.
 
 
 
@@ -278,3 +277,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 
 
 ### Extensions
+
+
+### Further Reading
+
+* For further documentation on Petfinder APIs (v2), see https://www.petfinder.com/developers/v2/docs/
+
