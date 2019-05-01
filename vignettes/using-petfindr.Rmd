@@ -72,8 +72,23 @@ pf_setup()
 ```
 
 
-```{r out.width = "50%",echo=FALSE}
+```{r out.width = "70%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
+```
+
+If a user responsds "yes", `pf_setup` will load PetFinder register website into an HTML browser. \
+After registration, a Petfinder API Key and Secret can be requested in www.petfinder.com/developers. \
+
+
+```{r  out.width = "85%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png")
+```
+
+
+A user gets a uniqe `key` and `secret` and these will be used to request an access token to Petfinder API. 
+
+```{r  out.width = "85%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
 ```
 
 
@@ -95,7 +110,7 @@ pf_accesstoken(key, secret)
 Once you use their key and secret as the inputs of `pf_accesstoken()`, you now have an access to the Petfinder servers and can start your own query to find your future pets. By the way, you should remember that the token has to be requested every hour.\
 
 
-Now, The [Petfinder API v2.0](https://www.petfinder.com/developers/v2/docs/) are now accessible through R! \ 
+Now, The [Petfinder API v2.0](https://www.petfinder.com/developers/v2/docs/) are now accessible through R!\ 
 Let's find pets! \
 
 
@@ -117,8 +132,47 @@ The examples are mainly split into pet, shelter, photo-viewing functions.
 #### `pf_find_pets`
 
 Retrieve a data frame of information about pets that are listed on Petfinder.com. \
-Filter searches based on characteristics such as animal type, breed, size, age, or location.
+Filter searches based on characteristics such as animal type, breed, size, age, or location. \
 
+pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
+  gender = NULL, age = NULL, color = NULL, coat = NULL,
+  status = NULL, name = NULL, organization = NULL, location = NULL,
+  distance = NULL, sort = "recent", page = 1, limit = 20)
+  
+
+Input arguments are listed as below.
+
+- token: An access token that is generated every hour. 
+- type : The type(s) of animals to be found.
+- breed: The breed(s) of animals
+- size : The size(s) of animals to be found (small, medium, large and xlarge). 
+- gender: The gender(s) of animals to be found (male, female, and unknown). 
+- age: The age(s) of animals to be found. 
+- color: The color(s) of animals to be found. \
+A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
+- coat: The coat(s) of animals to be found. \
+A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
+- status: The adoption status of animals to be found (adoptable, adopted or found)
+- organization: The organization(s) associated with animals to be found. Values should be provided as identification numbers. 
+- location: The location of animals to be found. \
+Values can be specified as "City, State", "latitude, longitude", or "zipcode".
+- distance : The distance, in miles, from the provided location to find animals. \
+Note that location has to be specified to use distance.
+- sort : The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
+- page: The page(s) of results to return (default = 1).
+- limit: The maximum number of results to return per page (maximum = 100)
+
+
+Let's say a user would like to find a list of female cats in Austin, Texas. 
+
+```{r, echo = T, eval = F}
+library(dplyr)
+pf_find_pets(token, type = "cat", gender = "female", location = "Austin, TX", page = 1) %>% select(organization_id, type, breeds.primary, age, gender, size, name, status) %>% head(n = 5)
+```
+
+```{r  out.width = "85%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pf_find_pets.png")
+```
 
 #### `pf_list_breeds`
 
@@ -201,7 +255,22 @@ NY_orgs %>% head(n = 5) %>% select(id, name, email, phone)
 ```
 
 Note the output does not show every column in the sample dataset\
-(otherwise the table would be very wide).
+(otherwise the table would be very wide).\
+
+- id: Organization ID
+- name : Organization name
+- email: Contact email address
+- phone : Contact phone number
+- address.city: City information of the organization
+- address.state: State information of the organization
+- address.postcode: Zipcode information of the organization
+- address.country: Country information of the organization
+- url: Petfinder website of the organization
+- website: Website of the organization
+- gender: Gender
+- mission_statement : Mission statement
+- adoption.policy : Adoption policy 
+
 
 
 
@@ -215,6 +284,7 @@ The app includes multiple ways to extract and visualize data from Petfinder. All
 
 ```{r, eval = F, echo = T}
 library(PetFindr)
+library(shiny)
 pf_run_Shiny()
 ```
 
@@ -279,7 +349,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 ### Extensions
 
 
+
+
 ### Further Reading
 
 * For further documentation on Petfinder APIs (v2), see https://www.petfinder.com/developers/v2/docs/
-
+* [PetFindr Development Page](https://github.com/earl88/PetFindr) on github.
