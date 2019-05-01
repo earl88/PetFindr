@@ -134,7 +134,12 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 To get your own <code>key</code> and <code>secret</code> from the API website, you have to create an account on <a href="https://www.petfinder.com/user/register/">Petfinder</a>.<br><code>pf_setup</code> function will guide you through whole process to initialize the API connection to Petfinder.<br>
 Running this function will open a browser to “<a href="https://www.petfinder.com/developers/" class="uri">https://www.petfinder.com/developers/</a>” and prompt you to register for Petfinder’s API (V2).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_setup.html">pf_setup</a></span>()</code></pre></div>
-<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png" width="70%"></p>
+<p>If a user responsds “yes”, <code>pf_setup</code> will load PetFinder register website into an HTML browser.<br>
+After registration, a Petfinder API Key and Secret can be requested in www.petfinder.com/developers.<br></p>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png" width="85%"></p>
+<p>A user gets a uniqe <code>key</code> and <code>secret</code> and these will be used to request an access token to Petfinder API.</p>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png" width="85%"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_save_credentials.html">pf_save_credentials</a></span>(key, secret)</code></pre></div>
 <p>Once you creat an account on <a href="https://www.petfinder.com/">Petfinder</a> and receive a unique <code>key</code> and a <code>secret</code>, you now can use the function <code>petfindr_save_credentials()</code> to store their key and secret to your .Rprofile so that you do not have to run <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> everytime you use the package.<br>
 Using <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> makes it easier to access the API in the future, but this function is not required to access the database.<br></p>
@@ -142,7 +147,7 @@ Using <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(
 In order to maintain security, you need an access token to request access to API database.<br></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_accesstoken.html">pf_accesstoken</a></span>(key, secret)</code></pre></div>
 <p>Once you use their key and secret as the inputs of <code><a href="../reference/pf_accesstoken.html">pf_accesstoken()</a></code>, you now have an access to the Petfinder servers and can start your own query to find your future pets. By the way, you should remember that the token has to be requested every hour.<br></p>
-<p>Now, The <a href="https://www.petfinder.com/developers/v2/docs/">Petfinder API v2.0</a> are now accessible through R!   Let’s find pets!<br></p>
+<p>Now, The <a href="https://www.petfinder.com/developers/v2/docs/">Petfinder API v2.0</a> are now accessible through R!  Let’s find pets!<br></p>
 </div>
 </div>
 <div id="usage" class="section level2">
@@ -159,7 +164,34 @@ The examples are mainly split into pet, shelter, photo-viewing functions.</p>
 <a href="#pf_find_pets" class="anchor"></a><code>pf_find_pets</code>
 </h4>
 <p>Retrieve a data frame of information about pets that are listed on Petfinder.com.<br>
-Filter searches based on characteristics such as animal type, breed, size, age, or location.</p>
+Filter searches based on characteristics such as animal type, breed, size, age, or location.<br>
+pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL, gender = NULL, age = NULL, color = NULL, coat = NULL, status = NULL, name = NULL, organization = NULL, location = NULL, distance = NULL, sort = “recent”, page = 1, limit = 20)</p>
+<p>Input arguments are listed as below.</p>
+<ul>
+<li>token: An access token that is generated every hour.</li>
+<li>type : The type(s) of animals to be found.</li>
+<li>breed: The breed(s) of animals</li>
+<li>size : The size(s) of animals to be found (small, medium, large and xlarge).</li>
+<li>gender: The gender(s) of animals to be found (male, female, and unknown).</li>
+<li>age: The age(s) of animals to be found.</li>
+<li>color: The color(s) of animals to be found.<br>
+A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).</li>
+<li>coat: The coat(s) of animals to be found.<br>
+A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).</li>
+<li>status: The adoption status of animals to be found (adoptable, adopted or found)</li>
+<li>organization: The organization(s) associated with animals to be found. Values should be provided as identification numbers.</li>
+<li>location: The location of animals to be found.<br>
+Values can be specified as “City, State”, “latitude, longitude”, or “zipcode”.</li>
+<li>distance : The distance, in miles, from the provided location to find animals.<br>
+Note that location has to be specified to use distance.</li>
+<li>sort : The attribute on which to sort results. Possible attributes are “recent”, “-recent”, “distance”, or “-distance”.</li>
+<li>page: The page(s) of results to return (default = 1).</li>
+<li>limit: The maximum number of results to return per page (maximum = 100)</li>
+</ul>
+<p>Let’s say a user would like to find a list of female cats in Austin, Texas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
+<span class="kw"><a href="../reference/pf_find_pets.html">pf_find_pets</a></span>(token, <span class="dt">type =</span> <span class="st">"cat"</span>, <span class="dt">gender =</span> <span class="st">"female"</span>, <span class="dt">location =</span> <span class="st">"Austin, TX"</span>, <span class="dt">page =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(organization_id, type, breeds.primary, age, gender, size, name, status) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pf_find_pets.png" width="85%"></p>
 </div>
 <div id="pf_list_breeds" class="section level4">
 <h4 class="hasAnchor">
@@ -245,7 +277,8 @@ Output below is the first observation from the dataset.</p>
 <span class="co">#&gt; 4  (914) 751-7870</span>
 <span class="co">#&gt; 5  (201) 981-3215</span></code></pre></div>
 <p>Note the output does not show every column in the sample dataset<br>
-(otherwise the table would be very wide).</p>
+(otherwise the table would be very wide).<br>
+- id: Organization ID - name : Organization name - email: Contact email address - phone : Contact phone number - address.city: City information of the organization - address.state: State information of the organization - address.postcode: Zipcode information of the organization - address.country: Country information of the organization - url: Petfinder website of the organization - website: Website of the organization - gender: Gender - mission_statement : Mission statement - adoption.policy : Adoption policy</p>
 </div>
 </div>
 <div id="shiny" class="section level3">
@@ -255,6 +288,7 @@ Output below is the first observation from the dataset.</p>
 You also need an authentication to use the Shiny because Shiny extracts information from the API as well.<br>
 The app includes multiple ways to extract and visualize data from Petfinder. All of the output on the Shiny app can be created directly in R as well. To run the app, load the <code>PetFindr</code> package, and run the <code><a href="../reference/pf_run_Shiny.html">pf_run_Shiny()</a></code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(PetFindr)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)
 <span class="kw"><a href="../reference/pf_run_Shiny.html">pf_run_Shiny</a></span>()</code></pre></div>
 <p>The computer’s default browser will open up and display the following pages:</p>
 <div id="authentication-1" class="section level4">
@@ -298,6 +332,8 @@ Finally, the bar graph summarizes the types and number of pets in the selected s
 <ul>
 <li>For further documentation on Petfinder APIs (v2), see <a href="https://www.petfinder.com/developers/v2/docs/" class="uri">https://www.petfinder.com/developers/v2/docs/</a>
 </li>
+<li>
+<a href="https://github.com/earl88/PetFindr">PetFindr Development Page</a> on github.</li>
 </ul>
 </div>
 </div>
