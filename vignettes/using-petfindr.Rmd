@@ -221,8 +221,13 @@ names(sort(-table(LA_puppies$breeds.primary)))[1:10]
 
 The result can also be visualized as below.
 
-```{r}
+
+```{r, message = F}
 library(ggplot2)
+```
+
+```{r}
+
 top10 <- LA_puppies %>% filter(breeds.primary %in% c("Chihuahua","Terrier","German Shepherd Dog","Labrador Retriever" ,"Pug" ,"Shepherd", "Maltese" ,"Dachshund" ,"Pit Bull Terrier","Husky" ))
 
 ## Reorder puppies by frequency
@@ -253,6 +258,19 @@ Note the output does not show every column in the sample dataset (otherwise the 
 
 Detailed information on the variables can be found [here](https://earl88.github.io/PetFindr/reference/index.html)
 
+Similar explanatory analysis can be conducted for the dataset as well.
+
+```{r}
+top10_orgs <- NY_orgs %>% filter(address.city %in% c("New York","Brooklyn","Rochester", "Albany",        "Staten Island", "Buffalo" ,"Flushing","Binghamton","Syracuse","Bronx"))
+
+top10_orgs <- within(top10_orgs, 
+                   address.city <- factor(address.city, 
+                                      levels=names(sort(table(address.city), 
+                                                        decreasing=TRUE))))
+top10_orgs %>% ggplot(aes(x = address.city)) + geom_bar() + coord_flip()
+```
+
+The bar plot indicates that most of the shelters in New York state is located in New York city. 
 
 
 
