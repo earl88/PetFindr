@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Petfindr: Find Pets Near You! • PetFindr</title>
+<title>Petfindr: Find Pets in R! • PetFindr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Petfindr: Find Pets Near You!">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Petfindr: Find Pets in R!">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
@@ -60,7 +60,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/using-petfindr.html">Petfindr: Find Pets Near You!</a>
+      <a href="../articles/using-petfindr.html">Petfindr: Find Pets in R!</a>
     </li>
   </ul>
 </li>
@@ -77,7 +77,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Petfindr: Find Pets Near You!</h1>
+      <h1>Petfindr: Find Pets in R!</h1>
             
       
       
@@ -166,29 +166,9 @@ The examples are mainly split into pet, shelter, photo-viewing functions.</p>
 <p>Retrieve a data frame of information about pets that are listed on Petfinder.com.<br>
 Filter searches based on characteristics such as animal type, breed, size, age, or location.<br>
 pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL, gender = NULL, age = NULL, color = NULL, coat = NULL, status = NULL, name = NULL, organization = NULL, location = NULL, distance = NULL, sort = “recent”, page = 1, limit = 20)</p>
-<p>Input arguments are listed as below.</p>
-<ul>
-<li>token: An access token that is generated every hour.</li>
-<li>type : The type(s) of animals to be found.</li>
-<li>breed: The breed(s) of animals</li>
-<li>size : The size(s) of animals to be found (small, medium, large and xlarge).</li>
-<li>gender: The gender(s) of animals to be found (male, female, and unknown).</li>
-<li>age: The age(s) of animals to be found.</li>
-<li>color: The color(s) of animals to be found.<br>
-A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).</li>
-<li>coat: The coat(s) of animals to be found.<br>
-A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).</li>
-<li>status: The adoption status of animals to be found (adoptable, adopted or found)</li>
-<li>organization: The organization(s) associated with animals to be found. Values should be provided as identification numbers.</li>
-<li>location: The location of animals to be found.<br>
-Values can be specified as “City, State”, “latitude, longitude”, or “zipcode”.</li>
-<li>distance : The distance, in miles, from the provided location to find animals.<br>
-Note that location has to be specified to use distance.</li>
-<li>sort : The attribute on which to sort results. Possible attributes are “recent”, “-recent”, “distance”, or “-distance”.</li>
-<li>page: The page(s) of results to return (default = 1).</li>
-<li>limit: The maximum number of results to return per page (maximum = 100)</li>
-</ul>
-<p>Let’s say a user would like to find a list of female cats in Austin, Texas.</p>
+<p>List of input arguments can be found <a href="https://earl88.github.io/PetFindr/reference/index.html">here</a><br>
+Let’s say a user would like to find a list of female cats in Austin, Texas.<br>
+In the following example, only few variable are shown unless the output will be very wide.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
 <span class="kw"><a href="../reference/pf_find_pets.html">pf_find_pets</a></span>(token, <span class="dt">type =</span> <span class="st">"cat"</span>, <span class="dt">gender =</span> <span class="st">"female"</span>, <span class="dt">location =</span> <span class="st">"Austin, TX"</span>, <span class="dt">page =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(organization_id, type, breeds.primary, age, gender, size, name, status) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
 <p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pf_find_pets.png" width="85%"></p>
@@ -242,21 +222,39 @@ The datasets in the package are immediately available when the package is loaded
 <span class="co">#&gt; 4 44541241          CA1066  Dog     Dog  Echo Baby   Male Medium adoptable</span>
 <span class="co">#&gt; 5 44541240          CA1066  Dog     Dog Ernie Baby   Male Medium adoptable</span></code></pre></div>
 <p>Note the output does not show every column in the sample dataset (otherwise the table would be very wide).</p>
-<p>The first row from the sample data (column 1 above) represents:</p>
-<ul>
-<li>id: Animal ID</li>
-<li>organization_id : Organization Id</li>
-<li>url: url of the animal</li>
-<li>type : Type of the animal</li>
-<li>species: Species of the animal</li>
-<li>breeds.primary: Primary breed (if known)</li>
-<li>breeds.secondary: Secondary breed (if known)</li>
-<li>breeds.mixed: Is breed mixed? (TRUE if secondary breed exists)</li>
-<li>breeds.unknown: Is breed unknown?</li>
-<li>age: Age</li>
-<li>gender: Gender</li>
-<li>size : Size</li>
-</ul>
+<p>Detailed information on the variables can be found <a href="https://earl88.github.io/PetFindr/reference/index.html">here</a></p>
+<p>Using the data, a user can perform various kinds of explanatory data analysis. For example, if a user wants to know what breed is the most common breed of dogs can be found in Los Angeles area. Top 10 breeds in Los Angeles area on April 2019 would be</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(LA_puppies<span class="op">$</span>breeds.primary)))[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]
+<span class="co">#&gt;  [1] "Chihuahua"           "Terrier"             "German Shepherd Dog"</span>
+<span class="co">#&gt;  [4] "Labrador Retriever"  "Pug"                 "Shepherd"           </span>
+<span class="co">#&gt;  [7] "Maltese"             "Dachshund"           "Pit Bull Terrier"   </span>
+<span class="co">#&gt; [10] "Husky"</span></code></pre></div>
+<p>The result can also be visualized as below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+top10 &lt;-<span class="st"> </span>LA_puppies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(breeds.primary <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Chihuahua"</span>,<span class="st">"Terrier"</span>,<span class="st">"German Shepherd Dog"</span>,<span class="st">"Labrador Retriever"</span> ,<span class="st">"Pug"</span> ,<span class="st">"Shepherd"</span>, <span class="st">"Maltese"</span> ,<span class="st">"Dachshund"</span> ,<span class="st">"Pit Bull Terrier"</span>,<span class="st">"Husky"</span> ))
+
+## Reorder puppies by frequency
+
+top10 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/with">within</a></span>(top10, 
+                   breeds.primary &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">factor</a></span>(breeds.primary, 
+                                      <span class="dt">levels=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(breeds.primary), 
+                                                        <span class="dt">decreasing=</span><span class="ot">TRUE</span>))))
+
+## Create a bar plot
+
+top10 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> breeds.primary, <span class="dt">fill =</span> gender)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_bar">geom_bar</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_flip">coord_flip</a></span>()</code></pre></div>
+<p><img src="using-petfindr_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
+<p>Through visualization, the user can conclude that these are the most common puppy breeds (top 10) found at LA animal shelters.</p>
+<p>Or, a user can conduct time series analysis. Let’s create a time series plot to see when the animals are posted on Petfinder.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lubridate)
+
+## Create a time variable
+LA_puppies<span class="op">$</span>published_at &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/date">date</a></span>(<span class="kw">ymd_hms</span>(LA_puppies<span class="op">$</span>published_at))
+
+LA_puppies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(published_at) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> published_at, <span class="dt">y =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_line</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="st">"Time Series of Animal Posting in LA"</span>) <span class="op">+</span>
+<span class="st">           </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Date"</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Number of Postings"</span>)</code></pre></div>
+<p><img src="using-petfindr_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 </div>
 <div id="sample-data-shelters-in-new-york-state" class="section level4">
 <h4 class="hasAnchor">
@@ -276,16 +274,26 @@ Output below is the first observation from the dataset.</p>
 <span class="co">#&gt; 3 631-965-6418   </span>
 <span class="co">#&gt; 4  (914) 751-7870</span>
 <span class="co">#&gt; 5  (201) 981-3215</span></code></pre></div>
-<p>Note the output does not show every column in the sample dataset<br>
-(otherwise the table would be very wide).<br>
-- id: Organization ID - name : Organization name - email: Contact email address - phone : Contact phone number - address.city: City information of the organization - address.state: State information of the organization - address.postcode: Zipcode information of the organization - address.country: Country information of the organization - url: Petfinder website of the organization - website: Website of the organization - gender: Gender - mission_statement : Mission statement - adoption.policy : Adoption policy</p>
+<p>Note the output does not show every column in the sample dataset (otherwise the table would be very wide).</p>
+<p>Detailed information on the variables can be found <a href="https://earl88.github.io/PetFindr/reference/index.html">here</a></p>
+<p>Similar explanatory analysis can be conducted for the dataset as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top10_orgs &lt;-<span class="st"> </span>NY_orgs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(address.city <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"New York"</span>,<span class="st">"Brooklyn"</span>,<span class="st">"Rochester"</span>, <span class="st">"Albany"</span>,        <span class="st">"Staten Island"</span>, <span class="st">"Buffalo"</span> ,<span class="st">"Flushing"</span>,<span class="st">"Binghamton"</span>,<span class="st">"Syracuse"</span>,<span class="st">"Bronx"</span>))
+
+top10_orgs &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/with">within</a></span>(top10_orgs, 
+                   address.city &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">factor</a></span>(address.city, 
+                                      <span class="dt">levels=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(address.city), 
+                                                        <span class="dt">decreasing=</span><span class="ot">TRUE</span>))))
+top10_orgs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> address.city)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_bar">geom_bar</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_flip">coord_flip</a></span>()</code></pre></div>
+<p><img src="using-petfindr_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
+<p>The bar plot indicates that most of the shelters in New York state is located in New York city.</p>
 </div>
 </div>
 <div id="shiny" class="section level3">
 <h3 class="hasAnchor">
 <a href="#shiny" class="anchor"></a>Shiny</h3>
 <p>The Shiny is a convenient way to explore data through an interactive user interface in the user’s default browser straight from R. This section of the vignette will present a couple of examples to show users how to explore Petfinder using R Shiny.<br>
-You also need an authentication to use the Shiny because Shiny extracts information from the API as well.<br>
+Detailed information on R Shiny could be found <a href="https://shiny.rstudio.com/">here</a>.</p>
+<p>You also need an authentication to use the Shiny because Shiny extracts information from the API as well.<br>
 The app includes multiple ways to extract and visualize data from Petfinder. All of the output on the Shiny app can be created directly in R as well. To run the app, load the <code>PetFindr</code> package, and run the <code><a href="../reference/pf_run_Shiny.html">pf_run_Shiny()</a></code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(PetFindr)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)
@@ -321,10 +329,6 @@ and the table below shows information from a selected shelter in the <code>leafl
 Finally, the bar graph summarizes the types and number of pets in the selected shelter.</p>
 <p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/orginfo.png" width="70%"></p>
 </div>
-</div>
-<div id="extensions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#extensions" class="anchor"></a>Extensions</h3>
 </div>
 <div id="further-reading" class="section level3">
 <h3 class="hasAnchor">
