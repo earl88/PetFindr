@@ -247,10 +247,10 @@ Through visualization, the user can conclude that these are the most common pupp
 Or, a user can conduct time series analysis. Let's create a time series plot to see when the animals are posted on Petfinder.
 
 ```{r, message = F}
-library(lubridate)
+
 
 ## Create a time variable
-LA_puppies$published_at <- date(ymd_hms(LA_puppies$published_at))
+LA_puppies$published_at <- lubridate::date(ymd_hms(LA_puppies$published_at))
 
 LA_puppies %>% group_by(published_at) %>% summarise(n = n()) %>% ggplot(aes(x = published_at, y = n)) + geom_line() + geom_point() + ggtitle("Time Series of Animal Posting in LA") +
            xlab("Date") + ylab("Number of Postings")
