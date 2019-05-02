@@ -1,5 +1,5 @@
 ---
-title: "Petfindr: Find Pets Near You!"
+title: "Petfindr: Find Pets in R!"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using Petfindr}
@@ -140,30 +140,10 @@ pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
   distance = NULL, sort = "recent", page = 1, limit = 20)
   
 
-Input arguments are listed as below.
+List of input arguments can be found [here](https://earl88.github.io/PetFindr/reference/index.html) \
 
-- token: An access token that is generated every hour. 
-- type : The type(s) of animals to be found.
-- breed: The breed(s) of animals
-- size : The size(s) of animals to be found (small, medium, large and xlarge). 
-- gender: The gender(s) of animals to be found (male, female, and unknown). 
-- age: The age(s) of animals to be found. 
-- color: The color(s) of animals to be found. \
-A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
-- coat: The coat(s) of animals to be found. \
-A full list of animal types, along with their respective coat and color options, can be found by running pf_list_types(token).
-- status: The adoption status of animals to be found (adoptable, adopted or found)
-- organization: The organization(s) associated with animals to be found. Values should be provided as identification numbers. 
-- location: The location of animals to be found. \
-Values can be specified as "City, State", "latitude, longitude", or "zipcode".
-- distance : The distance, in miles, from the provided location to find animals. \
-Note that location has to be specified to use distance.
-- sort : The attribute on which to sort results. Possible attributes are "recent", "-recent", "distance", or "-distance".
-- page: The page(s) of results to return (default = 1).
-- limit: The maximum number of results to return per page (maximum = 100)
-
-
-Let's say a user would like to find a list of female cats in Austin, Texas. 
+Let's say a user would like to find a list of female cats in Austin, Texas. \
+In the following example, only few variable are shown unless the output will be very wide. 
 
 ```{r, echo = T, eval = F}
 library(dplyr)
@@ -229,20 +209,35 @@ LA_puppies %>% head(n = 5) %>% select(id, organization_id, type, species, name,a
 
 Note the output does not show every column in the sample dataset (otherwise the table would be very wide).
 
-The first row from the sample data (column 1 above) represents:
+Detailed information on the variables can be found [here](https://earl88.github.io/PetFindr/reference/index.html)
 
-- id: Animal ID
-- organization_id : Organization Id
-- url: url of the animal
-- type : Type of the animal
-- species: Species of the animal
-- breeds.primary: Primary breed (if known)
-- breeds.secondary: Secondary breed (if known)
-- breeds.mixed: Is breed mixed? (TRUE if secondary breed exists)
-- breeds.unknown: Is breed unknown?
-- age: Age
-- gender: Gender
-- size : Size
+Using the data, a user can perform various kinds of explanatory data analysis.
+For example, if a user wants to know what breed is the most common breed of dogs can be found in Los Angeles area. 
+Top 10 breeds in Los Angeles area on April 2019 would be
+
+```{r}
+names(sort(-table(LA_puppies$breeds.primary)))[1:10]
+```
+
+The result can also be visualized as below.
+
+```{r}
+library(ggplot2)
+top10 <- LA_puppies %>% filter(breeds.primary %in% c("Chihuahua","Terrier","German Shepherd Dog","Labrador Retriever" ,"Pug" ,"Shepherd", "Maltese" ,"Dachshund" ,"Pit Bull Terrier","Husky" ))
+
+## Reorder puppies by frequency
+
+top10 <- within(top10, 
+                   breeds.primary <- factor(breeds.primary, 
+                                      levels=names(sort(table(breeds.primary), 
+                                                        decreasing=TRUE))))
+
+## Create a bar plot
+
+top10 %>% ggplot(aes(x = breeds.primary, fill = gender)) + geom_bar() + coord_flip()
+```
+
+Through visualization, the user can conclude that these are the most common puppy breeds (top 10) found at LA animal shelters.
 
 
 #### Sample data: Shelters in New York State
@@ -254,22 +249,9 @@ Output below is the first observation from the dataset.
 NY_orgs %>% head(n = 5) %>% select(id, name, email, phone)
 ```
 
-Note the output does not show every column in the sample dataset\
-(otherwise the table would be very wide).\
+Note the output does not show every column in the sample dataset (otherwise the table would be very wide).
 
-- id: Organization ID
-- name : Organization name
-- email: Contact email address
-- phone : Contact phone number
-- address.city: City information of the organization
-- address.state: State information of the organization
-- address.postcode: Zipcode information of the organization
-- address.country: Country information of the organization
-- url: Petfinder website of the organization
-- website: Website of the organization
-- gender: Gender
-- mission_statement : Mission statement
-- adoption.policy : Adoption policy 
+Detailed information on the variables can be found [here](https://earl88.github.io/PetFindr/reference/index.html)
 
 
 
