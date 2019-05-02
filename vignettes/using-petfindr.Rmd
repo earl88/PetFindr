@@ -244,6 +244,18 @@ top10 %>% ggplot(aes(x = breeds.primary, fill = gender)) + geom_bar() + coord_fl
 
 Through visualization, the user can conclude that these are the most common puppy breeds (top 10) found at LA animal shelters.
 
+Or, a user can conduct time series analysis. Let's create a time series plot to see when the animals are posted on Petfinder.
+
+```{r, message = F}
+library(lubridate)
+
+## Create a time variable
+LA_puppies$published_at <- date(ymd_hms(LA_puppies$published_at))
+
+LA_puppies %>% group_by(published_at) %>% summarise(n = n()) %>% ggplot(aes(x = published_at, y = n)) + geom_line() + geom_point() + ggtitle("Time Series of Animal Posting in LA") +
+           xlab("Date") + ylab("Number of Postings")
+```
+
 
 #### Sample data: Shelters in New York State
 
@@ -277,6 +289,7 @@ The bar plot indicates that most of the shelters in New York state is located in
 ### Shiny
 
 The Shiny is a convenient way to explore data through an interactive user interface in the user’s default browser straight from R. This section of the vignette will present a couple of examples to show users how to explore Petfinder using R Shiny.\
+Detailed information on R Shiny could be found [here](https://shiny.rstudio.com/).
 
 You also need an authentication to use the Shiny because Shiny extracts information from the API as well.\
 
@@ -344,11 +357,6 @@ Finally, the bar graph summarizes the types and number of pets in the selected s
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/orginfo.png")
 
 ```
-
-
-### Extensions
-
-
 
 
 ### Further Reading
