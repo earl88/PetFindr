@@ -7,9 +7,9 @@ test_that("setup function works", {
 
 test_that("can use key and secret", {
   skip_if_not(exists(c("test_key", "test_secret")))
-  token <- expect_message(pf_accesstoken(test_key, test_secret), 
-                          "Your access token will last for one hour")
-  
+  expect_message(pf_accesstoken(test_key, test_secret),
+                 "Your access token will last for one hour")
+  token <- pf_accesstoken(test_key, test_secret)
   if (nchar(token) > 0) writeLines(token, "token.txt")
   expect_error(pf_accesstoken(key = "Ceci n'est pas une key"))
   expect_error(pf_accesstoken(key = "Ceci n'est pas une key",
