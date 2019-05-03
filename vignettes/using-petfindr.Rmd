@@ -153,16 +153,47 @@ pf_find_pets(token, type = "cat", gender = "female", location = "Austin, TX", pa
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pf_find_pets.png")
 ```
+### List types and breeds of pets 
+
+Two functions `pf_list_types` and `pf_list_breeds` return a list of all available types and breeds of pets available on the Petfinder API. Seraching for specific types or breeds might be a waste of time when users can list all available information about types and breeds in their R session. Since there is also a daily limitation for making queries to the API, these two functions make things easier. 
+#### `pf_list_types`
+
+This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options. There is only one argument required for this function which is user's `token`. Then a tibble listing all available types with thier respective coat, color, and gender is returned by this function. 
+```{r}
+pf_list_types(token = token)
+pf_list_types(token = token)$names
+
+```
+
+Anytime users call for the type of pets, the function makes a query to the API and lists all types of pets based on the latest information. There is also a list of types of pets available in the package called `pf_types` which can be used; however, this data set is not up-to-date and it is just an example data set.
+
+```{r}
+data("pf_types", package = "PetFindr")
+```
+
+
 
 #### `pf_list_breeds`
 
-This function allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type.
+This function gets all available breeds of each specific type of pet listed in users' R session  and allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type. Similar to `pf_list_type`, users' token is required for this function as the first input. The type of the pet must be also specified by the users. In return, a character vector containing the breed names for the specified animal type is given by the function. 
 
+```{r, message=TRUE}
+# error animal type must be specified
+pf_list_breeds(token = token)
+```
 
+```{r}
+pf_list_breeds(token = token, type = "Scales, Fins & Other")
+```
 
-#### `pf_list_types`
+```{r}
+# Listing all available dog "Retriever" 
+dog_breeds <- pf_list_breeds(token = token, type = "dog")
+dog_breeds[stringr::str_detect(dog_breeds, pattern = "Retriever") == TRUE]
+```
 
-This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options.
+Similar to `pf_types` dataset, there is also an example data set of pet breeds available in the package called `pf_breeds` which can be used; however, to have the most recent breeds listed in R, users need to call the function `pf_list_breeds`.
+
 
 
 #### `pf_map_locations`
