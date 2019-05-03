@@ -151,6 +151,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 ### List types and breeds of pets 
 
 Two functions `pf_list_types` and `pf_list_breeds` return a list of all available types and breeds of pets available on the Petfinder API. Seraching for specific types or breeds might be a waste of time when users can list all available information about types and breeds in their R session. Since there is also a daily limitation for making queries to the API, these two functions make things easier. 
+
 #### `pf_list_types`
 
 This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options. There is only one argument required for this function which is user's `token`. Then a tibble listing all available types with thier respective coat, color, and gender is returned by this function. 
