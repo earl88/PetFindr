@@ -134,11 +134,6 @@ The examples are mainly split into pet, shelter, photo-viewing functions.
 Retrieve a data frame of information about pets that are listed on Petfinder.com. \
 Filter searches based on characteristics such as animal type, breed, size, age, or location. \
 
-pf_find_pets(token = NULL, type = NULL, breed = NULL, size = NULL,
-  gender = NULL, age = NULL, color = NULL, coat = NULL,
-  status = NULL, name = NULL, organization = NULL, location = NULL,
-  distance = NULL, sort = "recent", page = 1, limit = 20)
-  
 
 List of input arguments can be found [here](https://earl88.github.io/PetFindr/reference/index.html) \
 
@@ -159,6 +154,13 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 This function allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type.
 
 
+```{r, echo = T, eval = F}
+pf_list_breeds(token, type = "rabbit")
+```
+
+```{r out.width = "80%", eval = F, echo = F}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/bunnies.png")
+```
 
 #### `pf_list_types`
 
@@ -249,7 +251,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 
 Through visualization, the user can conclude that these are the most common puppy breeds (top 10) found at LA animal shelters.
 
-Or, a user can conduct time series analysis. Let's create a time series plot to see when the animals are posted on Petfinder.
+Or, a user can conduct a time series analysis. Let's create a time series plot to see when the animals are posted on Petfinder.
 
 ```{r, eval = F, echo = T}
 
