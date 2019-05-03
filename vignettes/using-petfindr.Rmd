@@ -222,11 +222,11 @@ names(sort(-table(LA_puppies$breeds.primary)))[1:10]
 The result can also be visualized as below.
 
 
-```{r, message = F}
+```{r, message = F, echo = T, eval = F}
 library(ggplot2)
 ```
 
-```{r}
+```{r, echo = T, eval = F}
 
 top10 <- LA_puppies %>% filter(breeds.primary %in% c("Chihuahua","Terrier","German Shepherd Dog","Labrador Retriever" ,"Pug" ,"Shepherd", "Maltese" ,"Dachshund" ,"Pit Bull Terrier","Husky" ))
 
@@ -242,11 +242,16 @@ top10 <- within(top10,
 top10 %>% ggplot(aes(x = breeds.primary, fill = gender)) + geom_bar() + coord_flip()
 ```
 
+
+```{r  out.width = "80%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/commonbreeds.png")
+```
+
 Through visualization, the user can conclude that these are the most common puppy breeds (top 10) found at LA animal shelters.
 
 Or, a user can conduct time series analysis. Let's create a time series plot to see when the animals are posted on Petfinder.
 
-```{r, message = F}
+```{r, eval = F, echo = T}
 
 
 ## Create a time variable
@@ -256,6 +261,9 @@ LA_puppies %>% group_by(published_at) %>% summarise(n = n()) %>% ggplot(aes(x = 
            xlab("Date") + ylab("Number of Postings")
 ```
 
+```{r  out.width = "80%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/nyorgstimeseries.png")
+```
 
 #### Sample data: Shelters in New York State
 
@@ -272,7 +280,7 @@ Detailed information on the variables can be found [here](https://earl88.github.
 
 Similar explanatory analysis can be conducted for the dataset as well.
 
-```{r}
+```{r, echo = T, eval = F}
 top10_orgs <- NY_orgs %>% filter(address.city %in% c("New York","Brooklyn","Rochester", "Albany",        "Staten Island", "Buffalo" ,"Flushing","Binghamton","Syracuse","Bronx"))
 
 top10_orgs <- within(top10_orgs, 
@@ -281,6 +289,13 @@ top10_orgs <- within(top10_orgs,
                                                         decreasing=TRUE))))
 top10_orgs %>% ggplot(aes(x = address.city)) + geom_bar() + coord_flip()
 ```
+
+
+```{r  out.width = "80%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/sheltersinny.png")
+```
+
+
 
 The bar plot indicates that most of the shelters in New York state is located in New York city. 
 
