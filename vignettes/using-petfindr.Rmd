@@ -66,9 +66,8 @@ To get your own `key` and `secret` from the API website, you have to create an a
 `pf_setup` function will guide you through whole process to initialize the API connection to Petfinder.\
 Running this function will open a browser to "https://www.petfinder.com/developers/" and prompt you to register for Petfinder's API (V2).
 
-```{r, eval = F}
+```{r echo = T, eval = F}
 pf_setup()
-
 ```
 
 
@@ -92,7 +91,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 ```
 
 
-```{r, eval = F}
+```{r echo = T, eval = F}
 pf_save_credentials(key, secret)
 ````
 
@@ -103,7 +102,7 @@ Using `pf_save_credentials(key, secret)` makes it easier to access the API in th
 You're ALMOST ready to find pets! You have one more step to use `PetFindr'! \
 In order to maintain security, you need an access token to request access to API database.\
 
-```{r, eval = F}
+```{r echo = T, eval = F}
 pf_accesstoken(key, secret)
 ```
 
@@ -155,7 +154,7 @@ Two functions `pf_list_types` and `pf_list_breeds` return a list of all availabl
 #### `pf_list_types`
 
 This function returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options. There is only one argument required for this function which is user's `token`. Then a tibble listing all available types with thier respective coat, color, and gender is returned by this function. 
-```{r}
+```{r echo = T, eval = F}
 pf_list_types(token = token)
 pf_list_types(token = token)$names
 
@@ -173,19 +172,19 @@ data("pf_types", package = "PetFindr")
 
 This function gets all available breeds of each specific type of pet listed in users' R session  and allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type. Similar to `pf_list_type`, users' token is required for this function as the first input. The type of the pet must be also specified by the users. In return, a character vector containing the breed names for the specified animal type is given by the function. 
 
-```{r, message=TRUE}
+```{r, message=TRUE, echo = T, eval = F}
 # error animal type must be specified
 pf_list_breeds(token = token)
 ```
 
 
-```{r}
+```{r echo = T, eval = F}
 pf_list_breeds(token = token, type = "Scales, Fins & Other")
 
 ```
 
 
-```{r}
+```{r echo = T, eval = F}
 # Listing all available dog "Retriever" 
 dog_breeds <- pf_list_breeds(token = token, type = "dog")
 dog_breeds[stringr::str_detect(dog_breeds, pattern = "Retriever") == TRUE]
@@ -196,19 +195,34 @@ Similar to `pf_types` dataset, there is also an example data set of pet breeds a
 
 
 #### `pf_map_locations`
+(Hana: I am not sure if we can include examples of functions that requires token for vignettes.)
 
-This function display animal locations.
+This function displays the location of animal shelters on a Leaflet map, and uses your token and a dataframe of animal information from `pf_find_pets`, say an animal dataframe as inputs. Once you obtain an animal dataframe, `pf_map_locations` use the collection of the organization IDs of those pets to make a GET request. With the GET request, the zip code of those organizations are collected, and the location of the organizations are shown on a Leaflet map according to their zip code.
+
+```{r echo = T, eval = F}
+data(LA_puppies, package = PetFindr)
+pf_map_locations(token, LA_puppies[1:10,])
+```
 
 
 #### `pf_find_organizations`
 
-This function retrieves a data frame of information about organizations that are listed on Petfinder.com. Filter searches based on location by specifying a postal code, city and state, country, or latitude and longitude.
+This function retrieves a data frame of information about organizations that are listed on Petfinder.com. Filter searches based on location, which can be specified by one of the following three ways: a postal code, "city-name, state-abbreviation", or latitude and longitude. Users also can search for organizations within distance of the location by "distance" input as well as a country in which the organizations are by "country" input. The returned dataframe can be sorted by the date listed on Petfinder.com, the distance from the location specified in ascending or descending order, or ramdomly where the default setting is "recent", which is related to the date listed on Petfinder.com.
+
+```{r echo = T, eval = F}
+US_orgs <- pf_find_organizations(token, country = "US", limit = 100, sort = "state")
+MN_orgs <- pf_find_organizations(token, location = "Minneapolis, MN", distance = 50)
+```
+
 
 #### `pf_view_photos`
 
-This function retrieves the photos of searched pets in a slideshow format.
+This function retrieves the photos of searched pets in a slideshow format where it uses a dataframe of animal information from `pf_find_pets`, and the size of photos as inputs. Since the sizes of photos provided from the Petfinder website are "small", "medium", "large", and "full", one or more of them can be specified, and all sizes of photos will be shown by the default. In case there is no photo in the animal dataframe, an error message, "No photos found :(", will be printed.
 
-
+```{r echo = T, eval = F}
+data(LA_puppies, package = PetFindr)
+pf_view_photos(LA_puppies[1:10,], size = "small")
+```
 
 
 
