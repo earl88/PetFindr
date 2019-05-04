@@ -218,12 +218,9 @@ data(LA_puppies, package = PetFindr)
 pf_view_photos(LA_puppies[1:10,], size = "small")
 ```
 
-```{r  out.width = "70%",echo=FALSE}
+```{r  out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pupphotos.gif")
 ```
-
-
-
 
 
 ### Examples Using Sample Data
