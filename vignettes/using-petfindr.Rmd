@@ -78,15 +78,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 If a user responsds "yes", `pf_setup` will load PetFinder register website into an HTML browser. \
 After registration, a Petfinder API Key and Secret can be requested in www.petfinder.com/developers. \
 
-
-```{r  out.width = "85%",echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/getanapi.png")
-```
-
-
 A user gets a uniqe `key` and `secret` and these will be used to request an access token to Petfinder API. 
 
-```{r  out.width = "85%",echo=FALSE}
+```{r  out.width = "80%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
 ```
 
@@ -224,6 +218,9 @@ data(LA_puppies, package = PetFindr)
 pf_view_photos(LA_puppies[1:10,], size = "small")
 ```
 
+```{r  out.width = "70%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pupphotos.gif")
+```
 
 
 
@@ -271,18 +268,14 @@ library(ggplot2)
 ```
 
 ```{r, echo = T, eval = F}
-
 top10 <- LA_puppies %>% filter(breeds.primary %in% c("Chihuahua","Terrier","German Shepherd Dog","Labrador Retriever" ,"Pug" ,"Shepherd", "Maltese" ,"Dachshund" ,"Pit Bull Terrier","Husky" ))
 
 ## Reorder puppies by frequency
-
 top10 <- within(top10, 
                    breeds.primary <- factor(breeds.primary, 
                                       levels=names(sort(table(breeds.primary), 
                                                         decreasing=TRUE))))
-
 ## Create a bar plot
-
 top10 %>% ggplot(aes(x = breeds.primary, fill = gender)) + geom_bar() + coord_flip()
 ```
 
@@ -296,8 +289,6 @@ Through visualization, the user can conclude that these are the most common pupp
 Or, a user can conduct a time series analysis. Let's create a time series plot to see when the animals are posted on Petfinder.
 
 ```{r, eval = F, echo = T}
-
-
 ## Create a time variable
 LA_puppies$published_at <- lubridate::date(ymd_hms(LA_puppies$published_at))
 
