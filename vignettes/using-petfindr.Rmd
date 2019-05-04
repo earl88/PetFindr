@@ -71,7 +71,7 @@ pf_setup()
 ```
 
 
-```{r out.width = "70%",echo=FALSE}
+```{r out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
 ```
 
@@ -80,7 +80,7 @@ After registration, a Petfinder API Key and Secret can be requested in www.petfi
 
 A user gets a uniqe `key` and `secret` and these will be used to request an access token to Petfinder API. 
 
-```{r  out.width = "80%",echo=FALSE}
+```{r  out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
 ```
 
@@ -218,7 +218,7 @@ data(LA_puppies, package = PetFindr)
 pf_view_photos(LA_puppies[1:10,], size = "small")
 ```
 
-```{r  out.width = "60%",echo=FALSE}
+```{r  out.width = "40%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pupphotos.gif")
 ```
 
