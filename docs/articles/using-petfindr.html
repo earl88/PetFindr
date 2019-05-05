@@ -104,8 +104,6 @@
 <li>Functions</li>
 <li>Examples Using Sample Data</li>
 <li>Shiny</li>
-<li>Extensions<br>
-</li>
 <li>Further Reading</li>
 </ul>
 </li>
@@ -122,7 +120,7 @@ This vignette introduces and walks through the package,<code>PetFindr</code>, an
 <div id="getting-started" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting Started</h2>
-<p>First, install the the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<p>First, install the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"earl88/PetFindr"</span>)</code></pre></div>
 <p>Now load the package.</p>
@@ -130,23 +128,23 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <div id="authentication" class="section level3">
 <h3 class="hasAnchor">
 <a href="#authentication" class="anchor"></a>Authentication</h3>
-<p>In order to begin, you need a secure authentication.<br>
-To get your own <code>key</code> and <code>secret</code> from the API website, you have to create an account on <a href="https://www.petfinder.com/user/register/">Petfinder</a>.<br><code>pf_setup</code> function will guide you through whole process to initialize the API connection to Petfinder.<br>
-Running this function will open a browser to “<a href="https://www.petfinder.com/developers/" class="uri">https://www.petfinder.com/developers/</a>” and prompt you to register for Petfinder’s API (V2).</p>
+<p>In order to begin, a user needs a secure authentication.<br>
+To get unique <code>key</code> and <code>secret</code> from the API website, the user has to create an account on <a href="https://www.petfinder.com/user/register/">Petfinder</a>.<br><code>pf_setup</code> function will guide the user through whole process to initialize the API connection to Petfinder.<br>
+Running this function will open a browser to “<a href="https://www.petfinder.com/developers/" class="uri">https://www.petfinder.com/developers/</a>” and prompt the user to register for Petfinder’s API (V2).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_setup.html">pf_setup</a></span>()</code></pre></div>
-<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png" width="70%"></p>
-<p>If a user responsds “yes”, <code>pf_setup</code> will load PetFinder register website into an HTML browser.<br>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png" width="60%"></p>
+<p>If the user responsds “yes”, <code>pf_setup</code> will load PetFinder register website into an HTML browser.<br>
 After registration, a Petfinder API Key and Secret can be requested in www.petfinder.com/developers.<br>
-A user gets a uniqe <code>key</code> and <code>secret</code> and these will be used to request an access token to Petfinder API.</p>
-<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png" width="80%"></p>
+The uniqe <code>key</code> and <code>secret</code> will be used to request an access token to Petfinder API.</p>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png" width="60%"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_save_credentials.html">pf_save_credentials</a></span>(key, secret)</code></pre></div>
-<p>Once you creat an account on <a href="https://www.petfinder.com/">Petfinder</a> and receive a unique <code>key</code> and a <code>secret</code>, you now can use the function <code>petfindr_save_credentials()</code> to store their key and secret to your .Rprofile so that you do not have to run <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> everytime you use the package.<br>
-Using <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> makes it easier to access the API in the future, but this function is not required to access the database.<br></p>
-<p>You’re ALMOST ready to find pets! You have one more step to use `PetFindr’!<br>
-In order to maintain security, you need an access token to request access to API database.<br></p>
+<p>Once the user creates an account on <a href="https://www.petfinder.com/">Petfinder</a> and receive a unique <code>key</code> and a <code>secret</code>, the user now can use the function <code>petfindr_save_credentials()</code> to store their key and secret to your .Rprofile so that you do not have to run <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> everytime you use the package.<br>
+Using <code><a href="../reference/pf_save_credentials.html">pf_save_credentials(key, secret)</a></code> makes it easier to access the API in the future, but this function is not required to access the database.<br>
+In order to maintain security, the user needs to take one more step, which is requesting an access token to get an access to API database.<br></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_accesstoken.html">pf_accesstoken</a></span>(key, secret)</code></pre></div>
-<p>Once you use their key and secret as the inputs of <code><a href="../reference/pf_accesstoken.html">pf_accesstoken()</a></code>, you now have an access to the Petfinder servers and can start your own query to find your future pets. By the way, you should remember that the token has to be requested every hour.<br></p>
-<p>Now, The <a href="https://www.petfinder.com/developers/v2/docs/">Petfinder API v2.0</a> are now accessible through R!  Let’s find pets!<br></p>
+<p>Once the user uses <code>key</code> and <code>secret</code> as the inputs of <code><a href="../reference/pf_accesstoken.html">pf_accesstoken()</a></code>, the user now have an access to the Petfinder servers and can start his/her own query to find future pets.<br>
+The token has to be requested every hour.<br>
+Finally, The <a href="https://www.petfinder.com/developers/v2/docs/">Petfinder API v2.0</a> are now accessible through R!</p>
 </div>
 </div>
 <div id="usage" class="section level2">
@@ -162,16 +160,20 @@ The examples are mainly split into pet, shelter, photo-viewing functions.</p>
 <h4 class="hasAnchor">
 <a href="#pf_find_pets" class="anchor"></a><code>pf_find_pets</code>
 </h4>
-<p>Retrieve a data frame of information about pets that are listed on Petfinder.com.<br>
-Filter searches based on characteristics such as animal type, breed, size, age, or location.<br></p>
-<p>List of input arguments can be found <a href="https://earl88.github.io/PetFindr/reference/index.html">here</a><br>
+<p>The function retrieves a data frame of information about pets that are listed on Petfinder.com.<br>
+Filter searches based on characteristics such as animal type, breed, size, age, or location.<br>
+List of input arguments can be found <a href="https://earl88.github.io/PetFindr/reference/index.html">here</a><br>
 Let’s say a user would like to find a list of female cats in Austin, Texas.<br>
 In the following example, only few variable are shown unless the output will be very wide.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
 <span class="kw"><a href="../reference/pf_find_pets.html">pf_find_pets</a></span>(token, <span class="dt">type =</span> <span class="st">"cat"</span>, <span class="dt">gender =</span> <span class="st">"female"</span>, <span class="dt">location =</span> <span class="st">"Austin, TX"</span>, <span class="dt">page =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(organization_id, type, breeds.primary, age, gender, size, name, status) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
-<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pf_find_pets.png" width="85%"> ### List types and breeds of pets</p>
-<p>Two functions <code>pf_list_types</code> and <code>pf_list_breeds</code> return a list of all available types and breeds of pets available on the Petfinder API. Seraching for specific types or breeds might be a waste of time when users can list all available information about types and breeds in their R session. Since there is also a daily limitation for making queries to the API, these two functions make things easier.</p>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pf_find_pets.png" width="85%"></p>
 </div>
+</div>
+<div id="list-types-and-breeds-of-pets" class="section level3">
+<h3 class="hasAnchor">
+<a href="#list-types-and-breeds-of-pets" class="anchor"></a>List types and breeds of pets</h3>
+<p>Two functions <code>pf_list_types</code> and <code>pf_list_breeds</code> return a list of all available types and breeds of pets available on the Petfinder API. Seraching for specific types or breeds might be a waste of time when users can list all available information about types and breeds in their R session. Since there is also a daily limitation for making queries to the API, these two functions make things easier.</p>
 <div id="pf_list_types" class="section level4">
 <h4 class="hasAnchor">
 <a href="#pf_list_types" class="anchor"></a><code>pf_list_types</code>
@@ -219,7 +221,7 @@ MN_orgs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pf_
 <p>This function retrieves the photos of searched pets in a slideshow format where it uses a dataframe of animal information from <code>pf_find_pets</code>, and the size of photos as inputs. Since the sizes of photos provided from the Petfinder website are “small”, “medium”, “large”, and “full”, one or more of them can be specified, and all sizes of photos will be shown by the default. In case there is no photo in the animal dataframe, an error message, “No photos found :(”, will be printed.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(LA_puppies, <span class="dt">package =</span> PetFindr)
 <span class="kw"><a href="../reference/pf_view_photos.html">pf_view_photos</a></span>(LA_puppies[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,], <span class="dt">size =</span> <span class="st">"small"</span>)</code></pre></div>
-<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pupphotos.gif" width="60%"></p>
+<p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pupphotos.gif" width="40%"></p>
 </div>
 </div>
 <div id="examples-using-sample-data" class="section level3">

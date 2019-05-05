@@ -24,7 +24,6 @@ knitr::opts_chunk$set(
     + Functions 
     + Examples Using Sample Data 
     + Shiny 
-    + Extensions  
     + Further Reading
 
 
@@ -42,7 +41,7 @@ This vignette introduces and walks through the package,`PetFindr`, and the Petfi
 
 ## Getting Started
 
-First, install the  the development version from [GitHub](https://github.com/) with:
+First, install the development version from [GitHub](https://github.com/) with:
 
 ``` {r, eval= F}
 # install.packages("devtools")
@@ -59,12 +58,12 @@ library(PetFindr)
 
 ### Authentication
 
-In order to begin, you need a secure authentication. \
+In order to begin, a user needs a secure authentication. \
 
-To get your own `key` and `secret` from the API website, you have to create an account on [Petfinder](https://www.petfinder.com/user/register/).\
+To get unique `key` and `secret` from the API website, the user has to create an account on [Petfinder](https://www.petfinder.com/user/register/).\
 
-`pf_setup` function will guide you through whole process to initialize the API connection to Petfinder.\
-Running this function will open a browser to "https://www.petfinder.com/developers/" and prompt you to register for Petfinder's API (V2).
+`pf_setup` function will guide the user through whole process to initialize the API connection to Petfinder.\
+Running this function will open a browser to "https://www.petfinder.com/developers/" and prompt the user to register for Petfinder's API (V2).
 
 ```{r echo = T, eval = F}
 pf_setup()
@@ -75,10 +74,10 @@ pf_setup()
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
 ```
 
-If a user responsds "yes", `pf_setup` will load PetFinder register website into an HTML browser. \
+If the user responsds "yes", `pf_setup` will load PetFinder register website into an HTML browser. \
 After registration, a Petfinder API Key and Secret can be requested in www.petfinder.com/developers. \
 
-A user gets a uniqe `key` and `secret` and these will be used to request an access token to Petfinder API. 
+The uniqe `key` and `secret` will be used to request an access token to Petfinder API. 
 
 ```{r  out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
@@ -89,28 +88,24 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 pf_save_credentials(key, secret)
 ````
 
-Once you creat an account on [Petfinder](https://www.petfinder.com/) and receive a unique `key` and a `secret`, you now can use the function `petfindr_save_credentials()` to store their key and secret to your .Rprofile so that you do not have to run `pf_save_credentials(key, secret)` everytime you use the package.\
+Once the user creates an account on [Petfinder](https://www.petfinder.com/) and receive a unique `key` and a `secret`, the user now can use the function `petfindr_save_credentials()` to store their key and secret to your .Rprofile so that you do not have to run `pf_save_credentials(key, secret)` everytime you use the package.\
 Using `pf_save_credentials(key, secret)` makes it easier to access the API in the future, but this function is not required to access the database.  \
 
-
-You're ALMOST ready to find pets! You have one more step to use `PetFindr'! \
-In order to maintain security, you need an access token to request access to API database.\
+In order to maintain security, the user needs to take one more step, which is requesting an access token to get an access to API database.\
 
 ```{r echo = T, eval = F}
 pf_accesstoken(key, secret)
 ```
 
-Once you use their key and secret as the inputs of `pf_accesstoken()`, you now have an access to the Petfinder servers and can start your own query to find your future pets. By the way, you should remember that the token has to be requested every hour.\
+Once the user uses `key` and `secret` as the inputs of `pf_accesstoken()`, the user now have an access to the Petfinder servers and can start his/her own query to find future pets. \
+The token has to be requested every hour.\
 
-
-Now, The [Petfinder API v2.0](https://www.petfinder.com/developers/v2/docs/) are now accessible through R!\ 
-Let's find pets! \
+Finally, The [Petfinder API v2.0](https://www.petfinder.com/developers/v2/docs/) are now accessible through R!
 
 
 
  
 ## Usage
-
 
 The Petfinder API allows users to search and view pet listings based on pet characteristics, location, and status. In addition, they can search for and display animal shelters based on the organization's name, ID, and location.\
 
@@ -124,9 +119,8 @@ The examples are mainly split into pet, shelter, photo-viewing functions.
 
 #### `pf_find_pets`
 
-Retrieve a data frame of information about pets that are listed on Petfinder.com. \
+The function retrieves a data frame of information about pets that are listed on Petfinder.com. \
 Filter searches based on characteristics such as animal type, breed, size, age, or location. \
-
 
 List of input arguments can be found [here](https://earl88.github.io/PetFindr/reference/index.html) \
 
@@ -141,6 +135,11 @@ pf_find_pets(token, type = "cat", gender = "female", location = "Austin, TX", pa
 ```{r  out.width = "85%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pf_find_pets.png")
 ```
+
+
+
+
+
 ### List types and breeds of pets 
 
 Two functions `pf_list_types` and `pf_list_breeds` return a list of all available types and breeds of pets available on the Petfinder API. Seraching for specific types or breeds might be a waste of time when users can list all available information about types and breeds in their R session. Since there is also a daily limitation for making queries to the API, these two functions make things easier. 
@@ -151,7 +150,6 @@ This function returns the available animal types from Petfinder.com, along with 
 ```{r echo = T, eval = F}
 pf_list_types(token = token)
 pf_list_types(token = token)$names
-
 ```
 
 Anytime users call for the type of pets, the function makes a query to the API and lists all types of pets based on the latest information. There is also a list of types of pets available in the package called `pf_types` which can be used; however, this data set is not up-to-date and it is just an example data set.
@@ -174,7 +172,6 @@ pf_list_breeds(token = token)
 
 ```{r echo = T, eval = F}
 pf_list_breeds(token = token, type = "Scales, Fins & Other")
-
 ```
 
 
