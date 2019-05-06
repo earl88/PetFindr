@@ -59,6 +59,8 @@ library(PetFindr)
 ### Authentication
 
 In order to begin, a user needs a secure authentication. \
+The authentication process is consists of two steps, getting the `key` ,`secret` and \
+access token. 
 
 To get unique `key` and `secret` from the API website, the user has to create an account on [Petfinder](https://www.petfinder.com/user/register/).\
 
@@ -75,7 +77,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 ```
 
 If the user responsds "yes", `pf_setup` will load PetFinder register website into an HTML browser. \
-After registration, a Petfinder API Key and Secret can be requested in www.petfinder.com/developers. \
+After the registration, a Petfinder API Key and Secret can be requested in www.petfinder.com/developers. \
 
 The uniqe `key` and `secret` will be used to request an access token to Petfinder API. 
 
@@ -142,15 +144,15 @@ pf_find_pets(token, type = "cat", gender = "female", location = "Austin, TX", pa
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pf_find_pets.png")
 ```
 
+Above is the raw dataset. Based on the raw dataset, the user is able to perform a various exploratory data analysis. 
 
 
 
-
-### List types and breeds of pets 
+#### List types and breeds of pets 
 
 Two functions `pf_list_types` and `pf_list_breeds` return a list of all available types and breeds of pets available on the Petfinder API. Seraching for specific types or breeds might be a waste of time when users can list all available information about types and breeds in their R session. Since there is also a daily limitation for making queries to the API, these two functions make things easier. 
 
-#### `pf_list_types`
+##### `pf_list_types`
 
 `pf_list_types` returns the available animal types from Petfinder.com, along with each type's available coat, color, and gender options. There is only one argument required for this function which is user's `token`. Then a tibble listing all available types with thier respective coat, color, and gender is returned by this function. 
 
@@ -167,7 +169,7 @@ data("pf_types", package = "PetFindr")
 
 
 
-#### `pf_list_breeds`
+##### `pf_list_breeds`
 
 This function gets all available breeds of each specific type of pet listed in users' R session  and allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type. Similar to `pf_list_type`, users' token is required for this function as the first input. The type of the pet must be also specified by the users. In return, a character vector containing the breed names for the specified animal type is given by the function. 
 
@@ -192,7 +194,7 @@ Similar to `pf_types` dataset, there is also an example data set of pet breeds a
 
 
 
-#### `pf_map_locations`
+##### `pf_map_locations`
 `pf_map_locations` displays the location of animal shelters on a Leaflet map, and uses your token and a dataframe of animal information from `pf_find_pets`, say an animal dataframe as inputs. Once you obtain an animal dataframe, `pf_map_locations` use the collection of the organization IDs of those pets to make a GET request. With the GET request, the zip code of those organizations are collected, and the location of the organizations are shown on a Leaflet map according to their zip code. That's why you need a token here.
 
 The following code will mark on a leaflet map, the location of the animal shelters of the first 10 puppies stored in the dataset, `LA_puppies` which is included in this package. Such sample datasets as well as `LA_puppies` will be explained in the next section. The snapshot of the map is shown below. 
@@ -208,7 +210,7 @@ pf_map_locations(token, LA_puppies[1:10,])
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/snapshot_map_LA_puppies10.png")
 ```
 
-#### `pf_find_organizations`
+##### `pf_find_organizations`
 
 `pf_find_organizations` retrieves a dataframe of information about organizations that are listed on Petfinder.com. Filter searches based on location, which can be specified by one of the following three ways: a postal code, "city-name, state-abbreviation", or latitude and longitude. Users also can search for organizations within distance of the location by "distance" input as well as a country in which the organizations are by "country" input. Users also can choose what type of pre-sorted pages on Petfinder.com the information should be imported.date listed on Petfinder.com, the distance from the location specified in ascending or descending order, or ramdomly where the default setting is "recent", which is related to the date listed on Petfinder.com.
 
@@ -220,7 +222,7 @@ MN_orgs <- pf_find_organizations(token, location = "Minneapolis, MN", distance =
 ```
 
 
-#### `pf_view_photos`
+##### `pf_view_photos`
 
 `pf_view_photos` presents the photos of searched pets in a slideshow format where it uses a dataframe of animal information from `pf_find_pets`, and the size of photos as inputs. Since the sizes of photos provided from the Petfinder website are "small", "medium", "large", and "full", one or more of them can be specified, and all sizes of photos will be shown by the default. In case there is no photo in the animal dataframe, an error message, "No photos found :(", will be printed.
 
@@ -290,7 +292,7 @@ top10 %>% ggplot(aes(x = breeds.primary, fill = gender)) + geom_bar() + coord_fl
 ```
 
 
-```{r  out.width = "80%",echo=FALSE}
+```{r  out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/commonbreeds.png")
 ```
 
@@ -306,7 +308,7 @@ LA_puppies %>% group_by(published_at) %>% summarise(n = n()) %>% ggplot(aes(x = 
            xlab("Date") + ylab("Number of Postings")
 ```
 
-```{r  out.width = "80%",echo=FALSE}
+```{r  out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/nyorgstimeseries.png")
 ```
 
@@ -336,13 +338,28 @@ top10_orgs %>% ggplot(aes(x = address.city)) + geom_bar() + coord_flip()
 ```
 
 
-```{r  out.width = "80%",echo=FALSE}
+```{r  out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/sheltersinny.png")
 ```
 
 
-
 The bar plot indicates that most of the shelters in New York state is located in New York city. 
+
+Or, using `leaflet` package, a user can visualize the locations of all shelters in the dataset.
+
+```{r, echo = T, eval = F}
+library(leaflet)
+library(tidyverse)
+library(zipcode)
+data(zipcode)
+map2 <- merge(NY_orgs, zipcode, by.x = "address.postcode",by.y = "zip")
+leaflet(map2) %>% addTiles() %>% addMarkers(lat = map2$latitude, lng = map2$longitude)
+```
+
+
+```{r  out.width = "50%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/leaflet_NY.jpg")
+```
 
 
 
@@ -365,7 +382,7 @@ The computer’s default browser will open up and display the following pages:
 
 #### Authentication
 
-```{r out.width = "70%", eval = T, echo = F}
+```{r out.width = "50%", eval = T, echo = F}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny_main.png")
 
 ```
@@ -383,7 +400,7 @@ The shiny app also detects invalid `key` and `secret`.
 After you are granted to access the API, you can search animals as below. 
 
 
-```{r out.width = "70%", eval = T, echo = F}
+```{r out.width = "50%", eval = T, echo = F}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny2.png")
 
 ```
@@ -413,7 +430,7 @@ and the table below shows information from a selected shelter in the `leaflet`.\
 Finally, the bar graph summarizes the types and number of pets in the selected shelter. 
 
 
-```{r out.width = "70%", eval = T, echo = F}
+```{r out.width = "50%", eval = T, echo = F}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/orginfo.png")
 
 ```
