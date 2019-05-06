@@ -119,15 +119,6 @@ The examples are mainly split into pet, shelter, photo-viewing functions.
 
 #### `pf_find_pets`
 
-
-The function retrieves a data frame of information about pets that are listed on Petfinder.com. \
-Filter searches based on characteristics such as animal type, breed, size, age, or location. \
-
-List of input arguments can be found [here](https://earl88.github.io/PetFindr/reference/index.html) \
-
-Let's say a user would like to find a list of female cats in Austin, Texas. \
-In the following example, only few variable are shown unless the output will be very wide. 
-
 `pf_find_pets` allows users to retrieve a data frame of information about pets that are listed on Petfinder.com. Filter searches based on characteristics of animals such as animal type, breed, and gender, and organization information such as IDs, location, and distance. Users also can determine specific pages with the number of pets on them and what type of pre-sorted pages (e.g., recent date listed, distance, or random) the information should be extracted from. With a leading dash (e.g., "-recent", "-distance"), a reverse-order sort is also available. For more details, list of input arguments can be found [here](https://earl88.github.io/PetFindr/reference/index.html).
 
 Let's say a user would like to find a list of female cats in Austin, Texas, and then one can use this function  with a valid token as shown in the code below. Note that in the following example, only some of variables are shown since otherwise the output will be very wide due to the string of links in the dataframe. 
@@ -169,7 +160,7 @@ data("pf_types", package = "PetFindr")
 
 #### `pf_list_breeds`
 
-This function gets all available breeds of each specific type of pet listed in users' R session  and allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type. Similar to `pf_list_type`, users' token is required for this function as the first input. The type of the pet must be also specified by the users. In return, a character vector containing the breed names for the specified animal type is given by the function. 
+`pf_list_breeds` gets all available breeds of each specific type of pet listed in users' R session  and allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type. Similar to `pf_list_type`, users' token is required for this function as the first input. The type of the pet must be also specified by the users. In return, a character vector containing the breed names for the specified animal type is given by the function. 
 
 ```{r, message=TRUE, echo = T, eval = F}
 # error animal type must be specified
@@ -193,18 +184,18 @@ Similar to `pf_types` dataset, there is also an example data set of pet breeds a
 
 
 #### `pf_map_locations`
-`pf_map_locations` displays the location of animal shelters on a Leaflet map, and uses your token and a dataframe of animal information from `pf_find_pets`, say an animal dataframe as inputs. Once you obtain an animal dataframe, `pf_map_locations` use the collection of the organization IDs of those pets to make a GET request. With the GET request, the zip code of those organizations are collected, and the location of the organizations are shown on a Leaflet map according to their zip code. That's why you need a token here.
+`pf_map_locations` displays the location of animal shelters on a Leaflet map, and uses your token and a dataframe of animal information from `pf_find_pets`, say an animal dataframe, as inputs. Once you obtain an animal dataframe, `pf_map_locations` uses the collection of the organization IDs of those pets to make a GET request. With the GET request, the ZIP codes of those organizations are collected, and the location of the organizations are shown on a Leaflet map according to their ZIP code. That's why you need a token here.
 
 The following code will mark on a leaflet map, the location of the animal shelters of the first 10 puppies stored in the dataset, `LA_puppies` which is included in this package. Such sample datasets as well as `LA_puppies` will be explained in the next section. The snapshot of the map is shown below. 
 
-Note tha only one or a few of organizations would be shown if some of animals are from the same shelters, and none of them will be marked if the location of the organization is not updated or provided from the Peftinder API.
+Note that only one or a few of organizations would be shown if some of animals are from the same shelters, and none of them will be marked if the location of the organization is not updated or provided from the Peftinder API.
 
 ```{r echo = T, eval = F}
 data(LA_puppies, package = "PetFindr")
 pf_map_locations(token, LA_puppies[1:10,])
 ```
 
-```{r  out.width = "40%",echo=FALSE}
+```{r  out.width = "25%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/snapshot_map_LA_puppies10.png")
 ```
 
@@ -231,7 +222,7 @@ data(LA_puppies, package = "PetFindr")
 pf_view_photos(LA_puppies[1:10,], size = "small")
 ```
 
-```{r  out.width = "40%",echo=FALSE}
+```{r  out.width = "25%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pupphotos.gif")
 ```
 
@@ -290,7 +281,7 @@ top10 %>% ggplot(aes(x = breeds.primary, fill = gender)) + geom_bar() + coord_fl
 ```
 
 
-```{r  out.width = "80%",echo=FALSE}
+```{r  out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/commonbreeds.png")
 ```
 
@@ -306,7 +297,7 @@ LA_puppies %>% group_by(published_at) %>% summarise(n = n()) %>% ggplot(aes(x = 
            xlab("Date") + ylab("Number of Postings")
 ```
 
-```{r  out.width = "80%",echo=FALSE}
+```{r  out.width = "50%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/nyorgstimeseries.png")
 ```
 
@@ -336,7 +327,7 @@ top10_orgs %>% ggplot(aes(x = address.city)) + geom_bar() + coord_flip()
 ```
 
 
-```{r  out.width = "80%",echo=FALSE}
+```{r  out.width = "50%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/sheltersinny.png")
 ```
 
@@ -365,7 +356,7 @@ The computer’s default browser will open up and display the following pages:
 
 #### Authentication
 
-```{r out.width = "70%", eval = T, echo = F}
+```{r out.width = "65%", eval = T, echo = F}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny_main.png")
 
 ```
