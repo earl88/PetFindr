@@ -26,6 +26,7 @@ Example
 Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API (V2) at <https://www.petfinder.com/developers/>.
 
 ``` r
+library(PetFindr)
 pf_setup()
 ```
 

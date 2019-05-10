@@ -1,5 +1,5 @@
 ---
-title: "Petfindr: Find Pets in R!"
+title: "PetFindr: Find Pets in R!"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using Petfindr}
@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 ## In This Vignette
 
 * Introducing `PetFindr`
@@ -25,57 +24,45 @@ knitr::opts_chunk$set(
     + Examples Using Sample Data 
     + Shiny 
     + Further Reading
-
-
-
-
+    
 ## Introducing `PetFindr`
 
+'PetFindr' provides a fast and friendly way to extract data from [Petfinder](https://www.petfinder.com/), the largest online pet adoption website, and facilitates data analysis and other tasks from the extracted data.
 
-The goal of 'PetFindr' is to provide a fast and friendly way to extract data from https://www.petfinder.com/, which is the largest online pet adoption website, and to facilitate data analysis and other tasks from the extracted data.\
+The package provides a useful tool to enable R users to search for their favorite pets in their own R session, and to browse pictures of the pets. All of this is possible thanks to API (Application Programming Interface) which is a set of instructions and standards for accessing structured information on the web. The Petfinder API (V2) allows us to access a database of hundreds of thousands of pets ready for adoption and over ten thousand animal welfare organizations.
 
-The package provides a useful tool to enable R users to search for their favorite pets in their own R session, and to browse pictures of the pets. All of this is possible thanks to API (Application Programming Interface) which is a set of instructions and standards for accessing structured information on the web. The Petfinder website provides us with an API that allows us to access the Petfinder database of hundreds of thousands of pets ready for adoption and over ten thousand animal welfare organizations. \
-
-This vignette introduces and walks through the package,`PetFindr`, and the Petfinder API for authenticating and extracting data from the database.\
-
+This vignette introduces the package,`PetFindr`, and walks through examples of using the Petfinder API (V2) for authenticating and extracting data from the database.
 
 ## Getting Started
 
-First, install the development version from [GitHub](https://github.com/) with:
+First, install the development version from [GitHub](https://github.com/) and load the package with:
 
 ``` {r, eval= F}
 # install.packages("devtools")
 devtools::install_github("earl88/PetFindr")
-```
-
-
-Now load the package. 
-
-```{r setup, eval = F}
 library(PetFindr)
 ```
 
-
 ### Authentication
 
-In order to begin, a user needs a secure authentication. \
-
-To get unique `key` and `secret` from the API website, the user has to create an account on [Petfinder](https://www.petfinder.com/user/register/).\
-
-`pf_setup` function will guide the user through whole process to initialize the API connection to Petfinder.\
-Running this function will open a browser to "https://www.petfinder.com/developers/" and prompt the user to register for Petfinder's API (V2).
+In order to use the Petfinder API (V2), each user needs a secure authentication. This is done by registering for a developer account on [Petfinder](https://www.petfinder.com/user/register/), which provides each user a unique 'key' and 'secret'. The `pf_setup` function guides the user through the registration process.
 
 ```{r echo = T, eval = F}
 pf_setup()
 ```
 
+```{r echo = F, eval = F}
+# If picture doesn't work, display message manually
+
+cat("Welcome to PetFindr! Before you can search for sweet puppers and kitty cats \nin R, you'll need to register for the official PetFinder API (V2) at
+https://www.petfinder.com/developers/. Would you like to do this now? (Selecting \n'Yes' will open browser.) \n\n1: Yeah\n2: No way\n3: Nope\n")
+```
 
 ```{r out.width = "60%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
 ```
 
-If the user responsds "yes", `pf_setup` will load PetFinder register website into an HTML browser. \
-After registration, a Petfinder API Key and Secret can be requested in www.petfinder.com/developers. \
+If the user responds "yes" (or any other affirmative option), `pf_setup` will will open a browser to the [Petfinder developer portal] (https://www.petfinder.com/developers/) and prompt the user to register for Petfinder's API (V2). After registering, the user will receive a Petfinder API (V2) key and secret.  \
 
 The uniqe `key` and `secret` will be used to request an access token to Petfinder API. 
 

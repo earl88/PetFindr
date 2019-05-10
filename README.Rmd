@@ -24,9 +24,9 @@ PetFindr provides an R interface for the [Petfinder.com API (V2)](https://www.pe
 
 ## Installation
 
-You can install the  the development version from [GitHub](https://github.com/) with:
+You can install the the development version from [GitHub](https://github.com/) with:
 
-``` r
+```{r, eval = F}
 # install.packages("devtools")
 devtools::install_github("earl88/PetFindr")
 ```
@@ -38,6 +38,7 @@ devtools::install_github("earl88/PetFindr")
 Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API (V2) at https://www.petfinder.com/developers/.
 
 ```{r, eval = FALSE}
+library(PetFindr)
 pf_setup()
 ```
 
