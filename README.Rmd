@@ -96,3 +96,14 @@ pf_find_pets(token, type = "horse", location = "Dallas, TX", sort = "distance") 
 pf_find_pets(token, type = "Small & furry", page = 1:2) %>%
   pf_map_locations(token, .)
 ```
+
+
+
+Interactive exploration of the package could be done with Shiny.
+
+```{r, echo = T, eval = F}
+library(shiny)
+pf_run_Shiny()
+```
+
+For more details, see the [vignette](https://earl88.github.io/PetFindr/articles/using-petfindr.html).
