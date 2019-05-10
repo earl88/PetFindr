@@ -88,7 +88,7 @@ pf_find_pets(token, type = "horse", location = "Dallas, TX", sort = "distance") 
 
 ``` r
 # Map the locations of small & furry animals
-pf_find_pets(token, type = "Small & furry", page = 1:2) %>%
+pf_find_pets(token, type = "Small & furry", page = 1) %>%
   pf_map_locations(token, .)
 ```
 

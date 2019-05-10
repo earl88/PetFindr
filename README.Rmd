@@ -101,10 +101,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 
 ```{r, echo = T, eval = F}
 # Map the locations of small & furry animals
-pf_find_pets(token, type = "Small & furry", page = 1:2) %>%
+pf_find_pets(token, type = "Small & furry", page = 1) %>%
   pf_map_locations(token, .)
 ```
-
 
 
 Interactive exploration of the package could be done with Shiny.
