@@ -91,7 +91,15 @@ puppies <- pf_find_pets(token, type = "dog", age = "baby", gender = "female")
 # View images of horses near Dallas, TX
 pf_find_pets(token, type = "horse", location = "Dallas, TX", sort = "distance") %>%
   pf_view_photos(., size = "small")
+```
 
+
+```{r  out.width = "40%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/horsepics.gif")
+```
+
+
+```{r, echo = T, eval = F}
 # Map the locations of small & furry animals
 pf_find_pets(token, type = "Small & furry", page = 1:2) %>%
   pf_map_locations(token, .)
