@@ -134,7 +134,7 @@ Running this function will open a browser to “<a href="https://www.petfinder.c
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_setup.html">pf_setup</a></span>()</code></pre></div>
 <p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png" width="60%"></p>
 <p>If the user responsds “yes”, <code>pf_setup</code> will load PetFinder register website into an HTML browser.<br>
-After registration, a Petfinder API Key and Secret can be requested in www.petfinder.com/developers.<br>
+After registration, a Petfinder API <code>key</code> and <code>secret</code> can be requested in www.petfinder.com/developers.<br>
 The uniqe <code>key</code> and <code>secret</code> will be used to request an access token to Petfinder API.</p>
 <p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png" width="60%"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_save_credentials.html">pf_save_credentials</a></span>(key, secret)</code></pre></div>
@@ -160,7 +160,7 @@ The examples are mainly split into pet, shelter, photo-viewing functions.</p>
 <h4 class="hasAnchor">
 <a href="#pf_find_pets" class="anchor"></a><code>pf_find_pets</code>
 </h4>
-<p><code>pf_find_pets</code> allows users to retrieve a data frame of information about pets that are listed on Petfinder.com. Filter searches based on characteristics of animals such as animal type, breed, and gender, and organization information such as IDs, location, and distance. Users also can determine specific pages with the number of pets on them and what type of pre-sorted pages (e.g., recent date listed, distance, or random) the information should be extracted from. With a leading dash (e.g., “-recent”, “-distance”), a reverse-order sort is also available. For more details, list of input arguments can be found <a href="https://earl88.github.io/PetFindr/reference/index.html">here</a>.</p>
+<p><code>pf_find_pets</code> allows users to retrieve a dataframe of information about pets that are listed on Petfinder.com. Filter searches are based on characteristics of animals such as animal type, breed, and gender, and organization information such as IDs, location, and distance from the selected location. Users can also make specific request to the database such as the maximum number of pets in the output and type of data sorting (e.g., most recent, the closest from the location, or random). By including a dash in the R command (e.g., “-recent”, “-distance”), a reverse-order sort is also available. For more details, list of input arguments can be found <a href="https://earl88.github.io/PetFindr/reference/index.html">here</a>.</p>
 <p>Let’s say a user would like to find a list of female cats in Austin, Texas, and then one can use this function with a valid token as shown in the code below. Note that in the following example, only some of variables are shown since otherwise the output will be very wide due to the string of links in the dataframe.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
 <span class="kw"><a href="../reference/pf_find_pets.html">pf_find_pets</a></span>(token, <span class="dt">type =</span> <span class="st">"cat"</span>, <span class="dt">gender =</span> <span class="st">"female"</span>, <span class="dt">location =</span> <span class="st">"Austin, TX"</span>, <span class="dt">page =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(organization_id, type, breeds.primary, age, gender, size, name, status) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
@@ -170,36 +170,36 @@ The examples are mainly split into pet, shelter, photo-viewing functions.</p>
 <div id="list-types-and-breeds-of-pets" class="section level3">
 <h3 class="hasAnchor">
 <a href="#list-types-and-breeds-of-pets" class="anchor"></a>List types and breeds of pets</h3>
-<p>Two functions <code>pf_list_types</code> and <code>pf_list_breeds</code> return a list of all available types and breeds of pets available on the Petfinder API. Seraching for specific types or breeds might be a waste of time when users can list all available information about types and breeds in their R session. Since there is also a daily limitation for making queries to the API, these two functions make things easier.</p>
+<p>Two functions <code>pf_list_types</code> and <code>pf_list_breeds</code> return a list of all available types and breeds of pets on the Petfinder API. If output lists all available information on types and breeds of animals, it would take a huge amount of time for a user to filter the information he/she is actually looking for. Or, sometimes a user does not know what kind of information can be extracted using the functions. Note that there is alimiting number fo daily queries, the developers made the functions below to make the searching process easier.</p>
 <div id="pf_list_types" class="section level4">
 <h4 class="hasAnchor">
 <a href="#pf_list_types" class="anchor"></a><code>pf_list_types</code>
 </h4>
-<p><code>pf_list_types</code> returns the available animal types from Petfinder.com, along with each type’s available coat, color, and gender options. There is only one argument required for this function which is user’s <code>token</code>. Then a tibble listing all available types with thier respective coat, color, and gender is returned by this function.</p>
+<p><code>pf_list_types</code> returns a dataframe with all available animal types from Petfinder.com, along with each type’s available coat, color, and gender options. There is only one argument required for this function which is user’s <code>token</code>. Then a tibble listing all available types with thier respective coat, color, and gender is returned by this function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_list_types.html">pf_list_types</a></span>(<span class="dt">token =</span> token)
 <span class="kw"><a href="../reference/pf_list_types.html">pf_list_types</a></span>(<span class="dt">token =</span> token)<span class="op">$</span>names</code></pre></div>
-<p>Anytime users call for the type of pets, the function makes a query to the API and lists all types of pets based on the latest information. There is also a list of types of pets available in the package called <code>pf_types</code> which can be used; however, this data set is not up-to-date and it is just an example data set. For more details of such sample datasets, please see the next section.</p>
+<p>Anytime users call for the type of pets, the function makes a query to the API and lists all types of pets based on the latest information. There is also a list of types of pets available in the package called <code>pf_types</code> which can be used; however, this data set is not up-to-date and it is just a static data set created on April 2019. For more details of such sample datasets, please refer to the next section.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"pf_types"</span>, <span class="dt">package =</span> <span class="st">"PetFindr"</span>)</code></pre></div>
 </div>
 <div id="pf_list_breeds" class="section level4">
 <h4 class="hasAnchor">
 <a href="#pf_list_breeds" class="anchor"></a><code>pf_list_breeds</code>
 </h4>
-<p><code>pf_list_breeds</code> gets all available breeds of each specific type of pet listed in users’ R session and allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type. Similar to <code>pf_list_type</code>, users’ token is required for this function as the first input. The type of the pet must be also specified by the users. In return, a character vector containing the breed names for the specified animal type is given by the function.</p>
+<p><code>pf_list_breeds</code> lists all available breeds of each specific type of pet listed in users’ R session and allows the user to specify an animal type found on Petfinder.com and returns a vector containing all available breeds for that animal type. Similar to <code>pf_list_type</code>, users’ token is required for this function as the first input. The type of the pet must be also specified by the users. The output is a character vector containing the breed names for the specified animal type is given by the function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># error animal type must be specified</span>
 <span class="kw"><a href="../reference/pf_list_breeds.html">pf_list_breeds</a></span>(<span class="dt">token =</span> token)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pf_list_breeds.html">pf_list_breeds</a></span>(<span class="dt">token =</span> token, <span class="dt">type =</span> <span class="st">"Scales, Fins &amp; Other"</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Listing all available dog "Retriever" </span>
 dog_breeds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pf_list_breeds.html">pf_list_breeds</a></span>(<span class="dt">token =</span> token, <span class="dt">type =</span> <span class="st">"dog"</span>)
 dog_breeds[stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span>(dog_breeds, <span class="dt">pattern =</span> <span class="st">"Retriever"</span>) <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>]</code></pre></div>
-<p>Similar to <code>pf_types</code> dataset, there is also an example data set of pet breeds available in the package called <code>pf_breeds</code> which can be used; however, to have the most recent breeds listed in R, <code>pf_list_breeds</code> needs to be called.</p>
+<p>Similar to <code>pf_types</code> dataset, there is also an static sample dataset of pet breeds available in the package called <code>pf_breeds</code> which can be used; however, to have the most recent breeds listed in R, <code>pf_list_breeds</code> needs to be called.</p>
 </div>
 <div id="pf_map_locations" class="section level4">
 <h4 class="hasAnchor">
 <a href="#pf_map_locations" class="anchor"></a><code>pf_map_locations</code>
 </h4>
-<p><code>pf_map_locations</code> displays the location of animal shelters on a Leaflet map, and uses your token and a dataframe of animal information from <code>pf_find_pets</code>, say an animal dataframe, as inputs. Once you obtain an animal dataframe, <code>pf_map_locations</code> uses the collection of the organization IDs of those pets to make a GET request. With the GET request, the ZIP codes of those organizations are collected, and the location of the organizations are shown on a Leaflet map according to their ZIP code. That’s why you need a token here.</p>
-<p>The following code will mark on a leaflet map, the location of the animal shelters of the first 10 puppies stored in the dataset, <code>LA_puppies</code> which is included in this package. Such sample datasets as well as <code>LA_puppies</code> will be explained in the next section. The snapshot of the map is shown below.</p>
+<p><code>pf_map_locations</code> displays the location of animal shelters on a Leaflet map, and requires the token and a dataframe of animal information from <code>pf_find_pets</code>, as inputs. Once a user obtains an animal dataframe, <code>pf_map_locations</code> uses the collection of the organization IDs of those pets to make a GET request. With the GET request, the ZIP codes of those organizations are collected, and the location of the organizations are shown on a Leaflet map according to their ZIP code. That’s why the token is required to use the function.</p>
+<p>The following code will display markers on a leaflet map, which are the locations of the animal shelters of the first 10 puppies stored in the dataset, <code>LA_puppies</code> which is one of the sample datasets. Such sample datasets as well as <code>LA_puppies</code> will be explained in the next section. The snapshot of the map is shown below.</p>
 <p>Note that only one or a few of organizations would be shown if some of animals are from the same shelters, and none of them will be marked if the location of the organization is not updated or provided from the Peftinder API.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(LA_puppies, <span class="dt">package =</span> <span class="st">"PetFindr"</span>)
 <span class="kw"><a href="../reference/pf_map_locations.html">pf_map_locations</a></span>(token, LA_puppies[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,])</code></pre></div>
@@ -209,7 +209,7 @@ dog_breeds[stringr<span class="op">::</span><span class="kw"><a href="https://st
 <h4 class="hasAnchor">
 <a href="#pf_find_organizations" class="anchor"></a><code>pf_find_organizations</code>
 </h4>
-<p><code>pf_find_organizations</code> retrieves a dataframe of information about organizations that are listed on Petfinder.com. Filter searches based on location, which can be specified by one of the following three ways: a postal code, “city-name, state-abbreviation”, or latitude and longitude. Users also can search for organizations within distance of the location by “distance” input as well as a country in which the organizations are by “country” input. Users also can choose what type of pre-sorted pages on Petfinder.com the information should be imported.date listed on Petfinder.com, the distance from the location specified in ascending or descending order, or ramdomly where the default setting is “recent”, which is related to the date listed on Petfinder.com.</p>
+<p><code>pf_find_organizations</code> retrieves a dataframe of information about organizations that are listed on Petfinder.com. Filter searches based on location, which can be specified by one of the following three ways: a postal code, “city-name, state-abbreviation”, or latitude and longitude. Users can also search for organizations within distance of the location by “distance” input as well as a country in which the organizations are by “country” input. Users also can choose what type of pre-sorted pages on Petfinder.com the information should be imported.date listed on Petfinder.com, the distance from the location specified in ascending or descending order, or randomly where the default setting is “recent”, which is related to the date listed on Petfinder.com.</p>
 <p>In the following examples with a valid token, the information of 100 organizations in US in the alphabetical order of states in the first page on the website, and of the first 20 organizations by default within 50 miles in Minneaplis, MN in the order of recent date listed will be returned, respectively.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">US_orgs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pf_find_organizations.html">pf_find_organizations</a></span>(token, <span class="dt">country =</span> <span class="st">"US"</span>, <span class="dt">limit =</span> <span class="dv">100</span>, <span class="dt">sort =</span> <span class="st">"state"</span>)
 MN_orgs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pf_find_organizations.html">pf_find_organizations</a></span>(token, <span class="dt">location =</span> <span class="st">"Minneapolis, MN"</span>, <span class="dt">distance =</span> <span class="dv">50</span>)</code></pre></div>
@@ -229,7 +229,7 @@ MN_orgs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pf_
 <h3 class="hasAnchor">
 <a href="#examples-using-sample-data" class="anchor"></a>Examples Using Sample Data</h3>
 <p>The developers have stored sample datasets extracted from Petfinder,<br>
-because it can be useful to include example datasets in the R package, to illustrate how the datasets are structures and how it can be leveraged to explore your interests in pets<br>
+because it can be useful to include example datasets in the R package, to illustrate how the datasets are structures and how it can be leveraged to explore your interests in pets.<br>
 The datasets in the package are immediately available when the package is loaded.</p>
 <div id="sample-data-puppies-in-los-angeles" class="section level4">
 <h4 class="hasAnchor">
@@ -244,7 +244,7 @@ The datasets in the package are immediately available when the package is loaded
 <span class="co">#&gt; 5 44541240          CA1066  Dog     Dog Ernie Baby   Male Medium adoptable</span></code></pre></div>
 <p>Note the output does not show every column in the sample dataset (otherwise the table would be very wide).</p>
 <p>Detailed information on the variables can be found <a href="https://earl88.github.io/PetFindr/reference/index.html">here</a></p>
-<p>Using the data, a user can perform various kinds of explanatory data analysis. For example, if a user wants to know what breed is the most common breed of dogs can be found in Los Angeles area. Top 10 breeds in Los Angeles area on April 2019 would be</p>
+<p>Using the data, a user can perform various kinds of explanatory data analysis. For example, if a user wants to know what breed is the most common breed of dogs can be found in the animal shelters at Los Angeles. Top 10 breeds in Los Angeles area on April 2019 would be</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(LA_puppies<span class="op">$</span>breeds.primary)))[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]
 <span class="co">#&gt;  [1] "Chihuahua"           "Terrier"             "German Shepherd Dog"</span>
 <span class="co">#&gt;  [4] "Labrador Retriever"  "Pug"                 "Shepherd"           </span>
@@ -261,7 +261,7 @@ top10 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocum
 ## Create a bar plot
 top10 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> breeds.primary, <span class="dt">fill =</span> gender)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_bar">geom_bar</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_flip">coord_flip</a></span>()</code></pre></div>
 <p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/commonbreeds.png" width="60%"></p>
-<p>Through visualization, the user can conclude that these are the most common puppy breeds (top 10) found at LA animal shelters.</p>
+<p>Through a visualization, the user can conclude that these are the most common puppy breeds (top 10) found at LA animal shelters.</p>
 <p>Or, a user can conduct a time series analysis. Let’s create a time series plot to see when the animals are posted on Petfinder.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create a time variable
 LA_puppies<span class="op">$</span>published_at &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw"><a href="http://lubridate.tidyverse.org/reference/date.html">date</a></span>(<span class="kw">ymd_hms</span>(LA_puppies<span class="op">$</span>published_at))
@@ -272,7 +272,7 @@ LA_puppies <span class="op">%&gt;%</span><span class="st"> </span><span class="k
 <div id="sample-data-shelters-in-new-york-state" class="section level4">
 <h4 class="hasAnchor">
 <a href="#sample-data-shelters-in-new-york-state" class="anchor"></a>Sample data: Shelters in New York State</h4>
-<p>The dataset summarises the list of animal sheters in New York State.<br>
+<p>The dataset summarises the list of animal sheters in New York State extracted on April 2019.<br>
 Output below is the first observation from the dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NY_orgs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(id, name, email, phone)
 <span class="co">#&gt;       id                         name                      email</span>
@@ -305,8 +305,8 @@ top10_orgs <span class="op">%&gt;%</span><span class="st"> </span><span class="k
 <a href="#shiny" class="anchor"></a>Shiny</h3>
 <p>The Shiny is a convenient way to explore data through an interactive user interface in the user’s default browser straight from R. This section of the vignette will present a couple of examples to show users how to explore Petfinder using R Shiny.<br>
 Detailed information on R Shiny could be found <a href="https://shiny.rstudio.com/">here</a>.</p>
-<p>You also need an authentication to use the Shiny because Shiny extracts information from the API as well.<br>
-The app includes multiple ways to extract and visualize data from Petfinder. All of the output on the Shiny app can be created directly in R as well. To run the app, load the <code>PetFindr</code> package, and run the <code><a href="../reference/pf_run_Shiny.html">pf_run_Shiny()</a></code> function:</p>
+<p>A user also needs an authentication to use the Shiny because Shiny extracts data from real-time information from the API.<br>
+The app includes multiple ways to extract and visualize data from Petfinder. All of the outputs on the Shiny app can be created directly in R as well. To run the app, load the <code>PetFindr</code> package, and run the <code><a href="../reference/pf_run_Shiny.html">pf_run_Shiny()</a></code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(PetFindr)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)
 <span class="kw"><a href="../reference/pf_run_Shiny.html">pf_run_Shiny</a></span>()</code></pre></div>
@@ -315,29 +315,29 @@ The app includes multiple ways to extract and visualize data from Petfinder. All
 <h4 class="hasAnchor">
 <a href="#authentication-1" class="anchor"></a>Authentication</h4>
 <p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny_main.png" width="65%"></p>
-<p>To ensure that the users are registered and have their own <code>key</code> and <code>secret</code>, the main page of the Shiny app shows a short instruction to let the users know that <code>key</code> and <code>secret</code> are required to use the Shiny app and the token has to be regenerated every hour..<br>
+<p>To ensure that the users are registered and have their own <code>key</code> and <code>secret</code>, the main page of the Shiny app shows a short instruction to let the users know that <code>key</code> and <code>secret</code> are required to use the Shiny app and the token has to be regenerated every hour.<br>
 The shiny app also detects invalid <code>key</code> and <code>secret</code>.</p>
 </div>
 <div id="search-by-animals" class="section level4">
 <h4 class="hasAnchor">
 <a href="#search-by-animals" class="anchor"></a>Search by Animals</h4>
-<p>After you are granted to access the API, you can search animals as below.</p>
+<p>After the users are granted to access the API, they can search animals as below.</p>
 <p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny2.png" width="70%"></p>
 <p>The first tab is divided into 4 main sections:</p>
-<p>The left sidebar is used to input the required information (location, search radius, types of animals, breeds of animals, adoption status, number of pets in the output) to request the AP to search for pets that meet certain criteria.</p>
+<p>The left sidebar is used to input the required information (location, search radius, types of animals, breeds of animals, adoption status, number of pets in the output) to request the AP to search for pets that meet certain criteria. Three types of queries can be made in location. A postal code, city-name, state-abbreviation and latitude and longitde information. To select distance from the location, the location input must be specified first.</p>
 <p><code>Pets in your location</code> is a table output that displays the list of pets from the output.</p>
 <p>The main visualization display section shows a <code>leaflet</code> output to visualize the location of the pets.</p>
-<p>Finally, if you click one of the rows in <code>Pets in your location</code> table, app will show you a picture of the selected animal. If the photo is unavailable, it will return an error message.</p>
+<p>Finally, if a user click one of the rows in <code>Pets in your location</code> table, app will display a picture of the selected animal. If the photo is unavailable, it will return an error message.</p>
 </div>
 <div id="search-by-organizations" class="section level4">
 <h4 class="hasAnchor">
 <a href="#search-by-organizations" class="anchor"></a>Search by Organizations</h4>
-<p>Second tab allows you to find information on animal shelters and is also dicided into 4 main sections.<br>
-You can search organization based on 3 criteria (location, search radius , and number of outputs) and<br>
+<p>Second tab allows users to find information on animal shelters and is also divided into 4 main sections.<br>
+A user can search organization based on 3 criteria (location, search radius , and number of outputs) and<br>
 the left sidebar shows the input section.<br>
-The main visualization display show three types of information.<br>
-First, it shows a <code>leaflet</code> to visualize the location of the animal shelters,<br>
-and the table below shows information from a selected shelter in the <code>leaflet</code>.<br>
+The main visualization display shows three types of information.<br>
+First, it shows a leaflet map to visualize the location of the animal shelters,<br>
+and the table below shows information from a selected shelter in the leaflet map.<br>
 Finally, the bar graph summarizes the types and number of pets in the selected shelter.</p>
 <p><img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/orginfo.png" width="70%"></p>
 </div>
