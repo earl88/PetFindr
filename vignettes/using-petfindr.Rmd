@@ -31,7 +31,6 @@ knitr::opts_chunk$set(
 
 ## Introducing `PetFindr`
 
-
 The goal of 'PetFindr' is to provide a fast and friendly way to extract data from https://www.petfinder.com/, which is the largest online pet adoption website, and to facilitate data analysis and other tasks from the extracted data.\
 
 The package provides a useful tool to enable R users to search for their favorite pets in their own R session, and to browse pictures of the pets. All of this is possible thanks to API (Application Programming Interface) which is a set of instructions and standards for accessing structured information on the web. The Petfinder website provides us with an API that allows us to access the Petfinder database of hundreds of thousands of pets ready for adoption and over ten thousand animal welfare organizations. \
@@ -41,17 +40,11 @@ This vignette introduces and walks through the package,`PetFindr`, and the Petfi
 
 ## Getting Started
 
-First, install the development version from [GitHub](https://github.com/) with:
+First, install and load the development version from [GitHub](https://github.com/) with:
 
 ``` {r, eval= F}
 # install.packages("devtools")
 devtools::install_github("earl88/PetFindr")
-```
-
-
-Now load the package. 
-
-```{r setup, eval = F}
 library(PetFindr)
 ```
 
@@ -59,9 +52,7 @@ library(PetFindr)
 ### Authentication
 
 In order to begin, a user needs a secure authentication. \
-
 To get unique `key` and `secret` from the API website, the user has to create an account on [Petfinder](https://www.petfinder.com/user/register/).\
-
 `pf_setup` function will guide the user through whole process to initialize the API connection to Petfinder.\
 Running this function will open a browser to "https://www.petfinder.com/developers/" and prompt the user to register for Petfinder's API (V2).
 
@@ -70,16 +61,15 @@ pf_setup()
 ```
 
 
-```{r out.width = "60%",echo=FALSE}
+```{r out.width = "40%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/setup_message.png")
 ```
 
 If the user responsds "yes", `pf_setup` will load PetFinder register website into an HTML browser. \
 After registration, a Petfinder API `key` and `secret` can be requested in www.petfinder.com/developers. \
-
 The uniqe `key` and `secret` will be used to request an access token to Petfinder API. 
 
-```{r  out.width = "60%",echo=FALSE}
+```{r  out.width = "40%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/secretandkey.png")
 ```
 
@@ -129,7 +119,7 @@ library(dplyr)
 pf_find_pets(token, type = "cat", gender = "female", location = "Austin, TX", page = 1) %>% select(organization_id, type, breeds.primary, age, gender, size, name, status) %>% head(n = 5)
 ```
 
-```{r  out.width = "85%",echo=FALSE}
+```{r  out.width = "30%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/pf_find_pets.png")
 ```
 
@@ -215,7 +205,6 @@ MN_orgs <- pf_find_organizations(token, location = "Minneapolis, MN", distance =
 #### `pf_view_photos`
 
 `pf_view_photos` presents the photos of searched pets in a slideshow format where it uses a dataframe of animal information from `pf_find_pets`, and the size of photos as inputs. Since the sizes of photos provided from the Petfinder website are "small", "medium", "large", and "full", one or more of them can be specified, and all sizes of photos will be shown by the default. In case there is no photo in the animal dataframe, an error message, "No photos found :(", will be printed.
-
 The following example of code will show a slideshow of small photos of puppies in LA.
 
 ```{r echo = T, eval = F}
@@ -230,10 +219,8 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 
 ### Examples Using Sample Data
 
-
 The developers have stored sample datasets extracted from Petfinder, \
 because it can be useful to include example datasets in the R package, to illustrate how the datasets are structures and how it can be leveraged to explore your interests in pets.\
-
 The datasets in the package are immediately available when the package is loaded.
 
 #### Sample data: Puppies in Los Angeles
@@ -251,9 +238,7 @@ LA_puppies %>% head(n = 5) %>% select(id, organization_id, type, species, name,a
 ```
 
 Note the output does not show every column in the sample dataset (otherwise the table would be very wide).
-
-Detailed information on the variables can be found [here](https://earl88.github.io/PetFindr/reference/index.html)
-
+Detailed information on the variables can be found [here](https://earl88.github.io/PetFindr/reference/index.html).
 Using the data, a user can perform various kinds of explanatory data analysis.
 For example, if a user wants to know what breed is the most common breed of dogs can be found in the animal shelters at Los Angeles.
 Top 10 breeds in Los Angeles area on April 2019 would be
@@ -263,7 +248,6 @@ names(sort(-table(LA_puppies$breeds.primary)))[1:10]
 ```
 
 The result can also be visualized as below.
-
 
 ```{r, message = F, echo = T, eval = F}
 library(ggplot2)
@@ -281,12 +265,11 @@ top10 %>% ggplot(aes(x = breeds.primary, fill = gender)) + geom_bar() + coord_fl
 ```
 
 
-```{r  out.width = "60%",echo=FALSE}
+```{r  out.width = "40%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/commonbreeds.png")
 ```
 
 Through a visualization, the user can conclude that these are the most common puppy breeds (top 10) found at LA animal shelters.
-
 Or, a user can conduct a time series analysis. Let's create a time series plot to see when the animals are posted on Petfinder.
 
 ```{r, eval = F, echo = T}
@@ -296,7 +279,7 @@ LA_puppies %>% group_by(published_at) %>% summarise(n = n()) %>% ggplot(aes(x = 
            xlab("Date") + ylab("Number of Postings")
 ```
 
-```{r  out.width = "50%",echo=FALSE}
+```{r  out.width = "40%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/nyorgstimeseries.png")
 ```
 
@@ -308,13 +291,11 @@ The dataset summarises the list of animal sheters in New York State extracted on
 Output below is the first observation from the dataset.
 
 ```{r, eval = T, echo = T}
-NY_orgs %>% head(n = 5) %>% select(id, name, email, phone)
+NY_orgs %>% head(n = 5) %>% select(id, name, phone)
 ```
 
 Note the output does not show every column in the sample dataset (otherwise the table would be very wide).
-
 Detailed information on the variables can be found [here](https://earl88.github.io/PetFindr/reference/index.html)
-
 Similar explanatory analysis can be conducted for the dataset as well.
 
 ```{r, echo = T, eval = F}
@@ -327,10 +308,9 @@ top10_orgs %>% ggplot(aes(x = address.city)) + geom_bar() + coord_flip()
 ```
 
 
-```{r  out.width = "50%",echo=FALSE}
+```{r  out.width = "40%",echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/sheltersinny.png")
 ```
-
 
 
 The bar plot indicates that most of the shelters in New York state is located in New York city. 
@@ -341,9 +321,7 @@ The bar plot indicates that most of the shelters in New York state is located in
 
 The Shiny is a convenient way to explore data through an interactive user interface in the user’s default browser straight from R. This section of the vignette will present a couple of examples to show users how to explore Petfinder using R Shiny.\
 Detailed information on R Shiny could be found [here](https://shiny.rstudio.com/).
-
 A user also needs an authentication to use the Shiny because Shiny extracts data from real-time information from the API.\
-
 The app includes multiple ways to extract and visualize data from Petfinder. All of the outputs on the Shiny app can be created directly in R as well. To run the app, load the `PetFindr` package, and run the `pf_run_Shiny()` function:
 
 ```{r, eval = F, echo = T}
@@ -356,7 +334,7 @@ The computer’s default browser will open up and display the following pages:
 
 #### Authentication
 
-```{r out.width = "65%", eval = T, echo = F}
+```{r out.width = "40%", eval = T, echo = F}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny_main.png")
 ```
 
@@ -372,19 +350,15 @@ The shiny app also detects invalid `key` and `secret`.
 After the users are granted to access the API, they can search animals as below. 
 
 
-```{r out.width = "70%", eval = T, echo = F}
+```{r out.width = "40%", eval = T, echo = F}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/shiny2.png")
 ```
 
 The first tab is divided into 4 main sections:
-
 The left sidebar is used to input the required information (location, search radius, types of animals, breeds of animals, adoption status, number of pets in the output) to request the AP to search for pets that meet certain criteria. Three types of queries can be made in location. A postal code, city-name, state-abbreviation and latitude and longitde information. 
 To select distance from the location, the location input must be specified first. 
-
 `Pets in your location` is a table output that displays the list of pets from the output.
-
-The main visualization display section shows a `leaflet` output to visualize the location of the pets. 
-
+The main visualization display section shows a leaflet output to visualize the location of the pets. 
 Finally, if a user click one of the rows in `Pets in your location` table, app will display a picture of the selected animal. If the photo is unavailable, it will return an error message.  
 
 
@@ -392,16 +366,13 @@ Finally, if a user click one of the rows in `Pets in your location` table, app w
 #### Search by Organizations
 
 Second tab allows users to find information on animal shelters and is also divided into 4 main sections.\
-A user can search organization based on 3 criteria (location, search radius , and number of outputs) and \
-the left sidebar shows the input section.\
-
+A user can search organization based on 3 criteria (location, search radius , and number of outputs.\
 The main visualization display shows three types of information.\
 First, it shows a leaflet map to visualize the location of the animal shelters,\
 and the table below shows information from a selected shelter in the leaflet map.\
 Finally, the bar graph summarizes the types and number of pets in the selected shelter. 
 
-
-```{r out.width = "70%", eval = T, echo = F}
+```{r out.width = "40%", eval = T, echo = F}
 knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/orginfo.png")
 ```
 
@@ -409,4 +380,3 @@ knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/maste
 ### Further Reading
 
 * For further documentation on Petfinder APIs (v2), see https://www.petfinder.com/developers/v2/docs/
-* [PetFindr Development Page](https://github.com/earl88/PetFindr) on github.
