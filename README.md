@@ -82,8 +82,21 @@ puppies <- pf_find_pets(token, type = "dog", age = "baby", gender = "female")
 # View images of horses near Dallas, TX
 pf_find_pets(token, type = "horse", location = "Dallas, TX", sort = "distance") %>%
   pf_view_photos(., size = "small")
+```
 
+<img src="https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/horsepics.gif" width="40%" />
+
+``` r
 # Map the locations of small & furry animals
-pf_find_pets(token, type = "Small & furry", page = 1:2) %>%
+pf_find_pets(token, type = "Small & furry", page = 1) %>%
   pf_map_locations(token, .)
 ```
+
+Interactive exploration of the package could be done with Shiny.
+
+``` r
+library(shiny)
+pf_run_Shiny()
+```
+
+For more details, see the [vignette](https://earl88.github.io/PetFindr/articles/using-petfindr.html).
