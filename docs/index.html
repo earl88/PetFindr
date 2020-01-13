@@ -60,7 +60,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/using-petfindr.html">Petfindr: Find Pets in R!</a>
+      <a href="articles/using-petfindr.html">PetFindr: Find Pets in R!</a>
     </li>
   </ul>
 </li>
@@ -83,7 +83,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <div id="petfindr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#petfindr" class="anchor"></a>PetFindr <img src="../../../../../../Jessica%20Lee%20K/Desktop/ISU%20Stat/Spring%202918/Stat%20585/PetFindr/man/figures/logo.png" align="right" height="280">
+<a href="#petfindr" class="anchor"></a>PetFindr <img src="../../../Spring%202019/STAT%20585/PetFindr/man/figures/logo.png" align="right" height="280">
 </h1></div>
 <!-- badges: start -->
 
@@ -102,7 +102,8 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <h3 class="hasAnchor">
 <a href="#set-up" class="anchor"></a>Set up</h3>
 <p>Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you’ll need to register for the official PetFinder API (V2) at <a href="https://www.petfinder.com/developers/" class="uri">https://www.petfinder.com/developers/</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/pf_setup.html">pf_setup</a></span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(PetFindr)
+<span class="kw"><a href="reference/pf_setup.html">pf_setup</a></span>()</code></pre></div>
 <p>The PetFinder API (V2) will assign you a key and secret. Those values can be saved to your .Rprofile for future use.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">petfindr_key &lt;-<span class="st"> "paste_key_here"</span>
 petfindr_secret &lt;-<span class="st"> "paste_secret_here"</span>
